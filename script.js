@@ -92,7 +92,7 @@ function renderGame() {
                         <div class="flex justify-between"><span>💰 Monete:</span> <span id="val-coins" class="font-bold"></span></div>
                         <div class="flex justify-between"><span>🧱 Argilla:</span> <span id="val-clay" class="font-bold"></span></div>
                         <div class="flex justify-between"><span>🏆 Punti:</span> <span id="val-score" class="font-bold"></span></div>
-                        <div class="font-bold text-xs text-gray-500 mt-2 mb-1">VERNICI:</div>
+                        <div class="font-bold text-xs text-gray-500 mt-2 mb-1">COLORI:</div>
                         <div id="pigments-list" class="grid grid-cols-3 gap-1 text-xs"></div>
                     </div>
                 </div>
