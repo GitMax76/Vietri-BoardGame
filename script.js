@@ -596,111 +596,89 @@ function updateTutorial() {
 }
 
 function renderLathe() {
-    const outer = document.getElementById('disk-outer');
-    const inner = document.getElementById('disk-inner');
-    if (!outer || !inner) return;
+    if (!document.getElementById('disk-inner')) return;
 
-    outer.innerHTML = '';
-    inner.innerHTML = '';
+    // INNER
+    const innerDisk = document.getElementById('disk-inner');
+    innerDisk.style.transform = `rotate(${gameState.lathe.innerRotation * 120}deg)`;
+    innerDisk.innerHTML = '';
 
-    const outerRot = gameState.outerRotationIndex * 60;
-    const innerRot = gameState.innerRotationIndex * 120;
+    gameState.lathe.innerSlots.forEach((slotData, index) => {
+        const rotation = index * 120;
+        const el = document.createElement('div');
+        el.className = 'absolute top-0 left-0 w-full h-full flex justify-center items-start pt-2 slot-clickable hover:bg-white/10 transition-colors cursor-pointer';
+        el.style.transform = `rotate(${rotation}deg)`;
+        el.onclick = (e) => { e.stopPropagation(); openSlotModal('inner', index); };
 
-    outer.style.transform = `rotate(${outerRot}deg)`;
-    inner.style.transform = `rotate(${innerRot}deg)`;
-
-    for (let i = 0; i < 6; i++) {
-        const slotData = gameState.outerSlots[i];
-        if (!document.getElementById('disk-inner')) return;
-
-        // We only update the VISUALS of the slots, not the container structure which is static
-        // INNER
-        const innerDisk = document.getElementById('disk-inner');
-        innerDisk.style.transform = `rotate(${gameState.lathe.innerRotation * 120}deg)`; // 3 slots = 120deg
-        innerDisk.innerHTML = '';
-
-        // Draw slices/slots
-        gameState.lathe.innerSlots.forEach((slotData, index) => {
-            const rotation = index * 120;
-            const el = document.createElement('div');
-            el.className = 'absolute top-0 left-0 w-full h-full flex justify-center items-start pt-2 slot-clickable hover:bg-white/10 transition-colors cursor-pointer';
-            el.style.transform = `rotate(${rotation}deg)`;
-            el.onclick = (e) => { e.stopPropagation(); openSlotModal('inner', index); };
-
-            // Clay Blocks (Gray/Stone)
-            let dots = '';
-            if (slotData.clay > 0) {
-                for (let k = 0; k < slotData.clay; k++) {
-                    dots += `<div class="w-4 h-3 bg-stone-400 border border-stone-600 rounded-sm shadow-sm"></div>`;
-                }
-                el.innerHTML = `<div class="flex flex-col justify-center gap-0.5 mt-2">${dots}</div>`;
-            } else {
-                el.innerHTML = '<span class="text-gray-400 text-lg opacity-50 mt-2">+</span>';
-            }
-
-            // Visual divider
-            const line = document.createElement('div');
-            line.className = 'absolute top-0 left-1/2 w-0.5 h-1/2 bg-yellow-600/30 origin-bottom transform -translate-x-1/2 pointer-events-none';
-
-            innerDisk.appendChild(el);
-        });
-
-        // OUTER
-        const outerDisk = document.getElementById('disk-outer');
-        outerDisk.style.transform = `rotate(${gameState.lathe.outerRotation * 60}deg)`; // 6 slots = 60deg
-        outerDisk.innerHTML = '';
-
-        gameState.lathe.outerSlots.forEach((slotData, index) => {
-            const rotation = index * 60;
-            const el = document.createElement('div');
-            el.className = 'absolute top-0 left-0 w-full h-full flex justify-center items-start pt-2 slot-clickable hover:bg-white/10 transition-colors cursor-pointer';
-            el.style.transform = `rotate(${rotation}deg)`;
-            el.onclick = (e) => { e.stopPropagation(); openSlotModal('outer', index); };
-
-            // Pigments
-            let dots = '';
-            let hasItems = false;
-            for (const [col, qty] of Object.entries(slotData)) {
-                if (qty > 0) {
-                    hasItems = true;
-                    for (let k = 0; k < qty; k++) {
-                        dots += `<div class="w-3 h-3 rounded-full bg-${col}-500 border border-white shadow-sm inline-block mx-px"></div>`;
-                    }
-                    if (qty > 0) dots += '<br>';
-                }
-            }
-
-            if (hasItems) {
-                el.innerHTML = `<div class="mt-2 text-center leading-none">${dots}</div>`;
-            } else {
-                el.innerHTML = '<span class="text-gray-400 text-lg opacity-50 mt-2">+</span>';
-            }
-
-            outerDisk.appendChild(el);
-        });
-    }
-
-    function openSlotModal(type, index) {
-        if (!gameState.wheelUnlocked) {
-            alert(t('lock_msg'));
-            return;
+        // Clay
+        let dots = '';
+        if (slotData.clay > 0) {
+            for (let k = 0; k < slotData.clay; k++) dots += `<div class="w-4 h-3 bg-stone-400 border border-stone-600 rounded-sm shadow-sm"></div>`;
+            el.innerHTML = `<div class="flex flex-col justify-center gap-0.5 mt-2">${dots}</div>`;
+        } else {
+            el.innerHTML = '<span class="text-gray-400 text-lg opacity-50 mt-2">+</span>';
         }
 
-        const modal = document.getElementById('slot-modal');
-        const title = document.getElementById('slot-modal-title');
-        const content = document.getElementById('slot-modal-content');
+        // Divider
+        const line = document.createElement('div');
+        line.className = 'absolute top-0 left-1/2 w-0.5 h-1/2 bg-yellow-600/30 origin-bottom transform -translate-x-1/2 pointer-events-none';
+        innerDisk.appendChild(el);
+    });
 
-        // Title translation
-        title.textContent = (type === 'inner' ? t('modal_title_inner') : t('modal_title_outer')) + ` ${index + 1}`;
+    // OUTER
+    const outerDisk = document.getElementById('disk-outer');
+    outerDisk.style.transform = `rotate(${gameState.lathe.outerRotation * 60}deg)`;
+    outerDisk.innerHTML = '';
 
-        // Render
-        let html = '';
+    gameState.lathe.outerSlots.forEach((slotData, index) => {
+        const rotation = index * 60;
+        const el = document.createElement('div');
+        el.className = 'absolute top-0 left-0 w-full h-full flex justify-center items-start pt-2 slot-clickable hover:bg-white/10 transition-colors cursor-pointer';
+        el.style.transform = `rotate(${rotation}deg)`;
+        el.onclick = (e) => { e.stopPropagation(); openSlotModal('outer', index); };
 
-        if (type === 'inner') {
-            // Clay
-            const current = gameState.lathe.innerSlots[index].clay;
-            const inventory = gameState.clay;
-            html += `
+        // Pigments
+        let dots = '';
+        let hasItems = false;
+        for (const [col, qty] of Object.entries(slotData)) {
+            if (qty > 0) {
+                hasItems = true;
+                for (let k = 0; k < qty; k++) dots += `<div class="w-3 h-3 rounded-full bg-${col}-500 border border-white shadow-sm inline-block mx-px"></div>`;
+                if (qty > 0) dots += '<br>';
+            }
+        }
+
+        if (hasItems) {
+            el.innerHTML = `<div class="mt-2 text-center leading-none">${dots}</div>`;
+        } else {
+            el.innerHTML = '<span class="text-gray-400 text-lg opacity-50 mt-2">+</span>';
+        }
+
+        outerDisk.appendChild(el);
+    });
+}
+
+function openSlotModal(type, index) {
+    if (!gameState.wheelUnlocked) {
+        alert(t('lock_msg'));
+        return;
+    }
+
+    const modal = document.getElementById('slot-modal');
+    const title = document.getElementById('slot-modal-title');
+    const content = document.getElementById('slot-modal-content');
+
+    // Title translation
+    title.textContent = (type === 'inner' ? t('modal_title_inner') : t('modal_title_outer')) + ` ${index + 1}`;
+
+    // Render
+    let html = '';
+
+    if (type === 'inner') {
+        // Clay
+        const current = gameState.lathe.innerSlots[index].clay;
+        const inventory = gameState.clay;
+        html += `
             <div class="flex justify-between items-center bg-gray-50 p-3 rounded">
                 <span>${t('in_slot')} <b class="text-xl">${current}</b></span>
                 <div class="flex gap-2">
@@ -710,19 +688,19 @@ function renderLathe() {
             </div>
             <div class="text-sm text-gray-500 text-right">${t('in_bag')} ${inventory}</div>
         `;
-        } else {
-            // Pigments
-            const slot = gameState.lathe.outerSlots[index];
-            // Filter colors visible
-            const visibleColors = COLORS.filter(c => slot[c] > 0 || gameState.pigments[c] > 0);
+    } else {
+        // Pigments
+        const slot = gameState.lathe.outerSlots[index];
+        // Filter colors visible
+        const visibleColors = COLORS.filter(c => slot[c] > 0 || gameState.pigments[c] > 0);
 
-            if (visibleColors.length === 0) {
-                html = `<p class="text-center text-gray-500 italic py-4">${t('empty_color')}</p>`;
-            } else {
-                html += `<div class="grid grid-cols-2 gap-2 max-h-60 overflow-y-auto">`;
-                visibleColors.forEach(c => {
-                    const name = TRANSLATIONS[gameState.language].colors[c];
-                    html += `
+        if (visibleColors.length === 0) {
+            html = `<p class="text-center text-gray-500 italic py-4">${t('empty_color')}</p>`;
+        } else {
+            html += `<div class="grid grid-cols-2 gap-2 max-h-60 overflow-y-auto">`;
+            visibleColors.forEach(c => {
+                const name = TRANSLATIONS[gameState.language].colors[c];
+                html += `
                     <div class="flex justify-between items-center border p-2 rounded">
                         <div class="flex items-center gap-1">
                             <div class="w-3 h-3 rounded-full bg-${c}-500"></div>
@@ -738,17 +716,17 @@ function renderLathe() {
                         </div>
                     </div>
                  `;
-                });
-                html += `</div><p class="text-[0.6rem] text-gray-500 mt-2 text-center">${t('max_types')}</p>`;
-            }
+            });
+            html += `</div><p class="text-[0.6rem] text-gray-500 mt-2 text-center">${t('max_types')}</p>`;
         }
-
-        content.innerHTML = html;
-        modal.classList.remove('hidden');
     }
 
-    function renderClayManager(container, slot) {
-        container.innerHTML = `
+    content.innerHTML = html;
+    modal.classList.remove('hidden');
+}
+
+function renderClayManager(container, slot) {
+    container.innerHTML = `
         <div class="flex justify-between items-center bg-gray-50 p-3 rounded">
             <span>Nel Slot: <b>${slot.clay}</b></span>
             <div class="flex gap-2">
@@ -764,42 +742,42 @@ function renderLathe() {
         </div>
     `;
 
-        container.querySelector('#btn-add-clay').onclick = () => {
-            if (gameState.clay > 0) {
-                gameState.clay--;
-                slot.clay++;
-                updateUI();
-                renderClayManager(container, slot);
-            }
-        };
-        container.querySelector('#btn-rem-clay').onclick = () => {
-            if (slot.clay > 0) {
-                gameState.clay++;
-                slot.clay--;
-                updateUI();
-                renderClayManager(container, slot);
-            }
-        };
+    container.querySelector('#btn-add-clay').onclick = () => {
+        if (gameState.clay > 0) {
+            gameState.clay--;
+            slot.clay++;
+            updateUI();
+            renderClayManager(container, slot);
+        }
+    };
+    container.querySelector('#btn-rem-clay').onclick = () => {
+        if (slot.clay > 0) {
+            gameState.clay++;
+            slot.clay--;
+            updateUI();
+            renderClayManager(container, slot);
+        }
+    };
+}
+
+function renderColorManager(container, slot) {
+    const presentColors = Object.keys(slot).filter(k => slot[k] > 0);
+    const distinct = presentColors.length;
+
+    const visibleColors = COLORS.filter(c => slot[c] > 0 || gameState.pigments[c] > 0);
+
+    if (visibleColors.length === 0) {
+        container.innerHTML = `<p class="text-center text-gray-500 italic py-4">Nessun colore disponibile.<br>Visita il Mercato!</p>`;
+        return;
     }
 
-    function renderColorManager(container, slot) {
-        const presentColors = Object.keys(slot).filter(k => slot[k] > 0);
-        const distinct = presentColors.length;
+    let html = `<div class="grid grid-cols-2 gap-2 max-h-60 overflow-y-auto">`;
+    visibleColors.forEach(c => {
+        const qtyInSlot = slot[c];
+        const qtyInInv = gameState.pigments[c];
+        const canAdd = qtyInInv > 0 && (distinct < 2 || qtyInSlot > 0);
 
-        const visibleColors = COLORS.filter(c => slot[c] > 0 || gameState.pigments[c] > 0);
-
-        if (visibleColors.length === 0) {
-            container.innerHTML = `<p class="text-center text-gray-500 italic py-4">Nessun colore disponibile.<br>Visita il Mercato!</p>`;
-            return;
-        }
-
-        let html = `<div class="grid grid-cols-2 gap-2 max-h-60 overflow-y-auto">`;
-        visibleColors.forEach(c => {
-            const qtyInSlot = slot[c];
-            const qtyInInv = gameState.pigments[c];
-            const canAdd = qtyInInv > 0 && (distinct < 2 || qtyInSlot > 0);
-
-            html += `
+        html += `
         <div class="flex flex-col items-center bg-gray-50 p-2 rounded border border-gray-200">
             <span class="w-6 h-6 rounded-full mb-1 border shadow-sm" style="background:${c}"></span>
             <span class="text-xs font-bold text-gray-700">${COLOR_NAMES[c]}</span>
@@ -810,48 +788,48 @@ function renderLathe() {
             </div>
             <span class="text-[0.6rem] text-gray-400 mt-1">In borsa: ${qtyInInv}</span>
         </div>`;
-        });
-        html += `</div><p class="text-[0.6rem] text-gray-500 mt-2 text-center">Max 2 tipi di colore per slot.</p>`;
+    });
+    html += `</div><p class="text-[0.6rem] text-gray-500 mt-2 text-center">Max 2 tipi di colore per slot.</p>`;
 
-        container.innerHTML = html;
+    container.innerHTML = html;
 
-        container.querySelectorAll('.btn-color-mod').forEach(btn => {
-            btn.onclick = (e) => {
-                const col = e.target.dataset.col;
-                const op = e.target.dataset.op;
-                if (op === '+') {
-                    const currentDistinct = Object.values(slot).filter(v => v > 0).length;
-                    const isNewColor = slot[col] === 0;
-                    if (gameState.pigments[col] > 0) {
-                        if (isNewColor && currentDistinct >= 2) return;
-                        slot[col] = (slot[col] || 0) + 1;
-                        gameState.pigments[col]--;
-                    }
-                } else {
-                    if (slot[col] > 0) {
-                        slot[col]--;
-                        gameState.pigments[col]++;
-                    }
+    container.querySelectorAll('.btn-color-mod').forEach(btn => {
+        btn.onclick = (e) => {
+            const col = e.target.dataset.col;
+            const op = e.target.dataset.op;
+            if (op === '+') {
+                const currentDistinct = Object.values(slot).filter(v => v > 0).length;
+                const isNewColor = slot[col] === 0;
+                if (gameState.pigments[col] > 0) {
+                    if (isNewColor && currentDistinct >= 2) return;
+                    slot[col] = (slot[col] || 0) + 1;
+                    gameState.pigments[col]--;
                 }
-                updateUI();
-                renderColorManager(container, slot);
-            };
-        });
+            } else {
+                if (slot[col] > 0) {
+                    slot[col]--;
+                    gameState.pigments[col]++;
+                }
+            }
+            updateUI();
+            renderColorManager(container, slot);
+        };
+    });
+}
+
+function openMarketMenu() {
+    if (gameState.selectedMeepleIndex === null) {
+        alert(t('select_meeple_first'));
+        return;
     }
 
-    function openMarketMenu() {
-        if (gameState.selectedMeepleIndex === null) {
-            alert(t('select_meeple_first'));
-            return;
-        }
+    const modal = document.getElementById('slot-modal');
+    const title = document.getElementById('slot-modal-title');
+    const content = document.getElementById('slot-modal-content');
 
-        const modal = document.getElementById('slot-modal');
-        const title = document.getElementById('slot-modal-title');
-        const content = document.getElementById('slot-modal-content');
+    title.textContent = t('modal_market_title');
 
-        title.textContent = t('modal_market_title');
-
-        content.innerHTML = `
+    content.innerHTML = `
         <div class="space-y-6">
             <!-- BUY -->
             <div class="bg-blue-50 p-4 rounded border border-blue-200">
@@ -890,154 +868,154 @@ function renderLathe() {
         </div>
     `;
 
-        modal.classList.remove('hidden');
-    }
+    modal.classList.remove('hidden');
+}
 
-    function getColorOptions() {
-        // Generate <option> tags localized
-        return COLORS.map(c => `<option value="${c}">${TRANSLATIONS[gameState.language].colors[c]}</option>`).join('');
-    }
+function getColorOptions() {
+    // Generate <option> tags localized
+    return COLORS.map(c => `<option value="${c}">${TRANSLATIONS[gameState.language].colors[c]}</option>`).join('');
+}
 
 
 
-    function finalizeMarketAction(actionType) {
-        const modal = document.getElementById('slot-modal');
-        modal.classList.add('hidden');
+function finalizeMarketAction(actionType) {
+    const modal = document.getElementById('slot-modal');
+    modal.classList.add('hidden');
 
-        if (actionType === 'buy') {
-            if (gameState.coins < 1) {
-                alert(t('alert_no_coins')); // ALERT TRANSLATED
-                return;
-            }
-            gameState.coins--;
-            const c1 = COLORS[Math.floor(Math.random() * COLORS.length)];
-            const c2 = COLORS[Math.floor(Math.random() * COLORS.length)];
-            gameState.pigments[c1]++;
-            gameState.pigments[c2]++;
+    if (actionType === 'buy') {
+        if (gameState.coins < 1) {
+            alert(t('alert_no_coins')); // ALERT TRANSLATED
+            return;
+        }
+        gameState.coins--;
+        const c1 = COLORS[Math.floor(Math.random() * COLORS.length)];
+        const c2 = COLORS[Math.floor(Math.random() * COLORS.length)];
+        gameState.pigments[c1]++;
+        gameState.pigments[c2]++;
+        updateUI();
+        document.getElementById('slot-modal').classList.add('hidden');
+    } else if (actionType === 'trade') {
+        const give1 = document.getElementById('trade-give-1').value;
+        const give2 = document.getElementById('trade-give-2').value;
+        const get = document.getElementById('trade-get').value;
+
+        if (gameState.pigments[give1] > 0 && (give1 !== give2 ? gameState.pigments[give2] > 0 : gameState.pigments[give1] >= 2)) {
+            gameState.pigments[give1]--;
+            gameState.pigments[give2]--;
+            gameState.pigments[get]++;
             updateUI();
             document.getElementById('slot-modal').classList.add('hidden');
-        } else if (actionType === 'trade') {
-            const give1 = document.getElementById('trade-give-1').value;
-            const give2 = document.getElementById('trade-give-2').value;
-            const get = document.getElementById('trade-get').value;
+        } else {
+            alert(t('alert_not_enough_colors')); // Use fallback or add translation for this? Adding generic fail for now or keep text
+        }
+    }
 
-            if (gameState.pigments[give1] > 0 && (give1 !== give2 ? gameState.pigments[give2] > 0 : gameState.pigments[give1] >= 2)) {
-                gameState.pigments[give1]--;
-                gameState.pigments[give2]--;
-                gameState.pigments[get]++;
-                updateUI();
-                document.getElementById('slot-modal').classList.add('hidden');
-            } else {
-                alert(t('alert_not_enough_colors')); // Use fallback or add translation for this? Adding generic fail for now or keep text
-            }
+    gameState.assistantsStatus[gameState.selectedMeepleIndex] = true;
+    const m = document.createElement('div');
+    m.textContent = '🫏';
+    m.className = 'absolute text-xl animate-bounce';
+    document.getElementById(`meeple-${gameState.currentZone}`).appendChild(m); // Changed from 'meeple-${z}' to 'meeple-${gameState.currentZone}'
+    gameState.selectedMeepleIndex = null;
+
+    if (gameState.tutorialStep === 2) gameState.tutorialStep++;
+
+    updateUI();
+    alert(actionType === "buy" ? t('alert_buy_success') : t('alert_trade_success')); // ALERT TRANSLATED
+}
+
+function rotateWheel(target, dir) {
+    if (gameState.rotationActions <= 0) {
+        alert(t('alert_no_rotations')); // ALERT TRANSLATED
+        return;
+    }
+    gameState.rotationActions--;
+    if (target === 'inner') gameState.innerRotationIndex += dir;
+    else gameState.outerRotationIndex += dir;
+    updateUI();
+}
+
+function handleZoneClick(zone) {
+    if (gameState.selectedMeepleIndex === null) {
+        alert(t('alert_select_meeple')); // ALERT TRANSLATED
+        return;
+    }
+    let success = false;
+
+    if (zone === 'river') {
+        gameState.clay += 2;
+        success = true;
+        if (gameState.tutorialStep === 1) gameState.tutorialStep++;
+    }
+    else if (zone === 'market') {
+        openMarketMenu();
+    }
+    else if (zone === 'plaza') {
+        const current = gameState.currentObjective;
+        if (confirm(t('confirm_plaza'))) { // CONFIRM TRANSLATED
+            let newComm;
+            do {
+                newComm = COMMISSIONS[Math.floor(Math.random() * COMMISSIONS.length)];
+            } while (newComm.id === current.id && COMMISSIONS.length > 1);
+
+            gameState.currentObjective = newComm;
+            alert(t('alert_new_comm')); // ALERT TRANSLATED
+            success = true;
+        } else {
+            return;
+        }
+        success = true;
+    }
+    else if (zone === 'workshop') {
+        gameState.wheelUnlocked = true;
+        success = true;
+        if (gameState.tutorialStep === 3) gameState.tutorialStep++;
+    }
+    else if (zone === 'oven') {
+        const outMod = ((-gameState.outerRotationIndex % 6) + 6) % 6;
+        const inMod = ((-gameState.innerRotationIndex % 3) + 3) % 3;
+        const topOuter = gameState.outerSlots[outMod];
+        const topInner = gameState.innerSlots[inMod];
+        const comm = gameState.currentObjective;
+
+        const hasClay = topInner.clay >= comm.reqClay;
+        let hasColors = true;
+        for (let [c, amt] of Object.entries(comm.reqColors)) {
+            if (topOuter[c] < amt) hasColors = false;
         }
 
+        if (hasClay && hasColors) {
+            alert(`${t('alert_magnificent')} ${comm.name}!`); // ALERT TRANSLATED
+            gameState.coins += comm.rewardMoney;
+            gameState.score += comm.rewardPoints;
+            topInner.clay -= comm.reqClay;
+            for (let [c, amt] of Object.entries(comm.reqColors)) topOuter[c] -= amt;
+            gameState.currentObjective = COMMISSIONS[Math.floor(Math.random() * COMMISSIONS.length)];
+            success = true;
+            if (gameState.tutorialStep === 5) gameState.tutorialStep++;
+        } else {
+            alert(t('alert_fail') + "\n" + t('alert_fail_desc')); // ALERT TRANSLATED
+            success = true;
+        }
+    }
+
+    if (success) {
         gameState.assistantsStatus[gameState.selectedMeepleIndex] = true;
         const m = document.createElement('div');
         m.textContent = '🫏';
         m.className = 'absolute text-xl animate-bounce';
-        document.getElementById(`meeple-${gameState.currentZone}`).appendChild(m); // Changed from 'meeple-${z}' to 'meeple-${gameState.currentZone}'
+        document.getElementById(`meeple-${zone}`).appendChild(m);
         gameState.selectedMeepleIndex = null;
-
-        if (gameState.tutorialStep === 2) gameState.tutorialStep++;
-
-        updateUI();
-        alert(actionType === "buy" ? t('alert_buy_success') : t('alert_trade_success')); // ALERT TRANSLATED
-    }
-
-    function rotateWheel(target, dir) {
-        if (gameState.rotationActions <= 0) {
-            alert(t('alert_no_rotations')); // ALERT TRANSLATED
-            return;
-        }
-        gameState.rotationActions--;
-        if (target === 'inner') gameState.innerRotationIndex += dir;
-        else gameState.outerRotationIndex += dir;
         updateUI();
     }
+}
 
-    function handleZoneClick(zone) {
-        if (gameState.selectedMeepleIndex === null) {
-            alert(t('alert_select_meeple')); // ALERT TRANSLATED
-            return;
-        }
-        let success = false;
+function endRound() {
+    gameState.resetDaily();
+    ['river', 'market', 'plaza', 'workshop', 'oven'].forEach(z => {
+        document.getElementById(`meeple-${z}`).innerHTML = '';
+    });
+    alert("Un nuovo giorno sorge su Vietri! (Mosse tornio ripristinate)");
+    updateUI();
+}
 
-        if (zone === 'river') {
-            gameState.clay += 2;
-            success = true;
-            if (gameState.tutorialStep === 1) gameState.tutorialStep++;
-        }
-        else if (zone === 'market') {
-            openMarketMenu();
-        }
-        else if (zone === 'plaza') {
-            const current = gameState.currentObjective;
-            if (confirm(t('confirm_plaza'))) { // CONFIRM TRANSLATED
-                let newComm;
-                do {
-                    newComm = COMMISSIONS[Math.floor(Math.random() * COMMISSIONS.length)];
-                } while (newComm.id === current.id && COMMISSIONS.length > 1);
-
-                gameState.currentObjective = newComm;
-                alert(t('alert_new_comm')); // ALERT TRANSLATED
-                success = true;
-            } else {
-                return;
-            }
-            success = true;
-        }
-        else if (zone === 'workshop') {
-            gameState.wheelUnlocked = true;
-            success = true;
-            if (gameState.tutorialStep === 3) gameState.tutorialStep++;
-        }
-        else if (zone === 'oven') {
-            const outMod = ((-gameState.outerRotationIndex % 6) + 6) % 6;
-            const inMod = ((-gameState.innerRotationIndex % 3) + 3) % 3;
-            const topOuter = gameState.outerSlots[outMod];
-            const topInner = gameState.innerSlots[inMod];
-            const comm = gameState.currentObjective;
-
-            const hasClay = topInner.clay >= comm.reqClay;
-            let hasColors = true;
-            for (let [c, amt] of Object.entries(comm.reqColors)) {
-                if (topOuter[c] < amt) hasColors = false;
-            }
-
-            if (hasClay && hasColors) {
-                alert(`${t('alert_magnificent')} ${comm.name}!`); // ALERT TRANSLATED
-                gameState.coins += comm.rewardMoney;
-                gameState.score += comm.rewardPoints;
-                topInner.clay -= comm.reqClay;
-                for (let [c, amt] of Object.entries(comm.reqColors)) topOuter[c] -= amt;
-                gameState.currentObjective = COMMISSIONS[Math.floor(Math.random() * COMMISSIONS.length)];
-                success = true;
-                if (gameState.tutorialStep === 5) gameState.tutorialStep++;
-            } else {
-                alert(t('alert_fail') + "\n" + t('alert_fail_desc')); // ALERT TRANSLATED
-                success = true;
-            }
-        }
-
-        if (success) {
-            gameState.assistantsStatus[gameState.selectedMeepleIndex] = true;
-            const m = document.createElement('div');
-            m.textContent = '🫏';
-            m.className = 'absolute text-xl animate-bounce';
-            document.getElementById(`meeple-${zone}`).appendChild(m);
-            gameState.selectedMeepleIndex = null;
-            updateUI();
-        }
-    }
-
-    function endRound() {
-        gameState.resetDaily();
-        ['river', 'market', 'plaza', 'workshop', 'oven'].forEach(z => {
-            document.getElementById(`meeple-${z}`).innerHTML = '';
-        });
-        alert("Un nuovo giorno sorge su Vietri! (Mosse tornio ripristinate)");
-        updateUI();
-    }
-
-    init();
+init();
