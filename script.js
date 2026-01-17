@@ -59,9 +59,12 @@ function renderHome() {
                     <p class="italic mb-4">"Tra le pennellate di blu cobalto e lo splendore dei limoni..."</p>
                     <p class="mb-2">Diventa un <strong>Maestro Artigiano</strong>: raccogli argilla, compra pigmenti e crea capolavori al tornio.</p>
                 </div>
-                    <div class="mt-8">
+                    <div class="mt-8 flex flex-col items-center gap-3">
                         <button id="btn-start-game" class="btn-start rounded-full px-8 py-3">Prova a giocare</button>
-                        <p class="text-xs text-gray-400 mt-4">Un gioco di M. Sabato & A. Solimene</p>
+                        <a href="rules.html" target="_blank" class="text-blue-700 underline font-bold hover:text-blue-900 flex items-center gap-1">
+                             📖 Leggi il Regolamento Ufficiale
+                        </a>
+                        <p class="text-xs text-gray-400 mt-2">Un gioco di M. Sabato & A. Solimene</p>
                     </div>
 
                     <!-- CONTACT FOOTER -->

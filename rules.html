@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vietri: Maestri della Ceramica - Regolamento</title>
+    <!-- Aggiungiamo FontAwesome per le icone dei contatti -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #e0f2fe;
+            /* Azzurro tenue */
+            /* Pattern di sfondo che ricorda le piastrelle */
+            background-image:
+                radial-gradient(#1e40af 15%, transparent 16%),
+                radial-gradient(#1e40af 15%, transparent 16%);
+            background-size: 60px 60px;
+            background-position: 0 0, 30px 30px;
+            font-family: 'Lato', sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 40px auto;
+            background-color: #fff;
+            padding: 60px;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+
+            /* Bordo stile Maiolica (doppio bordo blu e giallo) */
+            border: 8px solid #1e3a8a;
+            /* Blu Cobalto */
+            outline: 4px dashed #facc15;
+            /* Giallo Limone */
+            outline-offset: -16px;
+        }
+
+        /* Decorazione angoli interni */
+        .corner-decoration {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            pointer-events: none;
+            background-image: radial-gradient(circle at center, #facc15 0%, #facc15 20%, transparent 21%);
+            background-size: 20px 20px;
+        }
+
+        .top-left {
+            top: 20px;
+            left: 20px;
+            border-top: 4px solid #1e3a8a;
+            border-left: 4px solid #1e3a8a;
+        }
+
+        .top-right {
+            top: 20px;
+            right: 20px;
+            border-top: 4px solid #1e3a8a;
+            border-right: 4px solid #1e3a8a;
+        }
+
+        .bottom-left {
+            bottom: 20px;
+            left: 20px;
+            border-bottom: 4px solid #1e3a8a;
+            border-left: 4px solid #1e3a8a;
+        }
+
+        .bottom-right {
+            bottom: 20px;
+            right: 20px;
+            border-bottom: 4px solid #1e3a8a;
+            border-right: 4px solid #1e3a8a;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Playfair Display', serif;
+            color: #1e3a8a;
+            /* Blu Ceramica */
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 0px #facc15;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 3rem;
+            border-bottom: 2px solid #facc15;
+            padding-bottom: 20px;
+            display: inline-block;
+            width: 100%;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 2.5rem;
+            border-left: 8px solid #facc15;
+            padding-left: 15px;
+            background: linear-gradient(90deg, #f0f9ff 0%, transparent 100%);
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: #1e40af;
+            margin-top: 1.5rem;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        /* Stile Generico Liste */
+        ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        /* Icona di default: Rombo stile ceramica */
+        li::before {
+            content: "◆";
+            color: #1e3a8a;
+            /* Blu */
+            position: absolute;
+            left: 0;
+            top: 1px;
+            font-size: 1.2em;
+        }
+
+        /* --- ICONE CONTESTUALI --- */
+
+        /* Lista Componenti: Punto semplice o scatola */
+        ul.components-list li::before {
+            content: "▪";
+            color: #0ea5e9;
+            /* Azzurro chiaro */
+            font-size: 1.5em;
+            top: -4px;
+            line-height: 1;
+        }
+
+        /* Lista Azioni: Freccia indicativa */
+        ul.action-list li::before {
+            content: "➤";
+            color: #d97706;
+            /* Arancio/Ocra */
+            font-size: 1em;
+            top: 2px;
+        }
+
+        /* Lista Punti/Vittoria: Stella */
+        ul.scoring-list li::before {
+            content: "★";
+            color: #eab308;
+            /* Oro */
+            font-size: 1.1em;
+            top: 1px;
+        }
+
+        /* Lista Risorse (Setup): Checkmark o cerchio */
+        ul.setup-list li::before {
+            content: "✓";
+            color: #16a34a;
+            /* Verde */
+            font-weight: bold;
+        }
+
+        .highlight {
+            background-color: #fef9c3;
+            /* Giallo chiaro */
+            padding: 0 4px;
+            font-weight: bold;
+            color: #000;
+            border-radius: 4px;
+        }
+
+        .zone-box {
+            background-color: #f8fafc;
+            border: 1px solid #cbd5e1;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 15px 0;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.02);
+        }
+
+        .zone-icon {
+            font-size: 1.5em;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .note {
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+            background-color: #fffbeb;
+            padding: 10px;
+            border-left: 3px solid #f59e0b;
+            margin-top: 5px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            font-size: 0.9rem;
+            color: #888;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        /* Stile Contatti */
+        .contact-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #1e3a8a;
+            font-weight: bold;
+            padding: 8px 15px;
+            border-radius: 50px;
+            background-color: #f0f9ff;
+            transition: all 0.3s ease;
+            border: 1px solid #e0e7ff;
+        }
+
+        .contact-item:hover {
+            background-color: #e0f2fe;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-item i {
+            margin-right: 8px;
+            font-size: 1.3em;
+        }
+
+        /* Colori specifici brand */
+        .contact-item.whatsapp i {
+            color: #25D366;
+        }
+
+        .contact-item.email i {
+            color: #EA4335;
+        }
+
+        .contact-item.linktree i {
+            color: #43E660;
+        }
+
+        @media print {
+            body {
+                background: none;
+            }
+
+            .container {
+                box-shadow: none;
+                margin: 0;
+                width: 100%;
+                border: 2px solid #1e3a8a;
+            }
+
+            .contact-links {
+                display: none;
+            }
+
+            /* Nascondi i link web in stampa se preferisci, oppure lasciali */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Angoli decorativi -->
+        <div class="corner-decoration top-left"></div>
+        <div class="corner-decoration top-right"></div>
+        <div class="corner-decoration bottom-left"></div>
+        <div class="corner-decoration bottom-right"></div>
+
+        <h1>Vietri</h1>
+        <div class="subtitle">Maestri della Ceramica - Regolamento Ufficiale Aggiornato</div>
+
+        <h2>1. Il Sogno dell'Artista</h2>
+        <p>
+            Nelle storiche botteghe di Vietri sul Mare, l'aria profuma di salsedine e smalto fresco. Voi siete aspiranti
+            Maestri Ceramisti, pronti a sfidarvi per creare le opere più prestigiose della Costiera Amalfitana.
+            Gestite i vostri assistenti, dominate l'arte del tornio e cogliete l'attimo per infornare le vostre
+            creazioni uniche.
+        </p>
+        <p>
+            <strong>Obiettivo del Gioco:</strong> Ottenere il maggior numero di <span class="highlight">Punti Prestigio
+                (PP)</span>
+            completando Carte Opera, gestendo le risorse e realizzando pattern complessi sul proprio tornio.
+        </p>
+
+        <h2>2. Componenti e Preparazione</h2>
+
+        <h3>Componenti Principali</h3>
+        <ul class="components-list">
+            <li><strong>Tabellone di Gioco (Mappa di Vietri):</strong> Diviso in zone azione (Fiume, Mercato, Piazza,
+                Bottega, Forno).</li>
+            <li><strong>Risorse:</strong>
+                <br> - <strong>Argilla</strong> (Cubetti Grigi).
+                <br> - <strong>Pigmenti (6 Colori):</strong> Giallo, Rosso, Blu, Arancio, Viola, Verde. (In un sacchetto
+                per la pesca "al buio").
+            </li>
+            <li><strong>Carte Opera:</strong> Divise per difficoltà.</li>
+            <li><strong>Plance Tornio:</strong> Una per giocatore, composta da due dischi rotanti con slot.</li>
+            <li><strong>Assistenti:</strong> Meeple del colore del giocatore.</li>
+            <li><strong>Monete.</strong></li>
+        </ul>
+
+        <h3>Setup Iniziale</h3>
+        <ol style="list-style-type: decimal; padding-left: 20px;">
+            <li style="padding-left: 10px; margin-bottom: 8px;"><strong>Il Tabellone:</strong> Posizionarlo al centro
+                del tavolo.</li>
+            <li style="padding-left: 10px; margin-bottom: 8px;"><strong>Il Forno:</strong> È una zona della mappa (non
+                una plancia a parte). Il numero di spazi azione disponibili è pari al <strong>Numero di Giocatori -
+                    1</strong>.</li>
+            <li style="padding-left: 10px; margin-bottom: 8px;"><strong>La Piazza:</strong> Rivelare <strong>1 sola
+                    Carta Opera</strong> dal mazzo e porla a faccia in su.</li>
+            <li style="padding-left: 10px; margin-bottom: 8px;"><strong>Dotazione del Giocatore:</strong>
+                <ul class="setup-list" style="margin-top: 5px;">
+                    <li>1 Plancia Tornio.</li>
+                    <li><strong>1 Argilla</strong>.</li>
+                    <li><strong>2 Pigmenti</strong> pescati a caso dal sacchetto.</li>
+                    <li><strong>1 Carta Opera "Facile"</strong>.</li>
+                    <li>I propri Assistenti (Lavoratori).</li>
+                </ul>
+            </li>
+        </ol>
+
+        <h2>3. Il Ritmo della Bottega</h2>
+        <p>Il gioco si svolge in una serie di <strong>Round</strong>. All'interno di un round, i turni si svolgono in
+            senso orario in modo <strong>alternato</strong>.</p>
+
+        <div class="zone-box">
+            <h3>Svolgimento del Turno</h3>
+            <p>Nel proprio turno, il giocatore <strong>deve</strong> piazzare <strong>1 Assistente</strong> in una zona
+                libera della mappa ed eseguire immediatamente l'azione corrispondente. Il turno passa poi al giocatore
+                successivo alla sinistra.</p>
+        </div>
+
+        <h3>Fine del Round</h3>
+        <p>Quando tutti hanno esaurito gli Assistenti (o passato il turno), il round termina.</p>
+        <ul>
+            <li><strong>Ritorno a Casa:</strong> Tutti gli Assistenti vengono rimossi dalla mappa e tornano ai
+                giocatori.</li>
+            <li><strong>Pulizia:</strong> Se necessario, si rimpingua la carta nella Piazza (se vuota).</li>
+        </ul>
+
+        <h2>4. Le Azioni (La Mappa di Vietri)</h2>
+
+        <div class="zone-box">
+            <h3><span class="zone-icon">🌊</span>Fiume (Raccolta Materie)</h3>
+            <p>La base di ogni ceramica.</p>
+            <ul class="action-list">
+                <li><strong>Effetto:</strong> Prendi <span class="highlight">2 cubetti Argilla</span> dalla riserva.
+                </li>
+            </ul>
+        </div>
+
+        <div class="zone-box">
+            <h3><span class="zone-icon">⚖️</span>Mercato (Acquisto e Scambio)</h3>
+            <p>Qui si trovano i pigmenti più rari. Scegli <strong>UNA</strong> delle due opzioni:</p>
+            <ul class="action-list">
+                <li><strong>Acquisto al Buio:</strong> Paga <strong>1 Moneta</strong> per pescare <strong>2
+                        Pigmenti</strong> a caso dal sacchetto (tra i 6 colori disponibili).</li>
+                <li><strong>Scambio:</strong> Restituisci alla riserva <strong>2 Pigmenti</strong> qualsiasi in tuo
+                    possesso per prenderne <strong>1 a tua scelta</strong> dalla riserva (Gratis).</li>
+            </ul>
+        </div>
+
+        <div class="zone-box">
+            <h3><span class="zone-icon">🏺</span>Bottega (Lavorazione al Tornio)</h3>
+            <p>Il cuore del laboratorio, dove l'argilla prende forma e colore.</p>
+            <ul class="action-list">
+                <li><strong>Carico:</strong> Puoi spostare dalla tua riserva personale alla tua Plancia Tornio un numero
+                    <strong>illimitato</strong> di risorse (Argilla o Pigmenti).</li>
+                <li><strong>Rotazione:</strong> Puoi ruotare i dischi del tuo Tornio (interno o esterno) fino a un
+                    massimo di <span class="highlight">3 volte</span> in totale per allineare i colori e creare il
+                    pattern.</li>
+            </ul>
+            <div class="note">Nota: Una volta piazzata, una risorsa non può cambiare slot, può solo muoversi ruotando i
+                dischi.</div>
+        </div>
+
+        <div class="zone-box">
+            <h3><span class="zone-icon">🏛️</span>Piazza (Ispirazione)</h3>
+            <p>Dove i maestri cercano nuove sfide.</p>
+            <ul class="action-list">
+                <li><strong>Effetto:</strong> Prendi l'unica <strong>Carta Opera</strong> visibile.</li>
+                <li><em>Opzionale:</em> Se non prendi la carta, ottieni <strong>2 Monete</strong> (sponsorizzazione).
+                </li>
+            </ul>
+            <div class="note">Refresh: Appena la carta viene presa, ne viene rivelata subito una nuova dal mazzo.</div>
+        </div>
+
+        <div class="zone-box" style="border-color: #fca5a5; background-color: #fff1f2;">
+            <h3><span class="zone-icon">🔥</span>Forno (Cottura e Completamento)</h3>
+            <p>Il momento della verità. <strong>Attenzione:</strong> Gli spazi qui sono limitati (<span
+                    class="highlight">Giocatori - 1</span>)!</p>
+            <ul class="action-list">
+                <li><strong>Effetto:</strong> Se il tuo Tornio rispetta <em>esattamente</em> il pattern richiesto da una
+                    Carta Opera in tuo possesso, puoi completarla.</li>
+            </ul>
+            <ol style="font-size: 0.95em; color: #444; margin-left: 20px;">
+                <li>Mostra la Carta e il Tornio agli altri giocatori.</li>
+                <li>Scarta le risorse utilizzate per l'opera (tornano nella riserva).</li>
+                <li>Metti la Carta Opera nella tua pila dei punti "Completate".</li>
+                <li>Ottieni i <strong>Punti Prestigio (PP)</strong> e eventuali bonus indicati sulla carta.</li>
+            </ol>
+        </div>
+
+        <h2>5. Fine della Partita</h2>
+        <p>La partita termina alla fine del round in cui un giocatore completa la sua <strong>6ª Opera</strong>.</p>
+        <p><strong>Calcolo del Punteggio:</strong></p>
+        <ul class="scoring-list">
+            <li>Somma dei PP delle Carte Opera completate.</li>
+            <li><strong>1 PP</strong> ogni <strong>3 Monete</strong> rimaste.</li>
+            <li><strong>Bonus Maestria:</strong> Punti extra per set di opere di diversa difficoltà (se previsto).</li>
+        </ul>
+        <p style="text-align: center; margin-top: 30px; font-weight: bold; font-size: 1.2em; color: #1e3a8a;">
+            Vince il Maestro Ceramista con il punteggio più alto!
+        </p>
+
+        <div class="footer">
+            Design tematico ispirato alle maioliche di Vietri sul Mare.
+
+            <!-- Sezione Contatti Aggiunta -->
+            <div class="contact-section">
+                <div class="contact-links">
+                    <a href="https://linktr.ee/JustMax76" target="_blank" class="contact-item linktree">
+                        <i class="fa-solid fa-tree"></i> Linktree
+                    </a>
+                    <a href="https://wa.me/393295644852" target="_blank" class="contact-item whatsapp">
+                        <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                    </a>
+                    <a href="mailto:massi.sabato@gmail.com" class="contact-item email">
+                        <i class="fa-solid fa-envelope"></i> Email
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
