@@ -312,7 +312,11 @@ const TRANSLATIONS = {
             alert_fail: "MAMMA MIA! L'opera non è pronta.",
             alert_fail_desc: "vuole:\n- Argilla\n- Colori specifici\n\nControlla lo spicchio sotto la freccia ▼!",
             alert_day_reset: "Un nuovo giorno sorge su Vietri! (Mosse tornio ripristinate)",
-            footer_info: "👋 Info? Suggerimenti? Collaborazioni? Demo? Parliamo!"
+            footer_info: "👋 Info? Suggerimenti? Collaborazioni? Demo? Parliamo!",
+            alert_buy_success: "Acquisto completato! Colori aggiunti al sacco.",
+            alert_trade_success: "Scambio completato! Colori aggiornati.",
+            alert_not_enough_colors: "Non hai abbastanza colori per questo scambio!",
+            alert_no_rotations: "Hai finito le mosse del tornio per oggi!"
         },
         commissions: {
             vaso_blu: "Vaso Marino",
@@ -386,7 +390,11 @@ const TRANSLATIONS = {
             alert_fail: "MAMMA MIA! The work is not ready.",
             alert_fail_desc: "needs:\n- Clay\n- Specific colors\n\nCheck the slice under the arrow ▼!",
             alert_day_reset: "A new day dawns over Vietri! (Lathe moves restored)",
-            footer_info: "👋 Info? Suggestions? Collabs? Demo? Let's talk!"
+            footer_info: "👋 Info? Suggestions? Collabs? Demo? Let's talk!",
+            alert_buy_success: "Purchase complete! Colors added to bag.",
+            alert_trade_success: "Trade complete! Colors updated.",
+            alert_not_enough_colors: "Not enough colors for this trade!",
+            alert_no_rotations: "No lathe moves left for today!"
         },
         commissions: {
             vaso_blu: "Sea Vase",
@@ -460,7 +468,11 @@ const TRANSLATIONS = {
             alert_fail: "MAMMA MIA ! L'œuvre n'est pas prête.",
             alert_fail_desc: "nécessite :\n- Argile\n- Couleurs spécifiques\n\nVérifiez la part sous la flèche ▼!",
             alert_day_reset: "Un nouveau jour se lève sur Vietri ! (Mouvements du tour restaurés)",
-            footer_info: "👋 Info? Suggestions? Collabs ? Démo ? Parlons-en !"
+            footer_info: "👋 Info? Suggestions? Collabs ? Démo ? Parlons-en !",
+            alert_buy_success: "Achat terminé ! Couleurs ajoutées au sac.",
+            alert_trade_success: "Échange terminé ! Couleurs mises à jour.",
+            alert_not_enough_colors: "Pas assez de couleurs pour cet échange !",
+            alert_no_rotations: "Plus de mouvements de tour pour aujourd'hui !"
         },
         commissions: {
             vaso_blu: "Vase Marin",
@@ -545,10 +557,10 @@ function setLanguage(lang) {
 
 function renderLangSwitcher() {
     return `
-            <div class="absolute top-4 right-6 flex gap-2 z-50">
-                <button onclick="setLanguage('it')" class="w-10 h-10 text-2xl rounded-full border-2 border-white shadow hover:scale-110 transition ${gameState.language === 'it' ? 'ring-2 ring-yellow-400' : 'opacity-70'}">🇮🇹</button>
-                <button onclick="setLanguage('en')" class="w-10 h-10 text-2xl rounded-full border-2 border-white shadow hover:scale-110 transition ${gameState.language === 'en' ? 'ring-2 ring-yellow-400' : 'opacity-70'}">🇬🇧</button>
-                <button onclick="setLanguage('fr')" class="w-10 h-10 text-2xl rounded-full border-2 border-white shadow hover:scale-110 transition ${gameState.language === 'fr' ? 'ring-2 ring-yellow-400' : 'opacity-70'}">🇫🇷</button>
+            <div class="absolute top-2 right-2 flex gap-2 z-50">
+                <button onclick="setLanguage('it')" class="w-8 h-8 text-xl rounded-full border-2 border-white shadow hover:scale-110 transition ${gameState.language === 'it' ? 'ring-2 ring-yellow-400' : 'opacity-70'}">🇮🇹</button>
+                <button onclick="setLanguage('en')" class="w-8 h-8 text-xl rounded-full border-2 border-white shadow hover:scale-110 transition ${gameState.language === 'en' ? 'ring-2 ring-yellow-400' : 'opacity-70'}">🇬🇧</button>
+                <button onclick="setLanguage('fr')" class="w-8 h-8 text-xl rounded-full border-2 border-white shadow hover:scale-110 transition ${gameState.language === 'fr' ? 'ring-2 ring-yellow-400' : 'opacity-70'}">🇫🇷</button>
             </div>
         `;
 }
@@ -556,10 +568,10 @@ function renderLangSwitcher() {
 function renderHome() {
     return `
         <div id="view-home" class="w-full max-w-4xl p-4 fade-in relative">
-            ${renderLangSwitcher()}
             <div class="maiolica-border rounded-xl">
-                <div class="maiolica-content text-center space-y-6 p-4">
-                    <div class="mb-4">
+                <div class="maiolica-content text-center space-y-6 p-4 relative">
+                    ${renderLangSwitcher()}
+                    <div class="mb-4 mt-8">
                         <h1 class="text-5xl md:text-7xl font-bold uppercase tracking-widest text-blue-800 drop-shadow-sm">Vietri</h1>
                         <h2 class="text-2xl md:text-3xl text-yellow-600 font-serif italic mt-2">${t('title_sub')}</h2>
                     </div>
@@ -569,7 +581,7 @@ function renderHome() {
                     </div>
                         <div class="mt-8 flex flex-col items-center gap-3">
                             <button id="btn-start-game" class="btn-start rounded-full px-8 py-3">${t('btn_start')}</button>
-                            <a href="rules.html" target="_blank" class="text-blue-700 underline font-bold hover:text-blue-900 flex items-center gap-1">
+                            <a href="vietri-repo/rules.html" target="_blank" class="text-blue-700 underline font-bold hover:text-blue-900 flex items-center gap-1">
                                  ${t('rules_link')}
                             </a>
                             <p class="text-xs text-gray-400 mt-2">${t('credits')}</p>
@@ -861,10 +873,10 @@ function renderLathe() {
 
     // INNER
     const innerDisk = document.getElementById('disk-inner');
-    innerDisk.style.transform = `rotate(${gameState.lathe.innerRotation * 120}deg)`;
+    innerDisk.style.transform = `rotate(${gameState.innerRotationIndex * 120}deg)`;
     innerDisk.innerHTML = '';
 
-    gameState.lathe.innerSlots.forEach((slotData, index) => {
+    gameState.innerSlots.forEach((slotData, index) => {
         const rotation = index * 120;
         const el = document.createElement('div');
         el.className = 'absolute top-0 left-0 w-full h-full flex justify-center items-start pt-2 slot-clickable hover:bg-white/10 transition-colors cursor-pointer';
@@ -888,10 +900,10 @@ function renderLathe() {
 
     // OUTER
     const outerDisk = document.getElementById('disk-outer');
-    outerDisk.style.transform = `rotate(${gameState.lathe.outerRotation * 60}deg)`;
+    outerDisk.style.transform = `rotate(${gameState.outerRotationIndex * 60}deg)`;
     outerDisk.innerHTML = '';
 
-    gameState.lathe.outerSlots.forEach((slotData, index) => {
+    gameState.outerSlots.forEach((slotData, index) => {
         const rotation = index * 60;
         const el = document.createElement('div');
         el.className = 'absolute top-0 left-0 w-full h-full flex justify-center items-start pt-2 slot-clickable hover:bg-white/10 transition-colors cursor-pointer';
@@ -984,6 +996,81 @@ function openSlotModal(type, index) {
 
     content.innerHTML = html;
     modal.classList.remove('hidden');
+}
+
+function modSlot(type, index, item, amount) {
+    if (type === 'inner') {
+        const slot = gameState.innerSlots[index];
+        if (amount > 0) {
+            if (gameState.clay >= amount) {
+                gameState.clay -= amount;
+                slot.clay += amount;
+            }
+        } else {
+            if (slot.clay >= -amount) {
+                gameState.clay -= amount;
+                slot.clay += amount;
+            }
+        }
+    } else {
+        const slot = gameState.outerSlots[index];
+        if (amount > 0) {
+            // Add
+            if (gameState.pigments[item] > 0) {
+                const currentTypes = Object.values(slot).filter(v => v > 0).length;
+                if (slot[item] > 0 || currentTypes < 2) {
+                    gameState.pigments[item]--;
+                    slot[item]++;
+                }
+            }
+        } else {
+            // Remove
+            if (slot[item] > 0) {
+                gameState.pigments[item]++;
+                slot[item]--;
+            }
+        }
+    }
+    updateUI();
+    openSlotModal(type, index);
+}
+
+function modSlot(type, index, item, amount) {
+    if (type === 'inner') {
+        const slot = gameState.innerSlots[index]; // Fixed reference
+        if (amount > 0) {
+            if (gameState.clay >= amount) {
+                gameState.clay -= amount;
+                slot.clay += amount;
+            }
+        } else {
+            if (slot.clay >= -amount) {
+                gameState.clay -= amount; // amount is negative, so this adds
+                slot.clay += amount;
+            }
+        }
+    } else {
+        const slot = gameState.outerSlots[index]; // Fixed reference
+        if (amount > 0) {
+            // Add
+            if (gameState.pigments[item] > 0) {
+                // Check Max Types Constraint (Max 2 types)
+                const currentTypes = Object.values(slot).filter(v => v > 0).length;
+                if (slot[item] > 0 || currentTypes < 2) {
+                    gameState.pigments[item]--;
+                    slot[item]++;
+                }
+            }
+        } else {
+            // Remove
+            if (slot[item] > 0) {
+                gameState.pigments[item]++;
+                slot[item]--;
+            }
+        }
+    }
+    updateUI();
+    openSlotModal(type, index);
 }
 
 function renderClayManager(container, slot) {
