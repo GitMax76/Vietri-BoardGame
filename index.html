@@ -949,7 +949,7 @@ function openSlotModal(type, index) {
 
     if (type === 'inner') {
         // Clay
-        const current = gameState.lathe.innerSlots[index].clay;
+        const current = gameState.innerSlots[index].clay; // FIXED
         const inventory = gameState.clay;
         html += `
             <div class="flex justify-between items-center bg-gray-50 p-3 rounded">
@@ -963,7 +963,7 @@ function openSlotModal(type, index) {
         `;
     } else {
         // Pigments
-        const slot = gameState.lathe.outerSlots[index];
+        const slot = gameState.outerSlots[index]; // FIXED
         // Filter colors visible
         const visibleColors = COLORS.filter(c => slot[c] > 0 || gameState.pigments[c] > 0);
 
@@ -1035,43 +1035,7 @@ function modSlot(type, index, item, amount) {
     openSlotModal(type, index);
 }
 
-function modSlot(type, index, item, amount) {
-    if (type === 'inner') {
-        const slot = gameState.innerSlots[index]; // Fixed reference
-        if (amount > 0) {
-            if (gameState.clay >= amount) {
-                gameState.clay -= amount;
-                slot.clay += amount;
-            }
-        } else {
-            if (slot.clay >= -amount) {
-                gameState.clay -= amount; // amount is negative, so this adds
-                slot.clay += amount;
-            }
-        }
-    } else {
-        const slot = gameState.outerSlots[index]; // Fixed reference
-        if (amount > 0) {
-            // Add
-            if (gameState.pigments[item] > 0) {
-                // Check Max Types Constraint (Max 2 types)
-                const currentTypes = Object.values(slot).filter(v => v > 0).length;
-                if (slot[item] > 0 || currentTypes < 2) {
-                    gameState.pigments[item]--;
-                    slot[item]++;
-                }
-            }
-        } else {
-            // Remove
-            if (slot[item] > 0) {
-                gameState.pigments[item]++;
-                slot[item]--;
-            }
-        }
-    }
-    updateUI();
-    openSlotModal(type, index);
-}
+
 
 function renderClayManager(container, slot) {
     container.innerHTML = `
