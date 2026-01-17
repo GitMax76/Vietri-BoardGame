@@ -293,7 +293,7 @@ function setLanguage(lang) {
 
 function renderLangSwitcher() {
     return `
-            <div class="absolute top-24 right-6 flex gap-2 z-50">
+            <div class="absolute top-4 right-6 flex gap-2 z-50">
                 <button onclick="setLanguage('it')" class="w-10 h-10 text-2xl rounded-full border-2 border-white shadow hover:scale-110 transition ${gameState.language === 'it' ? 'ring-2 ring-yellow-400' : 'opacity-70'}">🇮🇹</button>
                 <button onclick="setLanguage('en')" class="w-10 h-10 text-2xl rounded-full border-2 border-white shadow hover:scale-110 transition ${gameState.language === 'en' ? 'ring-2 ring-yellow-400' : 'opacity-70'}">🇬🇧</button>
                 <button onclick="setLanguage('fr')" class="w-10 h-10 text-2xl rounded-full border-2 border-white shadow hover:scale-110 transition ${gameState.language === 'fr' ? 'ring-2 ring-yellow-400' : 'opacity-70'}">🇫🇷</button>
@@ -948,6 +948,10 @@ function handleZoneClick(zone) {
         alert(t('alert_select_meeple')); // ALERT TRANSLATED
         return;
     }
+
+    // FIX: Track current zone for meeple placement
+    gameState.currentZone = zone;
+
     let success = false;
 
     if (zone === 'river') {
