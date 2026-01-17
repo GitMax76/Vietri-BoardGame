@@ -228,7 +228,8 @@ const TRANSLATIONS = {
 };
 
 const COLORS = ['red', 'blue', 'yellow', 'green', 'orange', 'purple'];
-// COLOR_NAMES removed - used from TRANSLATIONS,
+// COLOR_NAMES removed - used from TRANSLATIONS
+
 
 const COMMISSIONS_DATA = [
     { id: 'vaso_blu', reqClay: 1, reqColors: { blue: 1 }, rewardMoney: 3, rewardPoints: 2 },
@@ -292,10 +293,10 @@ function setLanguage(lang) {
 
 function renderLangSwitcher() {
     return `
-            <div class="absolute top-4 right-4 flex gap-2 z-50">
-                <button onclick="setLanguage('it')" class="w-8 h-8 rounded-full border-2 border-white shadow hover:scale-110 transition ${gameState.language === 'it' ? 'ring-2 ring-yellow-400' : 'opacity-70'}">🇮🇹</button>
-                <button onclick="setLanguage('en')" class="w-8 h-8 rounded-full border-2 border-white shadow hover:scale-110 transition ${gameState.language === 'en' ? 'ring-2 ring-yellow-400' : 'opacity-70'}">🇬🇧</button>
-                <button onclick="setLanguage('fr')" class="w-8 h-8 rounded-full border-2 border-white shadow hover:scale-110 transition ${gameState.language === 'fr' ? 'ring-2 ring-yellow-400' : 'opacity-70'}">🇫🇷</button>
+            <div class="absolute top-24 right-6 flex gap-2 z-50">
+                <button onclick="setLanguage('it')" class="w-10 h-10 text-2xl rounded-full border-2 border-white shadow hover:scale-110 transition ${gameState.language === 'it' ? 'ring-2 ring-yellow-400' : 'opacity-70'}">🇮🇹</button>
+                <button onclick="setLanguage('en')" class="w-10 h-10 text-2xl rounded-full border-2 border-white shadow hover:scale-110 transition ${gameState.language === 'en' ? 'ring-2 ring-yellow-400' : 'opacity-70'}">🇬🇧</button>
+                <button onclick="setLanguage('fr')" class="w-10 h-10 text-2xl rounded-full border-2 border-white shadow hover:scale-110 transition ${gameState.language === 'fr' ? 'ring-2 ring-yellow-400' : 'opacity-70'}">🇫🇷</button>
             </div>
         `;
 }
@@ -348,10 +349,18 @@ function renderHome() {
 function renderGame() {
     return `
         <div id="view-game" class="w-full max-w-7xl p-2 md:p-6 fade-in h-screen flex flex-col relative">
-            ${renderLangSwitcher()}
-            <div class="flex justify-between items-center mb-2 px-2 shrink-0 bg-white/80 p-2 rounded shadow-sm mr-24">
+            
+            <div class="flex justify-between items-center mb-2 px-2 shrink-0 bg-white/80 p-2 rounded shadow-sm">
                 <div><h1 class="text-xl md:text-2xl font-bold text-vietri-blue">${t('shop_title')}</h1></div>
-                <button id="btn-exit" class="text-sm underline text-blue-600">${t('exit')}</button>
+                
+                <div class="flex items-center gap-4">
+                    <div class="flex gap-1">
+                        <button onclick="setLanguage('it')" class="w-6 h-6 rounded-full border border-white shadow hover:scale-110 transition ${gameState.language === 'it' ? 'ring-2 ring-yellow-400' : 'opacity-70'}">🇮🇹</button>
+                        <button onclick="setLanguage('en')" class="w-6 h-6 rounded-full border border-white shadow hover:scale-110 transition ${gameState.language === 'en' ? 'ring-2 ring-yellow-400' : 'opacity-70'}">🇬🇧</button>
+                        <button onclick="setLanguage('fr')" class="w-6 h-6 rounded-full border border-white shadow hover:scale-110 transition ${gameState.language === 'fr' ? 'ring-2 ring-yellow-400' : 'opacity-70'}">🇫🇷</button>
+                    </div>
+                    <button id="btn-exit" class="text-sm underline text-blue-600 font-bold">${t('exit')}</button>
+                </div>
             </div>
 
             <div class="bg-yellow-50 border-l-4 border-yellow-400 p-3 mb-2 rounded shadow-sm mx-2 shrink-0">
@@ -550,7 +559,7 @@ function updateUI() {
         const colKeys = Object.keys(obj.reqColors);
         if (colKeys.length > 0) {
             reqText += `, <br>Colori: `;
-            reqText += colKeys.map(k => `<span style="color:${k === 'yellow' ? '#d4af37' : k}" class="font-bold">${obj.reqColors[k]} ${COLOR_NAMES[k]}</span>`).join(', ');
+            reqText += colKeys.map(k => `<span style="color:${k === 'yellow' ? '#d4af37' : k}" class="font-bold">${obj.reqColors[k]} ${TRANSLATIONS[gameState.language].colors[k]}</span>`).join(', ');
         }
         document.getElementById('obj-req').innerHTML = reqText;
         document.getElementById('obj-reward').textContent = `Premio: ${obj.rewardMoney} Monete, ${obj.rewardPoints} Punti`;
@@ -780,7 +789,7 @@ function renderColorManager(container, slot) {
         html += `
         <div class="flex flex-col items-center bg-gray-50 p-2 rounded border border-gray-200">
             <span class="w-6 h-6 rounded-full mb-1 border shadow-sm" style="background:${c}"></span>
-            <span class="text-xs font-bold text-gray-700">${COLOR_NAMES[c]}</span>
+            <span class="text-xs font-bold text-gray-700">${TRANSLATIONS[gameState.language].colors[c]}</span>
             <div class="flex items-center gap-2 mt-2">
                 <button class="btn-color-mod bg-red-100 text-red-600 w-6 h-6 rounded-full hover:bg-red-200 font-bold" data-col="${c}" data-op="-">-</button>
                 <span class="font-bold text-lg w-4 text-center">${qtyInSlot}</span>
