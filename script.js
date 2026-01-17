@@ -59,10 +59,29 @@ function renderHome() {
                     <p class="italic mb-4">"Tra le pennellate di blu cobalto e lo splendore dei limoni..."</p>
                     <p class="mb-2">Diventa un <strong>Maestro Artigiano</strong>: raccogli argilla, compra pigmenti e crea capolavori al tornio.</p>
                 </div>
-                <div class="mt-8">
-                    <button id="btn-start-game" class="btn-start rounded-full px-8 py-3">Prova a giocare</button>
-                    <p class="text-xs text-gray-400 mt-4">Un gioco di M. Sabato & A. Solimene</p>
-                </div>
+                    <div class="mt-8">
+                        <button id="btn-start-game" class="btn-start rounded-full px-8 py-3">Prova a giocare</button>
+                        <p class="text-xs text-gray-400 mt-4">Un gioco di M. Sabato & A. Solimene</p>
+                    </div>
+
+                    <!-- CONTACT FOOTER -->
+                    <div class="mt-8 border-t-2 border-gray-100 pt-4">
+                        <p class="font-bold text-vietri-blue text-sm mb-3">👋 Info? Suggerimenti? Collaborazioni? Demo? Parliamo!</p>
+                        <div class="flex justify-center items-center gap-6">
+                            <a href="https://linktr.ee/JustMax76" target="_blank" class="hover:scale-125 transition-transform flex flex-col items-center gap-1 group">
+                                <span class="text-3xl filter drop-shadow-sm group-hover:drop-shadow-md">🌳</span>
+                                <span class="text-[0.6rem] text-gray-500 uppercase tracking-wider font-bold">Links</span>
+                            </a>
+                            <a href="https://wa.me/393295644852" target="_blank" class="hover:scale-125 transition-transform flex flex-col items-center gap-1 group">
+                                <span class="text-3xl filter drop-shadow-sm group-hover:drop-shadow-md">💬</span>
+                                <span class="text-[0.6rem] text-gray-500 uppercase tracking-wider font-bold">WhatsApp</span>
+                            </a>
+                            <a href="mailto:massi.sabato@gmail.com" class="hover:scale-125 transition-transform flex flex-col items-center gap-1 group">
+                                <span class="text-3xl filter drop-shadow-sm group-hover:drop-shadow-md">📧</span>
+                                <span class="text-[0.6rem] text-gray-500 uppercase tracking-wider font-bold">Email</span>
+                            </a>
+                        </div>
+                    </div>
             </div>
         </div>
     </div>`;
