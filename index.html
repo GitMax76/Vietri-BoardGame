@@ -624,11 +624,7 @@ function renderGame() {
                 <div><h1 class="text-xl md:text-2xl font-bold text-vietri-blue">${t('shop_title')}</h1></div>
                 
                 <div class="flex items-center gap-4">
-                    <div class="flex gap-1">
-                        <button onclick="setLanguage('it')" class="w-6 h-6 rounded-full border border-white shadow hover:scale-110 transition ${gameState.language === 'it' ? 'ring-2 ring-yellow-400' : 'opacity-70'}">🇮🇹</button>
-                        <button onclick="setLanguage('en')" class="w-6 h-6 rounded-full border border-white shadow hover:scale-110 transition ${gameState.language === 'en' ? 'ring-2 ring-yellow-400' : 'opacity-70'}">🇬🇧</button>
-                        <button onclick="setLanguage('fr')" class="w-6 h-6 rounded-full border border-white shadow hover:scale-110 transition ${gameState.language === 'fr' ? 'ring-2 ring-yellow-400' : 'opacity-70'}">🇫🇷</button>
-                    </div>
+                    ${renderLangSwitcher().replace('absolute top-2 right-2', '')}
                     <button id="btn-exit" class="text-sm underline text-blue-600 font-bold">${t('exit')}</button>
                 </div>
             </div>
