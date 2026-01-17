@@ -650,13 +650,9 @@ function renderGame() {
                         </div>
                     </div>
 
-                    <div class="vietri-card p-4 bg-white border-yellow-400 text-center relative flex-grow">
+                    <div class="vietri-card p-4 bg-white border-yellow-400 text-center relative flex-grow overflow-y-auto">
                         <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-white text-xs px-2 py-1 rounded">${t('commission_label')}</div>
-                        <h4 class="font-bold text-blue-800 text-md mt-2 mb-1" id="obj-name">-</h4>
-                        <div class="text-sm text-gray-700 bg-gray-50 p-2 rounded mb-2 text-left space-y-1">
-                            <div id="obj-req">${t('req_label')} -</div>
-                        </div>
-                        <div class="text-xs text-green-600 font-bold" id="obj-reward">${t('reward_label')} -</div>
+                        <div id="commissions-list" class="space-y-3 mt-2"></div>
                     </div>
                 </div>
 
@@ -818,17 +814,33 @@ function updateUI() {
         }
     });
 
-    const obj = gameState.currentObjective;
-    if (obj) {
-        document.getElementById('obj-name').textContent = obj.name;
-        let reqText = `<b>${obj.reqClay} Argilla</b>`;
-        const colKeys = Object.keys(obj.reqColors);
-        if (colKeys.length > 0) {
-            reqText += `, <br>Colori: `;
-            reqText += colKeys.map(k => `<span style="color:${k === 'yellow' ? '#d4af37' : k}" class="font-bold">${obj.reqColors[k]} ${TRANSLATIONS[gameState.language].colors[k]}</span>`).join(', ');
-        }
-        document.getElementById('obj-req').innerHTML = reqText;
-        document.getElementById('obj-reward').textContent = `Premio: ${obj.rewardMoney} Monete, ${obj.rewardPoints} Punti`;
+    // DUAL COMMISSIONS RENDER
+    const commList = document.getElementById('commissions-list');
+    if (commList) {
+        commList.innerHTML = '';
+        const currentObjs = gameState.currentObjectives || (gameState.currentObjective ? [gameState.currentObjective] : []);
+
+        currentObjs.forEach(obj => {
+            const card = document.createElement('div');
+            card.className = "text-sm text-gray-700 bg-gray-50 p-2 rounded text-left border border-gray-200 shadow-sm";
+
+            let reqText = `<b class="text-xs text-gray-400">Ric: ${obj.reqClay} Argilla</b>`;
+            const colKeys = Object.keys(obj.reqColors);
+            if (colKeys.length > 0) {
+                reqText += `, Color: `;
+                reqText += colKeys.map(k => `<span style="color:${k === 'yellow' ? '#d4af37' : k}" class="font-bold">${obj.reqColors[k]}</span>`).join(', ');
+            }
+
+            card.innerHTML = `
+                <div class="font-bold text-blue-900 border-b pb-1 mb-1 text-xs uppercase tracking-wide">${obj.name}</div>
+                <div class="text-[0.65rem] mb-1 leading-tight">${reqText}</div>
+                <div class="text-[0.65rem] text-green-600 font-bold flex justify-between">
+                    <span>💰 ${obj.rewardMoney}</span>
+                    <span>🏆 ${obj.rewardPoints}</span>
+                </div>
+            `;
+            commList.appendChild(card);
+        });
     }
 
     const dCont = document.getElementById('donkey-container');
@@ -1268,15 +1280,21 @@ function handleZoneClick(zone) {
         openMarketMenu();
     }
     else if (zone === 'plaza') {
-        const current = gameState.currentObjective;
-        if (confirm(t('confirm_plaza'))) { // CONFIRM TRANSLATED
-            let newComm;
-            do {
-                newComm = COMMISSIONS[Math.floor(Math.random() * COMMISSIONS.length)];
-            } while (newComm.id === current.id && COMMISSIONS.length > 1);
+        if (confirm(t('confirm_plaza'))) { // "Vuoi cambiare commissione?" - generic enough
+            let newObj1, newObj2;
+            const currentObjs = gameState.currentObjectives || [];
 
-            gameState.currentObjective = newComm;
-            alert(t('alert_new_comm')); // ALERT TRANSLATED
+            // Generate 2 new distinct ones
+            do {
+                newObj1 = COMMISSIONS[Math.floor(Math.random() * COMMISSIONS.length)];
+            } while (currentObjs.some(o => o.id === newObj1.id));
+
+            do {
+                newObj2 = COMMISSIONS[Math.floor(Math.random() * COMMISSIONS.length)];
+            } while (newObj2.id === newObj1.id || currentObjs.some(o => o.id === newObj2.id && COMMISSIONS.length > 3));
+
+            gameState.currentObjectives = [newObj1, newObj2];
+            alert(t('alert_new_comm'));
             success = true;
         } else {
             return;
@@ -1293,21 +1311,41 @@ function handleZoneClick(zone) {
         const inMod = ((-gameState.innerRotationIndex % 3) + 3) % 3;
         const topOuter = gameState.outerSlots[outMod];
         const topInner = gameState.innerSlots[inMod];
-        const comm = gameState.currentObjective;
 
-        const hasClay = topInner.clay >= comm.reqClay;
-        let hasColors = true;
-        for (let [c, amt] of Object.entries(comm.reqColors)) {
-            if (topOuter[c] < amt) hasColors = false;
+        let completedIndex = -1;
+        const currentObjs = gameState.currentObjectives || [];
+
+        // Check against ALL current objectives
+        for (let i = 0; i < currentObjs.length; i++) {
+            const comm = currentObjs[i];
+            const hasClay = topInner.clay >= comm.reqClay;
+            let hasColors = true;
+            for (let [c, amt] of Object.entries(comm.reqColors)) {
+                if (topOuter[c] < amt) hasColors = false;
+            }
+
+            if (hasClay && hasColors) {
+                completedIndex = i;
+                break; // Complete the first valid one found
+            }
         }
 
-        if (hasClay && hasColors) {
-            alert(`${t('alert_magnificent')} ${comm.name}!`); // ALERT TRANSLATED
+        if (completedIndex !== -1) {
+            const comm = currentObjs[completedIndex];
+            alert(`${t('alert_magnificent')} ${comm.name}!`);
             gameState.coins += comm.rewardMoney;
             gameState.score += comm.rewardPoints;
             topInner.clay -= comm.reqClay;
             for (let [c, amt] of Object.entries(comm.reqColors)) topOuter[c] -= amt;
-            gameState.currentObjective = COMMISSIONS[Math.floor(Math.random() * COMMISSIONS.length)];
+
+            // Replace executed commission
+            let newComm;
+            do {
+                newComm = COMMISSIONS[Math.floor(Math.random() * COMMISSIONS.length)];
+            } while (currentObjs.some(o => o.id === newComm.id) && COMMISSIONS.length > 2);
+
+            gameState.currentObjectives[completedIndex] = newComm;
+
             success = true;
             if (gameState.tutorialStep === 5) gameState.tutorialStep++;
         } else {
