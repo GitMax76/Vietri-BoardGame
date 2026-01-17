@@ -266,7 +266,7 @@ const gameState = {
     selectedMeepleIndex: null,
 
     score: 0,
-    currentObjective: COMMISSIONS[0],
+    currentObjectives: [COMMISSIONS[0], COMMISSIONS[1]], // DUAL COMMISSIONS
 
     wheelUnlocked: false,
     rotationActions: 3,
@@ -279,10 +279,10 @@ const gameState = {
 
     tutorialStep: 1,
 
-    resetDaily() {
+    // Daily Reset
+    resetDaily: function () {
         this.assistantsStatus = [false, false, false];
         this.selectedMeepleIndex = null;
-        this.wheelUnlocked = false;
         this.rotationActions = 3;
     }
 };
