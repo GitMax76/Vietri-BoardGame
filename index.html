@@ -558,9 +558,15 @@ function setLanguage(lang) {
 function renderLangSwitcher() {
     return `
             <div class="absolute top-2 right-2 flex gap-2 z-50">
-                <button onclick="setLanguage('it')" class="w-8 h-8 text-xl rounded-full border-2 border-white shadow hover:scale-110 transition ${gameState.language === 'it' ? 'ring-2 ring-yellow-400' : 'opacity-70'}">🇮🇹</button>
-                <button onclick="setLanguage('en')" class="w-8 h-8 text-xl rounded-full border-2 border-white shadow hover:scale-110 transition ${gameState.language === 'en' ? 'ring-2 ring-yellow-400' : 'opacity-70'}">🇬🇧</button>
-                <button onclick="setLanguage('fr')" class="w-8 h-8 text-xl rounded-full border-2 border-white shadow hover:scale-110 transition ${gameState.language === 'fr' ? 'ring-2 ring-yellow-400' : 'opacity-70'}">🇫🇷</button>
+                <button onclick="setLanguage('it')" class="w-8 h-8 rounded-full border-2 border-white shadow hover:scale-110 transition overflow-hidden ${gameState.language === 'it' ? 'ring-2 ring-yellow-400' : 'opacity-70'}">
+                    <img src="https://flagcdn.com/w40/it.png" alt="IT" class="w-full h-full object-cover">
+                </button>
+                <button onclick="setLanguage('en')" class="w-8 h-8 rounded-full border-2 border-white shadow hover:scale-110 transition overflow-hidden ${gameState.language === 'en' ? 'ring-2 ring-yellow-400' : 'opacity-70'}">
+                    <img src="https://flagcdn.com/w40/gb.png" alt="EN" class="w-full h-full object-cover">
+                </button>
+                <button onclick="setLanguage('fr')" class="w-8 h-8 rounded-full border-2 border-white shadow hover:scale-110 transition overflow-hidden ${gameState.language === 'fr' ? 'ring-2 ring-yellow-400' : 'opacity-70'}">
+                    <img src="https://flagcdn.com/w40/fr.png" alt="FR" class="w-full h-full object-cover">
+                </button>
             </div>
         `;
 }
