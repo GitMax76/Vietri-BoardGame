@@ -572,19 +572,33 @@ function updateUI() {
             const card = document.createElement('div');
             card.className = "text-sm text-gray-700 bg-gray-50 p-2 rounded text-left border border-gray-200 shadow-sm";
 
-            let reqText = `<b class="text-xs text-gray-400">Ric: ${obj.reqClay} Argilla</b>`;
+            // Localized Name
+            const commName = TRANSLATIONS[gameState.language].commissions[obj.id] || obj.id;
+
+            // Localized Requirements
+            const clayLabel = TRANSLATIONS[gameState.language].ui.clay || "Argilla";
+            let reqText = `<b class="text-xs text-gray-800">${obj.reqClay} ${clayLabel}</b>`;
+
             const colKeys = Object.keys(obj.reqColors);
             if (colKeys.length > 0) {
-                reqText += `, Color: `;
-                reqText += colKeys.map(k => `<span style="color:${k === 'yellow' ? '#d4af37' : k}" class="font-bold">${obj.reqColors[k]}</span>`).join(', ');
+                reqText += `<br><span class="text-[0.6rem] text-gray-500 uppercase font-bold">${TRANSLATIONS[gameState.language].ui.pigments_label}</span> `;
+                reqText += colKeys.map(k => {
+                    const colName = TRANSLATIONS[gameState.language].colors[k];
+                    return `<span style="color:${k === 'yellow' ? '#d4af37' : k}" class="font-bold">${obj.reqColors[k]} ${colName}</span>`;
+                }).join(', ');
             }
 
+            const rewardLabel = TRANSLATIONS[gameState.language].ui.reward_label || "Premio:";
+
             card.innerHTML = `
-                <div class="font-bold text-blue-900 border-b pb-1 mb-1 text-xs uppercase tracking-wide">${obj.name}</div>
+                <div class="font-bold text-blue-900 border-b pb-1 mb-1 text-xs uppercase tracking-wide">${commName}</div>
                 <div class="text-[0.65rem] mb-1 leading-tight">${reqText}</div>
-                <div class="text-[0.65rem] text-green-600 font-bold flex justify-between">
-                    <span>💰 ${obj.rewardMoney}</span>
-                    <span>🏆 ${obj.rewardPoints}</span>
+                <div class="text-xs text-green-700 font-bold border-t pt-1 mt-1 flex justify-between items-center">
+                   <span class="text-[0.6rem] text-gray-500 uppercase">${rewardLabel}</span>
+                   <div class="flex gap-2">
+                        <span>💰 ${obj.rewardMoney}</span>
+                        <span>🏆 ${obj.rewardPoints}</span>
+                   </div>
                 </div>
             `;
             commList.appendChild(card);
