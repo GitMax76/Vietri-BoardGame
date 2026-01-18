@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vietri: Maestri della Ceramica</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏺</text></svg>">
-    
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏺</text></svg>">
+
     <meta property="og:title" content="Vietri: Maestri della Ceramica" />
     <meta property="og:description" content="Diventa un Maestro Artigiano nella Costiera Amalfitana. Gioca ora!" />
-    <meta property="og:image" content="preview.jpg" />
+    <meta property="og:image" content="https://gitmax76.github.io/Vietri-BoardGame/preview.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:type" content="website" />
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -29,534 +34,535 @@
         }
     </script>
     <style>
-:root {
-    --vietri-blue: #0047AB;
-    --vietri-yellow: #FFD700;
-}
+        :root {
+            --vietri-blue: #0047AB;
+            --vietri-yellow: #FFD700;
+        }
 
-body {
-    background-color: #f0f8ff;
-    /* Amalfi Coast Background */
-    background-image:
-        linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)),
-        url('https://images.unsplash.com/photo-1533907650686-705761a08356?q=80&w=2000&auto=format&fit=crop');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-}
+        body {
+            background-color: #f0f8ff;
+            /* Amalfi Coast Background */
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)),
+                url('https://images.unsplash.com/photo-1533907650686-705761a08356?q=80&w=2000&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
 
-/* --- MAIOLICA HOME STYLES --- */
-.maiolica-border {
-    border: 8px solid var(--vietri-blue);
-    background-image:
-        linear-gradient(45deg, var(--vietri-blue) 25%, transparent 25%, transparent 75%, var(--vietri-blue) 75%, var(--vietri-blue)),
-        linear-gradient(45deg, var(--vietri-blue) 25%, transparent 25%, transparent 75%, var(--vietri-blue) 75%, var(--vietri-blue));
-    background-position: 0 0, 10px 10px;
-    background-size: 20px 20px;
-    padding: 10px;
-    box-shadow: 0 10px 25px rgba(0, 71, 171, 0.3);
-    position: relative;
-    background-color: white;
-    /* Ensure base is white for pattern */
-}
+        /* --- MAIOLICA HOME STYLES --- */
+        .maiolica-border {
+            border: 8px solid var(--vietri-blue);
+            background-image:
+                linear-gradient(45deg, var(--vietri-blue) 25%, transparent 25%, transparent 75%, var(--vietri-blue) 75%, var(--vietri-blue)),
+                linear-gradient(45deg, var(--vietri-blue) 25%, transparent 25%, transparent 75%, var(--vietri-blue) 75%, var(--vietri-blue));
+            background-position: 0 0, 10px 10px;
+            background-size: 20px 20px;
+            padding: 10px;
+            box-shadow: 0 10px 25px rgba(0, 71, 171, 0.3);
+            position: relative;
+            background-color: white;
+            /* Ensure base is white for pattern */
+        }
 
-.maiolica-content {
-    background: white;
-    padding: 2rem;
-    border: 2px solid var(--vietri-yellow);
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
+        .maiolica-content {
+            background: white;
+            padding: 2rem;
+            border: 2px solid var(--vietri-yellow);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
 
-/* --- GLOSSY CERAMIC BUTTON --- */
-.btn-start {
-    background: linear-gradient(135deg, var(--vietri-blue) 0%, #002244 100%);
-    color: white;
-    border: 4px solid var(--vietri-yellow);
-    padding: 15px 50px;
-    font-size: 1.5rem;
-    font-family: 'Georgia', serif;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.2);
-    border-radius: 50px;
-    position: relative;
-    overflow: hidden;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-}
+        /* --- GLOSSY CERAMIC BUTTON --- */
+        .btn-start {
+            background: linear-gradient(135deg, var(--vietri-blue) 0%, #002244 100%);
+            color: white;
+            border: 4px solid var(--vietri-yellow);
+            padding: 15px 50px;
+            font-size: 1.5rem;
+            font-family: 'Georgia', serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            position: relative;
+            overflow: hidden;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
 
-.btn-start:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.4);
-    border-color: #fff;
-    filter: brightness(1.1);
-}
+        .btn-start:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.4);
+            border-color: #fff;
+            filter: brightness(1.1);
+        }
 
-/* Shine Effect */
-.btn-start::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -60%;
-    width: 200%;
-    height: 200%;
-    background: rgba(255, 255, 255, 0.3);
-    transform: rotate(45deg) translateY(-100%);
-    transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
-}
+        /* Shine Effect */
+        .btn-start::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(45deg) translateY(-100%);
+            transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
 
-.btn-start:hover::after {
-    transform: rotate(45deg) translateY(20%);
-}
+        .btn-start:hover::after {
+            transform: rotate(45deg) translateY(20%);
+        }
 
-.vietri-card {
-    background: white;
-    border: 2px solid var(--vietri-blue);
-    border-radius: 12px;
-    box-shadow: 4px 4px 0px rgba(0, 71, 171, 0.2);
-    transition: all 0.3s ease;
-}
+        .vietri-card {
+            background: white;
+            border: 2px solid var(--vietri-blue);
+            border-radius: 12px;
+            box-shadow: 4px 4px 0px rgba(0, 71, 171, 0.2);
+            transition: all 0.3s ease;
+        }
 
-/* --- MAP & ZONES --- */
-.map-container {
-    position: relative;
-    width: 300px;
-    height: 300px;
-    background: rgba(255, 255, 255, 0.5);
-    border: 2px dashed #ccc;
-    /* Add slight backdrop for map logic visibility over bg */
-    backdrop-filter: blur(2px);
-}
+        /* --- MAP & ZONES --- */
+        .map-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.5);
+            border: 2px dashed #ccc;
+            /* Add slight backdrop for map logic visibility over bg */
+            backdrop-filter: blur(2px);
+        }
 
-.map-zone {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: white;
-    border: 2px solid #ddd;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.2s;
-    z-index: 10;
-}
+        .map-zone {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid #ddd;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s;
+            z-index: 10;
+        }
 
-.pos-1 {
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-}
+        .pos-1 {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
 
-.pos-2 {
-    top: 35%;
-    right: -10px;
-}
+        .pos-2 {
+            top: 35%;
+            right: -10px;
+        }
 
-.pos-3 {
-    bottom: 10px;
-    right: 15px;
-}
+        .pos-3 {
+            bottom: 10px;
+            right: 15px;
+        }
 
-.pos-4 {
-    bottom: 10px;
-    left: 15px;
-}
+        .pos-4 {
+            bottom: 10px;
+            left: 15px;
+        }
 
-.pos-5 {
-    top: 35%;
-    left: -10px;
-}
+        .pos-5 {
+            top: 35%;
+            left: -10px;
+        }
 
-.map-zone:hover {
-    transform: scale(1.1);
-    border-color: var(--vietri-blue);
-    z-index: 20;
-}
+        .map-zone:hover {
+            transform: scale(1.1);
+            border-color: var(--vietri-blue);
+            z-index: 20;
+        }
 
-/* --- WHEELS --- */
-.wheel-outer-bg {
-    background: repeating-conic-gradient(from 30deg,
-            #ffffff 0deg 60deg,
-            #f0f7ff 60deg 120deg);
-    border-radius: 50%;
-}
+        /* --- WHEELS --- */
+        .wheel-outer-bg {
+            background: repeating-conic-gradient(from 30deg,
+                    #ffffff 0deg 60deg,
+                    #f0f7ff 60deg 120deg);
+            border-radius: 50%;
+        }
 
-.wheel-inner-bg {
-    background: repeating-conic-gradient(from 30deg,
-            #fffff0 0deg 120deg,
-            #fffde7 120deg 240deg);
-    border-radius: 50%;
-}
+        .wheel-inner-bg {
+            background: repeating-conic-gradient(from 30deg,
+                    #fffff0 0deg 120deg,
+                    #fffde7 120deg 240deg);
+            border-radius: 50%;
+        }
 
-.slot-marker {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-}
+        .slot-marker {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
 
-.donkey-btn {
-    font-size: 2rem;
-    cursor: pointer;
-    padding: 5px;
-    border-radius: 50%;
-    transition: all 0.2s;
-    border: 2px solid transparent;
-}
+        .donkey-btn {
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
 
-.donkey-btn:hover {
-    transform: scale(1.1);
-    background: #f0f0f0;
-}
+        .donkey-btn:hover {
+            transform: scale(1.1);
+            background: #f0f0f0;
+        }
 
-.donkey-btn.selected {
-    background: #FFD700;
-    border-color: #d4af37;
-    transform: scale(1.2);
-}
+        .donkey-btn.selected {
+            background: #FFD700;
+            border-color: #d4af37;
+            transform: scale(1.2);
+        }
 
-.donkey-btn.used {
-    opacity: 0.2;
-    cursor: not-allowed;
-    filter: grayscale(1);
-    pointer-events: none;
-}
+        .donkey-btn.used {
+            opacity: 0.2;
+            cursor: not-allowed;
+            filter: grayscale(1);
+            pointer-events: none;
+        }
 
-.hidden {
-    display: none !important;
-}
+        .hidden {
+            display: none !important;
+        }
 
-.fade-in {
-    animation: fadeIn 0.5s;
-}
+        .fade-in {
+            animation: fadeIn 0.5s;
+        }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
 
-    to {
-        opacity: 1;
-    }
-}
+            to {
+                opacity: 1;
+            }
+        }
     </style>
 </head>
+
 <body class="min-h-screen flex flex-col items-center justify-center font-sans">
     <div id="app" class="w-full h-full flex flex-col items-center justify-center"></div>
     <script>
-// --- CONSTANTS & CONFIG ---
-const LANGUAGES = ['it', 'en', 'fr'];
-let currentLang = 'it';
+        // --- CONSTANTS & CONFIG ---
+        const LANGUAGES = ['it', 'en', 'fr'];
+        let currentLang = 'it';
 
-const TRANSLATIONS = {
-    it: {
-        colors: { red: 'Rosso', blue: 'Blu', yellow: 'Giallo', green: 'Verde', orange: 'Arancio', purple: 'Viola' },
-        ui: {
-            title_sub: "Maestri della Ceramica",
-            quote: '"Tra le pennellate di blu cobalto e lo splendore dei limoni..."',
-            intro: "Diventa un <strong>Maestro Artigiano</strong>: raccogli argilla, compra pigmenti e crea capolavori al tornio.",
-            btn_start: "Prova a giocare",
-            credits: "Un gioco di M. Sabato & A. Solimene",
-            rules_link: "📖 Leggi il Regolamento Ufficiale",
-            shop_title: "Bottega del Maestro",
-            exit: "Esci",
-            tutorial_loading: "Caricamento...",
-            section_donkeys: "1. I tuoi Asinelli",
-            coins: "💰 Monete",
-            clay: "🧱 Argilla",
-            points: "🏆 Punti",
-            pigments_label: "COLORI:",
-            commission_label: "COMMISSIONE",
-            req_label: "Richiede:",
-            reward_label: "Premio:",
-            section_action: "2. Scegli le azioni",
-            zone_river: "Fiume",
-            zone_market: "Mercato",
-            zone_plaza: "Piazza",
-            zone_workshop: "Bottega",
-            zone_oven: "Forno",
-            reset_day: "🌙 Fine Giornata (Reset)",
-            section_lathe: "3. Tornio di Precisione",
-            moves_left: "Mosse Rimaste:",
-            lock_msg: "🔒 Vai in Bottega per usare",
-            wheel_inner: "Ruota Interna",
-            wheel_outer: "Ruota Esterna",
-            modal_title_inner: "Slot Interno",
-            modal_title_outer: "Slot Esterno",
-            modal_market_title: "Mercato dei Colori",
-            btn_close: "Chiudi",
-            in_slot: "Nel Slot:",
-            in_bag: "Disponibile nel sacco:",
-            empty_color: "Nessun colore disponibile.<br>Visita il Mercato!",
-            max_types: "Max 2 tipi di colore per slot.",
-            market_buy: "Acquista",
-            market_buy_desc: "1 Moneta = 2 Colori a caso",
-            market_buy_btn: "Acquista (💰 1)",
-            market_or: "- OPPURE -",
-            market_trade: "Baratta",
-            market_trade_desc: "Scambia 2 colori qualsiasi per 1 a scelta.",
-            market_give: "Dai 2 colori:",
-            market_get: "Ricevi 1 colore:",
-            market_trade_btn: "Scambia (2 -> 1)",
-            alert_select_meeple: "Seleziona un asinello prima!",
-            alert_no_coins: "Non hai abbastanza monete (serve 1)!",
-            confirm_plaza: "Sei in Piazza! Vuoi cambiare la commissione attuale con una nuova?",
-            alert_new_comm: "Nuova commissione ricevuta",
-            alert_magnificent: "MAGNIFICO! Hai creato",
-            alert_fail: "MAMMA MIA! L'opera non è pronta.",
-            alert_fail_desc: "vuole:\n- Argilla\n- Colori specifici\n\nControlla lo spicchio sotto la freccia ▼!",
-            alert_day_reset: "Un nuovo giorno sorge su Vietri! (Mosse tornio ripristinate)",
-            footer_info: "👋 Info? Suggerimenti? Collaborazioni? Demo? Parliamo!",
-            alert_buy_success: "Acquisto completato! Colori aggiunti al sacco.",
-            alert_trade_success: "Scambio completato! Colori aggiornati.",
-            alert_not_enough_colors: "Non hai abbastanza colori per questo scambio!",
-            alert_no_rotations: "Hai finito le mosse del tornio per oggi!"
-        },
-        commissions: {
-            vaso_blu: "Vaso Marino",
-            piatto_sole: "Piatto del Sole",
-            anfora_bosco: "Anfora del Bosco",
-            ciotola_fuoco: "Ciotola Fuoco",
-            mosaico_reale: "Mosaico Reale"
-        },
-        tutorial: {
-            t1: "Seleziona un asinello e visita il <b>Fiume</b> per l'argilla.",
-            t2: "Visita il <b>Mercato</b> per comprare i colori (costa 1 moneta).",
-            t3: "Vai alla <b>Bottega</b> per sbloccare il Tornio.",
-            t4: "Clicca sugli SPICCHI del tornio per inserire materiali, poi ruota (max 3 mosse).",
-            t5: "Quando allineato (▼), vai al <b>Forno</b> per completare l'opera."
+        const TRANSLATIONS = {
+            it: {
+                colors: { red: 'Rosso', blue: 'Blu', yellow: 'Giallo', green: 'Verde', orange: 'Arancio', purple: 'Viola' },
+                ui: {
+                    title_sub: "Maestri della Ceramica",
+                    quote: '"Tra le pennellate di blu cobalto e lo splendore dei limoni..."',
+                    intro: "Diventa un <strong>Maestro Artigiano</strong>: raccogli argilla, compra pigmenti e crea capolavori al tornio.",
+                    btn_start: "Prova a giocare",
+                    credits: "Un gioco di M. Sabato & A. Solimene",
+                    rules_link: "📖 Leggi il Regolamento Ufficiale",
+                    shop_title: "Bottega del Maestro",
+                    exit: "Esci",
+                    tutorial_loading: "Caricamento...",
+                    section_donkeys: "1. I tuoi Asinelli",
+                    coins: "💰 Monete",
+                    clay: "🧱 Argilla",
+                    points: "🏆 Punti",
+                    pigments_label: "COLORI:",
+                    commission_label: "COMMISSIONE",
+                    req_label: "Richiede:",
+                    reward_label: "Premio:",
+                    section_action: "2. Scegli le azioni",
+                    zone_river: "Fiume",
+                    zone_market: "Mercato",
+                    zone_plaza: "Piazza",
+                    zone_workshop: "Bottega",
+                    zone_oven: "Forno",
+                    reset_day: "🌙 Fine Giornata (Reset)",
+                    section_lathe: "3. Tornio di Precisione",
+                    moves_left: "Mosse Rimaste:",
+                    lock_msg: "🔒 Vai in Bottega per usare",
+                    wheel_inner: "Ruota Interna",
+                    wheel_outer: "Ruota Esterna",
+                    modal_title_inner: "Slot Interno",
+                    modal_title_outer: "Slot Esterno",
+                    modal_market_title: "Mercato dei Colori",
+                    btn_close: "Chiudi",
+                    in_slot: "Nel Slot:",
+                    in_bag: "Disponibile nel sacco:",
+                    empty_color: "Nessun colore disponibile.<br>Visita il Mercato!",
+                    max_types: "Max 2 tipi di colore per slot.",
+                    market_buy: "Acquista",
+                    market_buy_desc: "1 Moneta = 2 Colori a caso",
+                    market_buy_btn: "Acquista (💰 1)",
+                    market_or: "- OPPURE -",
+                    market_trade: "Baratta",
+                    market_trade_desc: "Scambia 2 colori qualsiasi per 1 a scelta.",
+                    market_give: "Dai 2 colori:",
+                    market_get: "Ricevi 1 colore:",
+                    market_trade_btn: "Scambia (2 -> 1)",
+                    alert_select_meeple: "Seleziona un asinello prima!",
+                    alert_no_coins: "Non hai abbastanza monete (serve 1)!",
+                    confirm_plaza: "Sei in Piazza! Vuoi cambiare la commissione attuale con una nuova?",
+                    alert_new_comm: "Nuova commissione ricevuta",
+                    alert_magnificent: "MAGNIFICO! Hai creato",
+                    alert_fail: "MAMMA MIA! L'opera non è pronta.",
+                    alert_fail_desc: "vuole:\n- Argilla\n- Colori specifici\n\nControlla lo spicchio sotto la freccia ▼!",
+                    alert_day_reset: "Un nuovo giorno sorge su Vietri! (Mosse tornio ripristinate)",
+                    footer_info: "👋 Info? Suggerimenti? Collaborazioni? Demo? Parliamo!",
+                    alert_buy_success: "Acquisto completato! Colori aggiunti al sacco.",
+                    alert_trade_success: "Scambio completato! Colori aggiornati.",
+                    alert_not_enough_colors: "Non hai abbastanza colori per questo scambio!",
+                    alert_no_rotations: "Hai finito le mosse del tornio per oggi!"
+                },
+                commissions: {
+                    vaso_blu: "Vaso Marino",
+                    piatto_sole: "Piatto del Sole",
+                    anfora_bosco: "Anfora del Bosco",
+                    ciotola_fuoco: "Ciotola Fuoco",
+                    mosaico_reale: "Mosaico Reale"
+                },
+                tutorial: {
+                    t1: "Seleziona un asinello e visita il <b>Fiume</b> per l'argilla.",
+                    t2: "Visita il <b>Mercato</b> per comprare i colori (costa 1 moneta).",
+                    t3: "Vai alla <b>Bottega</b> per sbloccare il Tornio.",
+                    t4: "Clicca sugli SPICCHI del tornio per inserire materiali, poi ruota (max 3 mosse).",
+                    t5: "Quando allineato (▼), vai al <b>Forno</b> per completare l'opera."
+                }
+            },
+            en: {
+                colors: { red: 'Red', blue: 'Blue', yellow: 'Yellow', green: 'Green', orange: 'Orange', purple: 'Purple' },
+                ui: {
+                    title_sub: "Masters of Ceramics",
+                    quote: '"Between brushstrokes of cobalt blue and the splendor of lemons..."',
+                    intro: "Become a <strong>Master Craftsman</strong>: gather clay, buy pigments, and create masterpieces on the lathe.",
+                    btn_start: "Play Now",
+                    credits: "A game by M. Sabato & A. Solimene",
+                    rules_link: "📖 Read Official Rules",
+                    shop_title: "Master's Workshop",
+                    exit: "Exit",
+                    tutorial_loading: "Loading...",
+                    section_donkeys: "1. Your Donkeys",
+                    coins: "💰 Coins",
+                    clay: "🧱 Clay",
+                    points: "🏆 Points",
+                    pigments_label: "COLORS:",
+                    commission_label: "COMMISSION",
+                    req_label: "Requires:",
+                    reward_label: "Reward:",
+                    section_action: "2. Choose Actions",
+                    zone_river: "River",
+                    zone_market: "Market",
+                    zone_plaza: "Plaza",
+                    zone_workshop: "Workshop",
+                    zone_oven: "Oven",
+                    reset_day: "🌙 End of Day (Reset)",
+                    section_lathe: "3. Precision Lathe",
+                    moves_left: "Moves Left:",
+                    lock_msg: "🔒 Go to Workshop to use",
+                    wheel_inner: "Inner Wheel",
+                    wheel_outer: "Outer Wheel",
+                    modal_title_inner: "Inner Slot",
+                    modal_title_outer: "Outer Slot",
+                    modal_market_title: "Color Market",
+                    btn_close: "Close",
+                    in_slot: "In Slot:",
+                    in_bag: "Available in bag:",
+                    empty_color: "No colors available.<br>Visit the Market!",
+                    max_types: "Max 2 color types per slot.",
+                    market_buy: "Buy",
+                    market_buy_desc: "1 Coin = 2 Random Colors",
+                    market_buy_btn: "Buy (💰 1)",
+                    market_or: "- OR -",
+                    market_trade: "Trade",
+                    market_trade_desc: "Trade any 2 colors for 1 of choice.",
+                    market_give: "Give 2:",
+                    market_get: "Get 1:",
+                    market_trade_btn: "Trade (2 -> 1)",
+                    alert_select_meeple: "Select a donkey first!",
+                    alert_no_coins: "Not enough coins (needs 1)!",
+                    confirm_plaza: "You are in the Plaza! Do you want to swap your current commission for a new one?",
+                    alert_new_comm: "New commission received",
+                    alert_magnificent: "MAGNIFICENT! You created",
+                    alert_fail: "MAMMA MIA! The work is not ready.",
+                    alert_fail_desc: "needs:\n- Clay\n- Specific colors\n\nCheck the slice under the arrow ▼!",
+                    alert_day_reset: "A new day dawns over Vietri! (Lathe moves restored)",
+                    footer_info: "👋 Info? Suggestions? Collabs? Demo? Let's talk!",
+                    alert_buy_success: "Purchase complete! Colors added to bag.",
+                    alert_trade_success: "Trade complete! Colors updated.",
+                    alert_not_enough_colors: "Not enough colors for this trade!",
+                    alert_no_rotations: "No lathe moves left for today!"
+                },
+                commissions: {
+                    vaso_blu: "Sea Vase",
+                    piatto_sole: "Sun Plate",
+                    anfora_bosco: "Forest Amphora",
+                    ciotola_fuoco: "Fire Bowl",
+                    mosaico_reale: "Royal Mosaic"
+                },
+                tutorial: {
+                    t1: "Select a donkey and visit the <b>River</b> for clay.",
+                    t2: "Visit the <b>Market</b> to buy colors (costs 1 coin).",
+                    t3: "Go to the <b>Workshop</b> to unlock the Lathe.",
+                    t4: "Click on the lathe SLICES to insert materials, then rotate (max 3 moves).",
+                    t5: "When aligned (▼), go to the <b>Oven</b> to complete the work."
+                }
+            },
+            fr: {
+                colors: { red: 'Rouge', blue: 'Bleu', yellow: 'Jaune', green: 'Vert', orange: 'Orange', purple: 'Violet' },
+                ui: {
+                    title_sub: "Maîtres de la Céramique",
+                    quote: '"Entre coups de pinceau bleu cobalt et la splendeur des citrons..."',
+                    intro: "Devenez un <strong>Maître Artisan</strong> : récoltez l'argile, achetez des pigments et créez des chefs-d'œuvre au tour.",
+                    btn_start: "Jouer Maintenant",
+                    credits: "Un jeu de M. Sabato & A. Solimene",
+                    rules_link: "📖 Lire le Règlement Officiel",
+                    shop_title: "Atelier du Maître",
+                    exit: "Quitter",
+                    tutorial_loading: "Chargement...",
+                    section_donkeys: "1. Vos Ânes",
+                    coins: "💰 Pièces",
+                    clay: "🧱 Argile",
+                    points: "🏆 Points",
+                    pigments_label: "COULEURS:",
+                    commission_label: "COMMANDE",
+                    req_label: "Requis :",
+                    reward_label: "Récompense :",
+                    section_action: "2. Choisir Actions",
+                    zone_river: "Rivière",
+                    zone_market: "Marché",
+                    zone_plaza: "Place",
+                    zone_workshop: "Atelier",
+                    zone_oven: "Four",
+                    reset_day: "🌙 Fin de Journée (Reset)",
+                    section_lathe: "3. Tour de Précision",
+                    moves_left: "Mouvements restants :",
+                    lock_msg: "🔒 Allez à l'Atelier pour utiliser",
+                    wheel_inner: "Roue Intérieure",
+                    wheel_outer: "Roue Extérieure",
+                    modal_title_inner: "Emplacement Interne",
+                    modal_title_outer: "Emplacement Externe",
+                    modal_market_title: "Marché des Couleurs",
+                    btn_close: "Fermer",
+                    in_slot: "Dans l'emplacement :",
+                    in_bag: "Disponible dans le sac :",
+                    empty_color: "Aucune couleur disponible.<br>Visitez le Marché !",
+                    max_types: "Max 2 types de couleurs par emplacement.",
+                    market_buy: "Acheter",
+                    market_buy_desc: "1 Pièce = 2 Couleurs au hasard",
+                    market_buy_btn: "Acheter (💰 1)",
+                    market_or: "- OU -",
+                    market_trade: "Échanger",
+                    market_trade_desc: "Échangez 2 couleurs contre 1 au choix.",
+                    market_give: "Donner 2 :",
+                    market_get: "Recevoir 1 :",
+                    market_trade_btn: "Échanger (2 -> 1)",
+                    alert_select_meeple: "Sélectionnez d'abord un âne !",
+                    alert_no_coins: "Pas assez de pièces (il en faut 1) !",
+                    confirm_plaza: "Vous êtes sur la Place ! Voulez-vous échanger votre commande actuelle contre une nouvelle ?",
+                    alert_new_comm: "Nouvelle commande reçue",
+                    alert_magnificent: "MAGNIFIQUE ! Vous avez créé",
+                    alert_fail: "MAMMA MIA ! L'œuvre n'est pas prête.",
+                    alert_fail_desc: "nécessite :\n- Argile\n- Couleurs spécifiques\n\nVérifiez la part sous la flèche ▼!",
+                    alert_day_reset: "Un nouveau jour se lève sur Vietri ! (Mouvements du tour restaurés)",
+                    footer_info: "👋 Info? Suggestions? Collabs ? Démo ? Parlons-en !",
+                    alert_buy_success: "Achat terminé ! Couleurs ajoutées au sac.",
+                    alert_trade_success: "Échange terminé ! Couleurs mises à jour.",
+                    alert_not_enough_colors: "Pas assez de couleurs pour cet échange !",
+                    alert_no_rotations: "Plus de mouvements de tour pour aujourd'hui !"
+                },
+                commissions: {
+                    vaso_blu: "Vase Marin",
+                    piatto_sole: "Assiette Soleil",
+                    anfora_bosco: "Amphore Forêt",
+                    ciotola_fuoco: "Bol de Feu",
+                    mosaico_reale: "Mosaïque Royale"
+                },
+                tutorial: {
+                    t1: "Sélectionnez un âne et visitez la <b>Rivière</b> pour l'argile.",
+                    t2: "Visitez le <b>Marché</b> pour acheter des couleurs (coûte 1 pièce).",
+                    t3: "Allez à l'<b>Atelier</b> pour débloquer le Tour.",
+                    t4: "Cliquez sur les PARTS du tour pour insérer des matériaux, puis tournez (max 3 coups).",
+                    t5: "Une fois aligné (▼), allez au <b>Four</b> pour terminer l'œuvre."
+                }
+            }
+        };
+
+        const COLORS = ['red', 'blue', 'yellow', 'green', 'orange', 'purple'];
+        // COLOR_NAMES removed - used from TRANSLATIONS
+
+
+        const COMMISSIONS_DATA = [
+            { id: 'vaso_blu', reqClay: 1, reqColors: { blue: 1 }, rewardMoney: 3, rewardPoints: 2 },
+            { id: 'piatto_sole', reqClay: 1, reqColors: { yellow: 1 }, rewardMoney: 3, rewardPoints: 2 },
+            { id: 'anfora_bosco', reqClay: 2, reqColors: { green: 1, orange: 1 }, rewardMoney: 5, rewardPoints: 4 },
+            { id: 'ciotola_fuoco', reqClay: 1, reqColors: { red: 2 }, rewardMoney: 4, rewardPoints: 2 },
+            { id: 'mosaico_reale', reqClay: 3, reqColors: { blue: 2, yellow: 2 }, rewardMoney: 8, rewardPoints: 6 }
+        ];
+        // We'll dynamically get names based on ID + Lang
+
+        const COMMISSIONS = COMMISSIONS_DATA;
+
+        // --- STATE ---
+        const gameState = {
+            language: 'it', // DEFAULT
+            coins: 5,
+            clay: 0,
+            pigments: { red: 0, blue: 0, yellow: 0, green: 0, orange: 0, purple: 0 },
+
+            assistants: 3,
+            assistantsStatus: [false, false, false],
+            selectedMeepleIndex: null,
+
+            score: 0,
+            currentObjectives: [COMMISSIONS[0], COMMISSIONS[1]], // DUAL COMMISSIONS
+
+            wheelUnlocked: false,
+            rotationActions: 3,
+
+            innerSlots: [{ clay: 0 }, { clay: 0 }, { clay: 0 }],
+            innerRotationIndex: 0,
+
+            outerSlots: Array(6).fill(null).map(() => ({ red: 0, blue: 0, yellow: 0, green: 0, orange: 0, purple: 0 })),
+            outerRotationIndex: 0,
+
+            tutorialStep: 1,
+
+            // Daily Reset
+            resetDaily: function () {
+                this.assistantsStatus = [false, false, false];
+                this.selectedMeepleIndex = null;
+                this.rotationActions = 3;
+            }
+        };
+
+        // --- RENDERERS ---
+        function t(key) {
+            return TRANSLATIONS[gameState.language].ui[key] || key;
         }
-    },
-    en: {
-        colors: { red: 'Red', blue: 'Blue', yellow: 'Yellow', green: 'Green', orange: 'Orange', purple: 'Purple' },
-        ui: {
-            title_sub: "Masters of Ceramics",
-            quote: '"Between brushstrokes of cobalt blue and the splendor of lemons..."',
-            intro: "Become a <strong>Master Craftsman</strong>: gather clay, buy pigments, and create masterpieces on the lathe.",
-            btn_start: "Play Now",
-            credits: "A game by M. Sabato & A. Solimene",
-            rules_link: "📖 Read Official Rules",
-            shop_title: "Master's Workshop",
-            exit: "Exit",
-            tutorial_loading: "Loading...",
-            section_donkeys: "1. Your Donkeys",
-            coins: "💰 Coins",
-            clay: "🧱 Clay",
-            points: "🏆 Points",
-            pigments_label: "COLORS:",
-            commission_label: "COMMISSION",
-            req_label: "Requires:",
-            reward_label: "Reward:",
-            section_action: "2. Choose Actions",
-            zone_river: "River",
-            zone_market: "Market",
-            zone_plaza: "Plaza",
-            zone_workshop: "Workshop",
-            zone_oven: "Oven",
-            reset_day: "🌙 End of Day (Reset)",
-            section_lathe: "3. Precision Lathe",
-            moves_left: "Moves Left:",
-            lock_msg: "🔒 Go to Workshop to use",
-            wheel_inner: "Inner Wheel",
-            wheel_outer: "Outer Wheel",
-            modal_title_inner: "Inner Slot",
-            modal_title_outer: "Outer Slot",
-            modal_market_title: "Color Market",
-            btn_close: "Close",
-            in_slot: "In Slot:",
-            in_bag: "Available in bag:",
-            empty_color: "No colors available.<br>Visit the Market!",
-            max_types: "Max 2 color types per slot.",
-            market_buy: "Buy",
-            market_buy_desc: "1 Coin = 2 Random Colors",
-            market_buy_btn: "Buy (💰 1)",
-            market_or: "- OR -",
-            market_trade: "Trade",
-            market_trade_desc: "Trade any 2 colors for 1 of choice.",
-            market_give: "Give 2:",
-            market_get: "Get 1:",
-            market_trade_btn: "Trade (2 -> 1)",
-            alert_select_meeple: "Select a donkey first!",
-            alert_no_coins: "Not enough coins (needs 1)!",
-            confirm_plaza: "You are in the Plaza! Do you want to swap your current commission for a new one?",
-            alert_new_comm: "New commission received",
-            alert_magnificent: "MAGNIFICENT! You created",
-            alert_fail: "MAMMA MIA! The work is not ready.",
-            alert_fail_desc: "needs:\n- Clay\n- Specific colors\n\nCheck the slice under the arrow ▼!",
-            alert_day_reset: "A new day dawns over Vietri! (Lathe moves restored)",
-            footer_info: "👋 Info? Suggestions? Collabs? Demo? Let's talk!",
-            alert_buy_success: "Purchase complete! Colors added to bag.",
-            alert_trade_success: "Trade complete! Colors updated.",
-            alert_not_enough_colors: "Not enough colors for this trade!",
-            alert_no_rotations: "No lathe moves left for today!"
-        },
-        commissions: {
-            vaso_blu: "Sea Vase",
-            piatto_sole: "Sun Plate",
-            anfora_bosco: "Forest Amphora",
-            ciotola_fuoco: "Fire Bowl",
-            mosaico_reale: "Royal Mosaic"
-        },
-        tutorial: {
-            t1: "Select a donkey and visit the <b>River</b> for clay.",
-            t2: "Visit the <b>Market</b> to buy colors (costs 1 coin).",
-            t3: "Go to the <b>Workshop</b> to unlock the Lathe.",
-            t4: "Click on the lathe SLICES to insert materials, then rotate (max 3 moves).",
-            t5: "When aligned (▼), go to the <b>Oven</b> to complete the work."
+
+        function setLanguage(lang) {
+            gameState.language = lang;
+            const app = document.getElementById('app');
+            if (document.getElementById('view-game')) {
+                app.innerHTML = renderGame();
+                startGameLoop();
+            } else {
+                init();
+            }
         }
-    },
-    fr: {
-        colors: { red: 'Rouge', blue: 'Bleu', yellow: 'Jaune', green: 'Vert', orange: 'Orange', purple: 'Violet' },
-        ui: {
-            title_sub: "Maîtres de la Céramique",
-            quote: '"Entre coups de pinceau bleu cobalt et la splendeur des citrons..."',
-            intro: "Devenez un <strong>Maître Artisan</strong> : récoltez l'argile, achetez des pigments et créez des chefs-d'œuvre au tour.",
-            btn_start: "Jouer Maintenant",
-            credits: "Un jeu de M. Sabato & A. Solimene",
-            rules_link: "📖 Lire le Règlement Officiel",
-            shop_title: "Atelier du Maître",
-            exit: "Quitter",
-            tutorial_loading: "Chargement...",
-            section_donkeys: "1. Vos Ânes",
-            coins: "💰 Pièces",
-            clay: "🧱 Argile",
-            points: "🏆 Points",
-            pigments_label: "COULEURS:",
-            commission_label: "COMMANDE",
-            req_label: "Requis :",
-            reward_label: "Récompense :",
-            section_action: "2. Choisir Actions",
-            zone_river: "Rivière",
-            zone_market: "Marché",
-            zone_plaza: "Place",
-            zone_workshop: "Atelier",
-            zone_oven: "Four",
-            reset_day: "🌙 Fin de Journée (Reset)",
-            section_lathe: "3. Tour de Précision",
-            moves_left: "Mouvements restants :",
-            lock_msg: "🔒 Allez à l'Atelier pour utiliser",
-            wheel_inner: "Roue Intérieure",
-            wheel_outer: "Roue Extérieure",
-            modal_title_inner: "Emplacement Interne",
-            modal_title_outer: "Emplacement Externe",
-            modal_market_title: "Marché des Couleurs",
-            btn_close: "Fermer",
-            in_slot: "Dans l'emplacement :",
-            in_bag: "Disponible dans le sac :",
-            empty_color: "Aucune couleur disponible.<br>Visitez le Marché !",
-            max_types: "Max 2 types de couleurs par emplacement.",
-            market_buy: "Acheter",
-            market_buy_desc: "1 Pièce = 2 Couleurs au hasard",
-            market_buy_btn: "Acheter (💰 1)",
-            market_or: "- OU -",
-            market_trade: "Échanger",
-            market_trade_desc: "Échangez 2 couleurs contre 1 au choix.",
-            market_give: "Donner 2 :",
-            market_get: "Recevoir 1 :",
-            market_trade_btn: "Échanger (2 -> 1)",
-            alert_select_meeple: "Sélectionnez d'abord un âne !",
-            alert_no_coins: "Pas assez de pièces (il en faut 1) !",
-            confirm_plaza: "Vous êtes sur la Place ! Voulez-vous échanger votre commande actuelle contre une nouvelle ?",
-            alert_new_comm: "Nouvelle commande reçue",
-            alert_magnificent: "MAGNIFIQUE ! Vous avez créé",
-            alert_fail: "MAMMA MIA ! L'œuvre n'est pas prête.",
-            alert_fail_desc: "nécessite :\n- Argile\n- Couleurs spécifiques\n\nVérifiez la part sous la flèche ▼!",
-            alert_day_reset: "Un nouveau jour se lève sur Vietri ! (Mouvements du tour restaurés)",
-            footer_info: "👋 Info? Suggestions? Collabs ? Démo ? Parlons-en !",
-            alert_buy_success: "Achat terminé ! Couleurs ajoutées au sac.",
-            alert_trade_success: "Échange terminé ! Couleurs mises à jour.",
-            alert_not_enough_colors: "Pas assez de couleurs pour cet échange !",
-            alert_no_rotations: "Plus de mouvements de tour pour aujourd'hui !"
-        },
-        commissions: {
-            vaso_blu: "Vase Marin",
-            piatto_sole: "Assiette Soleil",
-            anfora_bosco: "Amphore Forêt",
-            ciotola_fuoco: "Bol de Feu",
-            mosaico_reale: "Mosaïque Royale"
-        },
-        tutorial: {
-            t1: "Sélectionnez un âne et visitez la <b>Rivière</b> pour l'argile.",
-            t2: "Visitez le <b>Marché</b> pour acheter des couleurs (coûte 1 pièce).",
-            t3: "Allez à l'<b>Atelier</b> pour débloquer le Tour.",
-            t4: "Cliquez sur les PARTS du tour pour insérer des matériaux, puis tournez (max 3 coups).",
-            t5: "Une fois aligné (▼), allez au <b>Four</b> pour terminer l'œuvre."
-        }
-    }
-};
 
-const COLORS = ['red', 'blue', 'yellow', 'green', 'orange', 'purple'];
-// COLOR_NAMES removed - used from TRANSLATIONS
-
-
-const COMMISSIONS_DATA = [
-    { id: 'vaso_blu', reqClay: 1, reqColors: { blue: 1 }, rewardMoney: 3, rewardPoints: 2 },
-    { id: 'piatto_sole', reqClay: 1, reqColors: { yellow: 1 }, rewardMoney: 3, rewardPoints: 2 },
-    { id: 'anfora_bosco', reqClay: 2, reqColors: { green: 1, orange: 1 }, rewardMoney: 5, rewardPoints: 4 },
-    { id: 'ciotola_fuoco', reqClay: 1, reqColors: { red: 2 }, rewardMoney: 4, rewardPoints: 2 },
-    { id: 'mosaico_reale', reqClay: 3, reqColors: { blue: 2, yellow: 2 }, rewardMoney: 8, rewardPoints: 6 }
-];
-// We'll dynamically get names based on ID + Lang
-
-const COMMISSIONS = COMMISSIONS_DATA;
-
-// --- STATE ---
-const gameState = {
-    language: 'it', // DEFAULT
-    coins: 5,
-    clay: 0,
-    pigments: { red: 0, blue: 0, yellow: 0, green: 0, orange: 0, purple: 0 },
-
-    assistants: 3,
-    assistantsStatus: [false, false, false],
-    selectedMeepleIndex: null,
-
-    score: 0,
-    currentObjectives: [COMMISSIONS[0], COMMISSIONS[1]], // DUAL COMMISSIONS
-
-    wheelUnlocked: false,
-    rotationActions: 3,
-
-    innerSlots: [{ clay: 0 }, { clay: 0 }, { clay: 0 }],
-    innerRotationIndex: 0,
-
-    outerSlots: Array(6).fill(null).map(() => ({ red: 0, blue: 0, yellow: 0, green: 0, orange: 0, purple: 0 })),
-    outerRotationIndex: 0,
-
-    tutorialStep: 1,
-
-    // Daily Reset
-    resetDaily: function () {
-        this.assistantsStatus = [false, false, false];
-        this.selectedMeepleIndex = null;
-        this.rotationActions = 3;
-    }
-};
-
-// --- RENDERERS ---
-function t(key) {
-    return TRANSLATIONS[gameState.language].ui[key] || key;
-}
-
-function setLanguage(lang) {
-    gameState.language = lang;
-    const app = document.getElementById('app');
-    if (document.getElementById('view-game')) {
-        app.innerHTML = renderGame();
-        startGameLoop();
-    } else {
-        init();
-    }
-}
-
-function renderLangSwitcher() {
-    return `
+        function renderLangSwitcher() {
+            return `
             <div class="absolute top-2 right-2 flex gap-2 z-50">
                 <button onclick="setLanguage('it')" class="w-8 h-8 rounded-full border-2 border-white shadow hover:scale-110 transition overflow-hidden ${gameState.language === 'it' ? 'ring-2 ring-yellow-400' : 'opacity-70'}">
                     <img src="https://flagcdn.com/w40/it.png" alt="IT" class="w-full h-full object-cover">
@@ -569,10 +575,10 @@ function renderLangSwitcher() {
                 </button>
             </div>
         `;
-}
+        }
 
-function renderHome() {
-    return `
+        function renderHome() {
+            return `
         <div id="view-home" class="w-full max-w-4xl p-4 fade-in relative">
             <div class="maiolica-border rounded-xl">
                 <div class="maiolica-content text-center space-y-6 p-4 relative">
@@ -614,10 +620,10 @@ function renderHome() {
                 </div>
             </div>
         </div>`;
-}
+        }
 
-function renderGame() {
-    return `
+        function renderGame() {
+            return `
         <div id="view-game" class="w-full max-w-7xl p-2 md:p-6 fade-in h-screen flex flex-col relative">
             
             <div class="flex justify-between items-center mb-2 px-2 shrink-0 bg-white/80 p-2 rounded shadow-sm">
@@ -754,95 +760,95 @@ function renderGame() {
                 </div>
             </div>
         </div>`;
-}
-
-// --- CORE LOGIC ---
-const app = document.querySelector('#app');
-
-function init() {
-    app.innerHTML = renderHome();
-    const btn = document.getElementById('btn-start-game');
-    if (btn) btn.addEventListener('click', () => {
-        app.innerHTML = renderGame();
-        startGameLoop();
-    });
-}
-
-function startGameLoop() {
-    updateUI();
-
-    document.getElementById('btn-exit').addEventListener('click', () => init());
-    document.getElementById('btn-end-round').addEventListener('click', endRound);
-
-    ['river', 'market', 'plaza', 'workshop', 'oven'].forEach(z => {
-        document.getElementById(`zone-${z}`).addEventListener('click', () => handleZoneClick(z));
-    });
-
-    document.querySelectorAll('.btn-rotate').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const target = e.target.dataset.target;
-            const dir = parseInt(e.target.dataset.dir);
-            rotateWheel(target, dir);
-        });
-    });
-
-    document.getElementById('btn-close-modal').addEventListener('click', () => {
-        document.getElementById('slot-modal').classList.add('hidden');
-        renderLathe();
-    });
-}
-
-function updateUI() {
-    const elCoins = document.getElementById('val-coins');
-    if (!elCoins) return;
-
-    elCoins.textContent = gameState.coins;
-    document.getElementById('val-clay').textContent = gameState.clay;
-    document.getElementById('val-score').textContent = gameState.score;
-    document.getElementById('rotations-left').textContent = `${gameState.rotationActions}/3`;
-
-    const pList = document.getElementById('pigments-list');
-    pList.innerHTML = '';
-    COLORS.forEach(c => {
-        const count = gameState.pigments[c];
-        if (count > 0 || true) {
-            const el = document.createElement('div');
-            el.className = 'flex items-center gap-1';
-            el.innerHTML = `<span class="w-3 h-3 rounded-full border border-gray-300" style="background:${c}"></span> ${count}`;
-            el.style.opacity = count === 0 ? '0.3' : '1';
-            pList.appendChild(el);
         }
-    });
 
-    // DUAL COMMISSIONS RENDER
-    const commList = document.getElementById('commissions-list');
-    if (commList) {
-        commList.innerHTML = '';
-        const currentObjs = gameState.currentObjectives || (gameState.currentObjective ? [gameState.currentObjective] : []);
+        // --- CORE LOGIC ---
+        const app = document.querySelector('#app');
 
-        currentObjs.forEach(obj => {
-            const card = document.createElement('div');
-            card.className = "text-sm text-gray-700 bg-gray-50 p-2 rounded text-left border border-gray-200 shadow-sm";
+        function init() {
+            app.innerHTML = renderHome();
+            const btn = document.getElementById('btn-start-game');
+            if (btn) btn.addEventListener('click', () => {
+                app.innerHTML = renderGame();
+                startGameLoop();
+            });
+        }
 
-            // Localized Name
-            const commName = TRANSLATIONS[gameState.language].commissions[obj.id] || obj.id;
+        function startGameLoop() {
+            updateUI();
 
-            // Localized Requirements
-            const clayLabel = TRANSLATIONS[gameState.language].ui.clay || "Argilla";
-            let reqText = `<b class="text-xs text-gray-800">${obj.reqClay} ${clayLabel}</b>`;
+            document.getElementById('btn-exit').addEventListener('click', () => init());
+            document.getElementById('btn-end-round').addEventListener('click', endRound);
 
-            const colKeys = Object.keys(obj.reqColors);
-            if (colKeys.length > 0) {
-                reqText += `<br><span class="text-[0.6rem] text-gray-500 uppercase font-bold">${TRANSLATIONS[gameState.language].ui.pigments_label}</span> `;
-                reqText += colKeys.map(k => {
-                    const colName = TRANSLATIONS[gameState.language].colors[k];
-                    return `<span style="color:${k === 'yellow' ? '#d4af37' : k}" class="font-bold">${obj.reqColors[k]} ${colName}</span>`;
-                }).join(', ');
-            }
+            ['river', 'market', 'plaza', 'workshop', 'oven'].forEach(z => {
+                document.getElementById(`zone-${z}`).addEventListener('click', () => handleZoneClick(z));
+            });
 
-            const rewardLabel = TRANSLATIONS[gameState.language].ui.reward_label || "Premio:";
+            document.querySelectorAll('.btn-rotate').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const target = e.target.dataset.target;
+                    const dir = parseInt(e.target.dataset.dir);
+                    rotateWheel(target, dir);
+                });
+            });
 
-            card.innerHTML = `
+            document.getElementById('btn-close-modal').addEventListener('click', () => {
+                document.getElementById('slot-modal').classList.add('hidden');
+                renderLathe();
+            });
+        }
+
+        function updateUI() {
+            const elCoins = document.getElementById('val-coins');
+            if (!elCoins) return;
+
+            elCoins.textContent = gameState.coins;
+            document.getElementById('val-clay').textContent = gameState.clay;
+            document.getElementById('val-score').textContent = gameState.score;
+            document.getElementById('rotations-left').textContent = `${gameState.rotationActions}/3`;
+
+            const pList = document.getElementById('pigments-list');
+            pList.innerHTML = '';
+            COLORS.forEach(c => {
+                const count = gameState.pigments[c];
+                if (count > 0 || true) {
+                    const el = document.createElement('div');
+                    el.className = 'flex items-center gap-1';
+                    el.innerHTML = `<span class="w-3 h-3 rounded-full border border-gray-300" style="background:${c}"></span> ${count}`;
+                    el.style.opacity = count === 0 ? '0.3' : '1';
+                    pList.appendChild(el);
+                }
+            });
+
+            // DUAL COMMISSIONS RENDER
+            const commList = document.getElementById('commissions-list');
+            if (commList) {
+                commList.innerHTML = '';
+                const currentObjs = gameState.currentObjectives || (gameState.currentObjective ? [gameState.currentObjective] : []);
+
+                currentObjs.forEach(obj => {
+                    const card = document.createElement('div');
+                    card.className = "text-sm text-gray-700 bg-gray-50 p-2 rounded text-left border border-gray-200 shadow-sm";
+
+                    // Localized Name
+                    const commName = TRANSLATIONS[gameState.language].commissions[obj.id] || obj.id;
+
+                    // Localized Requirements
+                    const clayLabel = TRANSLATIONS[gameState.language].ui.clay || "Argilla";
+                    let reqText = `<b class="text-xs text-gray-800">${obj.reqClay} ${clayLabel}</b>`;
+
+                    const colKeys = Object.keys(obj.reqColors);
+                    if (colKeys.length > 0) {
+                        reqText += `<br><span class="text-[0.6rem] text-gray-500 uppercase font-bold">${TRANSLATIONS[gameState.language].ui.pigments_label}</span> `;
+                        reqText += colKeys.map(k => {
+                            const colName = TRANSLATIONS[gameState.language].colors[k];
+                            return `<span style="color:${k === 'yellow' ? '#d4af37' : k}" class="font-bold">${obj.reqColors[k]} ${colName}</span>`;
+                        }).join(', ');
+                    }
+
+                    const rewardLabel = TRANSLATIONS[gameState.language].ui.reward_label || "Premio:";
+
+                    card.innerHTML = `
                 <div class="font-bold text-blue-900 border-b pb-1 mb-1 text-xs uppercase tracking-wide">${commName}</div>
                 <div class="text-[0.65rem] mb-1 leading-tight">${reqText}</div>
                 <div class="text-xs text-green-700 font-bold border-t pt-1 mt-1 flex justify-between items-center">
@@ -853,137 +859,137 @@ function updateUI() {
                    </div>
                 </div>
             `;
-            commList.appendChild(card);
-        });
-    }
-
-    const dCont = document.getElementById('donkey-container');
-    dCont.innerHTML = '';
-    for (let i = 0; i < gameState.assistants; i++) {
-        const btn = document.createElement('button');
-        btn.className = `donkey-btn ${gameState.assistantsStatus[i] ? 'used' : ''} ${gameState.selectedMeepleIndex === i ? 'selected' : ''}`;
-        btn.textContent = '🫏';
-        btn.onclick = () => {
-            if (!gameState.assistantsStatus[i]) {
-                gameState.selectedMeepleIndex = i;
-                updateUI();
+                    commList.appendChild(card);
+                });
             }
-        };
-        dCont.appendChild(btn);
-    }
 
-    const lCont = document.getElementById('lathe-ui-container');
-    const lMsg = document.getElementById('lathe-lock-msg');
-    if (gameState.wheelUnlocked) {
-        lCont.classList.remove('opacity-50', 'pointer-events-none');
-        lMsg.classList.add('hidden');
-    } else {
-        lCont.classList.add('opacity-50', 'pointer-events-none');
-        lMsg.classList.remove('hidden');
-    }
-
-    updateTutorial();
-    renderLathe();
-}
-
-function updateTutorial() {
-    const t = document.getElementById('tutorial-text');
-    const s = gameState.tutorialStep;
-    if (s === 1) t.innerHTML = "Seleziona un asinello e visita il <b>Fiume</b> per l'argilla.";
-    else if (s === 2) t.innerHTML = "Visita il <b>Mercato</b> per comprare i colori (costa 1 moneta).";
-    else if (s === 3) t.innerHTML = "Vai alla <b>Bottega</b> per sbloccare il Tornio.";
-    else if (s === 4) t.innerHTML = "Clicca sugli SPICCHI del tornio per inserire materiali, poi ruota (max 3 mosse).";
-    else if (s === 5) t.innerHTML = "Quando allineato (▼), vai al <b>Forno</b> per completare l'opera.";
-}
-
-function renderLathe() {
-    if (!document.getElementById('disk-inner')) return;
-
-    // INNER
-    const innerDisk = document.getElementById('disk-inner');
-    innerDisk.style.transform = `rotate(${gameState.innerRotationIndex * 120}deg)`;
-    innerDisk.innerHTML = '';
-
-    gameState.innerSlots.forEach((slotData, index) => {
-        const rotation = index * 120;
-        const el = document.createElement('div');
-        el.className = 'absolute top-0 left-0 w-full h-full flex justify-center items-start pt-2 slot-clickable hover:bg-white/10 transition-colors cursor-pointer';
-        el.style.transform = `rotate(${rotation}deg)`;
-        // FIX: Clip path to prevent overlap of hit area (120 degrees)
-        el.style.clipPath = 'polygon(50% 50%, -50% -50%, 150% -50%)';
-        el.onclick = (e) => { e.stopPropagation(); openSlotModal('inner', index); };
-
-        // Clay
-        let dots = '';
-        if (slotData.clay > 0) {
-            for (let k = 0; k < slotData.clay; k++) dots += `<div class="w-4 h-3 bg-stone-400 border border-stone-600 rounded-sm shadow-sm inline-block mx-0.5"></div>`;
-            el.innerHTML = `<div class="flex flex-col justify-center items-center gap-0.5 mt-2">${dots}</div>`;
-        } else {
-            el.innerHTML = '<span class="text-gray-400 text-lg opacity-50 mt-2">+</span>';
-        }
-
-        // Divider
-        const line = document.createElement('div');
-        line.className = 'absolute top-0 left-1/2 w-0.5 h-1/2 bg-yellow-600/30 origin-bottom transform -translate-x-1/2 pointer-events-none';
-        innerDisk.appendChild(el);
-    });
-
-    // OUTER
-    const outerDisk = document.getElementById('disk-outer');
-    outerDisk.style.transform = `rotate(${gameState.outerRotationIndex * 60}deg)`;
-    outerDisk.innerHTML = '';
-
-    gameState.outerSlots.forEach((slotData, index) => {
-        const rotation = index * 60;
-        const el = document.createElement('div');
-        el.className = 'absolute top-0 left-0 w-full h-full flex justify-center items-start pt-2 slot-clickable hover:bg-white/10 transition-colors cursor-pointer';
-        el.style.transform = `rotate(${rotation}deg)`;
-        // FIX: Clip path for 60 degrees (approx triangle)
-        el.style.clipPath = 'polygon(50% 50%, 20% 0%, 80% 0%)';
-        el.onclick = (e) => { e.stopPropagation(); openSlotModal('outer', index); };
-
-        // Pigments
-        let dots = '';
-        let hasItems = false;
-        for (const [col, qty] of Object.entries(slotData)) {
-            if (qty > 0) {
-                hasItems = true;
-                for (let k = 0; k < qty; k++) dots += `<div class="w-3 h-3 rounded-full bg-${col}-500 border border-white shadow-sm inline-block mx-px"></div>`;
-                if (qty > 0) dots += '<br>';
+            const dCont = document.getElementById('donkey-container');
+            dCont.innerHTML = '';
+            for (let i = 0; i < gameState.assistants; i++) {
+                const btn = document.createElement('button');
+                btn.className = `donkey-btn ${gameState.assistantsStatus[i] ? 'used' : ''} ${gameState.selectedMeepleIndex === i ? 'selected' : ''}`;
+                btn.textContent = '🫏';
+                btn.onclick = () => {
+                    if (!gameState.assistantsStatus[i]) {
+                        gameState.selectedMeepleIndex = i;
+                        updateUI();
+                    }
+                };
+                dCont.appendChild(btn);
             }
+
+            const lCont = document.getElementById('lathe-ui-container');
+            const lMsg = document.getElementById('lathe-lock-msg');
+            if (gameState.wheelUnlocked) {
+                lCont.classList.remove('opacity-50', 'pointer-events-none');
+                lMsg.classList.add('hidden');
+            } else {
+                lCont.classList.add('opacity-50', 'pointer-events-none');
+                lMsg.classList.remove('hidden');
+            }
+
+            updateTutorial();
+            renderLathe();
         }
 
-        if (hasItems) {
-            el.innerHTML = `<div class="mt-2 text-center leading-none">${dots}</div>`;
-        } else {
-            el.innerHTML = '<span class="text-gray-400 text-lg opacity-50 mt-2">+</span>';
+        function updateTutorial() {
+            const t = document.getElementById('tutorial-text');
+            const s = gameState.tutorialStep;
+            if (s === 1) t.innerHTML = "Seleziona un asinello e visita il <b>Fiume</b> per l'argilla.";
+            else if (s === 2) t.innerHTML = "Visita il <b>Mercato</b> per comprare i colori (costa 1 moneta).";
+            else if (s === 3) t.innerHTML = "Vai alla <b>Bottega</b> per sbloccare il Tornio.";
+            else if (s === 4) t.innerHTML = "Clicca sugli SPICCHI del tornio per inserire materiali, poi ruota (max 3 mosse).";
+            else if (s === 5) t.innerHTML = "Quando allineato (▼), vai al <b>Forno</b> per completare l'opera.";
         }
 
-        outerDisk.appendChild(el);
-    });
-}
+        function renderLathe() {
+            if (!document.getElementById('disk-inner')) return;
 
-function openSlotModal(type, index) {
-    if (!gameState.wheelUnlocked) {
-        alert(t('lock_msg'));
-        return;
-    }
+            // INNER
+            const innerDisk = document.getElementById('disk-inner');
+            innerDisk.style.transform = `rotate(${gameState.innerRotationIndex * 120}deg)`;
+            innerDisk.innerHTML = '';
 
-    const modal = document.getElementById('slot-modal');
-    const title = document.getElementById('slot-modal-title');
-    const content = document.getElementById('slot-modal-content');
+            gameState.innerSlots.forEach((slotData, index) => {
+                const rotation = index * 120;
+                const el = document.createElement('div');
+                el.className = 'absolute top-0 left-0 w-full h-full flex justify-center items-start pt-2 slot-clickable hover:bg-white/10 transition-colors cursor-pointer';
+                el.style.transform = `rotate(${rotation}deg)`;
+                // FIX: Clip path to prevent overlap of hit area (120 degrees)
+                el.style.clipPath = 'polygon(50% 50%, -50% -50%, 150% -50%)';
+                el.onclick = (e) => { e.stopPropagation(); openSlotModal('inner', index); };
 
-    // Title translation
-    title.textContent = (type === 'inner' ? t('modal_title_inner') : t('modal_title_outer')) + ` ${index + 1}`;
+                // Clay
+                let dots = '';
+                if (slotData.clay > 0) {
+                    for (let k = 0; k < slotData.clay; k++) dots += `<div class="w-4 h-3 bg-stone-400 border border-stone-600 rounded-sm shadow-sm inline-block mx-0.5"></div>`;
+                    el.innerHTML = `<div class="flex flex-col justify-center items-center gap-0.5 mt-2">${dots}</div>`;
+                } else {
+                    el.innerHTML = '<span class="text-gray-400 text-lg opacity-50 mt-2">+</span>';
+                }
 
-    // Render
-    let html = '';
+                // Divider
+                const line = document.createElement('div');
+                line.className = 'absolute top-0 left-1/2 w-0.5 h-1/2 bg-yellow-600/30 origin-bottom transform -translate-x-1/2 pointer-events-none';
+                innerDisk.appendChild(el);
+            });
 
-    if (type === 'inner') {
-        // Clay
-        const current = gameState.innerSlots[index].clay; // FIXED
-        const inventory = gameState.clay;
-        html += `
+            // OUTER
+            const outerDisk = document.getElementById('disk-outer');
+            outerDisk.style.transform = `rotate(${gameState.outerRotationIndex * 60}deg)`;
+            outerDisk.innerHTML = '';
+
+            gameState.outerSlots.forEach((slotData, index) => {
+                const rotation = index * 60;
+                const el = document.createElement('div');
+                el.className = 'absolute top-0 left-0 w-full h-full flex justify-center items-start pt-2 slot-clickable hover:bg-white/10 transition-colors cursor-pointer';
+                el.style.transform = `rotate(${rotation}deg)`;
+                // FIX: Clip path for 60 degrees (approx triangle)
+                el.style.clipPath = 'polygon(50% 50%, 20% 0%, 80% 0%)';
+                el.onclick = (e) => { e.stopPropagation(); openSlotModal('outer', index); };
+
+                // Pigments
+                let dots = '';
+                let hasItems = false;
+                for (const [col, qty] of Object.entries(slotData)) {
+                    if (qty > 0) {
+                        hasItems = true;
+                        for (let k = 0; k < qty; k++) dots += `<div class="w-3 h-3 rounded-full bg-${col}-500 border border-white shadow-sm inline-block mx-px"></div>`;
+                        if (qty > 0) dots += '<br>';
+                    }
+                }
+
+                if (hasItems) {
+                    el.innerHTML = `<div class="mt-2 text-center leading-none">${dots}</div>`;
+                } else {
+                    el.innerHTML = '<span class="text-gray-400 text-lg opacity-50 mt-2">+</span>';
+                }
+
+                outerDisk.appendChild(el);
+            });
+        }
+
+        function openSlotModal(type, index) {
+            if (!gameState.wheelUnlocked) {
+                alert(t('lock_msg'));
+                return;
+            }
+
+            const modal = document.getElementById('slot-modal');
+            const title = document.getElementById('slot-modal-title');
+            const content = document.getElementById('slot-modal-content');
+
+            // Title translation
+            title.textContent = (type === 'inner' ? t('modal_title_inner') : t('modal_title_outer')) + ` ${index + 1}`;
+
+            // Render
+            let html = '';
+
+            if (type === 'inner') {
+                // Clay
+                const current = gameState.innerSlots[index].clay; // FIXED
+                const inventory = gameState.clay;
+                html += `
             <div class="flex justify-between items-center bg-gray-50 p-3 rounded">
                 <span>${t('in_slot')} <b class="text-xl">${current}</b></span>
                 <div class="flex gap-2">
@@ -993,19 +999,19 @@ function openSlotModal(type, index) {
             </div>
             <div class="text-sm text-gray-500 text-right">${t('in_bag')} ${inventory}</div>
         `;
-    } else {
-        // Pigments
-        const slot = gameState.outerSlots[index]; // FIXED
-        // Filter colors visible
-        const visibleColors = COLORS.filter(c => slot[c] > 0 || gameState.pigments[c] > 0);
+            } else {
+                // Pigments
+                const slot = gameState.outerSlots[index]; // FIXED
+                // Filter colors visible
+                const visibleColors = COLORS.filter(c => slot[c] > 0 || gameState.pigments[c] > 0);
 
-        if (visibleColors.length === 0) {
-            html = `<p class="text-center text-gray-500 italic py-4">${t('empty_color')}</p>`;
-        } else {
-            html += `<div class="grid grid-cols-2 gap-2 max-h-60 overflow-y-auto">`;
-            visibleColors.forEach(c => {
-                const name = TRANSLATIONS[gameState.language].colors[c];
-                html += `
+                if (visibleColors.length === 0) {
+                    html = `<p class="text-center text-gray-500 italic py-4">${t('empty_color')}</p>`;
+                } else {
+                    html += `<div class="grid grid-cols-2 gap-2 max-h-60 overflow-y-auto">`;
+                    visibleColors.forEach(c => {
+                        const name = TRANSLATIONS[gameState.language].colors[c];
+                        html += `
                     <div class="flex justify-between items-center border p-2 rounded">
                         <div class="flex items-center gap-1">
                             <div class="w-3 h-3 rounded-full bg-${c}-500"></div>
@@ -1021,56 +1027,56 @@ function openSlotModal(type, index) {
                         </div>
                     </div>
                  `;
-            });
-            html += `</div><p class="text-[0.6rem] text-gray-500 mt-2 text-center">${t('max_types')}</p>`;
-        }
-    }
-
-    content.innerHTML = html;
-    modal.classList.remove('hidden');
-}
-
-function modSlot(type, index, item, amount) {
-    if (type === 'inner') {
-        const slot = gameState.innerSlots[index];
-        if (amount > 0) {
-            if (gameState.clay >= amount) {
-                gameState.clay -= amount;
-                slot.clay += amount;
-            }
-        } else {
-            if (slot.clay >= -amount) {
-                gameState.clay -= amount;
-                slot.clay += amount;
-            }
-        }
-    } else {
-        const slot = gameState.outerSlots[index];
-        if (amount > 0) {
-            // Add
-            if (gameState.pigments[item] > 0) {
-                const currentTypes = Object.values(slot).filter(v => v > 0).length;
-                if (slot[item] > 0 || currentTypes < 2) {
-                    gameState.pigments[item]--;
-                    slot[item]++;
+                    });
+                    html += `</div><p class="text-[0.6rem] text-gray-500 mt-2 text-center">${t('max_types')}</p>`;
                 }
             }
-        } else {
-            // Remove
-            if (slot[item] > 0) {
-                gameState.pigments[item]++;
-                slot[item]--;
-            }
+
+            content.innerHTML = html;
+            modal.classList.remove('hidden');
         }
-    }
-    updateUI();
-    openSlotModal(type, index);
-}
+
+        function modSlot(type, index, item, amount) {
+            if (type === 'inner') {
+                const slot = gameState.innerSlots[index];
+                if (amount > 0) {
+                    if (gameState.clay >= amount) {
+                        gameState.clay -= amount;
+                        slot.clay += amount;
+                    }
+                } else {
+                    if (slot.clay >= -amount) {
+                        gameState.clay -= amount;
+                        slot.clay += amount;
+                    }
+                }
+            } else {
+                const slot = gameState.outerSlots[index];
+                if (amount > 0) {
+                    // Add
+                    if (gameState.pigments[item] > 0) {
+                        const currentTypes = Object.values(slot).filter(v => v > 0).length;
+                        if (slot[item] > 0 || currentTypes < 2) {
+                            gameState.pigments[item]--;
+                            slot[item]++;
+                        }
+                    }
+                } else {
+                    // Remove
+                    if (slot[item] > 0) {
+                        gameState.pigments[item]++;
+                        slot[item]--;
+                    }
+                }
+            }
+            updateUI();
+            openSlotModal(type, index);
+        }
 
 
 
-function renderClayManager(container, slot) {
-    container.innerHTML = `
+        function renderClayManager(container, slot) {
+            container.innerHTML = `
         <div class="flex justify-between items-center bg-gray-50 p-3 rounded">
             <span>Nel Slot: <b>${slot.clay}</b></span>
             <div class="flex gap-2">
@@ -1086,42 +1092,42 @@ function renderClayManager(container, slot) {
         </div>
     `;
 
-    container.querySelector('#btn-add-clay').onclick = () => {
-        if (gameState.clay > 0) {
-            gameState.clay--;
-            slot.clay++;
-            updateUI();
-            renderClayManager(container, slot);
+            container.querySelector('#btn-add-clay').onclick = () => {
+                if (gameState.clay > 0) {
+                    gameState.clay--;
+                    slot.clay++;
+                    updateUI();
+                    renderClayManager(container, slot);
+                }
+            };
+            container.querySelector('#btn-rem-clay').onclick = () => {
+                if (slot.clay > 0) {
+                    gameState.clay++;
+                    slot.clay--;
+                    updateUI();
+                    renderClayManager(container, slot);
+                }
+            };
         }
-    };
-    container.querySelector('#btn-rem-clay').onclick = () => {
-        if (slot.clay > 0) {
-            gameState.clay++;
-            slot.clay--;
-            updateUI();
-            renderClayManager(container, slot);
-        }
-    };
-}
 
-function renderColorManager(container, slot) {
-    const presentColors = Object.keys(slot).filter(k => slot[k] > 0);
-    const distinct = presentColors.length;
+        function renderColorManager(container, slot) {
+            const presentColors = Object.keys(slot).filter(k => slot[k] > 0);
+            const distinct = presentColors.length;
 
-    const visibleColors = COLORS.filter(c => slot[c] > 0 || gameState.pigments[c] > 0);
+            const visibleColors = COLORS.filter(c => slot[c] > 0 || gameState.pigments[c] > 0);
 
-    if (visibleColors.length === 0) {
-        container.innerHTML = `<p class="text-center text-gray-500 italic py-4">Nessun colore disponibile.<br>Visita il Mercato!</p>`;
-        return;
-    }
+            if (visibleColors.length === 0) {
+                container.innerHTML = `<p class="text-center text-gray-500 italic py-4">Nessun colore disponibile.<br>Visita il Mercato!</p>`;
+                return;
+            }
 
-    let html = `<div class="grid grid-cols-2 gap-2 max-h-60 overflow-y-auto">`;
-    visibleColors.forEach(c => {
-        const qtyInSlot = slot[c];
-        const qtyInInv = gameState.pigments[c];
-        const canAdd = qtyInInv > 0 && (distinct < 2 || qtyInSlot > 0);
+            let html = `<div class="grid grid-cols-2 gap-2 max-h-60 overflow-y-auto">`;
+            visibleColors.forEach(c => {
+                const qtyInSlot = slot[c];
+                const qtyInInv = gameState.pigments[c];
+                const canAdd = qtyInInv > 0 && (distinct < 2 || qtyInSlot > 0);
 
-        html += `
+                html += `
         <div class="flex flex-col items-center bg-gray-50 p-2 rounded border border-gray-200">
             <span class="w-6 h-6 rounded-full mb-1 border shadow-sm" style="background:${c}"></span>
             <span class="text-xs font-bold text-gray-700">${TRANSLATIONS[gameState.language].colors[c]}</span>
@@ -1132,48 +1138,48 @@ function renderColorManager(container, slot) {
             </div>
             <span class="text-[0.6rem] text-gray-400 mt-1">In borsa: ${qtyInInv}</span>
         </div>`;
-    });
-    html += `</div><p class="text-[0.6rem] text-gray-500 mt-2 text-center">Max 2 tipi di colore per slot.</p>`;
+            });
+            html += `</div><p class="text-[0.6rem] text-gray-500 mt-2 text-center">Max 2 tipi di colore per slot.</p>`;
 
-    container.innerHTML = html;
+            container.innerHTML = html;
 
-    container.querySelectorAll('.btn-color-mod').forEach(btn => {
-        btn.onclick = (e) => {
-            const col = e.target.dataset.col;
-            const op = e.target.dataset.op;
-            if (op === '+') {
-                const currentDistinct = Object.values(slot).filter(v => v > 0).length;
-                const isNewColor = slot[col] === 0;
-                if (gameState.pigments[col] > 0) {
-                    if (isNewColor && currentDistinct >= 2) return;
-                    slot[col] = (slot[col] || 0) + 1;
-                    gameState.pigments[col]--;
-                }
-            } else {
-                if (slot[col] > 0) {
-                    slot[col]--;
-                    gameState.pigments[col]++;
-                }
+            container.querySelectorAll('.btn-color-mod').forEach(btn => {
+                btn.onclick = (e) => {
+                    const col = e.target.dataset.col;
+                    const op = e.target.dataset.op;
+                    if (op === '+') {
+                        const currentDistinct = Object.values(slot).filter(v => v > 0).length;
+                        const isNewColor = slot[col] === 0;
+                        if (gameState.pigments[col] > 0) {
+                            if (isNewColor && currentDistinct >= 2) return;
+                            slot[col] = (slot[col] || 0) + 1;
+                            gameState.pigments[col]--;
+                        }
+                    } else {
+                        if (slot[col] > 0) {
+                            slot[col]--;
+                            gameState.pigments[col]++;
+                        }
+                    }
+                    updateUI();
+                    renderColorManager(container, slot);
+                };
+            });
+        }
+
+        function openMarketMenu() {
+            if (gameState.selectedMeepleIndex === null) {
+                alert(t('select_meeple_first'));
+                return;
             }
-            updateUI();
-            renderColorManager(container, slot);
-        };
-    });
-}
 
-function openMarketMenu() {
-    if (gameState.selectedMeepleIndex === null) {
-        alert(t('select_meeple_first'));
-        return;
-    }
+            const modal = document.getElementById('slot-modal');
+            const title = document.getElementById('slot-modal-title');
+            const content = document.getElementById('slot-modal-content');
 
-    const modal = document.getElementById('slot-modal');
-    const title = document.getElementById('slot-modal-title');
-    const content = document.getElementById('slot-modal-content');
+            title.textContent = t('modal_market_title');
 
-    title.textContent = t('modal_market_title');
-
-    content.innerHTML = `
+            content.innerHTML = `
         <div class="space-y-6">
             <!-- BUY -->
             <div class="bg-blue-50 p-4 rounded border border-blue-200">
@@ -1212,188 +1218,189 @@ function openMarketMenu() {
         </div>
     `;
 
-    modal.classList.remove('hidden');
-}
-
-function getColorOptions() {
-    // Generate <option> tags localized
-    return COLORS.map(c => `<option value="${c}">${TRANSLATIONS[gameState.language].colors[c]}</option>`).join('');
-}
-
-
-
-function finalizeMarketAction(actionType) {
-    const modal = document.getElementById('slot-modal');
-    modal.classList.add('hidden');
-
-    if (actionType === 'buy') {
-        if (gameState.coins < 1) {
-            alert(t('alert_no_coins')); // ALERT TRANSLATED
-            return;
+            modal.classList.remove('hidden');
         }
-        gameState.coins--;
-        const c1 = COLORS[Math.floor(Math.random() * COLORS.length)];
-        const c2 = COLORS[Math.floor(Math.random() * COLORS.length)];
-        gameState.pigments[c1]++;
-        gameState.pigments[c2]++;
-        updateUI();
-        document.getElementById('slot-modal').classList.add('hidden');
-    } else if (actionType === 'trade') {
-        const give1 = document.getElementById('trade-give-1').value;
-        const give2 = document.getElementById('trade-give-2').value;
-        const get = document.getElementById('trade-get').value;
 
-        if (gameState.pigments[give1] > 0 && (give1 !== give2 ? gameState.pigments[give2] > 0 : gameState.pigments[give1] >= 2)) {
-            gameState.pigments[give1]--;
-            gameState.pigments[give2]--;
-            gameState.pigments[get]++;
+        function getColorOptions() {
+            // Generate <option> tags localized
+            return COLORS.map(c => `<option value="${c}">${TRANSLATIONS[gameState.language].colors[c]}</option>`).join('');
+        }
+
+
+
+        function finalizeMarketAction(actionType) {
+            const modal = document.getElementById('slot-modal');
+            modal.classList.add('hidden');
+
+            if (actionType === 'buy') {
+                if (gameState.coins < 1) {
+                    alert(t('alert_no_coins')); // ALERT TRANSLATED
+                    return;
+                }
+                gameState.coins--;
+                const c1 = COLORS[Math.floor(Math.random() * COLORS.length)];
+                const c2 = COLORS[Math.floor(Math.random() * COLORS.length)];
+                gameState.pigments[c1]++;
+                gameState.pigments[c2]++;
+                updateUI();
+                document.getElementById('slot-modal').classList.add('hidden');
+            } else if (actionType === 'trade') {
+                const give1 = document.getElementById('trade-give-1').value;
+                const give2 = document.getElementById('trade-give-2').value;
+                const get = document.getElementById('trade-get').value;
+
+                if (gameState.pigments[give1] > 0 && (give1 !== give2 ? gameState.pigments[give2] > 0 : gameState.pigments[give1] >= 2)) {
+                    gameState.pigments[give1]--;
+                    gameState.pigments[give2]--;
+                    gameState.pigments[get]++;
+                    updateUI();
+                    document.getElementById('slot-modal').classList.add('hidden');
+                } else {
+                    alert(t('alert_not_enough_colors')); // Use fallback or add translation for this? Adding generic fail for now or keep text
+                }
+            }
+
+            gameState.assistantsStatus[gameState.selectedMeepleIndex] = true;
+            const m = document.createElement('div');
+            m.textContent = '🫏';
+            m.className = 'absolute text-xl animate-bounce';
+            document.getElementById(`meeple-${gameState.currentZone}`).appendChild(m); // Changed from 'meeple-${z}' to 'meeple-${gameState.currentZone}'
+            gameState.selectedMeepleIndex = null;
+
+            if (gameState.tutorialStep === 2) gameState.tutorialStep++;
+
             updateUI();
-            document.getElementById('slot-modal').classList.add('hidden');
-        } else {
-            alert(t('alert_not_enough_colors')); // Use fallback or add translation for this? Adding generic fail for now or keep text
+            alert(actionType === "buy" ? t('alert_buy_success') : t('alert_trade_success')); // ALERT TRANSLATED
         }
-    }
 
-    gameState.assistantsStatus[gameState.selectedMeepleIndex] = true;
-    const m = document.createElement('div');
-    m.textContent = '🫏';
-    m.className = 'absolute text-xl animate-bounce';
-    document.getElementById(`meeple-${gameState.currentZone}`).appendChild(m); // Changed from 'meeple-${z}' to 'meeple-${gameState.currentZone}'
-    gameState.selectedMeepleIndex = null;
-
-    if (gameState.tutorialStep === 2) gameState.tutorialStep++;
-
-    updateUI();
-    alert(actionType === "buy" ? t('alert_buy_success') : t('alert_trade_success')); // ALERT TRANSLATED
-}
-
-function rotateWheel(target, dir) {
-    if (gameState.rotationActions <= 0) {
-        alert(t('alert_no_rotations')); // ALERT TRANSLATED
-        return;
-    }
-    gameState.rotationActions--;
-    if (target === 'inner') gameState.innerRotationIndex += dir;
-    else gameState.outerRotationIndex += dir;
-    updateUI();
-}
-
-function handleZoneClick(zone) {
-    if (gameState.selectedMeepleIndex === null) {
-        alert(t('alert_select_meeple')); // ALERT TRANSLATED
-        return;
-    }
-
-    // FIX: Track current zone for meeple placement
-    gameState.currentZone = zone;
-
-    let success = false;
-
-    if (zone === 'river') {
-        gameState.clay += 2;
-        success = true;
-        if (gameState.tutorialStep === 1) gameState.tutorialStep++;
-    }
-    else if (zone === 'market') {
-        openMarketMenu();
-    }
-    else if (zone === 'plaza') {
-        if (confirm(t('confirm_plaza'))) { // "Vuoi cambiare commissione?" - generic enough
-            let newObj1, newObj2;
-            const currentObjs = gameState.currentObjectives || [];
-
-            // Generate 2 new distinct ones
-            do {
-                newObj1 = COMMISSIONS[Math.floor(Math.random() * COMMISSIONS.length)];
-            } while (currentObjs.some(o => o.id === newObj1.id));
-
-            do {
-                newObj2 = COMMISSIONS[Math.floor(Math.random() * COMMISSIONS.length)];
-            } while (newObj2.id === newObj1.id || currentObjs.some(o => o.id === newObj2.id && COMMISSIONS.length > 3));
-
-            gameState.currentObjectives = [newObj1, newObj2];
-            alert(t('alert_new_comm'));
-            success = true;
-        } else {
-            return;
+        function rotateWheel(target, dir) {
+            if (gameState.rotationActions <= 0) {
+                alert(t('alert_no_rotations')); // ALERT TRANSLATED
+                return;
+            }
+            gameState.rotationActions--;
+            if (target === 'inner') gameState.innerRotationIndex += dir;
+            else gameState.outerRotationIndex += dir;
+            updateUI();
         }
-        success = true;
-    }
-    else if (zone === 'workshop') {
-        gameState.wheelUnlocked = true;
-        success = true;
-        if (gameState.tutorialStep === 3) gameState.tutorialStep++;
-    }
-    else if (zone === 'oven') {
-        const outMod = ((-gameState.outerRotationIndex % 6) + 6) % 6;
-        const inMod = ((-gameState.innerRotationIndex % 3) + 3) % 3;
-        const topOuter = gameState.outerSlots[outMod];
-        const topInner = gameState.innerSlots[inMod];
 
-        let completedIndex = -1;
-        const currentObjs = gameState.currentObjectives || [];
-
-        // Check against ALL current objectives
-        for (let i = 0; i < currentObjs.length; i++) {
-            const comm = currentObjs[i];
-            const hasClay = topInner.clay >= comm.reqClay;
-            let hasColors = true;
-            for (let [c, amt] of Object.entries(comm.reqColors)) {
-                if (topOuter[c] < amt) hasColors = false;
+        function handleZoneClick(zone) {
+            if (gameState.selectedMeepleIndex === null) {
+                alert(t('alert_select_meeple')); // ALERT TRANSLATED
+                return;
             }
 
-            if (hasClay && hasColors) {
-                completedIndex = i;
-                break; // Complete the first valid one found
+            // FIX: Track current zone for meeple placement
+            gameState.currentZone = zone;
+
+            let success = false;
+
+            if (zone === 'river') {
+                gameState.clay += 2;
+                success = true;
+                if (gameState.tutorialStep === 1) gameState.tutorialStep++;
+            }
+            else if (zone === 'market') {
+                openMarketMenu();
+            }
+            else if (zone === 'plaza') {
+                if (confirm(t('confirm_plaza'))) { // "Vuoi cambiare commissione?" - generic enough
+                    let newObj1, newObj2;
+                    const currentObjs = gameState.currentObjectives || [];
+
+                    // Generate 2 new distinct ones
+                    do {
+                        newObj1 = COMMISSIONS[Math.floor(Math.random() * COMMISSIONS.length)];
+                    } while (currentObjs.some(o => o.id === newObj1.id));
+
+                    do {
+                        newObj2 = COMMISSIONS[Math.floor(Math.random() * COMMISSIONS.length)];
+                    } while (newObj2.id === newObj1.id || currentObjs.some(o => o.id === newObj2.id && COMMISSIONS.length > 3));
+
+                    gameState.currentObjectives = [newObj1, newObj2];
+                    alert(t('alert_new_comm'));
+                    success = true;
+                } else {
+                    return;
+                }
+                success = true;
+            }
+            else if (zone === 'workshop') {
+                gameState.wheelUnlocked = true;
+                success = true;
+                if (gameState.tutorialStep === 3) gameState.tutorialStep++;
+            }
+            else if (zone === 'oven') {
+                const outMod = ((-gameState.outerRotationIndex % 6) + 6) % 6;
+                const inMod = ((-gameState.innerRotationIndex % 3) + 3) % 3;
+                const topOuter = gameState.outerSlots[outMod];
+                const topInner = gameState.innerSlots[inMod];
+
+                let completedIndex = -1;
+                const currentObjs = gameState.currentObjectives || [];
+
+                // Check against ALL current objectives
+                for (let i = 0; i < currentObjs.length; i++) {
+                    const comm = currentObjs[i];
+                    const hasClay = topInner.clay >= comm.reqClay;
+                    let hasColors = true;
+                    for (let [c, amt] of Object.entries(comm.reqColors)) {
+                        if (topOuter[c] < amt) hasColors = false;
+                    }
+
+                    if (hasClay && hasColors) {
+                        completedIndex = i;
+                        break; // Complete the first valid one found
+                    }
+                }
+
+                if (completedIndex !== -1) {
+                    const comm = currentObjs[completedIndex];
+                    alert(`${t('alert_magnificent')} ${comm.name}!`);
+                    gameState.coins += comm.rewardMoney;
+                    gameState.score += comm.rewardPoints;
+                    topInner.clay -= comm.reqClay;
+                    for (let [c, amt] of Object.entries(comm.reqColors)) topOuter[c] -= amt;
+
+                    // Replace executed commission
+                    let newComm;
+                    do {
+                        newComm = COMMISSIONS[Math.floor(Math.random() * COMMISSIONS.length)];
+                    } while (currentObjs.some(o => o.id === newComm.id) && COMMISSIONS.length > 2);
+
+                    gameState.currentObjectives[completedIndex] = newComm;
+
+                    success = true;
+                    if (gameState.tutorialStep === 5) gameState.tutorialStep++;
+                } else {
+                    alert(t('alert_fail') + "\n" + t('alert_fail_desc')); // ALERT TRANSLATED
+                    success = true;
+                }
+            }
+
+            if (success) {
+                gameState.assistantsStatus[gameState.selectedMeepleIndex] = true;
+                const m = document.createElement('div');
+                m.textContent = '🫏';
+                m.className = 'absolute text-xl animate-bounce';
+                document.getElementById(`meeple-${zone}`).appendChild(m);
+                gameState.selectedMeepleIndex = null;
+                updateUI();
             }
         }
 
-        if (completedIndex !== -1) {
-            const comm = currentObjs[completedIndex];
-            alert(`${t('alert_magnificent')} ${comm.name}!`);
-            gameState.coins += comm.rewardMoney;
-            gameState.score += comm.rewardPoints;
-            topInner.clay -= comm.reqClay;
-            for (let [c, amt] of Object.entries(comm.reqColors)) topOuter[c] -= amt;
-
-            // Replace executed commission
-            let newComm;
-            do {
-                newComm = COMMISSIONS[Math.floor(Math.random() * COMMISSIONS.length)];
-            } while (currentObjs.some(o => o.id === newComm.id) && COMMISSIONS.length > 2);
-
-            gameState.currentObjectives[completedIndex] = newComm;
-
-            success = true;
-            if (gameState.tutorialStep === 5) gameState.tutorialStep++;
-        } else {
-            alert(t('alert_fail') + "\n" + t('alert_fail_desc')); // ALERT TRANSLATED
-            success = true;
+        function endRound() {
+            gameState.resetDaily();
+            ['river', 'market', 'plaza', 'workshop', 'oven'].forEach(z => {
+                document.getElementById(`meeple-${z}`).innerHTML = '';
+            });
+            alert("Un nuovo giorno sorge su Vietri! (Mosse tornio ripristinate)");
+            updateUI();
         }
-    }
 
-    if (success) {
-        gameState.assistantsStatus[gameState.selectedMeepleIndex] = true;
-        const m = document.createElement('div');
-        m.textContent = '🫏';
-        m.className = 'absolute text-xl animate-bounce';
-        document.getElementById(`meeple-${zone}`).appendChild(m);
-        gameState.selectedMeepleIndex = null;
-        updateUI();
-    }
-}
-
-function endRound() {
-    gameState.resetDaily();
-    ['river', 'market', 'plaza', 'workshop', 'oven'].forEach(z => {
-        document.getElementById(`meeple-${z}`).innerHTML = '';
-    });
-    alert("Un nuovo giorno sorge su Vietri! (Mosse tornio ripristinate)");
-    updateUI();
-}
-
-init();
+        init();
 
     </script>
 </body>
+
 </html>
