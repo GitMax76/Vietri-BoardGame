@@ -1228,100 +1228,211 @@
             const title = document.getElementById('slot-modal-title');
             const content = document.getElementById('slot-modal-content');
 
-            title.textContent = t('modal_market_title');
+            // --- MARKET SELECTION STATE ---
+            let marketSelection = {
+                give: [], // Array of color strings (max 2)
+                get: null // Single color string
+            };
 
-            content.innerHTML = `
-        <div class="space-y-6">
-            <!-- BUY -->
-            <div class="bg-blue-50 p-4 rounded border border-blue-200">
-                <h4 class="font-bold text-blue-800 mb-1">${t('market_buy')}</h4>
-                <p class="text-xs text-gray-600 mb-2">${t('market_buy_desc')}</p>
-                <button class="w-full bg-blue-600 text-white font-bold py-2 rounded hover:bg-blue-700 shadow" onclick="finalizeMarketAction('buy')">
-                    ${t('market_buy_btn')}
-                </button>
-            </div>
+            function closeMarketMenu() {
+                document.getElementById('slot-modal').classList.add('hidden');
+                gameState.selectedMeepleIndex = null;
+                updateUI();
+            }
 
-            <div class="text-center font-bold text-gray-400 text-sm">${t('market_or')}</div>
-
-            <!-- TRADE -->
-            <div class="bg-orange-50 p-4 rounded border border-orange-200">
-                <h4 class="font-bold text-orange-800 mb-1">${t('market_trade')}</h4>
-                <p class="text-xs text-gray-600 mb-2">${t('market_trade_desc')}</p>
-                
-                <div class="space-y-2">
-                    <div class="flex flex-col gap-1">
-                        <label class="text-xs font-bold text-gray-700">${t('market_give')}</label>
-                        <div class="flex gap-2">
-                            <select id="trade-give-1" class="border rounded p-1 text-sm flex-1 bg-white">${getColorOptions()}</select>
-                            <select id="trade-give-2" class="border rounded p-1 text-sm flex-1 bg-white">${getColorOptions()}</select>
-                        </div>
-                    </div>
-                    <div class="flex flex-col gap-1">
-                         <label class="text-xs font-bold text-gray-700">${t('market_get')}</label>
-                         <select id="trade-get" class="border rounded p-1 text-sm w-full bg-white">${getColorOptions()}</select>
-                    </div>
-                </div>
-
-                <button class="w-full bg-orange-600 text-white font-bold py-2 rounded hover:bg-orange-700 shadow mt-3" onclick="finalizeMarketAction('trade')">
-                    ${t('market_trade_btn')}
-                </button>
-            </div>
-        </div>
-    `;
-
-            modal.classList.remove('hidden');
-        }
-
-        function getColorOptions() {
-            // Generate <option> tags localized
-            return COLORS.map(c => `<option value="${c}">${TRANSLATIONS[gameState.language].colors[c]}</option>`).join('');
-        }
-
-
-
-        function finalizeMarketAction(actionType) {
-            const modal = document.getElementById('slot-modal');
-            modal.classList.add('hidden');
-
-            if (actionType === 'buy') {
-                if (gameState.coins < 1) {
-                    alert(t('alert_no_coins')); // ALERT TRANSLATED
+            function openMarketMenu() {
+                if (gameState.selectedMeepleIndex === null) {
+                    alert(t('alert_select_meeple'));
                     return;
                 }
-                gameState.coins--;
-                const c1 = COLORS[Math.floor(Math.random() * COLORS.length)];
-                const c2 = COLORS[Math.floor(Math.random() * COLORS.length)];
-                gameState.pigments[c1]++;
-                gameState.pigments[c2]++;
-                updateUI();
-                document.getElementById('slot-modal').classList.add('hidden');
-            } else if (actionType === 'trade') {
-                const give1 = document.getElementById('trade-give-1').value;
-                const give2 = document.getElementById('trade-give-2').value;
-                const get = document.getElementById('trade-get').value;
 
-                if (gameState.pigments[give1] > 0 && (give1 !== give2 ? gameState.pigments[give2] > 0 : gameState.pigments[give1] >= 2)) {
-                    gameState.pigments[give1]--;
-                    gameState.pigments[give2]--;
-                    gameState.pigments[get]++;
-                    updateUI();
-                    document.getElementById('slot-modal').classList.add('hidden');
+                // Reset selection
+                marketSelection = { give: [], get: null };
+
+                const title = document.getElementById('slot-modal-title');
+                const content = document.getElementById('slot-modal-content');
+                title.innerHTML = `${t('modal_market_title')} <button onclick="closeMarketMenu()" class="float-right text-gray-500 hover:text-gray-800 text-lg">✖</button>`;
+
+                renderMarketContent();
+                document.getElementById('slot-modal').classList.remove('hidden');
+            }
+
+            function renderMarketContent() {
+                const content = document.getElementById('slot-modal-content');
+
+                // Generate Give Grid
+                let giveHtml = '<div class="grid grid-cols-3 gap-2">';
+                COLORS.forEach(c => {
+                    const count = gameState.pigments[c];
+                    const isSelected = marketSelection.give.filter(x => x === c).length;
+                    const canSelect = count > isSelected && marketSelection.give.length < 2;
+
+                    const opacity = (count > 0) ? '1' : '0.3';
+                    const border = isSelected ? 'border-4 border-blue-600' : 'border border-gray-300';
+                    const scale = isSelected ? 'scale-110' : 'scale-100';
+
+                    // Show how many selected vs available
+                    giveHtml += `
+                    <div onclick="toggleMarketGive('${c}')" class="cursor-pointer transition-all p-2 rounded bg-gray-50 flex flex-col items-center justify-center ${border} ${scale}" style="opacity:${opacity}">
+                        <div class="w-6 h-6 rounded-full" style="background:${c}"></div>
+                        <span class="text-xs font-bold mt-1">${count}</span>
+                        ${isSelected ? `<span class="absolute top-0 right-0 bg-blue-600 text-white text-[0.6rem] w-4 h-4 rounded-full flex items-center justify-center">${isSelected}</span>` : ''}
+                    </div>
+                 `;
+                });
+                giveHtml += '</div>';
+
+                // Generate Get Grid
+                let getHtml = '<div class="grid grid-cols-3 gap-2">';
+                COLORS.forEach(c => {
+                    const isSelected = marketSelection.get === c;
+                    const border = isSelected ? 'border-4 border-green-500' : 'border border-gray-300';
+                    const scale = isSelected ? 'scale-110 shadow-lg' : 'scale-100';
+
+                    getHtml += `
+                    <div onclick="toggleMarketGet('${c}')" class="cursor-pointer transition-all p-2 rounded bg-white flex flex-col items-center justify-center ${border} ${scale}">
+                        <div class="w-8 h-8 rounded-full border border-gray-100" style="background:${c}"></div>
+                    </div>
+                 `;
+                });
+                getHtml += '</div>';
+
+                const canTrade = marketSelection.give.length === 2 && marketSelection.get;
+
+                content.innerHTML = `
+                <div class="space-y-6 select-none">
+                    <!-- BUY -->
+                    <div class="bg-blue-50 p-3 rounded border border-blue-200">
+                        <div class="flex justify-between items-center">
+                             <div>
+                                <h4 class="font-bold text-blue-800 leading-none">${t('market_buy')}</h4>
+                                <p class="text-[0.65rem] text-gray-600 leading-tight">${t('market_buy_desc')}</p>
+                             </div>
+                             <button class="bg-blue-600 text-white font-bold px-4 py-2 rounded hover:bg-blue-700 shadow text-sm" onclick="finalizeMarketAction('buy')">
+                                ${t('market_buy_btn')}
+                             </button>
+                        </div>
+                    </div>
+
+                    <div class="text-center font-bold text-gray-400 text-xs tracking-widest">${t('market_or')}</div>
+
+                    <!-- TRADE -->
+                    <div class="bg-orange-50 p-3 rounded border border-orange-200">
+                        <h4 class="font-bold text-orange-800 mb-2">${t('market_trade')}</h4>
+                        <p class="text-[0.65rem] text-gray-600 mb-2">${t('market_trade_desc')}</p>
+                        
+                        <div class="space-y-3">
+                            <div>
+                                <label class="text-xs font-bold text-gray-700 block mb-1">${t('market_give')} (${marketSelection.give.length}/2)</label>
+                                ${giveHtml}
+                            </div>
+                            
+                            <div class="flex justify-center text-gray-400 text-xl">⬇️</div>
+                            
+                            <div>
+                                <label class="text-xs font-bold text-gray-700 block mb-1">${t('market_get')}</label>
+                                ${getHtml}
+                            </div>
+                        </div>
+
+                        <button class="w-full mt-4 bg-orange-600 text-white font-bold py-3 rounded shadow transition-colors ${canTrade ? 'hover:bg-orange-700' : 'opacity-50 cursor-not-allowed'}" 
+                                onclick="${canTrade ? "finalizeMarketAction('trade')" : ''}">
+                            ${t('market_trade_btn')}
+                        </button>
+                    </div>
+                </div>
+            `;
+            }
+
+            function toggleMarketGive(c) {
+                const currentCount = marketSelection.give.filter(x => x === c).length;
+                const available = gameState.pigments[c];
+
+                if (currentCount > 0) {
+                    // Remove one instance
+                    const idx = marketSelection.give.indexOf(c);
+                    if (idx > -1) marketSelection.give.splice(idx, 1);
                 } else {
-                    alert(t('alert_not_enough_colors')); // Use fallback or add translation for this? Adding generic fail for now or keep text
+                    // Add if limit not reached and available
+                    if (marketSelection.give.length < 2 && available > currentCount) {
+                        marketSelection.give.push(c);
+                    }
                 }
             }
 
+            // Expose to window for onclick
+            window.toggleMarketGive = function (c) {
+                const selectedCount = marketSelection.give.filter(x => x === c).length;
+                const available = gameState.pigments[c];
+
+                if (selectedCount < available && marketSelection.give.length < 2) {
+                    marketSelection.give.push(c);
+                } else if (selectedCount > 0) {
+                    // Deselect one
+                    const idx = marketSelection.give.indexOf(c);
+                    marketSelection.give.splice(idx, 1);
+                }
+                renderMarketContent();
+            };
+
+            window.toggleMarketGet = function (c) {
+                marketSelection.get = c;
+                renderMarketContent();
+            };
+
+            function finalizeMarketAction(actionType) {
+                if (actionType === 'buy') {
+                    if (gameState.coins < 1) {
+                        alert(t('alert_no_coins'));
+                        return;
+                    }
+                    gameState.coins--;
+                    const c1 = COLORS[Math.floor(Math.random() * COLORS.length)];
+                    const c2 = COLORS[Math.floor(Math.random() * COLORS.length)];
+                    gameState.pigments[c1]++;
+                    gameState.pigments[c2]++;
+                } else if (actionType === 'trade') {
+                    if (marketSelection.give.length !== 2 || !marketSelection.get) return;
+
+                    // Double check availability
+                    const give1 = marketSelection.give[0];
+                    const give2 = marketSelection.give[1];
+
+                    // Temp object to verify
+                    const tempPigments = { ...gameState.pigments };
+                    if (tempPigments[give1] > 0) {
+                        tempPigments[give1]--;
+                        if (tempPigments[give2] > 0) {
+                            // Success execution
+                            gameState.pigments[give1]--;
+                            gameState.pigments[give2]--;
+                            gameState.pigments[marketSelection.get]++;
+                        } else {
+                            alert(t('alert_not_enough_colors'));
+                            return;
+                        }
+                    } else {
+                        alert(t('alert_not_enough_colors'));
+                        return;
+                    }
+                } else {
+                    alert(t('alert_not_enough_colors'));
+                    return;
+                }
+            }
+
+            // Common success
+            document.getElementById('slot-modal').classList.add('hidden');
             gameState.assistantsStatus[gameState.selectedMeepleIndex] = true;
+
             const m = document.createElement('div');
             m.textContent = '🫏';
             m.className = 'absolute text-xl animate-bounce';
-            document.getElementById(`meeple-${gameState.currentZone}`).appendChild(m); // Changed from 'meeple-${z}' to 'meeple-${gameState.currentZone}'
+            document.getElementById(`meeple-${gameState.currentZone}`).appendChild(m);
             gameState.selectedMeepleIndex = null;
 
             if (gameState.tutorialStep === 2) gameState.tutorialStep++;
-
             updateUI();
-            alert(actionType === "buy" ? t('alert_buy_success') : t('alert_trade_success')); // ALERT TRANSLATED
         }
 
         function rotateWheel(target, dir) {
@@ -1372,6 +1483,8 @@
                     alert(t('alert_new_comm'));
                     success = true;
                 } else {
+                    gameState.selectedMeepleIndex = null;
+                    updateUI();
                     return;
                 }
                 success = true;
@@ -1407,7 +1520,8 @@
 
                 if (completedIndex !== -1) {
                     const comm = currentObjs[completedIndex];
-                    alert(`${t('alert_magnificent')} ${comm.name}!`);
+                    const commName = TRANSLATIONS[gameState.language].commissions[comm.id] || comm.id;
+                    alert(`${t('alert_magnificent')} ${commName}!`);
                     gameState.coins += comm.rewardMoney;
                     gameState.score += comm.rewardPoints;
                     topInner.clay -= comm.reqClay;
@@ -1436,9 +1550,12 @@
                 m.className = 'absolute text-xl animate-bounce';
                 document.getElementById(`meeple-${zone}`).appendChild(m);
                 gameState.selectedMeepleIndex = null;
+
                 updateUI();
             }
         }
+
+
 
         function endRound() {
             gameState.resetDaily();
