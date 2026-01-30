@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vietri: Maestri della Ceramica - Regolamento</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #e0f2fe;
+            background-image:
+                radial-gradient(#1e40af 15%, transparent 16%),
+                radial-gradient(#1e40af 15%, transparent 16%);
+            background-size: 60px 60px;
+            background-position: 0 0, 30px 30px;
+            font-family: 'Lato', sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 40px auto;
+            background-color: #fff;
+            padding: 60px;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border: 8px solid #1e3a8a;
+            outline: 4px dashed #facc15;
+            outline-offset: -16px;
+        }
+
+        .corner-decoration {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            pointer-events: none;
+            background-image: radial-gradient(circle at center, #facc15 0%, #facc15 20%, transparent 21%);
+            background-size: 20px 20px;
+        }
+
+        .top-left {
+            top: 20px;
+            left: 20px;
+            border-top: 4px solid #1e3a8a;
+            border-left: 4px solid #1e3a8a;
+        }
+
+        .top-right {
+            top: 20px;
+            right: 20px;
+            border-top: 4px solid #1e3a8a;
+            border-right: 4px solid #1e3a8a;
+        }
+
+        .bottom-left {
+            bottom: 20px;
+            left: 20px;
+            border-bottom: 4px solid #1e3a8a;
+            border-left: 4px solid #1e3a8a;
+        }
+
+        .bottom-right {
+            bottom: 20px;
+            right: 20px;
+            border-bottom: 4px solid #1e3a8a;
+            border-right: 4px solid #1e3a8a;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Playfair Display', serif;
+            color: #1e3a8a;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 0px #facc15;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 3rem;
+            border-bottom: 2px solid #facc15;
+            padding-bottom: 20px;
+            display: inline-block;
+            width: 100%;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 2.5rem;
+            border-left: 8px solid #facc15;
+            padding-left: 15px;
+            background: linear-gradient(90deg, #f0f9ff 0%, transparent 100%);
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: #1e40af;
+            margin-top: 1.5rem;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        li::before {
+            content: "◆";
+            color: #1e3a8a;
+            position: absolute;
+            left: 0;
+            top: 1px;
+            font-size: 1.2em;
+        }
+
+        ul.components-list li::before {
+            content: "▪";
+            color: #0ea5e9;
+            font-size: 1.5em;
+            top: -4px;
+            line-height: 1;
+        }
+
+        ul.action-list li::before {
+            content: "➤";
+            color: #d97706;
+            font-size: 1em;
+            top: 2px;
+        }
+
+        ul.scoring-list li::before {
+            content: "★";
+            color: #eab308;
+            font-size: 1.1em;
+            top: 1px;
+        }
+
+        ul.setup-list li::before {
+            content: "✓";
+            color: #16a34a;
+            font-weight: bold;
+        }
+
+        .highlight {
+            background-color: #fef9c3;
+            padding: 0 4px;
+            font-weight: bold;
+            color: #000;
+            border-radius: 4px;
+        }
+
+        .zone-box {
+            background-color: #f8fafc;
+            border: 1px solid #cbd5e1;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 15px 0;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.02);
+        }
+
+        .zone-icon {
+            font-size: 1.5em;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .note {
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+            background-color: #fffbeb;
+            padding: 10px;
+            border-left: 3px solid #f59e0b;
+            margin-top: 5px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            font-size: 0.9rem;
+            color: #888;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        .contact-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #1e3a8a;
+            font-weight: bold;
+            padding: 8px 15px;
+            border-radius: 50px;
+            background-color: #f0f9ff;
+            transition: all 0.3s ease;
+            border: 1px solid #e0e7ff;
+        }
+
+        .contact-item:hover {
+            background-color: #e0f2fe;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-item i {
+            margin-right: 8px;
+            font-size: 1.3em;
+        }
+
+        .contact-item.whatsapp i {
+            color: #25D366;
+        }
+
+        .contact-item.email i {
+            color: #EA4335;
+        }
+
+        .contact-item.linktree i {
+            color: #43E660;
+        }
+
+        .lang-switcher {
+            position: absolute;
+            top: 90px;
+            right: 50px;
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .lang-btn {
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: opacity 0.3s, transform 0.3s;
+            border: none;
+            background: none;
+            padding: 0;
+        }
+
+        .lang-btn.active {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        .lang-btn:hover {
+            opacity: 0.8;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .home-btn {
+            position: absolute;
+            top: 90px;
+            left: 50px;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: #1e3a8a;
+            opacity: 0.6;
+            transition: all 0.3s;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: bold;
+        }
+
+        .home-btn:hover {
+            opacity: 1;
+            transform: scale(1.1);
+            color: #d97706;
+        }
+
+        @media print {
+            body {
+                background: none;
+            }
+
+            .container {
+                box-shadow: none;
+                margin: 0;
+                width: 100%;
+                border: 2px solid #1e3a8a;
+            }
+
+            .contact-links,
+            .lang-switcher {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Home Button -->
+        <a href="index.html" class="home-btn" title="Torna alla Home">
+            <i class="fa-solid fa-house"></i>
+        </a>
+
+        <!-- Lang Switcher -->
+        <div class="lang-switcher">
+            <button class="lang-btn active" onclick="setLang('it')" id="btn-it">🇮🇹</button>
+            <button class="lang-btn" onclick="setLang('en')" id="btn-en">🇬🇧</button>
+            <button class="lang-btn" onclick="setLang('fr')" id="btn-fr">🇫🇷</button>
+        </div>
+
+        <div class="corner-decoration top-left"></div>
+        <div class="corner-decoration top-right"></div>
+        <div class="corner-decoration bottom-left"></div>
+        <div class="corner-decoration bottom-right"></div>
+
+        <h1>Vietri</h1>
+
+        <!-- ITALIANO -->
+        <div id="lang-it" class="lang-content">
+            <div class="subtitle">Maestri della Ceramica - Regolamento Ufficiale</div>
+            <h2>1. Il Sogno dell'Artista</h2>
+            <p>Nelle storiche botteghe di Vietri sul Mare, l'aria profuma di salsedine e smalto fresco. Voi siete
+                aspiranti Maestri Ceramisti, pronti a sfidarvi per creare le opere più prestigiose della Costiera
+                Amalfitana. Gestite i vostri assistenti, dominate l'arte del tornio e cogliete l'attimo per infornare le
+                vostre creazioni uniche.</p>
+            <p><strong>Obiettivo del Gioco:</strong> Ottenere il maggior numero di <span class="highlight">Punti
+                    Prestigio (PP)</span> completando Carte Opera, gestendo le risorse e realizzando pattern complessi
+                sul proprio tornio.</p>
+
+            <h2>2. Componenti e Preparazione</h2>
+            <h3>Componenti Principali</h3>
+            <ul class="components-list">
+                <li><strong>Tabellone di Gioco:</strong> Mappa di Vietri con zone azione (Fiume, Mercato, Piazza,
+                    Bottega, Forno).</li>
+                <li><strong>Risorse:</strong> Argilla (Cubetti) e Pigmenti (6 Colori: Giallo, Rosso, Blu, Arancio,
+                    Viola, Verde).</li>
+                <li><strong>Carte Opera:</strong> Obiettivi da completare.</li>
+                <li><strong>Plance Tornio:</strong> 2 dischi rotanti per giocatore.</li>
+                <li><strong>Assistenti:</strong> Meeple del giocatore.</li>
+            </ul>
+
+            <h3>Svolgimento del Turno</h3>
+            <p>I giocatori si alternano piazzando <strong>1 Assistente</strong> in una zona e svolgendo l'azione. Quando
+                tutti gli assistenti sono usati, il round finisce.</p>
+
+            <h2>3. Le Azioni</h2>
+            <div class="zone-box">
+                <h3><span class="zone-icon">🌊</span>Fiume</h3>
+                <p>Prendi <span class="highlight">2 cubetti Argilla</span>.</p>
+            </div>
+            <div class="zone-box">
+                <h3><span class="zone-icon">⚖️</span>Mercato</h3>
+                <p><strong>Compra:</strong> Paga 1 moneta per 2 colori a caso.<br><strong>Baratta:</strong> Dai 2
+                    colori, prendine 1 a scelta.</p>
+            </div>
+            <div class="zone-box">
+                <h3><span class="zone-icon">🏺</span>Bottega</h3>
+                <p>Sposta risorse sul tuo Tornio e ruota i dischi (max 3 rotazioni totali).</p>
+            </div>
+            <div class="zone-box">
+                <h3><span class="zone-icon">🏛️</span>Piazza</h3>
+                <p>Prendi una nuova Carta Opera (o prendi 2 monete).</p>
+            </div>
+            <div class="zone-box">
+                <h3><span class="zone-icon">🔥</span>Forno</h3>
+                <p>Se il tuo Tornio matcha la Carta Opera, completala! Ottieni Punti e Monete.</p>
+            </div>
+
+            <h2>4. Fine Partita</h2>
+            <p>Vince chi ha più punti dopo che qualcuno completa la 6ª opera.</p>
+        </div>
+
+        <!-- ENGLISH -->
+        <div id="lang-en" class="lang-content hidden">
+            <div class="subtitle">Masters of Ceramics - Official Rules</div>
+            <h2>1. The Artist's Dream</h2>
+            <p>In the historic workshops of Vietri sul Mare, the air smells of salt and fresh glaze. You are aspiring
+                Master Potters, ready to challenge each other to create the most prestigious works of the Amalfi Coast.
+                Manage your assistants, master the art of the potter's wheel, and seize the moment to fire your unique
+                creations.</p>
+            <p><strong>Game Objective:</strong> Obtain the most <span class="highlight">Prestige Points (PP)</span> by
+                completing Commission Cards, managing resources, and creating complex patterns on your wheel.</p>
+
+            <h2>2. Components & Setup</h2>
+            <h3>Main Components</h3>
+            <ul class="components-list">
+                <li><strong>Game Board:</strong> Map of Vietri with action zones (River, Market, Plaza, Workshop, Oven).
+                </li>
+                <li><strong>Resources:</strong> Clay (Cubes) and Pigments (6 Colors: Yellow, Red, Blue, Orange, Purple,
+                    Green).</li>
+                <li><strong>Commission Cards:</strong> Objectives to complete.</li>
+                <li><strong>Wheel Boards:</strong> 2 rotating discs per player.</li>
+                <li><strong>Assistants:</strong> Player Meeples.</li>
+            </ul>
+
+            <h3>Turn Structure</h3>
+            <p>Players take turns placing <strong>1 Assistant</strong> in a zone and performing the action. When all
+                assistants are used, the round ends.</p>
+
+            <h2>3. Actions</h2>
+            <div class="zone-box">
+                <h3><span class="zone-icon">🌊</span>River</h3>
+                <p>Take <span class="highlight">2 Clay cubes</span>.</p>
+            </div>
+            <div class="zone-box">
+                <h3><span class="zone-icon">⚖️</span>Market</h3>
+                <p><strong>Buy:</strong> Pay 1 coin for 2 random colors.<br><strong>Trade:</strong> Give 2 colors, take
+                    1 of your choice.</p>
+            </div>
+            <div class="zone-box">
+                <h3><span class="zone-icon">🏺</span>Workshop</h3>
+                <p>Move resources to your Wheel and rotate discs (max 3 rotations total).</p>
+            </div>
+            <div class="zone-box">
+                <h3><span class="zone-icon">🏛️</span>Plaza</h3>
+                <p>Take a new Commission Card (or take 2 coins).</p>
+            </div>
+            <div class="zone-box">
+                <h3><span class="zone-icon">🔥</span>Oven</h3>
+                <p>If your Wheel matches your Commission Card, complete it! Gain Points and Coins.</p>
+            </div>
+
+            <h2>4. End of Game</h2>
+            <p>The winner is the one with the most points after someone completes their 6th masterpiece.</p>
+        </div>
+
+        <!-- FRANÇAIS -->
+        <div id="lang-fr" class="lang-content hidden">
+            <div class="subtitle">Maîtres de la Céramique - Règles Officielles</div>
+            <h2>1. Le Rêve de l'Artiste</h2>
+            <p>Dans les ateliers historiques de Vietri sul Mare, l'air sent le sel et l'émail frais. Vous êtes des
+                aspirants Maîtres Potiers, prêts à vous défier pour créer les œuvres les plus prestigieuses de la Côte
+                Amalfitaine. Gérez vos assistants, maîtrisez l'art du tour de potier et saisissez l'instant pour cuire
+                vos créations uniques.</p>
+            <p><strong>Objectif du Jeu:</strong> Obtenir le plus de <span class="highlight">Points de Prestige
+                    (PP)</span> en complétant des Cartes de Commande, en gérant les ressources et en créant des motifs
+                complexes sur votre tour.</p>
+
+            <h2>2. Composants et Préparation</h2>
+            <h3>Composants Principaux</h3>
+            <ul class="components-list">
+                <li><strong>Plateau de Jeu:</strong> Carte de Vietri avec zones d'action (Rivière, Marché, Place,
+                    Atelier, Four).</li>
+                <li><strong>Ressources:</strong> Argile (Cubes) et Pigments (6 Couleurs: Jaune, Rouge, Bleu, Orange,
+                    Violet, Vert).</li>
+                <li><strong>Cartes de Commande:</strong> Objectifs à compléter.</li>
+                <li><strong>Plateaux Tour:</strong> 2 disques rotatifs par joueur.</li>
+                <li><strong>Assistants:</strong> Meeples du joueur.</li>
+            </ul>
+
+            <h3>Déroulement du Tour</h3>
+            <p>Les joueurs placent à tour de rôle <strong>1 Assistant</strong> dans une zone et effectuent l'action.
+                Lorsque tous les assistants sont utilisés, la manche se termine.</p>
+
+            <h2>3. Actions</h2>
+            <div class="zone-box">
+                <h3><span class="zone-icon">🌊</span>Rivière</h3>
+                <p>Prenez <span class="highlight">2 cubes d'Argile</span>.</p>
+            </div>
+            <div class="zone-box">
+                <h3><span class="zone-icon">⚖️</span>Marché</h3>
+                <p><strong>Acheter:</strong> Payez 1 pièce pour 2 couleurs au hasard.<br><strong>Échanger:</strong>
+                    Donnez 2 couleurs, prenez-en 1 au choix.</p>
+            </div>
+            <div class="zone-box">
+                <h3><span class="zone-icon">🏺</span>Atelier</h3>
+                <p>Déplacez des ressources sur votre Tour et faites tourner les disques (max 3 rotations au total).</p>
+            </div>
+            <div class="zone-box">
+                <h3><span class="zone-icon">🏛️</span>Place</h3>
+                <p>Prenez une nouvelle Carte de Commande (ou prenez 2 pièces).</p>
+            </div>
+            <div class="zone-box">
+                <h3><span class="zone-icon">🔥</span>Four</h3>
+                <p>Si votre Tour correspond à la Carte de Commande, complétez-la! Gagnez des Points et des Pièces.</p>
+            </div>
+
+            <h2>4. Fin de Partie</h2>
+            <p>Le gagnant est celui qui a le plus de points après que quelqu'un ait terminé sa 6ème œuvre.</p>
+        </div>
+
+        <div class="footer">
+            Design tematico ispirato alle maioliche di Vietri sul Mare.
+            <div class="contact-section">
+                <div class="contact-links">
+                    <a href="https://linktr.ee/JustMax76" target="_blank" class="contact-item linktree"><i
+                            class="fa-solid fa-tree"></i> Linktree</a>
+                    <a href="https://wa.me/393295644852" target="_blank" class="contact-item whatsapp"><i
+                            class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                    <a href="mailto:massi.sabato@gmail.com" class="contact-item email"><i
+                            class="fa-solid fa-envelope"></i> Email</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function setLang(lang) {
+            // Hide all
+            document.querySelectorAll('.lang-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.lang-btn').forEach(el => el.classList.remove('active'));
+
+            // Show selected
+            document.getElementById('lang-' + lang).classList.remove('hidden');
+            document.getElementById('btn-' + lang).classList.add('active');
+
+            // Update URL without reload (optional, good for sharing)
+            const url = new URL(window.location);
+            url.searchParams.set('lang', lang);
+            window.history.pushState({}, '', url);
+        }
+
+        // Init from URL
+        const params = new URLSearchParams(window.location.search);
+        const lang = params.get('lang') || 'it';
+        if (['it', 'en', 'fr'].includes(lang)) {
+            setLang(lang);
+        } else {
+            setLang('it');
+        }
+    </script>
+</body>
+
+</html>
