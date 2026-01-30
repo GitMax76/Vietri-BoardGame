@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Vietri Card Editor</title>
-    <link rel="stylesheet" href="editor.css">
+
 </head>
 
 <body class="overflow-hidden" id="main-ui">
@@ -150,6 +150,8 @@
     <div id="print-area" class="hidden"></div>
 
     <script type="module">
+        import './editor.css'; // Import CSS for Vite processing
+
         // Dynamic Image Loading via Vite
         // This will find all pngs in opere folder and return their public URLs
         const opereImages = import.meta.glob('./opere/*.png', { eager: true, query: '?url', import: 'default' });
