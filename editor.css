@@ -14,6 +14,49 @@ body {
     print-color-adjust: exact;
 }
 
+/* --- GLOSSY CERAMIC BUTTON --- */
+.btn-start {
+    background: linear-gradient(135deg, var(--vietri-blue) 0%, #002244 100%);
+    color: white;
+    border: 4px solid var(--vietri-yellow);
+    padding: 15px 50px;
+    font-size: 1.5rem;
+    font-family: 'Georgia', serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    position: relative;
+    overflow: hidden;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.btn-start:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.4);
+    border-color: #fff;
+    filter: brightness(1.1);
+}
+
+/* Shine Effect */
+.btn-start::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(45deg) translateY(-100%);
+    transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.btn-start:hover::after {
+    transform: rotate(45deg) translateY(20%);
+}
+
 /* Ceramic Style */
 .maiolica-border {
     border: 4px solid var(--vietri-blue);
@@ -187,4 +230,14 @@ body {
         /* Remove outer margin/padding impact from scaling */
         margin: 0;
     }
+}
+
+/* Utility to hide/fix absolute elements in preview */
+.absolute-bottom-right {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    text-align: right;
+    font-size: 0.75rem;
+    color: #9ca3af;
 }
