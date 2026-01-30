@@ -1198,29 +1198,41 @@
                         <h2 class="text-sm text-yellow-600 font-bold uppercase tracking-wide">Card Editor</h2>
                     </div>
                 </div>
-                <a href="index.html"
-                    class="bg-blue-100 text-blue-800 px-3 py-1 rounded hover:bg-blue-200 text-sm font-bold flex items-center gap-1 transition-colors">
-                    <span>🏠</span> Home
-                </a>
+                <div class="flex items-center gap-2">
+                    <button onclick="setLanguage('it')" class="text-xl hover:scale-110 transition-transform"
+                        title="Italiano">🇮🇹</button>
+                    <button onclick="setLanguage('en')" class="text-xl hover:scale-110 transition-transform"
+                        title="English">🇬🇧</button>
+                    <button onclick="setLanguage('fr')" class="text-xl hover:scale-110 transition-transform"
+                        title="Français">🇫🇷</button>
+                    <a href="index.html"
+                        class="bg-blue-100 text-blue-800 px-3 py-1 rounded hover:bg-blue-200 text-sm font-bold flex items-center gap-1 transition-colors"
+                        data-i18n="home">
+                        <span>🏠</span> Home
+                    </a>
+                </div>
             </div>
 
             <!-- LIBRARY ACTIONS -->
             <div class="bg-blue-50 p-4 rounded-lg border border-blue-200 shadow-sm">
-                <h3 class="font-bold text-blue-800 text-sm uppercase tracking-wider mb-3">Libreria &amp; Stampa</h3>
+                <h3 class="font-bold text-blue-800 text-sm uppercase tracking-wider mb-3" data-i18n="library_title">
+                    Libreria &amp; Stampa</h3>
                 <div class="flex gap-2 mb-3">
                     <button onclick="addToLibrary()"
-                        class="flex-1 bg-green-600 text-white py-2 rounded font-bold text-sm hover:bg-green-700 shadow flex items-center justify-center gap-1">
+                        class="flex-1 bg-green-600 text-white py-2 rounded font-bold text-sm hover:bg-green-700 shadow flex items-center justify-center gap-1"
+                        data-i18n="btn_add">
                         <span>➕</span> Aggiungi
                     </button>
                     <button onclick="printLibrary()"
-                        class="flex-1 bg-gray-800 text-white py-2 rounded font-bold text-sm hover:bg-black shadow flex items-center justify-center gap-1">
+                        class="flex-1 bg-gray-800 text-white py-2 rounded font-bold text-sm hover:bg-black shadow flex items-center justify-center gap-1"
+                        data-i18n="btn_print">
                         <span>🖨️</span> Stampa (6/pag)
                     </button>
                 </div>
                 <!-- Library List -->
                 <div id="library-list"
                     class="space-y-2 max-h-40 overflow-y-auto bg-white p-2 rounded border border-gray-200 text-sm">
-                    <p class="text-gray-400 text-center text-xs italic">Nessuna carta salvata</p>
+                    <p class="text-gray-400 text-center text-xs italic" data-i18n="no_cards">Nessuna carta salvata</p>
                 </div>
             </div>
 
@@ -1228,18 +1240,21 @@
             <div class="space-y-6">
                 <!-- Image Selector -->
                 <div class="bg-gray-50 p-4 rounded-lg border border-gray-100">
-                    <label class="block font-bold text-gray-700 mb-2 text-sm uppercase tracking-wider">Immagine Opera
+                    <label class="block font-bold text-gray-700 mb-2 text-sm uppercase tracking-wider"
+                        data-i18n="label_img">Immagine Opera
                         (.png)</label>
                     <select id="img-select"
                         class="w-full p-2 border rounded bg-white shadow-sm mb-2 focus:ring-2 focus:ring-blue-500 outline-none">
                         <!-- Dynamic options will be injected here -->
                     </select>
                     <input type="text" id="custom-img" placeholder="Nome file custom..."
-                        class="w-full p-2 border rounded text-sm bg-white">
-                    <p class="text-xs text-gray-400 mt-1">Usa file presenti nella cartella del progetto.</p>
+                        class="w-full p-2 border rounded text-sm bg-white" data-i18n-ph="ph_custom_img">
+                    <p class="text-xs text-gray-400 mt-1" data-i18n="help_img">Usa file presenti nella cartella del
+                        progetto.</p>
 
                     <div class="mt-4 pt-4 border-t border-gray-200">
-                        <label class="block font-bold text-gray-700 mb-2 text-sm uppercase tracking-wider">Colore Bordo
+                        <label class="block font-bold text-gray-700 mb-2 text-sm uppercase tracking-wider"
+                            data-i18n="label_border">Colore Bordo
                             Ceramica</label>
                         <div class="flex items-center gap-2">
                             <input type="color" id="border-color-picker" value="#0047AB"
@@ -1250,13 +1265,14 @@
 
                 <!-- Requirements -->
                 <div>
-                    <h3 class="font-bold text-gray-700 text-sm uppercase tracking-wider mb-3">Materiali Richiesti</h3>
+                    <h3 class="font-bold text-gray-700 text-sm uppercase tracking-wider mb-3"
+                        data-i18n="title_materials">Materiali Richiesti</h3>
 
                     <!-- Fixed Grey -->
                     <div class="flex items-center justify-between mb-2 bg-gray-100 p-2 rounded border border-gray-200">
                         <div class="flex items-center gap-2">
                             <div class="cube cube-gray"></div>
-                            <span class="font-bold text-gray-700 text-sm">Base Argilla (1°)</span>
+                            <span class="font-bold text-gray-700 text-sm" data-i18n="clay_base">Base Argilla (1°)</span>
                         </div>
                         <input type="number" id="req-gray" value="1" min="1"
                             class="w-16 p-1 border rounded text-center font-bold">
@@ -1313,9 +1329,11 @@
 
                 <!-- Reward -->
                 <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-100">
-                    <h3 class="font-bold text-yellow-800 text-sm uppercase tracking-wider mb-3">Ricompensa Finale</h3>
+                    <h3 class="font-bold text-yellow-800 text-sm uppercase tracking-wider mb-3"
+                        data-i18n="title_reward">Ricompensa Finale</h3>
                     <div class="flex items-center justify-between">
-                        <span class="font-bold text-yellow-600 flex items-center gap-2 text-lg">💰 Monete</span>
+                        <span class="font-bold text-yellow-600 flex items-center gap-2 text-lg" data-i18n="coins">💰
+                            Monete</span>
                         <input type="number" id="reward-coins" value="3" min="0"
                             class="w-20 p-2 border border-yellow-300 rounded text-center font-bold text-xl text-yellow-700 bg-white">
                     </div>
@@ -1323,7 +1341,8 @@
 
                 <div class="mt-8">
                     <button onclick="exportConfig()"
-                        class="w-full bg-gray-800 text-white py-3 rounded-lg font-bold hover:bg-black shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2">
+                        class="w-full bg-gray-800 text-white py-3 rounded-lg font-bold hover:bg-black shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2"
+                        data-i18n="btn_copy">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -1340,7 +1359,8 @@
         <div
             class="w-2/3 bg-slate-100 flex flex-col items-center justify-center relative bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]">
 
-            <div class="mb-4 text-gray-400 font-mono text-sm uppercase tracking-widest">Anteprima 1:1</div>
+            <div class="mb-4 text-gray-400 font-mono text-sm uppercase tracking-widest" data-i18n="preview_label">
+                Anteprima 1:1</div>
 
             <div id="preview-container">
                 <div
@@ -1350,8 +1370,8 @@
                         <div class="card-inner-box">
                             <!-- LEFT -->
                             <div class="section-left">
-                                <div
-                                    class="text-xs font-bold text-gray-400 uppercase tracking-tight mb-2 text-center w-full">
+                                <div class="text-xs font-bold text-gray-400 uppercase tracking-tight mb-2 text-center w-full"
+                                    data-i18n="req_label">
                                     Richiesto</div>
                                 <div class="flex flex-col gap-1 w-full pl-2">
 
@@ -1372,7 +1392,8 @@
                                     </div>
                                 </div>
                                 <div class="mt-auto pt-3 border-t-2 border-dotted border-gray-300 w-full text-center">
-                                    <div class="text-[10px] uppercase text-gray-400 font-bold mb-0">Valore</div>
+                                    <div class="text-[10px] uppercase text-gray-400 font-bold mb-0"
+                                        data-i18n="val_label">Valore</div>
                                     <div class="coin-reward">
                                         <span>3</span> <span class="text-2xl">💰</span>
                                     </div>
@@ -1393,8 +1414,8 @@
             </div>
 
             <div class="absolute bottom-6 right-6 text-gray-400 text-xs text-right">
-                Vietri Card Editor v1.2<br>
-                Cards in Library: <span id="lib-count">0</span>
+                <span data-i18n="footer_text">Vietri Card Editor v1.2</span><br>
+                <span data-i18n="cards_in_lib">Cards in Library:</span> <span id="lib-count">0</span>
             </div>
 
         </div>
@@ -1404,6 +1425,110 @@
     <div id="print-area" class="hidden"></div>
 
     <script>
+        // TRANSLATIONS
+        const translations = {
+            "it": {
+                "home": "<span>🏠</span> Home",
+                "subtitle": "Editor di Carte",
+                "library_title": "Libreria & Stampa",
+                "btn_add": "<span>➕</span> Aggiungi",
+                "btn_print": "<span>🖨️</span> Stampa (6/pag)",
+                "no_cards": "Nessuna carta salvata",
+                "label_img": "Immagine Opera (.png)",
+                "ph_custom_img": "Nome file custom...",
+                "help_img": "Usa file presenti nella cartella del progetto.",
+                "label_border": "Colore Bordo Ceramica",
+                "title_materials": "Materiali Richiesti",
+                "clay_base": "Base Argilla (1°)",
+                "title_reward": "Ricompensa Finale",
+                "coins": "💰 Monete",
+                "btn_copy": "Copia JSON Config",
+                "preview_label": "Anteprima 1:1",
+                "footer_text": "Vietri Card Editor v1.2",
+                "cards_in_lib": "Cards in Library:",
+                "saved_msg": "✅ Salvato!",
+                "copied_msg": "Configurazione JSON copiata!",
+                "req_label": "Richiesto",
+                "val_label": "Valore"
+            },
+            "en": {
+                "home": "<span>🏠</span> Home",
+                "subtitle": "Card Editor",
+                "library_title": "Library & Print",
+                "btn_add": "<span>➕</span> Add",
+                "btn_print": "<span>🖨️</span> Print (6/page)",
+                "no_cards": "No cards saved",
+                "label_img": "Artwork Image (.png)",
+                "ph_custom_img": "Custom filename...",
+                "help_img": "Use files residing in project folder.",
+                "label_border": "Ceramic Border Color",
+                "title_materials": "Required Materials",
+                "clay_base": "Clay Base (1st)",
+                "title_reward": "Final Reward",
+                "coins": "💰 Coins",
+                "btn_copy": "Copy JSON Config",
+                "preview_label": "Preview 1:1",
+                "footer_text": "Vietri Card Editor v1.2",
+                "cards_in_lib": "Cards in Library:",
+                "saved_msg": "✅ Saved!",
+                "copied_msg": "JSON Config copied!",
+                "req_label": "Required",
+                "val_label": "Value"
+            },
+            "fr": {
+                "home": "<span>🏠</span> Accueil",
+                "subtitle": "Éditeur de Cartes",
+                "library_title": "Bibliothèque & Impression",
+                "btn_add": "<span>➕</span> Ajouter",
+                "btn_print": "<span>🖨️</span> Imprimer (6/page)",
+                "no_cards": "Aucune carte enregistrée",
+                "label_img": "Image de l'œuvre (.png)",
+                "ph_custom_img": "Nom de fichier...",
+                "help_img": "Utilisez les fichiers du dossier projet.",
+                "label_border": "Couleur Bordure Céramique",
+                "title_materials": "Matériaux Requis",
+                "clay_base": "Base Argile (1er)",
+                "title_reward": "Récompense Finale",
+                "coins": "💰 Pièces",
+                "btn_copy": "Copier Config JSON",
+                "preview_label": "Aperçu 1:1",
+                "footer_text": "Éditeur Cartes Vietri v1.2",
+                "cards_in_lib": "Cartes en Bibliothèque:",
+                "saved_msg": "✅ Enregistré!",
+                "copied_msg": "Config JSON copiée!",
+                "req_label": "Requis",
+                "val_label": "Valeur"
+            }
+        };
+
+        const colornames = {
+            "it": { "red": "Rosso", "blue": "Blu", "yellow": "Giallo", "green": "Verde", "orange": "Arancio", "purple": "Viola" },
+            "en": { "red": "Red", "blue": "Blue", "yellow": "Yellow", "green": "Green", "orange": "Orange", "purple": "Purple" },
+            "fr": { "red": "Rouge", "blue": "Bleu", "yellow": "Jaune", "green": "Vert", "orange": "Orange", "purple": "Violet" }
+        };
+
+        let currentLang = 'it';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            const t = translations[lang];
+
+            // Text Content
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key]) el.innerHTML = t[key];
+            });
+
+            // Placeholders
+            document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+                const key = el.getAttribute('data-i18n-ph');
+                if (t[key]) el.placeholder = t[key];
+            });
+
+            // Re-render to update dynamic parts like Color Names and Preview Labels
+            render();
+        }
+
         // State
         const state = {
             id: Date.now(),
@@ -1438,18 +1563,21 @@
             // Apply custom border color inline for print preservation
             const maiolicaStyle = `border-color: ${data.borderColor}; background-image: linear-gradient(45deg, ${data.borderColor} 25%, transparent 25%, transparent 75%, ${data.borderColor} 75%, ${data.borderColor}), linear-gradient(45deg, ${data.borderColor} 25%, transparent 25%, transparent 75%, ${data.borderColor} 75%, ${data.borderColor});`;
 
+            // Get translated labels for the card preview
+            const t = translations[currentLang];
+
             return `
             <div class="card-white-border transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl">
                 <div class="maiolica-border" style="${maiolicaStyle}">
                     <div class="card-inner-box">
                          <!-- LEFT -->
                          <div class="section-left">
-                             <div class="text-xs font-bold text-gray-400 uppercase tracking-tight mb-2 text-center w-full">Richiesto</div>
+                             <div class="text-xs font-bold text-gray-400 uppercase tracking-tight mb-2 text-center w-full">${t.req_label}</div>
                              <div class="flex flex-col gap-1 w-full pl-2">
                                  ${getReqRowsHTML(data.gray, data.colors)}
                              </div>
                              <div class="mt-auto pt-3 border-t-2 border-dotted border-gray-300 w-full text-center">
-                                 <div class="text-[10px] uppercase text-gray-400 font-bold mb-0">Valore</div>
+                                 <div class="text-[10px] uppercase text-gray-400 font-bold mb-0">${t.val_label}</div>
                                  <div class="coin-reward">
                                      <span>${data.coins}</span> <span class="text-2xl">💰</span>
                                  </div>
@@ -1469,13 +1597,16 @@
         function render() {
             // Render Editor List
             const listDiv = document.getElementById('color-reqs-container');
+            const cNames = colornames[currentLang]; // Get localized color names
+
             listDiv.innerHTML = '';
             state.colors.forEach((c, idx) => {
+                const localizedColor = cNames[c.type] || c.type;
                 listDiv.innerHTML += `
                  <div class="flex items-center justify-between mb-2 bg-white p-2 border rounded shadow-sm hover:border-blue-300 transition-colors">
                     <div class="flex items-center gap-2">
                         <div class="cube cube-${c.type}"></div>
-                        <span class="capitalize text-sm font-medium text-gray-700">${c.type}</span>
+                        <span class="capitalize text-sm font-medium text-gray-700">${localizedColor}</span>
                     </div>
                     <div class="flex items-center gap-2">
                         <span class="text-xs text-gray-400">Qt.</span>
@@ -1509,7 +1640,7 @@
             // Flash feedback
             const btn = document.querySelector('button[onclick="addToLibrary()"]');
             const old = btn.innerHTML;
-            btn.innerHTML = "✅ Salvato!";
+            btn.innerHTML = translations[currentLang].saved_msg;
             setTimeout(() => btn.innerHTML = old, 1000);
         }
 
@@ -1583,7 +1714,7 @@
 
         function printLibrary() {
             if (library.length === 0) {
-                alert("La libreria è vuota! Aggiungi prima delle carte.");
+                alert(translations[currentLang].no_cards);
                 return;
             }
             // Populate Print Area
@@ -1616,7 +1747,7 @@
 
         function exportConfig() {
             const json = JSON.stringify(state, null, 2);
-            navigator.clipboard.writeText(json).then(() => alert('Configurazione JSON copiata negli appunti!'));
+            navigator.clipboard.writeText(json).then(() => alert(translations[currentLang].copied_msg));
         }
 
         // LISTENERS
