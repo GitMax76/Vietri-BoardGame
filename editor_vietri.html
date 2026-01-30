@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" style="--vietri-blue: #0047AB;">
 
 <head>
     <meta charset="UTF-8">
     <title>Vietri Card Editor</title>
-
 </head>
 
 <body class="overflow-hidden" id="main-ui">
@@ -27,7 +26,7 @@
 
             <!-- LIBRARY ACTIONS -->
             <div class="bg-blue-50 p-4 rounded-lg border border-blue-200 shadow-sm">
-                <h3 class="font-bold text-blue-800 text-sm uppercase tracking-wider mb-3">Libreria & Stampa</h3>
+                <h3 class="font-bold text-blue-800 text-sm uppercase tracking-wider mb-3">Libreria &amp; Stampa</h3>
                 <div class="flex gap-2 mb-3">
                     <button onclick="addToLibrary()"
                         class="flex-1 bg-green-600 text-white py-2 rounded font-bold text-sm hover:bg-green-700 shadow flex items-center justify-center gap-1">
@@ -53,8 +52,7 @@
                         (.png)</label>
                     <select id="img-select"
                         class="w-full p-2 border rounded bg-white shadow-sm mb-2 focus:ring-2 focus:ring-blue-500 outline-none">
-                        <option value="preview.png">preview.png</option>
-                        <!-- Options populated dynamically -->
+                        <!-- Dynamic options will be injected here -->
                     </select>
                     <input type="text" id="custom-img" placeholder="Nome file custom..."
                         class="w-full p-2 border rounded text-sm bg-white">
@@ -86,7 +84,7 @@
 
                     <!-- Dynamic Colors -->
                     <div id="color-reqs-container" class="space-y-2">
-                        <!-- JS will populate -->
+                        <!-- Dynamic content -->
                     </div>
 
                     <div class="mt-3 flex gap-2 pt-2 border-t border-dashed">
@@ -116,8 +114,8 @@
 
                 <div class="mt-8">
                     <button onclick="exportConfig()"
-                        class="btn-start w-full flex items-center justify-center gap-2 text-sm py-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        class="w-full bg-gray-800 text-white py-3 rounded-lg font-bold hover:bg-black shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
@@ -138,7 +136,7 @@
                 <!-- Preview rendered here -->
             </div>
 
-            <div class="absolute-bottom-right">
+            <div class="absolute bottom-6 right-6 text-gray-400 text-xs text-right">
                 Vietri Card Editor v1.2<br>
                 Cards in Library: <span id="lib-count">0</span>
             </div>
@@ -150,23 +148,22 @@
     <div id="print-area" class="hidden"></div>
 
     <script type="module">
-        import './editor.css'; // Import CSS for Vite processing
+        import './editor.css';
 
         // Dynamic Image Loading via Vite
-        // This will find all pngs in opere folder and return their public URLs
         const opereImages = import.meta.glob('./opere/*.png', { eager: true, query: '?url', import: 'default' });
 
         function initImages() {
             const select = document.getElementById('img-select');
 
-            // Sort keys to have consistent order
-            Object.keys(opereImages).sort().forEach(path => {
-                const url = opereImages[path]; // This is the resolved URL (e.g., /opere/Vaso1.png)
-                // Extract filename for display (e.g. Vaso1.png)
-                const fileName = path.split('/').pop();
+            // Add default/fallback option logic if needed, or just clear
+            select.innerHTML = '<option value="preview.png">preview.png</option>';
 
+            Object.keys(opereImages).sort().forEach(path => {
+                const url = opereImages[path];
+                const fileName = path.split('/').pop();
                 const option = document.createElement('option');
-                option.value = url; // Use the actual URL path
+                option.value = url;
                 option.textContent = fileName;
                 select.appendChild(option);
             });
@@ -203,7 +200,6 @@
         }
 
         function getCardHTML(data) {
-            // Apply custom border color inline for print preservation
             const maiolicaStyle = `border-color: ${data.borderColor}; background-image: linear-gradient(45deg, ${data.borderColor} 25%, transparent 25%, transparent 75%, ${data.borderColor} 75%, ${data.borderColor}), linear-gradient(45deg, ${data.borderColor} 25%, transparent 25%, transparent 75%, ${data.borderColor} 75%, ${data.borderColor});`;
 
             return `
@@ -234,7 +230,7 @@
         }
 
         // MAIN RENDER
-        function render() {
+        window.render = function () {
             // Render Editor List
             const listDiv = document.getElementById('color-reqs-container');
             listDiv.innerHTML = '';
@@ -268,7 +264,7 @@
         }
 
         // LIBRARY FUNCTIONS
-        function addToLibrary() {
+        window.addToLibrary = function () {
             // Deep copy state
             const card = JSON.parse(JSON.stringify(state));
             card.id = Date.now();
@@ -281,12 +277,12 @@
             setTimeout(() => btn.innerHTML = old, 1000);
         }
 
-        function removeFromLibrary(idx) {
+        window.removeFromLibrary = function (idx) {
             library.splice(idx, 1);
             renderLibraryList();
         }
 
-        function loadFromLibrary(idx) {
+        window.loadFromLibrary = function (idx) {
             const card = library[idx];
             state.img = card.img;
             state.gray = card.gray;
@@ -295,14 +291,17 @@
             state.borderColor = card.borderColor || '#0047AB';
 
             // Update UI inputs
-            const sel = document.getElementById('img-select');
-            sel.value = card.img;
-            // Fallback if not found in options (though it likely should be)
-            if (sel.value !== card.img) {
-                // Try force adding it or just fallback
-                // For this use case, if the file is gone, fallback to preview
-                sel.value = 'preview.png';
+            // Logic to select the correct option even if path is different
+            const select = document.getElementById('img-select');
+            let found = false;
+            for (let i = 0; i < select.options.length; i++) {
+                if (select.options[i].value === card.img) {
+                    select.selectedIndex = i;
+                    found = true;
+                    break;
+                }
             }
+            if (!found) select.value = 'preview.png';
 
             document.getElementById('custom-img').value = card.img;
             document.getElementById('border-color-picker').value = state.borderColor;
@@ -310,7 +309,7 @@
             render();
         }
 
-        function renderLibraryList() {
+        window.renderLibraryList = function () {
             const el = document.getElementById('library-list');
             if (library.length === 0) {
                 el.innerHTML = '<p class="text-gray-400 text-center text-xs italic">Nessuna carta salvata</p>';
@@ -318,7 +317,6 @@
             }
             el.innerHTML = '';
             library.forEach((card, idx) => {
-                // Shorten displayed name if it's a path
                 const displayName = card.img.split('/').pop();
                 el.innerHTML += `
                 <div class="flex items-center justify-between bg-blue-50 p-1 rounded border border-blue-100 mb-1">
@@ -335,7 +333,7 @@
             document.getElementById('lib-count').innerText = library.length;
         }
 
-        function printLibrary() {
+        window.printLibrary = function () {
             if (library.length === 0) {
                 alert("La libreria è vuota! Aggiungi prima delle carte.");
                 return;
@@ -350,43 +348,28 @@
         }
 
         // ACTIONS
-        function updateImg(val) { state.img = val; render(); }
-        function updateGray(val) { state.gray = parseInt(val); render(); }
-        function updateCoins(val) { state.coins = parseInt(val); render(); }
-        function updateBorderColor(val) { state.borderColor = val; render(); }
+        window.updateImg = function (val) { state.img = val; render(); }
+        window.updateGray = function (val) { state.gray = parseInt(val); render(); }
+        window.updateCoins = function (val) { state.coins = parseInt(val); render(); }
+        window.updateBorderColor = function (val) { state.borderColor = val; render(); }
 
-        function addColorReq() {
+        window.addColorReq = function () {
             const type = document.getElementById('add-color-select').value;
             const existing = state.colors.find(c => c.type === type);
             if (existing) existing.count++;
             else state.colors.push({ type, count: 1 });
             render();
         }
-        function updateColorCount(idx, val) {
+        window.updateColorCount = function (idx, val) {
             state.colors[idx].count = parseInt(val);
             render();
         }
-        function removeColor(idx) { state.colors.splice(idx, 1); render(); }
+        window.removeColor = function (idx) { state.colors.splice(idx, 1); render(); }
 
-        function exportConfig() {
+        window.exportConfig = function () {
             const json = JSON.stringify(state, null, 2);
             navigator.clipboard.writeText(json).then(() => alert('Configurazione JSON copiata negli appunti!'));
         }
-
-        // EXPOSE GLOBAL FUNCTIONS (Required for inline onClick handlers with type="module")
-        window.render = render;
-        window.addToLibrary = addToLibrary;
-        window.removeFromLibrary = removeFromLibrary;
-        window.loadFromLibrary = loadFromLibrary;
-        window.printLibrary = printLibrary;
-        window.updateImg = updateImg;
-        window.updateGray = updateGray;
-        window.updateCoins = updateCoins;
-        window.updateBorderColor = updateBorderColor;
-        window.addColorReq = addColorReq;
-        window.updateColorCount = updateColorCount;
-        window.removeColor = removeColor;
-        window.exportConfig = exportConfig;
 
         // LISTENERS
         document.getElementById('img-select').addEventListener('change', (e) => updateImg(e.target.value));
