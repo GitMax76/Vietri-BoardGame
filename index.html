@@ -254,7 +254,7 @@
     <div id="app" class="w-full h-full flex flex-col items-center justify-center"></div>
     <script>
         // --- CONSTANTS & CONFIG ---
-        const LANGUAGES = ['it', 'en', 'fr'];
+        const LANGUAGES = ['it', 'en', 'fr', 'es', 'de'];
         let currentLang = 'it';
 
         const TRANSLATIONS = {
@@ -491,8 +491,165 @@
                     t4: "Cliquez sur les PARTS du tour pour insérer des matériaux, puis tournez (max 3 coups).",
                     t5: "Une fois aligné (▼), allez au <b>Four</b> pour terminer l'œuvre."
                 }
+            },
+            es: {
+                colors: { red: 'Rojo', blue: 'Azul', yellow: 'Amarillo', green: 'Verde', orange: 'Naranja', purple: 'Púrpura' },
+                ui: {
+                    title_sub: "Maestros de la Cerámica",
+                    quote: '"Entre pinceladas de azul cobalto y el esplendor de los limones..."',
+                    intro: "Conviértete en un <strong>Maestro Artesano</strong>: recoge arcilla, compra pigmentos y crea obras maestras en el torno.",
+                    btn_start: "Jugar Ahora",
+                    credits: "Un juego de M. Sabato & A. Solimene",
+                    rules_link: "📖 Leer Reglamento Oficial",
+                    shop_title: "Taller del Maestro",
+                    exit: "Salir",
+                    tutorial_loading: "Cargando...",
+                    section_donkeys: "1. Tus Burros",
+                    coins: "💰 Monedas",
+                    clay: "🧱 Arcilla",
+                    points: "🏆 Puntos",
+                    pigments_label: "COLORES:",
+                    commission_label: "ENCARGO",
+                    req_label: "Requiere:",
+                    reward_label: "Recompensa:",
+                    section_action: "2. Elegir Acciones",
+                    zone_river: "Río",
+                    zone_market: "Mercado",
+                    zone_plaza: "Plaza",
+                    zone_workshop: "Taller",
+                    zone_oven: "Horno",
+                    reset_day: "🌙 Fin del Día (Reset)",
+                    section_lathe: "3. Torno de Precisión",
+                    moves_left: "Movimientos Restantes:",
+                    lock_msg: "🔒 Ve al Taller para usar",
+                    wheel_inner: "Rueda Interior",
+                    wheel_outer: "Rueda Exterior",
+                    modal_title_inner: "Ranura Interior",
+                    modal_title_outer: "Ranura Exterior",
+                    modal_market_title: "Mercado de Colores",
+                    btn_close: "Cerrar",
+                    in_slot: "En ranura:",
+                    in_bag: "Disponible en bolsa:",
+                    empty_color: "No hay colores disponibles.<br>¡Visita el Mercado!",
+                    max_types: "Máx 2 tipos de color por ranura.",
+                    market_buy: "Comprar",
+                    market_buy_desc: "1 Moneda = 2 Colores al azar",
+                    market_buy_btn: "Comprar (💰 1)",
+                    market_or: "- O -",
+                    market_trade: "Intercambiar",
+                    market_trade_desc: "Cambia 2 colores por 1 a elección.",
+                    market_give: "Dar 2:",
+                    market_get: "Recibir 1:",
+                    market_trade_btn: "Cambiar (2 -> 1)",
+                    alert_select_meeple: "¡Selecciona un burro primero!",
+                    alert_no_coins: "¡No tienes suficientes monedas (necesitas 1)!",
+                    confirm_plaza: "¡Estás en la Plaza! ¿Quieres cambiar tu encargo actual por uno nuevo?",
+                    alert_new_comm: "Nuevo encargo recibido",
+                    alert_magnificent: "¡MAGNÍFICO! Has creado",
+                    alert_fail: "¡MAMMA MIA! La obra no está lista.",
+                    alert_fail_desc: "necesita:\n- Arcilla\n- Colores específicos\n\n¡Comprueba la porción bajo la flecha ▼!",
+                    alert_day_reset: "¡Amanece un nuevo día en Vietri! (Movimientos de torno restaurados)",
+                    footer_info: "👋 ¿Info? ¿Sugerencias? ¿Colabs? ¿Demo? ¡Hablemos!",
+                    alert_buy_success: "¡Compra completada! Colores añadidos a la bolsa.",
+                    alert_trade_success: "¡Intercambio completado! Colores actualizados.",
+                    alert_not_enough_colors: "¡No tienes suficientes colores para este intercambio!",
+                    alert_no_rotations: "¡No quedan movimientos de torno por hoy!"
+                },
+                commissions: {
+                    vaso_blu: "Jarrón Marino",
+                    piatto_sole: "Plato Sol",
+                    anfora_bosco: "Ánfora Bosque",
+                    ciotola_fuoco: "Cuenco Fuego",
+                    mosaico_reale: "Mosaico Real"
+                },
+                tutorial: {
+                    t1: "Selecciona un burro y visita el <b>Río</b> para obtener arcilla.",
+                    t2: "Visita el <b>Mercado</b> para comprar colores (cuesta 1 moneda).",
+                    t3: "Ve al <b>Taller</b> para desbloquear el Torno.",
+                    t4: "Haz clic en las PORCIONES del torno para insertar materiales, luego gira (máx 3 movimientos).",
+                    t5: "Cuando esté alineado (▼), ve al <b>Horno</b> para completar la obra."
+                }
+            },
+            de: {
+                colors: { red: 'Rot', blue: 'Blau', yellow: 'Gelb', green: 'Grün', orange: 'Orange', purple: 'Lila' },
+                ui: {
+                    title_sub: "Meister der Keramik",
+                    quote: '"Zwischen Pinselstrichen von Kobaltblau und dem Glanz der Zitronen..."',
+                    intro: "Werde ein <strong>Meisterhandwerker</strong>: Sammle Ton, kaufe Pigmente und schaffe Meisterwerke an der Töpferscheibe.",
+                    btn_start: "Jetzt Spielen",
+                    credits: "Ein Spiel von M. Sabato & A. Solimene",
+                    rules_link: "📖 Offizielle Regeln lesen",
+                    shop_title: "Meisterwerkstatt",
+                    exit: "Beenden",
+                    tutorial_loading: "Lädt...",
+                    section_donkeys: "1. Deine Esel",
+                    coins: "💰 Münzen",
+                    clay: "🧱 Ton",
+                    points: "🏆 Punkte",
+                    pigments_label: "FARBEN:",
+                    commission_label: "AUFTRAG",
+                    req_label: "Benötigt:",
+                    reward_label: "Belohnung:",
+                    section_action: "2. Aktionen wählen",
+                    zone_river: "Fluss",
+                    zone_market: "Markt",
+                    zone_plaza: "Platz",
+                    zone_workshop: "Werkstatt",
+                    zone_oven: "Ofen",
+                    reset_day: "🌙 Tagesende (Reset)",
+                    section_lathe: "3. Präzisions-Töpferscheibe",
+                    moves_left: "Verbleibende Züge:",
+                    lock_msg: "🔒 Gehe zur Werkstatt, um dies zu nutzen",
+                    wheel_inner: "Inneres Rad",
+                    wheel_outer: "Äußeres Rad",
+                    modal_title_inner: "Innerer Slot",
+                    modal_title_outer: "Äußerer Slot",
+                    modal_market_title: "Farbenmarkt",
+                    btn_close: "Schließen",
+                    in_slot: "Im Slot:",
+                    in_bag: "Verfügbar im Beutel:",
+                    empty_color: "Keine Farben verfügbar.<br>Besuche den Markt!",
+                    max_types: "Max 2 Farbtypen pro Slot.",
+                    market_buy: "Kaufen",
+                    market_buy_desc: "1 Münze = 2 Zufällige Farben",
+                    market_buy_btn: "Kaufen (💰 1)",
+                    market_or: "- ODER -",
+                    market_trade: "Tauschen",
+                    market_trade_desc: "Tausche 2 beliebige Farben gegen 1 nach Wahl.",
+                    market_give: "Gib 2:",
+                    market_get: "Erhalte 1:",
+                    market_trade_btn: "Tauschen (2 -> 1)",
+                    alert_select_meeple: "Wähle zuerst einen Esel aus!",
+                    alert_no_coins: "Nicht genug Münzen (benötigt 1)!",
+                    confirm_plaza: "Du bist auf dem Platz! Möchtest du deinen aktuellen Auftrag gegen einen neuen tauschen?",
+                    alert_new_comm: "Neuer Auftrag erhalten",
+                    alert_magnificent: "GROSSARTIG! Du hast erschaffen:",
+                    alert_fail: "MAMMA MIA! Das Werk ist nicht fertig.",
+                    alert_fail_desc: "benötigt:\n- Ton\n- Spezifische Farben\n\nPrüfe das Segment unter dem Pfeil ▼!",
+                    alert_day_reset: "Ein neuer Tag bricht über Vietri an! (Töpferscheiben-Züge wiederhergestellt)",
+                    footer_info: "👋 Info? Vorschläge? Kollaborationen? Demo? Lass uns reden!",
+                    alert_buy_success: "Kauf abgeschlossen! Farben zum Beutel hinzugefügt.",
+                    alert_trade_success: "Tausch abgeschlossen! Farben aktualisiert.",
+                    alert_not_enough_colors: "Nicht genug Farben für diesen Tausch!",
+                    alert_no_rotations: "Keine Züge für die Töpferscheibe heute übrig!"
+                },
+                commissions: {
+                    vaso_blu: "Meeresvase",
+                    piatto_sole: "Sonnenteller",
+                    anfora_bosco: "Waldamphore",
+                    ciotola_fuoco: "Feuerschale",
+                    mosaico_reale: "Königliches Mosaik"
+                },
+                tutorial: {
+                    t1: "Wähle einen Esel und besuche den <b>Fluss</b> für Ton.",
+                    t2: "Besuche den <b>Markt</b>, um Farben zu kaufen (kostet 1 Münze).",
+                    t3: "Gehe zur <b>Werkstatt</b>, um die Töpferscheibe freizuschalten.",
+                    t4: "Klicke auf die SEGMENTE der Scheibe, um Materialien einzufügen, dann drehe (max 3 Züge).",
+                    t5: "Wenn ausgerichtet (▼), gehe zum <b>Ofen</b>, um das Werk fertigzustellen."
+                }
             }
         };
+
 
         const COLORS = ['red', 'blue', 'yellow', 'green', 'orange', 'purple'];
         // COLOR_NAMES removed - used from TRANSLATIONS
@@ -569,6 +726,12 @@
                 </button>
                 <button onclick="setLanguage('fr')" class="w-8 h-8 rounded-full border-2 border-white shadow hover:scale-110 transition overflow-hidden ${gameState.language === 'fr' ? 'ring-2 ring-yellow-400' : 'opacity-70'}">
                     <img src="https://flagcdn.com/w40/fr.png" alt="FR" class="w-full h-full object-cover">
+                </button>
+                <button onclick="setLanguage('es')" class="w-8 h-8 rounded-full border-2 border-white shadow hover:scale-110 transition overflow-hidden ${gameState.language === 'es' ? 'ring-2 ring-yellow-400' : 'opacity-70'}">
+                    <img src="https://flagcdn.com/w40/es.png" alt="ES" class="w-full h-full object-cover">
+                </button>
+                <button onclick="setLanguage('de')" class="w-8 h-8 rounded-full border-2 border-white shadow hover:scale-110 transition overflow-hidden ${gameState.language === 'de' ? 'ring-2 ring-yellow-400' : 'opacity-70'}">
+                    <img src="https://flagcdn.com/w40/de.png" alt="DE" class="w-full h-full object-cover">
                 </button>
             </div>
         `;
