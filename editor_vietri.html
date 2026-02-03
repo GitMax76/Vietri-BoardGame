@@ -27,14 +27,14 @@
                 linear-gradient(45deg, var(--vietri-blue) 25%, transparent 25%, transparent 75%, var(--vietri-blue) 75%, var(--vietri-blue));
             background-position: 0 0, 5px 5px;
             background-size: 10px 10px;
-            padding: 8px;
+            padding: 4px;
             background-color: white;
         }
 
         /* Card Container */
         .card-white-border {
             background: white;
-            padding: 12px;
+            padding: 8px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
             display: inline-block;
             border-radius: 4px;
@@ -154,11 +154,11 @@
                 width: 100%;
                 height: 100%;
                 display: grid !important;
-                grid-template-columns: repeat(3, 88mm);
-                grid-auto-rows: 63mm;
-                gap: 5mm;
-                /* Space between cards */
-                padding: 10mm;
+                grid-template-columns: repeat(3, 94mm);
+                grid-auto-rows: 69mm;
+                gap: 0;
+                /* Remove gap to maximize space, crops are internal */
+                padding: 5mm;
                 background: white;
                 justify-content: center;
                 /* Center grid on page */
@@ -167,17 +167,19 @@
             @page {
                 size: A4 landscape;
                 margin: 0;
-                /* Manual padding in #print-area */
             }
 
             /* Scale cards for print */
             .card-white-border {
+                position: relative;
                 box-shadow: none;
                 padding: 0;
-                width: 88mm;
-                height: 63mm;
-                border: 1px dotted #ccc;
-                /* Cut guide */
+                width: 94mm;
+                /* 88mm + 3mm + 3mm */
+                height: 69mm;
+                /* 63mm + 3mm + 3mm */
+                border: none;
+                /* No border, we print full bleed */
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -185,13 +187,43 @@
                 background: white;
             }
 
-            /* Scale the inner content (orig ~530px width) to fit 88mm (~332px) */
-            /* 332 / 530 ~= 0.62 */
+            /* CROP MARKS */
+            .card-white-border::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: 50;
+                --c-len: 5mm;
+                --c-col: #000;
+                --c-wid: 0.5pt;
+                /* 3mm inset for cut lines */
+                background:
+                    /* Top Left */
+                    linear-gradient(to right, var(--c-col) 100%, transparent) 0 3mm/var(--c-len) var(--c-wid) no-repeat,
+                    linear-gradient(to bottom, var(--c-col) 100%, transparent) 3mm 0/var(--c-wid) var(--c-len) no-repeat,
+                    /* Top Right */
+                    linear-gradient(to left, var(--c-col) 100%, transparent) 100% 3mm/var(--c-len) var(--c-wid) no-repeat,
+                    linear-gradient(to bottom, var(--c-col) 100%, transparent) calc(100% - 3mm) 0/var(--c-wid) var(--c-len) no-repeat,
+                    /* Bottom Left */
+                    linear-gradient(to right, var(--c-col) 100%, transparent) 0 calc(100% - 3mm)/var(--c-len) var(--c-wid) no-repeat,
+                    linear-gradient(to top, var(--c-col) 100%, transparent) 3mm 100%/var(--c-wid) var(--c-len) no-repeat,
+                    /* Bottom Right */
+                    linear-gradient(to left, var(--c-col) 100%, transparent) 100% calc(100% - 3mm)/var(--c-len) var(--c-wid) no-repeat,
+                    linear-gradient(to top, var(--c-col) 100%, transparent) calc(100% - 3mm) 100%/var(--c-wid) var(--c-len) no-repeat;
+            }
+
+            /* Scale the inner content to fill the bleed area */
+            /* Target: 94mm (~355px) width. Original content ~530px */
+            /* 355 / 530 ~= 0.67 */
             .card-white-border .maiolica-border {
-                transform: scale(0.62);
+                transform: scale(0.67);
                 transform-origin: center;
-                /* Remove outer margin/padding impact from scaling */
                 margin: 0;
+                /* Ensure background covers the edges */
             }
         }
     </style>
@@ -1360,15 +1392,10 @@
 
                     <div class="mt-3 flex gap-2 pt-2 border-t border-dashed">
                         <select id="add-color-select" class="p-2 border rounded text-sm flex-grow bg-white">
-                            <option value="red">Rosso</option>
-                            <option value="blue">Blu</option>
-                            <option value="yellow">Giallo</option>
-                            <option value="green">Verde</option>
-                            <option value="orange">Arancio</option>
-                            <option value="purple">Viola</option>
+                            <!-- Options will be dynamic -->
                         </select>
-                        <button onclick="addColorReq()"
-                            class="bg-blue-600 text-white px-4 py-1 rounded text-sm font-bold hover:bg-blue-700 shadow-sm transition-colors">+
+                        <button id="btn-add-color" onclick="addColorReq()"
+                            class="bg-blue-600 text-white px-4 py-1 rounded text-sm font-bold hover:bg-blue-700 shadow-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed">+
                             AGGIUNGI</button>
                     </div>
                 </div>
@@ -1377,11 +1404,18 @@
                 <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-100">
                     <h3 class="font-bold text-yellow-800 text-sm uppercase tracking-wider mb-3"
                         data-i18n="title_reward">Ricompensa Finale</h3>
-                    <div class="flex items-center justify-between">
+                    <div class="flex items-center justify-between mb-2">
                         <span class="font-bold text-yellow-600 flex items-center gap-2 text-lg" data-i18n="coins">💰
                             Monete</span>
                         <input type="number" id="reward-coins" value="3" min="0"
                             class="w-20 p-2 border border-yellow-300 rounded text-center font-bold text-xl text-yellow-700 bg-white">
+                    </div>
+                    <div class="flex items-center justify-between pt-2 border-t border-yellow-200">
+                        <span class="font-bold text-yellow-800 flex items-center gap-2 text-sm"
+                            data-i18n="prestige_label">🎖️
+                            Punti Prestigio</span>
+                        <input type="number" id="reward-prestige" value="0" min="0"
+                            class="w-20 p-2 border border-yellow-300 rounded text-center font-bold text-lg text-yellow-800 bg-white">
                     </div>
                 </div>
 
@@ -1516,7 +1550,9 @@
                 "saved_msg": "✅ Salvato!",
                 "copied_msg": "Configurazione JSON copiata!",
                 "req_label": "Richiesto",
-                "val_label": "Valore"
+                "req_label": "Richiesto",
+                "val_label": "Valore",
+                "prestige_label": "🎖️ Punti Prestigio"
             },
             "en": {
                 "home": "<span>🏠</span> Home",
@@ -1540,7 +1576,9 @@
                 "saved_msg": "✅ Saved!",
                 "copied_msg": "JSON Config copied!",
                 "req_label": "Required",
-                "val_label": "Value"
+                "req_label": "Required",
+                "val_label": "Value",
+                "prestige_label": "🎖️ Prestige Points"
             },
             "fr": {
                 "home": "<span>🏠</span> Accueil",
@@ -1564,7 +1602,9 @@
                 "saved_msg": "✅ Enregistré!",
                 "copied_msg": "Config JSON copiée!",
                 "req_label": "Requis",
-                "val_label": "Valeur"
+                "req_label": "Requis",
+                "val_label": "Valeur",
+                "prestige_label": "🎖️ Points Prestige"
             },
             "es": {
                 "home": "<span>🏠</span> Inicio",
@@ -1588,7 +1628,9 @@
                 "saved_msg": "✅ Guardado!",
                 "copied_msg": "Config JSON copiada!",
                 "req_label": "Requerido",
-                "val_label": "Valor"
+                "req_label": "Requerido",
+                "val_label": "Valor",
+                "prestige_label": "🎖️ Puntos Prestigio"
             },
             "de": {
                 "home": "<span>🏠</span> Start",
@@ -1612,7 +1654,8 @@
                 "saved_msg": "✅ Gespeichert!",
                 "copied_msg": "JSON-Konfig kopiert!",
                 "req_label": "Benötigt",
-                "val_label": "Wert"
+                "val_label": "Wert",
+                "prestige_label": "🎖️ Ruhmespunkte"
             }
         };
 
@@ -1653,6 +1696,7 @@
             gray: 1,
             colors: [{ type: 'red', count: 2 }, { type: 'yellow', count: 1 }],
             coins: 3,
+            prestige: 0,
             borderColor: '#0047AB'
         };
 
@@ -1697,6 +1741,7 @@
                                  <div class="text-[10px] uppercase text-gray-400 font-bold mb-0">${t.val_label}</div>
                                  <div class="coin-reward">
                                      <span>${data.coins}</span> <span class="text-2xl">💰</span>
+                                     ${data.prestige > 0 ? `<span class="ml-2 text-gray-300">|</span> <span class="ml-2">${data.prestige}</span> <span class="text-2xl">🎖️</span>` : ''}
                                  </div>
                              </div>
                          </div>
@@ -1736,6 +1781,7 @@
             // Update Input Fields logic...
             document.getElementById('req-gray').value = state.gray;
             document.getElementById('reward-coins').value = state.coins;
+            document.getElementById('reward-prestige').value = state.prestige;
 
             // Update Root Var for Editor Preview
             document.documentElement.style.setProperty('--vietri-blue', state.borderColor);
@@ -1745,6 +1791,41 @@
 
             // Library Count
             document.getElementById('lib-count').innerText = library.length;
+
+            // Update Add Color Dropdown
+            updateAddColorSelect();
+        }
+
+        function updateAddColorSelect() {
+            const select = document.getElementById('add-color-select');
+            const btn = document.getElementById('btn-add-color');
+            const usedTypes = state.colors.map(c => c.type);
+            const allTypes = Object.keys(colornames.it); // 'it' has the canonical keys
+            const cNames = colornames[currentLang];
+
+            select.innerHTML = '';
+            let count = 0;
+
+            allTypes.forEach(type => {
+                if (!usedTypes.includes(type)) {
+                    const opt = document.createElement('option');
+                    opt.value = type;
+                    opt.textContent = cNames[type] || type;
+                    select.appendChild(opt);
+                    count++;
+                }
+            });
+
+            if (count === 0) {
+                const opt = document.createElement('option');
+                opt.textContent = "-";
+                select.appendChild(opt);
+                select.disabled = true;
+                btn.disabled = true;
+            } else {
+                select.disabled = false;
+                btn.disabled = false;
+            }
         }
 
         // LIBRARY FUNCTIONS
@@ -1772,6 +1853,7 @@
             state.gray = card.gray;
             state.colors = JSON.parse(JSON.stringify(card.colors)); // copy
             state.coins = card.coins;
+            state.prestige = card.prestige || 0;
             state.borderColor = card.borderColor || '#0047AB';
 
             // Resolve image URL from select options (bridge between saved name and Vite hashed URL)
@@ -1847,13 +1929,20 @@
         function updateImg(val) { state.img = val; render(); }
         function updateGray(val) { state.gray = parseInt(val); render(); }
         function updateCoins(val) { state.coins = parseInt(val); render(); }
+        function updatePrestige(val) { state.prestige = parseInt(val); render(); }
         function updateBorderColor(val) { state.borderColor = val; render(); }
 
         function addColorReq() {
             const type = document.getElementById('add-color-select').value;
+            if (!type || type === '-') return; // Safety check
+
             const existing = state.colors.find(c => c.type === type);
-            if (existing) existing.count++;
-            else state.colors.push({ type, count: 1 });
+            if (existing) {
+                // Should not happen with filtered dropdown, but just in case
+                alert("Colore già aggiunto!");
+                return;
+            }
+            state.colors.push({ type, count: 1 });
             render();
         }
         function updateColorCount(idx, val) {
@@ -1875,6 +1964,7 @@
         });
         document.getElementById('req-gray').addEventListener('input', (e) => updateGray(e.target.value));
         document.getElementById('reward-coins').addEventListener('input', (e) => updateCoins(e.target.value));
+        document.getElementById('reward-prestige').addEventListener('input', (e) => updatePrestige(e.target.value));
         const bcp = document.getElementById('border-color-picker');
         if (bcp) bcp.addEventListener('input', (e) => updateBorderColor(e.target.value));
 

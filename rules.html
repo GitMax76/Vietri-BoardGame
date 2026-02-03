@@ -264,7 +264,7 @@
 
         .lang-switcher {
             position: absolute;
-            top: 90px;
+            top: 110px;
             right: 50px;
             display: flex;
             gap: 10px;
@@ -283,11 +283,20 @@
 
         .lang-btn.active {
             opacity: 1;
-            transform: scale(1.2);
+            transform: scale(1.1);
         }
 
         .lang-btn:hover {
             opacity: 0.8;
+        }
+
+        .flag-icon {
+            width: 32px;
+            height: 20px;
+            border-radius: 3px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            display: block;
         }
 
         .hidden {
@@ -296,7 +305,7 @@
 
         .home-btn {
             position: absolute;
-            top: 90px;
+            top: 110px;
             left: 50px;
             font-size: 1.5rem;
             text-decoration: none;
@@ -346,11 +355,51 @@
 
         <!-- Lang Switcher -->
         <div class="lang-switcher">
-            <button class="lang-btn active" onclick="setLang('it')" id="btn-it">🇮🇹</button>
-            <button class="lang-btn" onclick="setLang('en')" id="btn-en">🇬🇧</button>
-            <button class="lang-btn" onclick="setLang('fr')" id="btn-fr">🇫🇷</button>
-            <button class="lang-btn" onclick="setLang('es')" id="btn-es">🇪🇸</button>
-            <button class="lang-btn" onclick="setLang('de')" id="btn-de">🇩🇪</button>
+            <button class="lang-btn active" onclick="setLang('it')" id="btn-it" title="Italiano">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" class="flag-icon">
+                    <rect width="1" height="2" x="0" fill="#009246" />
+                    <rect width="1" height="2" x="1" fill="#ffffff" />
+                    <rect width="1" height="2" x="2" fill="#ce2b37" />
+                </svg>
+            </button>
+            <button class="lang-btn" onclick="setLang('en')" id="btn-en" title="English">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" class="flag-icon">
+                    <clipPath id="s">
+                        <path d="M0,0v30h60v-30z" />
+                    </clipPath>
+                    <clipPath id="t">
+                        <path d="M30,15h30v15zv15h-30zM30,15h-30v-15zv-15h30z" />
+                    </clipPath>
+                    <g clip-path="url(#s)">
+                        <path d="M0,0v30h60v-30z" fill="#012169" />
+                        <path d="M0,0l60,30m0-30l-60,30" stroke="#fff" stroke-width="6" />
+                        <path d="M0,0l60,30m0-30l-60,30" clip-path="url(#t)" stroke="#c8102e" stroke-width="4" />
+                        <path d="M30,0v30M0,15h60" stroke="#fff" stroke-width="10" />
+                        <path d="M30,0v30M0,15h60" stroke="#c8102e" stroke-width="6" />
+                    </g>
+                </svg>
+            </button>
+            <button class="lang-btn" onclick="setLang('fr')" id="btn-fr" title="Français">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" class="flag-icon">
+                    <rect width="1" height="2" x="0" fill="#002395" />
+                    <rect width="1" height="2" x="1" fill="#ffffff" />
+                    <rect width="1" height="2" x="2" fill="#ed2939" />
+                </svg>
+            </button>
+            <button class="lang-btn" onclick="setLang('es')" id="btn-es" title="Español">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" class="flag-icon">
+                    <rect width="3" height="2" fill="#ffc400" />
+                    <rect width="3" height="0.5" y="0" fill="#c60b1e" />
+                    <rect width="3" height="0.5" y="1.5" fill="#c60b1e" />
+                </svg>
+            </button>
+            <button class="lang-btn" onclick="setLang('de')" id="btn-de" title="Deutsch">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3" class="flag-icon">
+                    <rect width="5" height="3" y="0" x="0" fill="#000" />
+                    <rect width="5" height="2" y="1" x="0" fill="#dd0000" />
+                    <rect width="5" height="1" y="2" x="0" fill="#ffce00" />
+                </svg>
+            </button>
         </div>
 
         <div class="corner-decoration top-left"></div>
