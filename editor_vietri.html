@@ -1871,7 +1871,21 @@
         }
 
         // ACTIONS
-        function updateImg(val) { state.img = val; render(); }
+        async function updateImg(val) {
+            state.img = val;
+            render(); // Immediate render for image
+
+            // Auto-extract color
+            try {
+                const color = await extractDominantColor(val);
+                state.borderColor = color;
+                const picker = document.getElementById('border-color-picker');
+                if (picker) picker.value = color;
+                render(); // Re-render with new color
+            } catch (e) {
+                console.error("Color extraction failed", e);
+            }
+        }
         function updateGray(val) { state.gray = parseInt(val); render(); }
         function updateCoins(val) { state.coins = parseInt(val); render(); }
         function updatePrestige(val) { state.prestige = parseInt(val); render(); }
@@ -1893,6 +1907,28 @@
         function exportConfig() {
             const json = JSON.stringify(state, null, 2);
             navigator.clipboard.writeText(json).then(() => alert(translations[currentLang].copied_msg));
+        }
+
+        // HELPER: Extract Dominant Color
+        function extractDominantColor(imageSrc) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.crossOrigin = "Anonymous";
+                img.src = imageSrc;
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    canvas.width = 1;
+                    canvas.height = 1;
+                    // Draw resized to 1x1 to get average
+                    ctx.drawImage(img, 0, 0, 1, 1);
+                    const p = ctx.getImageData(0, 0, 1, 1).data;
+                    // Convert to Hex
+                    const hex = "#" + ("000000" + ((p[0] << 16) | (p[1] << 8) | p[2]).toString(16)).slice(-6);
+                    resolve(hex);
+                };
+                img.onerror = () => resolve('#0047AB'); // Fallback to Vietri Blue
+            });
         }
 
         // LISTENERS
