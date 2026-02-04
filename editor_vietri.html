@@ -1924,7 +1924,7 @@
             navigator.clipboard.writeText(json).then(() => alert(translations[currentLang].copied_msg));
         }
 
-        // HELPER: Extract Dominant Color
+        // HELPER: Extract Dominant Color (Center Crop & Ignore Light BG)
         function extractDominantColor(imageSrc) {
             return new Promise((resolve) => {
                 const img = new Image();
@@ -1933,16 +1933,64 @@
                 img.onload = () => {
                     const canvas = document.createElement('canvas');
                     const ctx = canvas.getContext('2d');
-                    canvas.width = 1;
-                    canvas.height = 1;
-                    // Draw resized to 1x1 to get average
-                    ctx.drawImage(img, 0, 0, 1, 1);
-                    const p = ctx.getImageData(0, 0, 1, 1).data;
-                    // Convert to Hex
-                    const hex = "#" + ("000000" + ((p[0] << 16) | (p[1] << 8) | p[2]).toString(16)).slice(-6);
-                    resolve(hex);
+                    // Analysis size
+                    const size = 50;
+                    canvas.width = size;
+                    canvas.height = size;
+
+                    // Draw image
+                    ctx.drawImage(img, 0, 0, size, size);
+
+                    try {
+                        const data = ctx.getImageData(0, 0, size, size).data;
+                        let r = 0, g = 0, b = 0, count = 0;
+
+                        // Define Central Region (25% to 75%)
+                        const start = Math.floor(size * 0.25);
+                        const end = Math.floor(size * 0.75);
+
+                        for (let y = start; y < end; y++) {
+                            for (let x = start; x < end; x++) {
+                                const i = (y * size + x) * 4;
+
+                                const tr = data[i];
+                                const tg = data[i + 1];
+                                const tb = data[i + 2];
+                                const ta = data[i + 3];
+
+                                // Skip transparent
+                                if (ta < 128) continue;
+
+                                // Skip light pixels (Backgrounds: white, beige, light gray)
+                                // Threshold lowered to 220 to catch beige/gray
+                                if (tr > 220 && tg > 220 && tb > 220) continue;
+
+                                r += tr;
+                                g += tg;
+                                b += tb;
+                                count++;
+                            }
+                        }
+
+                        if (count === 0) {
+                            resolve('#0047AB'); // Fallback
+                            return;
+                        }
+
+                        const ar = Math.round(r / count);
+                        const ag = Math.round(g / count);
+                        const ab = Math.round(b / count);
+
+                        // Convert to Hex
+                        const hex = "#" + ("000000" + ((ar << 16) | (ag << 8) | ab).toString(16)).slice(-6);
+                        resolve(hex);
+
+                    } catch (e) {
+                        console.warn("Cross-origin issue or data access error", e);
+                        resolve('#0047AB');
+                    }
                 };
-                img.onerror = () => resolve('#0047AB'); // Fallback to Vietri Blue
+                img.onerror = () => resolve('#0047AB'); // Fallback
             });
         }
 
