@@ -264,7 +264,7 @@
 
         .lang-switcher {
             position: absolute;
-            top: 90px;
+            top: 110px;
             right: 50px;
             display: flex;
             gap: 10px;
@@ -283,11 +283,20 @@
 
         .lang-btn.active {
             opacity: 1;
-            transform: scale(1.2);
+            transform: scale(1.1);
         }
 
         .lang-btn:hover {
             opacity: 0.8;
+        }
+
+        .flag-icon {
+            width: 32px;
+            height: 20px;
+            border-radius: 3px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            display: block;
         }
 
         .hidden {
@@ -296,7 +305,7 @@
 
         .home-btn {
             position: absolute;
-            top: 90px;
+            top: 110px;
             left: 50px;
             font-size: 1.5rem;
             text-decoration: none;
@@ -339,16 +348,53 @@
 <body>
 
     <div class="container">
-        <!-- Home Button -->
-        <a href="../index.html" class="home-btn" title="Torna alla Home">
-            <i class="fa-solid fa-house"></i>
-        </a>
-
         <!-- Lang Switcher -->
         <div class="lang-switcher">
-            <button class="lang-btn active" onclick="setLang('it')" id="btn-it">🇮🇹</button>
-            <button class="lang-btn" onclick="setLang('en')" id="btn-en">🇬🇧</button>
-            <button class="lang-btn" onclick="setLang('fr')" id="btn-fr">🇫🇷</button>
+            <button class="lang-btn active" onclick="setLang('it')" id="btn-it" title="Italiano">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" class="flag-icon">
+                    <rect width="1" height="2" x="0" fill="#009246" />
+                    <rect width="1" height="2" x="1" fill="#ffffff" />
+                    <rect width="1" height="2" x="2" fill="#ce2b37" />
+                </svg>
+            </button>
+            <button class="lang-btn" onclick="setLang('en')" id="btn-en" title="English">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" class="flag-icon">
+                    <clipPath id="s">
+                        <path d="M0,0v30h60v-30z" />
+                    </clipPath>
+                    <clipPath id="t">
+                        <path d="M30,15h30v15zv15h-30zM30,15h-30v-15zv-15h30z" />
+                    </clipPath>
+                    <g clip-path="url(#s)">
+                        <path d="M0,0v30h60v-30z" fill="#012169" />
+                        <path d="M0,0l60,30m0-30l-60,30" stroke="#fff" stroke-width="6" />
+                        <path d="M0,0l60,30m0-30l-60,30" clip-path="url(#t)" stroke="#c8102e" stroke-width="4" />
+                        <path d="M30,0v30M0,15h60" stroke="#fff" stroke-width="10" />
+                        <path d="M30,0v30M0,15h60" stroke="#c8102e" stroke-width="6" />
+                    </g>
+                </svg>
+            </button>
+            <button class="lang-btn" onclick="setLang('fr')" id="btn-fr" title="Français">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" class="flag-icon">
+                    <rect width="1" height="2" x="0" fill="#002395" />
+                    <rect width="1" height="2" x="1" fill="#ffffff" />
+                    <rect width="1" height="2" x="2" fill="#ed2939" />
+                </svg>
+            </button>
+            <button class="lang-btn" onclick="setLang('es')" id="btn-es" title="Español">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" class="flag-icon">
+                    <rect width="3" height="2" fill="#ffc400" />
+                    <rect width="3" height="0.5" y="0" fill="#c60b1e" />
+                    <rect width="3" height="0.5" y="1.5" fill="#c60b1e" />
+                </svg>
+            </button>
+            <button class="lang-btn" onclick="setLang('de')" id="btn-de" title="Deutsch">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3" class="flag-icon">
+                    <rect width="5" height="3" y="0" x="0" fill="#000" />
+                    <rect width="5" height="2" y="1" x="0" fill="#dd0000" />
+                    <rect width="5" height="1" y="2" x="0" fill="#ffce00" />
+                </svg>
+            </button>
         </div>
 
         <div class="corner-decoration top-left"></div>
@@ -536,6 +582,117 @@
             </div>
         </div>
 
+        <!-- ESPAÑOL -->
+        <div id="lang-es" class="lang-content hidden">
+            <div class="subtitle">Maestros de la Cerámica - Reglamento Oficial</div>
+            <h2>1. El Sueño del Artista</h2>
+            <p>En los talleres históricos de Vietri sul Mare, el aire huele a sal y esmalte fresco. Sois aspirantes a
+                Maestros Alfareros, listos para desafiaros y crear las obras más prestigiosas de la Costa Amalfitana.
+                Gestionad vuestros asistentes, dominad el arte del torno y aprovechad el momento para hornear vuestras
+                creaciones únicas.</p>
+            <p><strong>Objetivo del Juego:</strong> Obtener el mayor número de <span class="highlight">Puntos de
+                    Prestigio (PP)</span> completando Cartas de Obra, gestionando recursos y realizando patrones
+                complejos en vuestro torno.</p>
+
+            <h2>2. Componentes y Preparación</h2>
+            <h3>Componentes Principales</h3>
+            <ul class="components-list">
+                <li><strong>Tablero de Juego:</strong> Mapa de Vietri con zonas de acción (Río, Mercado, Plaza, Taller,
+                    Horno).</li>
+                <li><strong>Recursos:</strong> Arcilla (Cubitos) y Pigmentos (6 Colores: Amarillo, Rojo, Azul, Naranja,
+                    Púrpura, Verde).</li>
+                <li><strong>Cartas de Obra:</strong> Objetivos a completar.</li>
+                <li><strong>Tableros de Torno:</strong> 2 discos giratorios por jugador.</li>
+                <li><strong>Asistentes:</strong> Meeples del jugador.</li>
+            </ul>
+
+            <h3>Desarrollo del Turno</h3>
+            <p>Los jugadores se alternan colocando <strong>1 Asistente</strong> en una zona y realizando la acción.
+                Cuando todos los asistentes se han usado, la ronda termina.</p>
+
+            <h2>3. Las Acciones</h2>
+            <div class="zone-box">
+                <h3><span class="zone-icon">🌊</span>Río</h3>
+                <p>Toma <span class="highlight">2 cubitos de Arcilla</span>.</p>
+            </div>
+            <div class="zone-box">
+                <h3><span class="zone-icon">⚖️</span>Mercado</h3>
+                <p><strong>Comprar:</strong> Paga 1 moneda por 2 colores al azar.<br><strong>Intercambiar:</strong> Da 2
+                    colores, toma 1 a tu elección.</p>
+            </div>
+            <div class="zone-box">
+                <h3><span class="zone-icon">🏺</span>Taller</h3>
+                <p>Mueve recursos a tu Torno y gira los discos (máx 3 rotaciones totales).</p>
+            </div>
+            <div class="zone-box">
+                <h3><span class="zone-icon">🏛️</span>Plaza</h3>
+                <p>Toma una nueva Carta de Obra (o toma 2 monedas).</p>
+            </div>
+            <div class="zone-box">
+                <h3><span class="zone-icon">🔥</span>Horno</h3>
+                <p>Si tu Torno coincide con la Carta de Obra, ¡completala! Gana Puntos y Monedas.</p>
+            </div>
+
+            <h2>4. Fin del Juego</h2>
+            <p>Gana quien tenga más puntos después de que alguien complete su 6ª obra.</p>
+        </div>
+
+        <!-- DEUTSCH -->
+        <div id="lang-de" class="lang-content hidden">
+            <div class="subtitle">Meister der Keramik - Offizielles Regelwerk</div>
+            <h2>1. Der Traum des Künstlers</h2>
+            <p>In den historischen Werkstätten von Vietri sul Mare riecht die Luft nach Salz und frischer Glasur. Ihr
+                seid angehende Töpfermeister, bereit, euch herauszufordern, um die prestigeträchtigsten Werke der
+                Amalfiküste zu schaffen. Verwaltet eure Assistenten, beherrscht die Kunst der Töpferscheibe und nutzt
+                den Moment, um eure einzigartigen Kreationen zu brennen.</p>
+            <p><strong>Spielziel:</strong> Erhaltet die meisten <span class="highlight">Prestigepunkte (PP)</span>,
+                indem ihr Auftragskarten vervollständigt, Ressourcen verwaltet und komplexe Muster auf eurer Scheibe
+                erstellt.</p>
+
+            <h2>2. Komponenten und Vorbereitung</h2>
+            <h3>Hauptkomponenten</h3>
+            <ul class="components-list">
+                <li><strong>Spielbrett:</strong> Karte von Vietri mit Aktionszonen (Fluss, Markt, Platz, Werkstatt,
+                    Ofen).</li>
+                <li><strong>Ressourcen:</strong> Ton (Würfel) und Pigmente (6 Farben: Gelb, Rot, Blau, Orange, Lila,
+                    Grün).</li>
+                <li><strong>Auftragskarten:</strong> Ziele zum Vervollständigen.</li>
+                <li><strong>Töpferscheiben:</strong> 2 drehbare Scheiben pro Spieler.</li>
+                <li><strong>Assistenten:</strong> Spieler-Meeple.</li>
+            </ul>
+
+            <h3>Rundenablauf</h3>
+            <p>Die Spieler platzieren abwechselnd <strong>1 Assistenten</strong> in einer Zone und führen die Aktion
+                aus. Wenn alle Assistenten verwendet wurden, endet die Runde.</p>
+
+            <h2>3. Die Aktionen</h2>
+            <div class="zone-box">
+                <h3><span class="zone-icon">🌊</span>Fluss</h3>
+                <p>Nimm <span class="highlight">2 Tonwürfel</span>.</p>
+            </div>
+            <div class="zone-box">
+                <h3><span class="zone-icon">⚖️</span>Markt</h3>
+                <p><strong>Kaufen:</strong> Zahle 1 Münze für 2 zufällige Farben.<br><strong>Tauschen:</strong> Gib 2
+                    Farben, nimm 1 deiner Wahl.</p>
+            </div>
+            <div class="zone-box">
+                <h3><span class="zone-icon">🏺</span>Werkstatt</h3>
+                <p>Bewege Ressourcen auf deine Scheibe und drehe die Scheiben (max. 3 Umdrehungen insgesamt).</p>
+            </div>
+            <div class="zone-box">
+                <h3><span class="zone-icon">🏛️</span>Platz</h3>
+                <p>Nimm eine neue Auftragskarte (oder nimm 2 Münzen).</p>
+            </div>
+            <div class="zone-box">
+                <h3><span class="zone-icon">🔥</span>Ofen</h3>
+                <p>Wenn deine Scheibe mit der Auftragskarte übereinstimmt, vervollständige sie! Erhalte Punkte und
+                    Münzen.</p>
+            </div>
+
+            <h2>4. Spielende</h2>
+            <p>Es gewinnt, wer die meisten Punkte hat, nachdem jemand sein 6. Meisterwerk vollendet hat.</p>
+        </div>
+
     </div>
 
     <script>
@@ -557,7 +714,7 @@
         // Init from URL
         const params = new URLSearchParams(window.location.search);
         const lang = params.get('lang') || 'it';
-        if (['it', 'en', 'fr'].includes(lang)) {
+        if (['it', 'en', 'fr', 'es', 'de'].includes(lang)) {
             setLang(lang);
         } else {
             setLang('it');

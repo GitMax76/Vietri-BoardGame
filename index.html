@@ -1056,13 +1056,13 @@
         }
 
         function updateTutorial() {
-            const t = document.getElementById('tutorial-text');
+            const el = document.getElementById('tutorial-text');
             const s = gameState.tutorialStep;
-            if (s === 1) t.innerHTML = "Seleziona un asinello e visita il <b>Fiume</b> per l'argilla.";
-            else if (s === 2) t.innerHTML = "Visita il <b>Mercato</b> per comprare i colori (costa 1 moneta).";
-            else if (s === 3) t.innerHTML = "Vai alla <b>Bottega</b> per sbloccare il Tornio.";
-            else if (s === 4) t.innerHTML = "Clicca sugli SPICCHI del tornio per inserire materiali, poi ruota (max 3 mosse).";
-            else if (s === 5) t.innerHTML = "Quando allineato (▼), vai al <b>Forno</b> per completare l'opera.";
+            if (s === 1) el.innerHTML = t('tutorial.t1');
+            else if (s === 2) el.innerHTML = t('tutorial.t2');
+            else if (s === 3) el.innerHTML = t('tutorial.t3');
+            else if (s === 4) el.innerHTML = t('tutorial.t4');
+            else if (s === 5) el.innerHTML = t('tutorial.t5');
         }
 
         function renderLathe() {
