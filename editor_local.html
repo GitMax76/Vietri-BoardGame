@@ -1288,6 +1288,18 @@
                     <p class="text-gray-400 text-center text-xs italic" data-i18n="no_cards">Nessuna carta
                         salvata</p>
                 </div>
+
+                <!-- Advanced Library Tools -->
+                <div class="mt-2 pt-2 border-t border-blue-100 flex gap-2">
+                    <button onclick="importLibrary()" title="Importa JSON"
+                        class="flex-1 bg-white border border-blue-300 text-blue-700 py-1 rounded text-xs hover:bg-blue-50">
+                        📂 Importa
+                    </button>
+                    <button onclick="autoColorLibrary()" title="Ricalcola Colori"
+                        class="flex-1 bg-gradient-to-r from-indigo-500 to-purple-500 text-white py-1 rounded text-xs hover:opacity-90 shadow-sm">
+                        🪄 Magic Color
+                    </button>
+                </div>
             </div>
 
             <!-- EDITOR CONTROLS -->
@@ -1497,11 +1509,11 @@
     <!-- PRINT AREA (Hidden normally) -->
     <div id="print-area" class="hidden"></div>
 
-    
+
     <script>
         // STATICALLY GENERATED IMAGE LIST FOR LOCAL USE
-        const opereFiles = ["Mosa2.png","Mosa3.png","Mosa4.png","Mosa5.png","Mosa6.png","Mosa7.png","Mosa8.png","Mosa9.png","Piatto1.png","Piatto10.png","Piatto2.png","Piatto3.png","Piatto4.png","Piatto5.png","Piatto6.png","Piatto7.png","Piatto8.png","Piatto9.png","Scultura1.png","Scultura10.png","Scultura11.png","Scultura12.png","Scultura2.png","Scultura3.png","Scultura4.png","Scultura5.png","Scultura6.png","Scultura7.png","Scultura8.png","Scultura9.png","Vaso1.png","Vaso10.png","Vaso2.png","Vaso3.png","Vaso4.png","Vaso5.png","Vaso6.png","Vaso7.png","Vaso8.png","Vaso9.png"];
-        
+        const opereFiles = ["Mosa2.png", "Mosa3.png", "Mosa4.png", "Mosa5.png", "Mosa6.png", "Mosa7.png", "Mosa8.png", "Mosa9.png", "Piatto1.png", "Piatto10.png", "Piatto2.png", "Piatto3.png", "Piatto4.png", "Piatto5.png", "Piatto6.png", "Piatto7.png", "Piatto8.png", "Piatto9.png", "Scultura1.png", "Scultura10.png", "Scultura11.png", "Scultura12.png", "Scultura2.png", "Scultura3.png", "Scultura4.png", "Scultura5.png", "Scultura6.png", "Scultura7.png", "Scultura8.png", "Scultura9.png", "Vaso1.png", "Vaso10.png", "Vaso2.png", "Vaso3.png", "Vaso4.png", "Vaso5.png", "Vaso6.png", "Vaso7.png", "Vaso8.png", "Vaso9.png"];
+
         // Logic to populate the select options
         const select = document.getElementById('img-select');
         select.innerHTML = '<option value="preview.png">preview.png</option>'; // Default option
@@ -1509,13 +1521,13 @@
         opereFiles.sort().forEach(fileName => {
             // Assume "opere" folder is in the same directory as this HTML file
             const url = './opere/' + fileName;
-            
+
             const option = document.createElement('option');
             option.value = url;
             option.textContent = fileName;
             select.appendChild(option);
         });
-        
+
         console.log("Local editor loaded with " + opereFiles.length + " images.");
     </script>
 
@@ -1884,6 +1896,44 @@
                 pa.innerHTML += getCardHTML(card);
             });
             window.print();
+        }
+
+        // BULK TOOLS
+        async function importLibrary() {
+            try {
+                const text = await navigator.clipboard.readText();
+                const data = JSON.parse(text);
+                if (Array.isArray(data)) {
+                    library = data;
+                    renderLibraryList();
+                    alert("Importati " + library.length + " elementi!");
+                } else {
+                    alert("Il formato JSON non è valido (deve essere una lista).");
+                }
+            } catch (e) {
+                alert("Errore importazione (copia prima il JSON): " + e.message);
+            }
+        }
+
+        async function autoColorLibrary() {
+            const btn = document.querySelector('button[onclick="autoColorLibrary()"]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = "⏳ Working...";
+
+            let count = 0;
+            for (let card of library) {
+                // If local file path, ensure standard handling
+                if (card.img) {
+                    const color = await extractDominantColor(card.img);
+                    if (color && color !== '#0047AB') {
+                        card.borderColor = color;
+                        count++;
+                    }
+                }
+            }
+            renderLibraryList();
+            btn.innerHTML = originalText;
+            alert(`Fatto! Aggiornati ${count} bordi.`);
         }
 
         // ACTIONS
