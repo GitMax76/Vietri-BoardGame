@@ -701,6 +701,15 @@
 
         // --- RENDERERS ---
         function t(key) {
+            // 1. Try resolving nested key (e.g. "tutorial.t1")
+            const keys = key.split('.');
+            let val = TRANSLATIONS[gameState.language];
+            for (const k of keys) {
+                val = val ? val[k] : undefined;
+            }
+            if (val) return val;
+
+            // 2. Fallback to 'ui' for legacy flat keys
             return TRANSLATIONS[gameState.language].ui[key] || key;
         }
 
