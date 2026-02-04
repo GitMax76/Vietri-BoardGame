@@ -1373,7 +1373,8 @@
                                         (1°)</span>
                                 </div>
                                 <input type="number" id="req-gray" value="1" min="1"
-                                    class="w-16 p-1 border rounded text-center font-bold">
+                                    class="w-16 p-1 border rounded text-center font-bold"
+                                    onchange="updateGray(this.value)">
                             </div>
 
                             <!-- Dynamic Colors -->
@@ -1429,12 +1430,28 @@
                         <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-100">
                             <h3 class="font-bold text-yellow-800 text-sm uppercase tracking-wider mb-3"
                                 data-i18n="title_reward">Ricompensa Finale</h3>
-                            <div class="flex items-center justify-between">
-                                <span class="font-bold text-yellow-600 flex items-center gap-2 text-lg"
-                                    data-i18n="coins">💰
-                                    Monete</span>
-                                <input type="number" id="reward-coins" value="3" min="0"
-                                    class="w-20 p-2 border border-yellow-300 rounded text-center font-bold text-xl text-yellow-700 bg-white">
+                            <div class="flex flex-col gap-2">
+                                <div
+                                    class="flex items-center justify-between bg-yellow-50 p-2 rounded border border-yellow-200">
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-2xl">💰</span>
+                                        <span class="font-bold text-gray-700 text-sm" data-i18n="coins">Monete</span>
+                                    </div>
+                                    <input type="number" id="reward-coins" value="3" min="0"
+                                        class="w-16 p-1 border rounded text-center font-bold"
+                                        onchange="updateCoins(this.value)">
+                                </div>
+                                <div
+                                    class="flex items-center justify-between bg-purple-50 p-2 rounded border border-purple-200">
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-2xl">🎖️</span>
+                                        <span class="font-bold text-gray-700 text-sm" data-i18n="prestige_label">Punti
+                                            Prestigio</span>
+                                    </div>
+                                    <input type="number" id="reward-prestige" value="0" min="0"
+                                        class="w-16 p-1 border rounded text-center font-bold"
+                                        onchange="updatePrestige(this.value)">
+                                </div>
                             </div>
                         </div>
 
@@ -1571,7 +1588,8 @@
                         "saved_msg": "✅ Salvato!",
                         "copied_msg": "Configurazione JSON copiata!",
                         "req_label": "Richiesto",
-                        "val_label": "Valore"
+                        "val_label": "Valore",
+                        "prestige_label": "Punti Prestigio"
                     },
                     "en": {
                         "home": "<span>🏠</span> Home",
@@ -1595,7 +1613,8 @@
                         "saved_msg": "✅ Saved!",
                         "copied_msg": "JSON Config copied!",
                         "req_label": "Required",
-                        "val_label": "Value"
+                        "val_label": "Value",
+                        "prestige_label": "Prestige Points"
                     },
                     "fr": {
                         "home": "<span>🏠</span> Accueil",
@@ -1619,7 +1638,8 @@
                         "saved_msg": "✅ Enregistré!",
                         "copied_msg": "Config JSON copiée!",
                         "req_label": "Requis",
-                        "val_label": "Valeur"
+                        "val_label": "Valeur",
+                        "prestige_label": "Points de Prestige"
                     },
                     "es": {
                         "home": "<span>🏠</span> Inicio",
@@ -1642,7 +1662,6 @@
                         "cards_in_lib": "Cartas en Biblioteca:",
                         "saved_msg": "✅ Guardado!",
                         "copied_msg": "Config JSON copiada!",
-                        "req_label": "Requerido",
                         "req_label": "Requerido",
                         "val_label": "Valor",
                         "prestige_label": "🎖️ Puntos Prestigio"
@@ -1669,15 +1688,15 @@
                         "saved_msg": "✅ Gespeichert!",
                         "copied_msg": "JSON-Konfig kopiert!",
                         "req_label": "Benötigt",
-                        "val_label": "Wert"
+                        "val_label": "Wert",
+                        "prestige_label": "Prestigepunkte"
                     }
                 };
 
                 const colornames = {
                     "it": { "red": "Rosso", "blue": "Blu", "yellow": "Giallo", "green": "Verde", "orange": "Arancio", "purple": "Viola" },
                     "en": { "red": "Red", "blue": "Blue", "yellow": "Yellow", "green": "Green", "orange": "Orange", "purple": "Purple" },
-                    "fr": { "red": "Rouge", "blue": "Bleu", "yellow": "Jaune", "green": "Vert", "orange": "Orange", "purple": "Violet" }
-            "fr": { "red": "Rouge", "blue": "Bleu", "yellow": "Jaune", "green": "Vert", "orange": "Orange", "purple": "Violet" },
+                    "fr": { "red": "Rouge", "blue": "Bleu", "yellow": "Jaune", "green": "Vert", "orange": "Orange", "purple": "Violet" },
                     "es": { "red": "Rojo", "blue": "Azul", "yellow": "Amarillo", "green": "Verde", "orange": "Naranja", "purple": "Púrpura" },
                     "de": { "red": "Rot", "blue": "Blau", "yellow": "Gelb", "green": "Grün", "orange": "Orange", "purple": "Lila" }
                 };
@@ -1705,13 +1724,13 @@
                 }
 
                 // State
-                const state = {
-                    id: Date.now(),
-                    img: 'preview.png',
+                let state = {
+                    img: 'preview.png', // Default local placeholder
+                    borderColor: '#0047AB',
                     gray: 1,
                     colors: [{ type: 'red', count: 2 }, { type: 'yellow', count: 1 }],
                     coins: 3,
-                    borderColor: '#0047AB'
+                    prestige: 0
                 };
 
                 // Library State
@@ -1753,8 +1772,14 @@
                              </div>
                              <div class="mt-auto pt-3 border-t-2 border-dotted border-gray-300 w-full text-center">
                                  <div class="text-[10px] uppercase text-gray-400 font-bold mb-0">${t.val_label}</div>
-                                 <div class="coin-reward">
-                                     <span>${data.coins}</span> <span class="text-2xl">💰</span>
+                                 <div class="flex justify-center gap-3 items-center">
+                                     <div class="coin-reward">
+                                         <span>${data.coins}</span> <span class="text-xl">💰</span>
+                                     </div>
+                                     ${data.prestige > 0 ? `
+                                     <div class="prestige-reward font-bold text-purple-800">
+                                         <span>${data.prestige}</span> <span class="text-xl">🎖️</span>
+                                     </div>` : ''}
                                  </div>
                              </div>
                          </div>
@@ -1830,6 +1855,7 @@
                     state.gray = card.gray;
                     state.colors = JSON.parse(JSON.stringify(card.colors)); // copy
                     state.coins = card.coins;
+                    state.prestige = card.prestige || 0;
                     state.borderColor = card.borderColor || '#0047AB';
 
                     // Resolve image URL from select options (bridge between saved name and Vite hashed URL)
@@ -1857,8 +1883,11 @@
                         select.value = 'preview.png';
                     }
 
+
                     document.getElementById('custom-img').value = card.img;
                     document.getElementById('border-color-picker').value = state.borderColor;
+                    document.getElementById('req-coins').value = state.coins;
+                    document.getElementById('req-prestige').value = state.prestige;
 
                     render();
                 }
@@ -1905,6 +1934,7 @@
                 function updateImg(val) { state.img = val; render(); }
                 function updateGray(val) { state.gray = parseInt(val); render(); }
                 function updateCoins(val) { state.coins = parseInt(val); render(); }
+                function updatePrestige(val) { state.prestige = parseInt(val); render(); }
                 function updateBorderColor(val) { state.borderColor = val; render(); }
 
                 function addColorReq() {
