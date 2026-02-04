@@ -9,7 +9,7 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         editor: resolve(__dirname, 'editor_vietri.html'),
         mobile: resolve(__dirname, 'index_smart.html'),
-        rules: resolve(__dirname, 'vietri-repo/rules.html'), // Ensure rules page is included
+        rules: resolve(__dirname, 'rules.html'), // Ensure rules page is included
       },
     },
   },
