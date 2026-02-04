@@ -1899,6 +1899,81 @@
         }
 
         // BULK TOOLS
+        function handleCSVUpload(input) {
+            const file = input.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const text = e.target.result;
+                parseAndLoadCSV(text);
+                // Reset input so same file can be selected again if needed
+                input.value = '';
+            };
+            reader.readAsText(file);
+        }
+
+        function parseAndLoadCSV(csvText) {
+            try {
+                const lines = csvText.split(/\r?\n/).filter(line => line.trim() !== '');
+                if (lines.length < 2) throw new Error("File CSV troppo corto o vuoto.");
+
+                const headers = lines[0].split(',').map(h => h.trim());
+                let newCards = 0;
+
+                for (let i = 1; i < lines.length; i++) {
+                    const row = lines[i].split(',');
+                    if (row.length < headers.length) continue;
+
+                    const card = {
+                        id: Date.now() + i, // Unique-ish ID
+                        img: '',
+                        borderColor: '#0047AB',
+                        gray: 0,
+                        colors: [],
+                        coins: 0,
+                        prestige: 0
+                    };
+
+                    row.forEach((val, idx) => {
+                        const header = headers[idx];
+                        // Remove quotes if present
+                        let value = val.trim().replace(/^"|"$/g, '');
+
+                        if (header === 'ImageFile') {
+                            // Assume relative path logic same as Node script
+                            card.img = './opere/' + value;
+                        } else if (header === 'Clay') {
+                            card.gray = parseInt(value) || 0;
+                        } else if (header === 'Coins') {
+                            card.coins = parseInt(value) || 0;
+                        } else if (header === 'Prestige') {
+                            card.prestige = parseInt(value) || 0;
+                        } else {
+                            // Color columns
+                            const qty = parseInt(value);
+                            if (qty > 0 && ['red', 'blue', 'yellow', 'green', 'orange', 'purple'].includes(header.toLowerCase())) {
+                                card.colors.push({
+                                    type: header.toLowerCase(),
+                                    count: qty
+                                });
+                            }
+                        }
+                    });
+
+                    library.push(card);
+                    newCards++;
+                }
+
+                renderLibraryList();
+                alert(`Importazione completata: ${newCards} carte aggiunte!\n\nSuggerimento: Ora clicca su "🪄 Magic Color" per sistemare i bordi.`);
+
+            } catch (e) {
+                alert("Errore durante la lettura del CSV: " + e.message);
+                console.error(e);
+            }
+        }
+
         async function importLibrary() {
             try {
                 const text = await navigator.clipboard.readText();
