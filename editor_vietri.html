@@ -56,7 +56,7 @@
             border-right: 2px dashed #e5e7eb;
             display: flex;
             flex-direction: column;
-            padding: 10px;
+            padding: 2px 6px;
             background-color: #fffbf0;
             /* Very light yellow tint */
         }
@@ -78,13 +78,13 @@
             -o-object-fit: contain;
             object-fit: contain;
             filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
-            transform: scale(1.08);
+            transform: scale(1.04);
         }
 
         /* Cube Styles */
         .cube {
-            width: 24px;
-            height: 24px;
+            width: 22px;
+            height: 22px;
             border: 1px solid rgba(0, 0, 0, 0.2);
             box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.4), 1px 2px 2px rgba(0, 0, 0, 0.2);
             display: inline-block;
@@ -122,9 +122,9 @@
         .req-row {
             display: flex;
             align-items: center;
-            margin-bottom: 2px;
+            margin-bottom: 1px;
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 1.0rem;
             color: #374151;
         }
 
@@ -140,16 +140,16 @@
         }
 
         .prestige-reward {
-    font-size: 1.8rem;
-    font-weight: 800;
-    color: #a855f7;
-    text-shadow: 1px 1px 0 rgba(255, 255, 255, 1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #16a34a;
+            /* Green-600 */
+            text-shadow: 1px 1px 0 rgba(255, 255, 255, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
         }
-
 
         /* PRINT STYLES */
         @media print {
@@ -1363,11 +1363,12 @@
                     <div class="flex items-center justify-between mb-2 bg-gray-100 p-2 rounded border border-gray-200">
                         <div class="flex items-center gap-2">
                             <div class="cube cube-gray"></div>
-                            <span class="font-bold text-gray-700 text-sm" data-i18n="clay_base">Base Argilla
+                            <span class="font-bold text-gray-700 text-base" data-i18n="clay_base">Base Argilla
                                 (1°)</span>
                         </div>
                         <input type="number" id="req-gray" value="1" min="1"
-                            class="w-16 p-1 border rounded text-center font-bold" onchange="updateGray(this.value)">
+                            class="w-16 p-1 border rounded text-center font-bold text-base"
+                            onchange="updateGray(this.value)">
                     </div>
 
                     <!-- Dynamic Colors -->
@@ -1487,17 +1488,17 @@
                                     <div class="req-row">
                                         <div class="cube cube-gray"></div>
                                         <span class="text-xs text-gray-400 mx-2">x</span>
-                                        <span class="text-xl font-bold font-mono">1</span>
+                                        <span class="text-base font-bold font-mono">1</span>
                                     </div>
                                     <div class="req-row">
                                         <div class="cube cube-red"></div>
                                         <span class="text-xs text-gray-400 mx-2">x</span>
-                                        <span class="text-xl font-bold font-mono">2</span>
+                                        <span class="text-base font-bold font-mono">2</span>
                                     </div>
                                     <div class="req-row">
                                         <div class="cube cube-yellow"></div>
                                         <span class="text-xs text-gray-400 mx-2">x</span>
-                                        <span class="text-xl font-bold font-mono">1</span>
+                                        <span class="text-base font-bold font-mono">1</span>
                                     </div>
                                 </div>
                                 <div class="mt-auto pt-3 border-t-2 border-dotted border-gray-300 w-full text-center">
@@ -1532,7 +1533,7 @@
 
     <!-- PRINT AREA (Hidden normally) -->
     <div id="print-area" class="hidden"></div>
-
+
     <script>
         // TRANSLATIONS
         const translations = {
@@ -1719,7 +1720,7 @@
            <div class="req-row">
                <div class="cube cube-${color}"></div>
                <span class="text-xs text-gray-400 mx-2">x</span>
-               <span class="text-xl font-bold font-mono">${count}</span>
+               <span class="text-base font-bold font-mono">${count}</span>
            </div>`;
         }
 
@@ -1736,19 +1737,19 @@
                     <div class="card-inner-box">
                          <!-- LEFT -->
                          <div class="section-left">
-                             <div class="text-xs font-bold text-gray-400 uppercase tracking-tight mb-2 text-center w-full">${t.req_label}</div>
+                             <div class="text-sm font-bold text-gray-400 uppercase tracking-tight mb-2 text-center w-full">${t.req_label}</div>
                              <div class="flex flex-col gap-1 w-full pl-2">
                                  ${getReqRowsHTML(data.gray, data.colors)}
                              </div>
                              <div class="mt-auto pt-3 border-t-2 border-dotted border-gray-300 w-full text-center">
-                                 <div class="text-[10px] uppercase text-gray-400 font-bold mb-0">${t.val_label}</div>
+                                 <div class="text-xs uppercase text-gray-400 font-bold mb-0">${t.val_label}</div>
                                  <div class="flex justify-center gap-3 items-center">
                                      <div class="coin-reward">
-                                         <span>${data.coins}</span> <span class="text-xl">💰</span>
+                                         <span>${data.coins}</span> <span class="text-3xl">💰</span>
                                      </div>
                                      ${data.prestige > 0 ? `
-                                     <div class="prestige-reward font-bold text-purple-800">
-                                         <span>${data.prestige}</span> <span class="text-xl">🎖️</span>
+                                     <div class="prestige-reward font-bold text-purple-800 text-3xl flex items-center gap-1">
+                                         <span>${data.prestige}</span> <span class="text-3xl">🎖️</span>
                                      </div>` : ''}
                                  </div>
                              </div>
@@ -1776,11 +1777,11 @@
                 <div class="flex items-center justify-between mb-2 bg-white p-2 border rounded shadow-sm hover:border-blue-300 transition-colors">
                    <div class="flex items-center gap-2">
                        <div class="cube cube-${c.type}"></div>
-                       <span class="capitalize text-sm font-medium text-gray-700">${localizedColor}</span>
+                       <span class="capitalize text-base font-medium text-gray-700">${localizedColor}</span>
                    </div>
                    <div class="flex items-center gap-2">
                        <span class="text-xs text-gray-400">Qt.</span>
-                       <input type="number" value="${c.count}" min="1" class="w-12 p-1 border rounded text-center text-sm font-bold" onchange="updateColorCount(${idx}, this.value)">
+                       <input type="number" value="${c.count}" min="1" class="w-12 p-1 border rounded text-center text-base font-bold" onchange="updateColorCount(${idx}, this.value)">
                        <button onclick="removeColor(${idx})" class="w-6 h-6 flex items-center justify-center rounded-full text-gray-400 hover:text-white hover:bg-red-500 font-bold transition-all ml-1">×</button>
                    </div>
                </div>`;
