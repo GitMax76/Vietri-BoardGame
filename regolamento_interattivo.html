@@ -1,0 +1,1532 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vietri: Maestri della Ceramica - Regolamento</title>
+
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;800&family=Winky+Rough&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --vietri-yellow: #FFD700;
+            --vietri-blue: #0055A4;
+            --vietri-orange: #FF8C00;
+            --text-dark: #2c3e50;
+            --paper-white: #fdfbf7;
+
+            --book-size: min(90vh, 90vw);
+            --book-width: var(--book-size);
+            --book-height: var(--book-size);
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #e6f2ff;
+            background-image:
+                radial-gradient(var(--vietri-blue) 2px, transparent 2px),
+                radial-gradient(var(--vietri-blue) 2px, transparent 2px);
+            background-size: 50px 50px;
+            background-position: 0 0, 25px 25px;
+        }
+
+        /* --- NAVIGAZIONE --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 60px;
+            /* Fixed height for consistency */
+            padding: 0 20px;
+            /* Horizontal padding */
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 3px solid var(--vietri-yellow);
+            display: flex;
+            justify-content: space-between;
+            /* Spread elements */
+            align-items: center;
+            z-index: 200;
+            box-sizing: border-box;
+        }
+
+        .nav-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-side {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 150px;
+            /* Ensure space for sides */
+        }
+
+        .nav-icon-link {
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: transform 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid #ddd;
+        }
+
+        .nav-icon-link:hover {
+            transform: scale(1.1);
+            background: #fff;
+            border-color: var(--vietri-blue);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .lang-switcher {
+            display: flex;
+            gap: 5px;
+            margin-right: 15px;
+            padding-right: 15px;
+            border-right: 2px solid #ddd;
+        }
+
+        .lang-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s;
+            padding: 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .lang-btn img {
+            width: 100%;
+            height: 100%;
+            -o-object-fit: cover;
+               object-fit: cover;
+            display: block;
+        }
+
+        .lang-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .lang-btn.active {
+            border-color: var(--vietri-blue);
+            transform: scale(1.1);
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5), 0 0 0 4px var(--vietri-blue);
+        }
+
+        nav button {
+            background: transparent;
+            border: 1px solid #ddd;
+            color: #666;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: all 0.2s;
+            text-align: center;
+            width: 125px;
+            /* Wider to fit French */
+            height: 42px;
+            /* Fixed height to prevent vertical shifting */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.1;
+        }
+
+        nav button:hover {
+            border-color: var(--vietri-blue);
+            color: var(--vietri-blue);
+        }
+
+        nav button.active {
+            background: var(--vietri-blue);
+            color: white;
+            border-color: var(--vietri-blue);
+        }
+
+        .print-btn {
+            border: 2px solid var(--text-dark) !important;
+            color: var(--text-dark) !important;
+            font-weight: 800 !important;
+        }
+
+        .print-btn:hover {
+            background-color: var(--text-dark) !important;
+            color: white !important;
+        }
+
+        /* --- LIBRO --- */
+        .book-container {
+            position: relative;
+            width: var(--book-width);
+            height: var(--book-height);
+            margin-top: 50px;
+            perspective: 1500px;
+        }
+
+        .page {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 5% 6%;
+            box-sizing: border-box;
+            background: var(--paper-white);
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+            background-size: 100% 100%;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1), 10px 10px 30px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            transform-origin: left center;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+            transition: transform 0.6s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.6s;
+            opacity: 0;
+            transform: rotateY(-10deg) translateX(20px);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* --- COPERTINA --- */
+        .page.cover-page {
+            padding: 20px;
+            background: var(--paper-white);
+            display: block;
+        }
+
+        .cover-image-full {
+            width: 100%;
+            height: 100%;
+            background-color: #dcedf7;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #ddd;
+        }
+
+        .cover-text-box {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 40px;
+            border: 3px solid var(--vietri-yellow);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+            white-space: nowrap;
+        }
+
+        .cover-title-text {
+            font-family: 'Winky Rough', cursive;
+            font-size: 2.5rem;
+            color: var(--vietri-blue);
+            margin: 0;
+            line-height: 1;
+            letter-spacing: 2px;
+        }
+
+        .page.active {
+            opacity: 1;
+            transform: rotateY(0deg);
+            z-index: 10;
+            pointer-events: all;
+        }
+
+        .page.prev {
+            opacity: 0;
+            transform: rotateY(-90deg);
+            z-index: 5;
+        }
+
+        .page.next {
+            opacity: 0;
+            transform: rotateY(20deg);
+            z-index: 1;
+        }
+
+        /* --- TIPOGRAFIA --- */
+        h1 {
+            font-family: 'Winky Rough', cursive;
+            color: var(--vietri-blue);
+            font-size: clamp(1.5rem, 4vh, 3rem);
+            margin: 0 0 1vh 0;
+            text-align: center;
+        }
+
+        h2 {
+            font-family: 'Winky Rough', cursive;
+            color: var(--vietri-blue);
+            font-size: clamp(1.2rem, 3.5vh, 2.5rem);
+            border-bottom: 3px dashed var(--vietri-yellow);
+            padding-bottom: 1vh;
+            margin: 0 0 2vh 0;
+        }
+
+        h3 {
+            font-family: 'Winky Rough', cursive;
+            font-size: clamp(1rem, 2.5vh, 1.8rem);
+            color: var(--vietri-orange);
+            margin: 1.5vh 0 0.5vh 0;
+        }
+
+        p,
+        li {
+            font-size: clamp(0.8rem, 1.8vh, 1.1rem);
+            line-height: 1.4;
+            margin-bottom: 0.8vh;
+        }
+
+        ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .flavor-text {
+            font-family: 'Winky Rough', cursive;
+            text-align: center;
+            font-size: clamp(1rem, 2.5vh, 1.5rem);
+            color: var(--vietri-orange);
+            background-color: #fffde7;
+            padding: 2vh;
+            border-radius: 12px;
+            border: 2px solid var(--vietri-yellow);
+            margin: 2vh 0;
+        }
+
+        .img-placeholder {
+            width: 100%;
+            background-color: #f0f4f8;
+            border: 2px dashed #cbd5e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8898aa;
+            font-weight: 600;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            flex-grow: 1;
+            min-height: 10vh;
+            margin: 1vh 0;
+        }
+
+        .img-placeholder::after {
+            content: "🖼️ " attr(data-label);
+        }
+
+        .rule-img {
+            width: 100%;
+            height: auto;
+            max-height: 25vh;
+            -o-object-fit: contain;
+               object-fit: contain;
+            border-radius: 8px;
+            margin: 1vh 0;
+            display: block;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .full-img-bg {
+            -o-object-fit: cover;
+               object-fit: cover;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8898aa;
+            font-weight: bold;
+        }
+
+        .full-img-bg::after {
+            content: "🖼️ " attr(data-label);
+        }
+
+        svg.meeple-icon {
+            height: 5vh;
+            width: auto;
+            vertical-align: middle;
+        }
+
+        .mini-icon {
+            height: 2.2vh;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+
+        .legend-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2vh;
+            margin: 2vh 0;
+            flex-grow: 1;
+            justify-content: center;
+        }
+
+        .legend-row {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 1.5vh;
+        }
+
+        .legend-row:last-child {
+            border-bottom: none;
+        }
+
+        .icon-col {
+            width: 25%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .text-col {
+            width: 75%;
+            padding-left: 20px;
+        }
+
+        .text-col strong {
+            color: var(--vietri-blue);
+            font-size: 1.1rem;
+        }
+
+        .text-col small {
+            display: block;
+            color: #666;
+            margin-top: 2px;
+        }
+
+        .action-box {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5vh;
+            margin-bottom: 1vh;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid var(--vietri-blue);
+        }
+
+        .tag-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5vh;
+            font-weight: bold;
+            color: var(--text-dark);
+            font-size: clamp(0.8rem, 1.8vh, 1rem);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            height: 100%;
+            align-content: start;
+        }
+
+        .col-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            height: 100%;
+        }
+
+        .page-number {
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+            font-family: 'Winky Rough', cursive;
+            font-size: 1.2rem;
+            color: #cbd5e0;
+        }
+
+        .controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            max-width: calc(var(--book-width) + 120px);
+            display: flex;
+            justify-content: space-between;
+            pointer-events: none;
+            transform: translateY(-50%);
+            z-index: 100;
+        }
+
+        .ctrl-btn {
+            pointer-events: all;
+            background: white;
+            color: var(--vietri-blue);
+            border: 2px solid var(--vietri-blue);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ctrl-btn:hover {
+            transform: scale(1.1);
+            background: var(--vietri-blue);
+            color: white;
+        }
+
+        .ctrl-btn:disabled {
+            opacity: 0.3;
+            cursor: default;
+            transform: none;
+        }
+
+        /* --- STILI DI STAMPA (PDF) --- */
+        @media print {
+            @page {
+                margin: 0;
+                size: auto;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            body,
+            html {
+                background: white !important;
+                width: 100% !important;
+                margin: 0 !important;
+                display: block !important;
+            }
+
+            nav,
+            .controls {
+                display: none !important;
+            }
+
+            .book-container {
+                width: 100% !important;
+                margin: 0 !important;
+                perspective: none !important;
+                transform: none !important;
+                display: block !important;
+            }
+
+            .page {
+                position: relative !important;
+                width: 100% !important;
+                height: 100vh !important;
+                opacity: 1 !important;
+                transform: none !important;
+                page-break-after: always !important;
+                -moz-column-break-after: page;
+                     break-after: page;
+                display: flex !important;
+            }
+
+            .page.cover-page {
+                height: 100vh !important;
+                padding: 0 !important;
+            }
+
+            .cover-image-full {
+                border: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- SVG DEFINITIONS -->
+    <svg style="display: none;">
+        <symbol id="base-meeple-path">
+            <path
+                d="M50 5 C35 5 25 20 25 30 C25 40 35 45 30 55 C25 65 10 70 10 90 L90 90 C90 70 75 65 70 55 C65 45 75 40 75 30 C75 20 65 5 50 5 Z" />
+        </symbol>
+        <symbol id="meeple-free" viewBox="0 0 100 100">
+            <use href="#base-meeple-path" fill="none" stroke="#2c3e50" stroke-width="4" stroke-dasharray="5,5" />
+        </symbol>
+        <symbol id="meeple-paid" viewBox="0 0 100 100">
+            <use href="#base-meeple-path" fill="none" stroke="#2c3e50" stroke-width="4" stroke-dasharray="5,5" />
+            <circle cx="50" cy="55" r="18" fill="#FFD700" stroke="#DAA520" stroke-width="2" />
+            <text x="50" y="62" font-family="Arial" font-weight="bold" font-size="20" text-anchor="middle"
+                fill="#555">1</text>
+        </symbol>
+        <symbol id="meeple-group" viewBox="0 0 120 80">
+            <ellipse cx="60" cy="40" rx="55" ry="35" fill="none" stroke="#0055A4" stroke-width="3"
+                stroke-dasharray="5,5" />
+            <use href="#base-meeple-path" transform="translate(15, 10) scale(0.35)" fill="#ccc" />
+            <use href="#base-meeple-path" transform="translate(70, 10) scale(0.35)" fill="#ccc" />
+            <use href="#base-meeple-path" transform="translate(42, 20) scale(0.35)" fill="#2c3e50" />
+        </symbol>
+    </svg>
+
+    <nav id="navbar">
+        <!-- LEFT: HOME -->
+        <div class="nav-side">
+            <a href="index.html" class="nav-icon-link" title="Home">🏠</a>
+        </div>
+
+        <!-- CENTER: NAV CONTROLS -->
+        <div class="nav-center">
+            <div class="lang-switcher">
+                <button onclick="setLanguage('it')" class="lang-btn active" id="btn-it"><img
+                        src="https://flagcdn.com/w40/it.png" alt="IT"></button>
+                <button onclick="setLanguage('en')" class="lang-btn" id="btn-en"><img
+                        src="https://flagcdn.com/w40/gb.png" alt="EN"></button>
+                <button onclick="setLanguage('fr')" class="lang-btn" id="btn-fr"><img
+                        src="https://flagcdn.com/w40/fr.png" alt="FR"></button>
+                <button onclick="setLanguage('es')" class="lang-btn" id="btn-es"><img
+                        src="https://flagcdn.com/w40/es.png" alt="ES"></button>
+                <button onclick="setLanguage('de')" class="lang-btn" id="btn-de"><img
+                        src="https://flagcdn.com/w40/de.png" alt="DE"></button>
+            </div>
+            <button onclick="goToPage(0)" data-i18n="nav_cover">Pag. 1<br>Copertina</button>
+            <button onclick="goToPage(1)" data-i18n="nav_info">Pag. 2-3<br>Info</button>
+            <button onclick="goToPage(3)" data-i18n="nav_setup">Pag. 4-5<br>Setup</button>
+            <button onclick="goToPage(5)" data-i18n="nav_legend">Pag. 6<br>Legenda</button>
+            <button onclick="goToPage(6)" data-i18n="nav_flow">Pag. 7<br>Flusso</button>
+            <button onclick="goToPage(7)" data-i18n="nav_actions">Pag. 8-10<br>Azioni</button>
+            <button onclick="goToPage(10)" data-i18n="nav_end">Pag. 11-12<br>Fine</button>
+            <button type="button" class="print-btn" onclick="window.print()">🖨️ PDF</button>
+        </div>
+
+        <!-- RIGHT: CONTACTS -->
+        <div class="nav-side" style="justify-content: flex-end;">
+            <a href="https://linktr.ee/JustMax76" target="_blank" class="nav-icon-link" title="Links">🌳</a>
+            <a href="https://wa.me/393295644852" target="_blank" class="nav-icon-link" title="WhatsApp">💬</a>
+            <a href="mailto:massi.sabato@gmail.com" class="nav-icon-link" title="Email">📧</a>
+        </div>
+    </nav>
+
+    <div class="book-container">
+
+        <!-- P1: COPERTINA -->
+        <div class="page active cover-page" id="p0">
+            <div class="cover-image-full">
+                <div class="cover-image-full">
+                    <img src="/Vietri-BoardGame/assets/cover-BgNjn5J4.png" alt="Illustrazione Cover" class="full-img-bg"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <div class="img-placeholder full-img-bg" style="display:none;"
+                        data-label="Cover: img/rules/cover.png"></div>
+                    <div class="cover-text-box">
+                        <h1 class="cover-title-text" data-i18n="cover_title">REGOLAMENTO</h1>
+                    </div>
+                </div>
+            </div>
+
+            <!-- P2: COMPONENTI -->
+            <div class="page" id="p1">
+                <h2 data-i18n="p2_title">📦 Componenti</h2>
+                <div class="grid-2">
+                    <div class="col-content">
+                        <ul data-i18n="p2_list1">
+                            <li><strong>Tabellone:</strong> Fiume, Mercato, Bottega, Piazza, Forno.</li>
+                            <li><strong>4 Plance:</strong> Con Tornio.</li>
+                            <li><strong>12 Assistenti:</strong> (3 per col).</li>
+                            <li><strong>4 Asinelli:</strong> Segnapunti.</li>
+                            <li><strong>Cubetti:</strong> Argilla e Pigmenti.</li>
+                        </ul>
+                        </ul>
+                        <img src="img/rules/components_meeples.png" class="rule-img" alt="Meeple & Risorse"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                        <div class="img-placeholder" style="display:none;"
+                            data-label="Meeple: img/rules/components_meeples.png"></div>
+                    </div>
+                    <div class="col-content">
+                        <ul data-i18n="p2_list2">
+                            <li><strong>48 Carte Opera:</strong> Verde/Giallo/Rosso.</li>
+                            <li><strong>Carte Obiettivo:</strong> Bandi.</li>
+                            <li><strong>Segnalini:</strong> Gallo, Sole.</li>
+                            <li><strong>Sacchetto.</strong></li>
+                            <li><strong>Monete (Gialle).</strong></li>
+                        </ul>
+                        </ul>
+                        <img src="img/rules/components_cards.png" class="rule-img" alt="Carte & Segnalini"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                        <div class="img-placeholder" style="display:none;"
+                            data-label="Carte: img/rules/components_cards.png"></div>
+                    </div>
+                </div>
+                <div class="page-number">2</div>
+            </div>
+
+            <!-- P3: OBIETTIVO -->
+            <div class="page" id="p2">
+                <h2 data-i18n="p3_title">🏁 Obiettivo</h2>
+                <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center;">
+                    <p data-i18n="p3_text1">I giocatori sono maestri ceramisti che competono per il prestigio
+                        accumulando <strong>Punti
+                            Prestigio
+                            (⭐)</strong>.</p>
+                    <div class="action-box"
+                        style="text-align: center; border-left-color: var(--vietri-yellow); padding: 3vh;">
+                        <h3 style="margin-top:0; color: var(--vietri-orange);" data-i18n="p3_box_title">LA CORSA</h3>
+                        <div data-i18n="p3_box_text">La partita termina alla fine del<br>
+                            <strong>7° Giorno</strong><br>
+                            <span style="font-size: 1.5rem; color: #ccc; display:block; margin: 1vh 0;">~ OPPURE
+                                ~</span>
+                            quando un Maestro completa la sua<br>
+                            <strong>7ª Opera</strong>.
+                        </div>
+                    </div>
+                </div>
+                <img src="img/rules/goal.png" class="rule-img" style="height: 15vh;" alt="Via della Gloria"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="img-placeholder" style="height: 15vh; display:none;" data-label="Goal: img/rules/goal.png">
+                </div>
+            </div>
+            <div class="page-number">3</div>
+        </div>
+
+        <!-- P4: SETUP MAPPA -->
+        <div class="page" id="p3">
+            <h2 data-i18n="p4_title">🛠️ Setup Mappa</h2>
+            <div style="flex-grow: 1; display: flex; flex-direction: column;">
+                <ul data-i18n="p4_list">
+                    <li><strong>Risorse:</strong> Argilla al Fiume. Pigmenti nel Sacchetto.</li>
+                    <li><strong>Mercato:</strong> Estrai 4 Pigmenti visibili (Bancarella).</li>
+                    <li><strong>Piazza:</strong> Rivela 5 Carte Opera scoperte.</li>
+                    <li><strong>Tempo:</strong> Sole ☀️ sul "Giorno 1".</li>
+                    <li><strong>Obiettivi:</strong> Rivela 2 Carte Obiettivo Comune.</li>
+                </ul>
+                </ul>
+                <img src="img/rules/setup_map.png" class="rule-img" alt="Mappa con Risorse"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="img-placeholder" style="display:none;" data-label="Setup: img/rules/setup_map.png"></div>
+            </div>
+            <div class="page-number">4</div>
+        </div>
+
+        <!-- P5: SETUP GIOCATORI -->
+        <div class="page" id="p4">
+            <h2 data-i18n="p5_title">🛠️ Setup Giocatori</h2>
+            <p data-i18n="p5_text1">Ogni giocatore riceve: <strong>1 Plancia, 3 Assistenti, 1 Asinello</strong> (su
+                "0").</p>
+            <p data-i18n="p5_text2"><strong>Contratto Iniziale:</strong> Pesca 2 Carte "Verdi", tienine 1.</p>
+
+            <div class="action-box">
+                <h4 style="margin:0 0 1vh 0; color: var(--vietri-blue);" data-i18n="p5_box_title">💰 Risorse Iniziali
+                    (Ordine di Turno)</h4>
+                <ul style="margin: 0; font-size: 0.9rem;" data-i18n="p5_list">
+                    <li><strong>1°:</strong> 3 Monete - 1 Argilla - 2 Pigmenti.</li>
+                    <li><strong>2°:</strong> 4 Monete - 1 Argilla - 2 Pigmenti.</li>
+                    <li><strong>3°:</strong> 4 Monete - 2 Argilla - 2 Pigmenti.</li>
+                    <li><strong>4°:</strong> 5 Monete - 2 Argilla - 2 Pigmenti.</li>
+                </ul>
+            </div>
+        </div>
+        <img src="img/rules/setup_player.png" class="rule-img" alt="Plancia Giocatore"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="img-placeholder" style="display:none;" data-label="Player: img/rules/setup_player.png"></div>
+        <div class="page-number">5</div>
+    </div>
+
+    <!-- P6: LEGENDA SIMBOLI -->
+    <div class="page" id="p5">
+        <h2 data-i18n="p6_title">🗺️ Leggere la Mappa</h2>
+        <p data-i18n="p6_text">Il tabellone usa simboli per guidarti. Non serve leggere se conosci le icone.</p>
+
+        <div class="legend-list">
+            <div class="legend-row">
+                <div class="icon-col"><svg class="meeple-icon">
+                        <use href="#meeple-free"></use>
+                    </svg></div>
+                <div class="text-col"><strong data-i18n="p6_leg1_title">Posto Singolo (Gratis)</strong><small
+                        data-i18n="p6_leg1_desc">Sagoma vuota. 1 solo
+                        Assistente.</small></div>
+            </div>
+            <div class="legend-row">
+                <div class="icon-col"><svg class="meeple-icon">
+                        <use href="#meeple-paid"></use>
+                    </svg></div>
+                <div class="text-col"><strong data-i18n="p6_leg2_title">Posto Singolo (Costo)</strong><small
+                        data-i18n="p6_leg2_desc">Sagoma con moneta. Paga per
+                        occupare.</small></div>
+            </div>
+            <div class="legend-row">
+                <div class="icon-col"><svg class="meeple-icon" style="width: 80px;">
+                        <use href="#meeple-group"></use>
+                    </svg></div>
+                <div class="text-col"><strong data-i18n="p6_leg3_title">Area Illimitata</strong><small
+                        data-i18n="p6_leg3_desc">Ovale con folla. C'è posto per
+                        tutti.</small></div>
+            </div>
+        </div>
+
+        <div class="action-box" style="margin-top: auto; border-left: 6px solid var(--vietri-orange);">
+            <h3 style="margin-top:0;" data-i18n="p6_box_title">Regola d'Oro</h3>
+            <ul style="margin-bottom: 0;" data-i18n="p6_box_list">
+                <li><strong>Sagoma Meeple:</strong> Posto Esclusivo. Chi prima arriva, meglio alloggia.</li>
+                <li><strong>Area Ovale:</strong> Posto Infinito. Puoi piazzarti anche se occupato.</li>
+            </ul>
+        </div>
+        <div class="page-number">6</div>
+    </div>
+
+    <!-- P7: FLUSSO -->
+    <div class="page" id="p6">
+        <h2 data-i18n="p7_title">🔄 Flusso di Gioco</h2>
+        <div class="flavor-text" style="padding: 1.5vh;" data-i18n="p7_flavor">7 Giorni per vincere.</div>
+
+        <div class="action-box">
+            <h3 style="margin-top:0;" data-i18n="p7_box1_title">Fase A: Al Lavoro</h3>
+            <p data-i18n="p7_box1_text1">A partire dal Primo Giocatore, piazza <strong>1 Assistente</strong> su uno
+                spazio libero ed esegui
+                l'azione.</p>
+            <p data-i18n="p7_box1_text2">Continua a giro finché tutti hanno piazzato i loro <strong>3
+                    Assistenti</strong>.</p>
+        </div>
+
+        <div class="action-box" style="border-left-color: #95a5a6;">
+            <h3 style="margin-top:0; color: #7f8c8d;" data-i18n="p7_box2_title">Fase B: Tramonto</h3>
+            <ol style="margin:0;" data-i18n="p7_box2_list">
+                <li>Riprendere gli Assistenti.</li>
+                <li>Avanzare il Sole ☀️.</li>
+                <li>Passare il Gallo 🐓 a sinistra.</li>
+                <li><strong>Rifornimento:</strong> Riempire la Bancarella (4) e la Piazza (fino a 5 carte).</li>
+            </ol>
+        </div>
+        <div class="page-number">7</div>
+    </div>
+
+    <!-- P8: AZIONI FIUME E MERCATO -->
+    <div class="page" id="p7">
+        <h2 data-i18n="p8_title">📍 Azioni (1/3)</h2>
+
+        <div class="action-box">
+            <h3 data-i18n="p8_box1_title">🌊 1. Il Fiume</h3>
+            <div class="tag-row"><svg class="mini-icon">
+                    <use href="#meeple-paid"></use>
+                </svg> <span data-i18n="p8_riv1_text">Noleggio (1 Moneta)</span></div>
+            <p style="margin-left: 25px;" data-i18n="p8_riv1_desc">Prendi <strong>3 Argilla</strong>.</p>
+            <div class="tag-row"><svg class="mini-icon">
+                    <use href="#meeple-group"></use>
+                </svg> <span data-i18n="p8_riv2_text">Riva (Gratis)</span></div>
+            <p style="margin-left: 25px;" data-i18n="p8_riv2_desc">Prendi <strong>2 Argilla</strong>.</p>
+        </div>
+
+        <div class="action-box">
+            <h3 data-i18n="p8_box2_title">🎨 2. Il Mercato</h3>
+            <div class="tag-row"><svg class="mini-icon">
+                    <use href="#meeple-paid"></use>
+                </svg> <span data-i18n="p8_mkt1_text">1a Scelta (1 Moneta)</span></div>
+            <p style="margin-left: 25px;" data-i18n="p8_mkt1_desc">Prendi 1 Pigmento Visibile O pesca 2.</p>
+            <div class="tag-row"><svg class="mini-icon">
+                    <use href="#meeple-group"></use>
+                </svg> <span data-i18n="p8_mkt2_text">Grossista (2 Monete)</span></div>
+            <p style="margin-left: 25px;" data-i18n="p8_mkt2_desc">Prendi 2 Visibili O pesca 3.</p>
+            <div class="tag-row"><svg class="mini-icon">
+                    <use href="#meeple-group"></use>
+                </svg> <span data-i18n="p8_mkt3_text">Baratto (Gratis)</span></div>
+            <p style="margin-left: 25px;" data-i18n="p8_mkt3_desc">Dai 2 tuoi -> Prendi 1 Visibile.</p>
+        </div>
+        <div class="page-number">8</div>
+    </div>
+
+    <!-- P9: AZIONE BOTTEGA -->
+    <div class="page" id="p8">
+        <h2 data-i18n="p9_title">📍 Azioni (2/3)</h2>
+
+        <div class="action-box"
+            style="border-left-color: var(--vietri-orange); height: 100%; display: flex; flex-direction: column;">
+            <h3 style="color: var(--vietri-orange);" data-i18n="p9_box_title">🏺 3. La Bottega</h3>
+
+            <div class="tag-row"><svg class="mini-icon">
+                    <use href="#meeple-group"></use>
+                </svg> <span data-i18n="p9_tag">Bottega Comune</span></div>
+            <p style="margin-left: 25px;" data-i18n="p9_text">Area Illimitata. Nessun limite di giocatori.</p>
+
+            <hr style="border: 0; border-top: 1px dashed #ccc; margin: 2vh 0;">
+
+            <h4 data-i18n="p9_sub_title">Azioni di Lavoro:</h4>
+            <ul data-i18n="p9_list">
+                <li><strong>Caricare (Gratis):</strong> Sposta cubetti sul Tornio.</li>
+                <li><strong>Ruotare (Gratis):</strong> Gira i dischi (max 2 scatti).</li>
+                <li><strong>Ripulire (1 Moneta):</strong> Scarta cubetti dal tornio.</li>
+            </ul>
+
+            <div style="background: #fff3cd; padding: 1vh; border-radius: 6px; margin-top: auto; color: #856404; font-size: 0.9rem;"
+                data-i18n="p9_special">
+                <strong>✋ Regola Speciale:</strong> Paga 1 Moneta in qualsiasi momento per spostare un cubetto già
+                sul Tornio.
+            </div>
+        </div>
+        <div class="page-number">9</div>
+    </div>
+
+    <!-- P10: PIAZZA E FORNO -->
+    <div class="page" id="p9">
+        <h2 data-i18n="p10_title">📍 Azioni (3/3)</h2>
+
+        <div class="action-box">
+            <h3 data-i18n="p10_piazza_title">📜 4. La Piazza</h3>
+            <div class="tag-row"><svg class="mini-icon">
+                    <use href="#meeple-group"></use>
+                </svg> <span data-i18n="p10_vetrina">Vetrina (Area Illimitata)</span></div>
+            <p style="margin-left: 25px;" data-i18n="p10_vetrina_desc">Prendi 1 Carta Opera. Le carte
+                <strong>non</strong> vengono rimpiazzate
+                subito!<br>
+                <span style="font-size: 0.9rem; color: #666;"><em>(Opz: Paga 1$ per scartare le rimanenti e
+                        rivelarne 5 nuove).</em></span>
+            </p>
+        </div>
+
+        <div class="action-box" style="border-left-color: #c0392b; flex-grow: 1;">
+            <h3 style="color: #c0392b;" data-i18n="p10_forno_title">🔥 5. Il Forno</h3>
+
+            <div class="tag-row"><svg class="mini-icon">
+                    <use href="#meeple-free"></use>
+                </svg> <span data-i18n="p10_bocca">Bocca del Forno</span></div>
+            <p style="margin-left: 25px;" data-i18n="p10_bocca_desc"><strong>Gratis:</strong> Cuoci 1
+                Opera.<br><strong>Paga 2$:</strong> Cuoci
+                TUTTE.</p>
+
+            <div class="tag-row"><svg class="mini-icon">
+                    <use href="#meeple-group"></use>
+                </svg> <span data-i18n="p10_coda">Coda (Legna Extra)</span></div>
+            <p style="margin-left: 25px;" data-i18n="p10_coda_desc">Costa <strong>+1 Moneta</strong> rispetto sopra.</p>
+
+            <div class="tag-row"><svg class="mini-icon">
+                    <use href="#meeple-group"></use>
+                </svg> <span data-i18n="p10_coda">Coda (Legna Extra)</span></div>
+            <p style="margin-left: 25px;" data-i18n="p10_coda_desc">Costa <strong>+1 Moneta</strong> rispetto sopra.</p>
+
+            <img src="img/rules/oven_complete.png" class="rule-img" style="height: 8vh; margin-top: 2vh;"
+                alt="Opera Completata"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="img-placeholder" style="height: 8vh; margin-top: 2vh; display:none;"
+                data-label="Oven: img/rules/oven_complete.png"></div>
+        </div>
+        <div class="page-number">10</div>
+    </div>
+
+    <!-- P11: FINE -->
+    <div class="page" id="p10">
+        <h2 data-i18n="p11_title">🏆 Fine Partita</h2>
+        <div class="grid-2" style="height: auto; margin-bottom: 20px;">
+            <div>
+                <h3 style="font-size: 1.1rem;" data-i18n="p11_cond_title">Condizioni di Fine Partita</h3>
+                <ul data-i18n="p11_cond_list">
+                    <li>7ª Opera completata.</li>
+                    <li>Fine del 7° Giorno.</li>
+                </ul>
+            </div>
+            <div>
+                <h3 style="font-size: 1.1rem;" data-i18n="p11_score_title">Punteggio</h3>
+                <ul data-i18n="p11_score_list">
+                    <li>Punti Via della Gloria.</li>
+                    <li>Carte Obiettivo.</li>
+                    <li>1 PV ogni 2 Monete.</li>
+                    <li>+3 PV "Maestro Fretta".</li>
+                </ul>
+            </div>
+        </div>
+
+        <div
+            style="background: var(--vietri-yellow); padding: 15px; border-radius: 8px; text-align: center; margin-top: 20px;">
+            <div style="font-family: 'Winky Rough', cursive; font-size: 2rem; color: var(--vietri-blue); line-height: 1;"
+                data-i18n="p11_winner">
+                Vince il Gran Maestro!
+            </div>
+        </div>
+
+        <div style="flex-grow:1;"></div>
+        <div class="page-number">11</div>
+    </div>
+
+    <!-- P12: CREDITS (RETRO) -->
+    <div class="page" id="p11">
+        <div style="height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+
+            <div class="img-placeholder logo-area" style="height: 200px; width: 60%; margin-bottom: 6vh; display:none;"
+                data-label="Logo: img/rules/logo.png"></div>
+            <img src="/Vietri-BoardGame/assets/logo-BqpMF1GE.png" style="height: 200px; width: auto; margin-bottom: 6vh;" alt="Logo Vietri"
+                onerror="this.style.display='none'; this.previousElementSibling.style.display='flex'">
+
+            <div style="text-align: center; border-top: 1px dashed #ccc; padding-top: 4vh; width: 80%;">
+                <h3 style="color: #555; border:none; margin-bottom: 3vh; font-size:1.5rem;" data-i18n="p12_credits">
+                    CREDITS</h3>
+                <div style="line-height: 2; color: #555; font-size: 1rem;" data-i18n="p12_staff">
+                    <strong>Game Design:</strong><br>Massimiliano Sabato<br><br>
+                    <strong>Artist:</strong><br>Antonio Solimente<br><br>
+                    <strong>Graphics:</strong><br>Massimiliano Sabato
+                </div>
+            </div>
+
+            <div style="margin-top: auto; color: #ccc; font-size: 0.8rem;" data-i18n="p12_copy">
+                Vietri Board Game &copy; 2024 - v5.2
+            </div>
+        </div>
+        <div class="page-number">12</div>
+    </div>
+
+    </div>
+
+    <!-- CONTROLLI -->
+    <div class="controls">
+        <button class="ctrl-btn" id="btnPrev" onclick="prevPage()">❮</button>
+        <button class="ctrl-btn" id="btnNext" onclick="nextPage()">❯</button>
+    </div>
+
+    <script>
+        let currentPage = 0;
+        const totalPages = 12;
+        const pages = document.querySelectorAll('.page');
+        const navButtons = document.querySelectorAll('nav button:not(.print-btn)'); // Escludi PDF dal loop dei bottoni di navigazione
+        const btnPrev = document.getElementById('btnPrev');
+        const btnNext = document.getElementById('btnNext');
+
+        // Mappa le sezioni: ogni bottone nav (da 0 a 6) copre un range di pagine [Start, End]
+        const sectionStarts = [0, 1, 3, 5, 6, 7, 10];
+        const sectionEnds = [0, 2, 4, 5, 6, 9, 11];
+
+        function updateUI() {
+            // Classi per animare le Pagine
+            pages.forEach((page, index) => {
+                page.className = 'page';
+                if (index === 0) page.classList.add('cover-page');
+
+                if (index === currentPage) { page.classList.add('active'); }
+                else if (index < currentPage) { page.classList.add('prev'); }
+                else { page.classList.add('next'); }
+            });
+
+            // Illumina la Tab corretta
+            navButtons.forEach((btn, idx) => {
+                if (idx < sectionStarts.length) {
+                    if (currentPage >= sectionStarts[idx] && currentPage <= sectionEnds[idx]) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                }
+            });
+
+            // Controlli Frecce
+            btnPrev.disabled = currentPage === 0;
+            btnNext.disabled = currentPage === totalPages - 1;
+        }
+
+        function nextPage() { if (currentPage < totalPages - 1) { currentPage++; updateUI(); } }
+        function prevPage() { if (currentPage > 0) { currentPage--; updateUI(); } }
+        function goToPage(index) { if (index >= 0 && index < totalPages) { currentPage = index; updateUI(); } }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "ArrowRight") nextPage();
+            if (e.key === "ArrowLeft") prevPage();
+        });
+
+        updateUI();
+    </script>
+
+    <script>
+        const TRANSLATIONS = {
+            it: {
+                nav_cover: "Pag. 1<br>Copertina",
+                nav_info: "Pag. 2-3<br>Info",
+                nav_setup: "Pag. 4-5<br>Setup",
+                nav_legend: "Pag. 6<br>Legenda",
+                nav_flow: "Pag. 7<br>Flusso",
+                nav_actions: "Pag. 8-10<br>Azioni",
+                nav_end: "Pag. 11-12<br>Fine",
+                cover_title: "REGOLAMENTO",
+                p2_title: "📦 Componenti",
+                p2_list1: "<li><strong>Tabellone:</strong> Fiume, Mercato, Bottega, Piazza, Forno.</li><li><strong>4 Plance:</strong> Con Tornio.</li><li><strong>12 Assistenti:</strong> (3 per col).</li><li><strong>4 Asinelli:</strong> Segnapunti.</li><li><strong>Cubetti:</strong> Argilla e Pigmenti.</li>",
+                p2_list2: "<li><strong>48 Carte Opera:</strong> Verde/Giallo/Rosso.</li><li><strong>Carte Obiettivo:</strong> Bandi.</li><li><strong>Segnalini:</strong> Gallo, Sole.</li><li><strong>Sacchetto.</strong></li><li><strong>Monete (Gialle).</strong></li>",
+                p3_title: "🏁 Obiettivo",
+                p3_text1: "I giocatori sono maestri ceramisti che competono per il prestigio accumulando <strong>Punti Prestigio (⭐)</strong>.",
+                p3_box_title: "LA CORSA",
+                p3_box_text: "La partita termina alla fine del<br><strong>7° Giorno</strong><br><span style='font-size: 1.5rem; color: #ccc; display:block; margin: 1vh 0;'>~ OPPURE ~</span>quando un Maestro completa la sua<br><strong>7ª Opera</strong>."
+            },
+            en: {
+                nav_cover: "Pg. 1<br>Cover",
+                nav_info: "Pg. 2-3<br>Info",
+                nav_setup: "Pg. 4-5<br>Setup",
+                nav_legend: "Pg. 6<br>Legend",
+                nav_flow: "Pg. 7<br>Flow",
+                nav_actions: "Pg. 8-10<br>Actions",
+                nav_end: "Pg. 11-12<br>End",
+                cover_title: "RULEBOOK",
+                p2_title: "📦 Components",
+                p2_list1: "<li><strong>Board:</strong> River, Market, Workshop, Plaza, Oven.</li><li><strong>4 Boards:</strong> With Lathe.</li><li><strong>12 Assistants:</strong> (3 per player).</li><li><strong>4 Donkeys:</strong> Score markers.</li><li><strong>Cubes:</strong> Clay and Pigments.</li>",
+                p2_list2: "<li><strong>48 Work Cards:</strong> Green/Yellow/Red.</li><li><strong>Objective Cards:</strong> Notices.</li><li><strong>Tokens:</strong> Rooster, Sun.</li><li><strong>Bag.</strong></li><li><strong>Coins (Yellow).</strong></li>",
+                p3_title: "🏁 Objective",
+                p3_text1: "Players are master potters competing for prestige by accumulating <strong>Prestige Points (⭐)</strong>.",
+                p3_box_title: "THE RACE",
+                p3_box_text: "The game ends at the end of the<br><strong>7th Day</strong><br><span style='font-size: 1.5rem; color: #ccc; display:block; margin: 1vh 0;'>~ OR ~</span>when a Master completes their<br><strong>7th Work</strong>."
+            },
+            fr: {
+                nav_cover: "P. 1<br>Couverture",
+                nav_info: "P. 2-3<br>Info",
+                nav_setup: "P. 4-5<br>Mise en place",
+                nav_legend: "P. 6<br>Légende",
+                nav_flow: "P. 7<br>Déroulement",
+                nav_actions: "P. 8-10<br>Actions",
+                nav_end: "P. 11-12<br>Fin",
+                cover_title: "RÈGLEMENT",
+                p2_title: "📦 Matériel",
+                p2_list1: "<li><strong>Plateau :</strong> Rivière, Marché, Atelier, Place, Four.</li><li><strong>4 Plateaux :</strong> Avec Tour.</li><li><strong>12 Assistants :</strong> (3 par coul).</li><li><strong>4 Ânes :</strong> Marqueurs de score.</li><li><strong>Cubes :</strong> Argile et Pigments.</li>",
+                p2_list2: "<li><strong>48 Cartes Œuvre :</strong> Vert/Jaune/Rouge.</li><li><strong>Cartes Objectif :</strong> Avis.</li><li><strong>Jetons :</strong> Coq, Soleil.</li><li><strong>Sac.</strong></li><li><strong>Pièces (Jaunes).</strong></li>",
+                p3_title: "🏁 Objectif",
+                p3_text1: "Les joueurs sont des maîtres céramistes qui rivalisent pour le prestige en accumulant des <strong>Points de Prestige (⭐)</strong>.",
+                p3_box_title: "LA COURSE",
+                p3_box_text: "La partie se termine à la fin du<br><strong>7ème Jour</strong><br><span style='font-size: 1.5rem; color: #ccc; display:block; margin: 1vh 0;'>~ OU ~</span>quand un Maître termine sa<br><strong>7ème Œuvre</strong>."
+            },
+            es: {
+                nav_cover: "Pág. 1<br>Portada",
+                nav_info: "Pág. 2-3<br>Info",
+                nav_setup: "Pág. 4-5<br>Preparación",
+                nav_legend: "Pág. 6<br>Leyenda",
+                nav_flow: "Pág. 7<br>Flujo",
+                nav_actions: "Pág. 8-10<br>Acciones",
+                nav_end: "Pág. 11-12<br>Fin",
+                cover_title: "REGLAMENTO",
+                p2_title: "📦 Componentes",
+                p2_list1: "<li><strong>Tablero:</strong> Río, Mercado, Taller, Plaza, Horno.</li><li><strong>4 Tableros:</strong> Con Torno.</li><li><strong>12 Asistentes:</strong> (3 por col).</li><li><strong>4 Burros:</strong> Marcadores.</li><li><strong>Cubos:</strong> Arcilla y Pigmentos.</li>",
+                p2_list2: "<li><strong>48 Cartas Obra:</strong> Verde/Amarillo/Rojo.</li><li><strong>Cartas Objetivo:</strong> Edictos.</li><li><strong>Fichas:</strong> Gallo, Sol.</li><li><strong>Bolsa.</strong></li><li><strong>Monedas (Amarillas).</strong></li>",
+                p3_title: "🏁 Objetivo",
+                p3_text1: "Los jugadores son maestros ceramistas que compiten por el prestigio acumulando <strong>Puntos de Prestigio (⭐)</strong>.",
+                p3_box_title: "LA CARRERA",
+                p3_box_text: "El juego termina al final del<br><strong>7º Día</strong><br><span style='font-size: 1.5rem; color: #ccc; display:block; margin: 1vh 0;'>~ O ~</span>cuando un Maestro completa su<br><strong>7ª Obra</strong>."
+            },
+            de: {
+                nav_cover: "S. 1<br>Titelbild",
+                nav_info: "S. 2-3<br>Info",
+                nav_setup: "S. 4-5<br>Aufbau",
+                nav_legend: "S. 6<br>Legende",
+                nav_flow: "S. 7<br>Ablauf",
+                nav_actions: "S. 8-10<br>Aktionen",
+                nav_end: "S. 11-12<br>Ende",
+                cover_title: "REGELWERK",
+                p2_title: "📦 Komponenten",
+                p2_list1: "<li><strong>Spielplan:</strong> Fluss, Markt, Werkstatt, Platz, Ofen.</li><li><strong>4 Tableaus:</strong> Mit Töpferscheibe.</li><li><strong>12 Assistenten:</strong> (3 pro Farbe).</li><li><strong>4 Esel:</strong> Punktemarker.</li><li><strong>Würfel:</strong> Ton und Pigmente.</li>",
+                p2_list2: "<li><strong>48 Werkkarten:</strong> Grün/Gelb/Rot.</li><li><strong>Zielkarten:</strong> Aufträge.</li><li><strong>Marker:</strong> Hahn, Sonne.</li><li><strong>Beutel.</strong></li><li><strong>Münzen (Gelb).</strong></li>",
+                p3_title: "🏁 Ziel",
+                p3_text1: "Die Spieler sind Töpfermeister, die um Ansehen konkurrieren, indem sie <strong>Prestigepunkte (⭐)</strong> sammeln.",
+                p3_box_title: "DAS RENNEN",
+                p3_box_text: "Das Spiel endet am Ende des<br><strong>7. Tages</strong><br><span style='font-size: 1.5rem; color: #ccc; display:block; margin: 1vh 0;'>~ ODER ~</span>wenn ein Meister sein<br><strong>7. Werk</strong> vollendet."
+            }
+        };
+
+        function setLanguage(lang) {
+            localStorage.setItem('vietri_rules_lang', lang);
+            updateContent(lang);
+            updateButtons(lang);
+            document.documentElement.lang = lang;
+        }
+
+        function updateContent(lang) {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) {
+                    el.innerHTML = TRANSLATIONS[lang][key];
+                }
+            });
+        }
+
+        function updateButtons(lang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.id === 'btn-' + lang) btn.classList.add('active');
+            });
+        }
+
+        // Init
+        const savedLang = localStorage.getItem('vietri_rules_lang') || 'it';
+        setLanguage(savedLang);
+    </script>
+
+    <script>
+        Object.assign(TRANSLATIONS.it, {
+            p4_title: "🛠️ Setup Mappa",
+            p4_list: "<li><strong>Risorse:</strong> Argilla al Fiume. Pigmenti nel Sacchetto.</li><li><strong>Mercato:</strong> Estrai 4 Pigmenti visibili (Bancarella).</li><li><strong>Piazza:</strong> Rivela 5 Carte Opera scoperte.</li><li><strong>Tempo:</strong> Sole ☀️ sul 'Giorno 1'.</li><li><strong>Obiettivi:</strong> Rivela 2 Carte Obiettivo Comune.</li>",
+            p5_title: "🛠️ Setup Giocatori",
+            p5_text1: "Ogni giocatore riceve: <strong>1 Plancia, 3 Assistenti, 1 Asinello</strong> (su '0').",
+            p5_text2: "<strong>Contratto Iniziale:</strong> Pesca 2 Carte 'Verdi', tienine 1.",
+            p5_box_title: "💰 Risorse Iniziali (Ordine di Turno)",
+            p5_list: "<li><strong>1°:</strong> 3 Monete - 1 Argilla - 2 Pigmenti.</li><li><strong>2°:</strong> 4 Monete - 1 Argilla - 2 Pigmenti.</li><li><strong>3°:</strong> 4 Monete - 2 Argilla - 2 Pigmenti.</li><li><strong>4°:</strong> 5 Monete - 2 Argilla - 2 Pigmenti.</li>",
+            p6_title: "🗺️ Leggere la Mappa",
+            p6_text: "Il tabellone usa simboli per guidarti. Non serve leggere se conosci le icone.",
+            p6_leg1_title: "Posto Singolo (Gratis)",
+            p6_leg1_desc: "Sagoma vuota. 1 solo Assistente.",
+            p6_leg2_title: "Posto Singolo (Costo)",
+            p6_leg2_desc: "Sagoma con moneta. Paga per occupare.",
+            p6_leg3_title: "Area Illimitata",
+            p6_leg3_desc: "Ovale con folla. C'è posto per tutti.",
+            p6_box_title: "Regola d'Oro",
+            p6_box_list: "<li><strong>Sagoma Meeple:</strong> Posto Esclusivo. Chi prima arriva, meglio alloggia.</li><li><strong>Area Ovale:</strong> Posto Infinito. Puoi piazzarti anche se occupato.</li>"
+        });
+
+        Object.assign(TRANSLATIONS.en, {
+            p4_title: "🛠️ Map Setup",
+            p4_list: "<li><strong>Resources:</strong> Clay at River. Pigments in Bag.</li><li><strong>Market:</strong> Draw 4 visible Pigments (Stall).</li><li><strong>Plaza:</strong> Reveal 5 Work Cards face up.</li><li><strong>Time:</strong> Sun ☀️ on 'Day 1'.</li><li><strong>Objectives:</strong> Reveal 2 Common Objective Cards.</li>",
+            p5_title: "🛠️ Player Setup",
+            p5_text1: "Each player receives: <strong>1 Board, 3 Assistants, 1 Donkey</strong> (on '0').",
+            p5_text2: "<strong>Initial Contract:</strong> Draw 2 'Green' Cards, keep 1.",
+            p5_box_title: "💰 Starting Resources (Turn Order)",
+            p5_list: "<li><strong>1st:</strong> 3 Coins - 1 Clay - 2 Pigments.</li><li><strong>2nd:</strong> 4 Coins - 1 Clay - 2 Pigments.</li><li><strong>3rd:</strong> 4 Coins - 2 Clay - 2 Pigments.</li><li><strong>4th:</strong> 5 Coins - 2 Clay - 2 Pigments.</li>",
+            p6_title: "🗺️ Reading the Map",
+            p6_text: "The board uses symbols to guide you. No need to read if you know the icons.",
+            p6_leg1_title: "Single Spot (Free)",
+            p6_leg1_desc: "Empty outline. Only 1 Assistant.",
+            p6_leg2_title: "Single Spot (Cost)",
+            p6_leg2_desc: "Outline with coin. Pay to occupy.",
+            p6_leg3_title: "Unlimited Area",
+            p6_leg3_desc: "Oval with crowd. Room for everyone.",
+            p6_box_title: "Golden Rule",
+            p6_box_list: "<li><strong>Meeple Outline:</strong> Exclusive Spot. First come, first served.</li><li><strong>Oval Area:</strong> Infinite Spot. You can place even if occupied.</li>"
+        });
+
+        Object.assign(TRANSLATIONS.fr, {
+            p4_title: "🛠️ Mise en place du Plateau",
+            p4_list: "<li><strong>Ressources :</strong> Argile à la Rivière. Pigments dans le Sac.</li><li><strong>Marché :</strong> Piochez 4 Pigments visibles (Étal).</li><li><strong>Place :</strong> Révélez 5 Cartes Œuvre.</li><li><strong>Temps :</strong> Soleil ☀️ sur 'Jour 1'.</li><li><strong>Objectifs :</strong> Révélez 2 Cartes Objectif Commun.</li>",
+            p5_title: "🛠️ Mise en place Joueurs",
+            p5_text1: "Chaque joueur reçoit : <strong>1 Plateau, 3 Assistants, 1 Âne</strong> (sur '0').",
+            p5_text2: "<strong>Contrat Initial :</strong> Piochez 2 Cartes 'Vertes', gardez-en 1.",
+            p5_box_title: "💰 Ressources de Départ (Ordre du Tour)",
+            p5_list: "<li><strong>1er :</strong> 3 Pièces - 1 Argile - 2 Pigments.</li><li><strong>2ème :</strong> 4 Pièces - 1 Argile - 2 Pigments.</li><li><strong>3ème :</strong> 4 Pièces - 2 Argile - 2 Pigments.</li><li><strong>4ème :</strong> 5 Pièces - 2 Argile - 2 Pigments.</li>",
+            p6_title: "🗺️ Lire la Carte",
+            p6_text: "Le plateau utilise des symboles. Pas besoin de lire si vous connaissez les icônes.",
+            p6_leg1_title: "Place Unique (Gratuit)",
+            p6_leg1_desc: "Silhouette vide. 1 seul Assistant.",
+            p6_leg2_title: "Place Unique (Coût)",
+            p6_leg2_desc: "Silhouette avec pièce. Payez pour occuper.",
+            p6_leg3_title: "Zone Illimitée",
+            p6_leg3_desc: "Zone ovale. De la place pour tous.",
+            p6_box_title: "Règle d'Or",
+            p6_box_list: "<li><strong>Silhouette Meeple :</strong> Place Exclusive. Premier arrivé, premier servi.</li><li><strong>Zone Ovale :</strong> Place Infinie. Vous pouvez vous placer même si occupé.</li>"
+        });
+
+        Object.assign(TRANSLATIONS.es, {
+            p4_title: "🛠️ Preparación del Mapa",
+            p4_list: "<li><strong>Recursos:</strong> Arcilla en el Río. Pigmentos en la Bolsa.</li><li><strong>Mercado:</strong> Saca 4 Pigmentos visibles (Puesto).</li><li><strong>Plaza:</strong> Revela 5 Cartas de Obra.</li><li><strong>Tiempo:</strong> Sol ☀️ en 'Día 1'.</li><li><strong>Objetivos:</strong> Revela 2 Cartas de Objetivo Común.</li>",
+            p5_title: "🛠️ Preparación Jugadores",
+            p5_text1: "Cada jugador recibe: <strong>1 Tablero, 3 Asistentes, 1 Burro</strong> (en '0').",
+            p5_text2: "<strong>Contrato Inicial:</strong> Roba 2 Cartas 'Verdes', quédate 1.",
+            p5_box_title: "💰 Recursos Iniciales (Orden de Turno)",
+            p5_list: "<li><strong>1º:</strong> 3 Monedas - 1 Arcilla - 2 Pigmentos.</li><li><strong>2º:</strong> 4 Monedas - 1 Arcilla - 2 Pigmentos.</li><li><strong>3º:</strong> 4 Monedas - 2 Arcilla - 2 Pigmentos.</li><li><strong>4º:</strong> 5 Monedas - 2 Arcilla - 2 Pigmentos.</li>",
+            p6_title: "🗺️ Leer el Mapa",
+            p6_text: "El tablero usa símbolos. No hace falta leer si conoces los iconos.",
+            p6_leg1_title: "Sitio Único (Gratis)",
+            p6_leg1_desc: "Silueta vacía. Solo 1 Asistente.",
+            p6_leg2_title: "Sitio Único (Coste)",
+            p6_leg2_desc: "Silueta con moneda. Paga para ocupar.",
+            p6_leg3_title: "Área Ilimitada",
+            p6_leg3_desc: "Óvalo con multitud. Sitio para todos.",
+            p6_box_title: "Regla de Oro",
+            p6_box_list: "<li><strong>Silueta Meeple:</strong> Sitio Exclusivo. El primero se lo queda.</li><li><strong>Área Oval:</strong> Sitio Infinito. Puedes colocarte aunque esté ocupado.</li>"
+        });
+
+        Object.assign(TRANSLATIONS.de, {
+            p4_title: "🛠️ Aufbau Karte",
+            p4_list: "<li><strong>Ressourcen:</strong> Ton am Fluss. Pigmente im Beutel.</li><li><strong>Markt:</strong> Ziehe 4 sichtbare Pigmente.</li><li><strong>Platz:</strong> Decke 5 Werkkarten auf.</li><li><strong>Zeit:</strong> Sonne ☀️ auf 'Tag 1'.</li><li><strong>Ziele:</strong> Decke 2 Gemeinsame Zielkarten auf.</li>",
+            p5_title: "🛠️ Aufbau Spieler",
+            p5_text1: "Jeder Spieler erhält: <strong>1 Tableau, 3 Assistenten, 1 Esel</strong> (auf '0').",
+            p5_text2: "<strong>Startauftrag:</strong> Ziehe 2 'Grüne' Karten, behalte 1.",
+            p5_box_title: "💰 Startressourcen (Zugreihenfolge)",
+            p5_list: "<li><strong>1.:</strong> 3 Münzen - 1 Ton - 2 Pigmente.</li><li><strong>2.:</strong> 4 Münzen - 1 Ton - 2 Pigmente.</li><li><strong>3.:</strong> 4 Münzen - 2 Ton - 2 Pigmente.</li><li><strong>4.:</strong> 5 Münzen - 2 Ton - 2 Pigmente.</li>",
+            p6_title: "🗺️ Karte lesen",
+            p6_text: "Der Plan nutzt Symbole. Kein Lesen nötig, wenn du die Icons kennst.",
+            p6_leg1_title: "Einzelplatz (Gratis)",
+            p6_leg1_desc: "Leere Silhouette. Nur 1 Assistent.",
+            p6_leg2_title: "Einzelplatz (Kosten)",
+            p6_leg2_desc: "Silhouette mit Münze. Zahlen zum Besetzen.",
+            p6_leg3_title: "Unbegrenzter Bereich",
+            p6_leg3_desc: "Oval mit Menge. Platz für alle.",
+            p6_box_title: "Goldene Regel",
+            p6_box_list: "<li><strong>Meeple-Silhouette:</strong> Exklusivplatz. Wer zuerst kommt, mahlt zuerst.</li><li><strong>Ovaler Bereich:</strong> Unendlicher Platz. Du kannst dich dazustellen.</li>"
+        });
+        Object.assign(TRANSLATIONS.it, {
+            p7_title: "🔄 Flusso di Gioco",
+            p7_flavor: "7 Giorni per vincere.",
+            p7_box1_title: "Fase A: Al Lavoro",
+            p7_box1_text1: "A partire dal Primo Giocatore, piazza <strong>1 Assistente</strong> su uno spazio libero ed esegui l'azione.",
+            p7_box1_text2: "Continua a giro finché tutti hanno piazzato i loro <strong>3 Assistenti</strong>.",
+            p7_box2_title: "Fase B: Tramonto",
+            p7_box2_list: "<li>Riprendere gli Assistenti.</li><li>Avanzare il Sole ☀️.</li><li>Passare il Gallo 🐓 a sinistra.</li><li><strong>Rifornimento:</strong> Riempire la Bancarella (4) e la Piazza (fino a 5 carte).</li>",
+            p8_title: "📍 Azioni (1/3)",
+            p8_box1_title: "🌊 1. Il Fiume",
+            p8_riv1_text: "Noleggio (1 Moneta)",
+            p8_riv1_desc: "Prendi <strong>3 Argilla</strong>.",
+            p8_riv2_text: "Riva (Gratis)",
+            p8_riv2_desc: "Prendi <strong>2 Argilla</strong>.",
+            p8_box2_title: "🎨 2. Il Mercato",
+            p8_mkt1_text: "1a Scelta (1 Moneta)",
+            p8_mkt1_desc: "Prendi 1 Pigmento Visibile O pesca 2.",
+            p8_mkt2_text: "Grossista (2 Monete)",
+            p8_mkt2_desc: "Prendi 2 Visibili O pesca 3.",
+            p8_mkt3_text: "Baratto (Gratis)",
+            p8_mkt3_desc: "Dai 2 tuoi -> Prendi 1 Visibile.",
+            p9_title: "📍 Azioni (2/3)",
+            p9_box_title: "🏺 3. La Bottega",
+            p9_tag: "Bottega Comune",
+            p9_text: "Area Illimitata. Nessun limite di giocatori.",
+            p9_sub_title: "Azioni di Lavoro:",
+            p9_list: "<li><strong>Caricare (Gratis):</strong> Sposta cubetti sul Tornio.</li><li><strong>Ruotare (Gratis):</strong> Gira i dischi (max 2 scatti).</li><li><strong>Ripulire (1 Moneta):</strong> Scarta cubetti dal tornio.</li>",
+            p9_special: "<strong>✋ Regola Speciale:</strong> Paga 1 Moneta in qualsiasi momento per spostare un cubetto già sul Tornio."
+        });
+
+        Object.assign(TRANSLATIONS.en, {
+            p7_title: "🔄 Game Flow",
+            p7_flavor: "7 Days to win.",
+            p7_box1_title: "Phase A: At Work",
+            p7_box1_text1: "Starting with the First Player, place <strong>1 Assistant</strong> on a free space and perform the action.",
+            p7_box1_text2: "Continue in turn until everyone has placed their <strong>3 Assistants</strong>.",
+            p7_box2_title: "Phase B: Sunset",
+            p7_box2_list: "<li>Retrieve Assistants.</li><li>Advance Sun ☀️.</li><li>Pass Rooster 🐓 to the left.</li><li><strong>Restock:</strong> Refill Stall (4) and Plaza (up to 5 cards).</li>",
+            p8_title: "📍 Actions (1/3)",
+            p8_box1_title: "🌊 1. The River",
+            p8_riv1_text: "Rent (1 Coin)",
+            p8_riv1_desc: "Take <strong>3 Clay</strong>.",
+            p8_riv2_text: "Bank (Free)",
+            p8_riv2_desc: "Take <strong>2 Clay</strong>.",
+            p8_box2_title: "🎨 2. The Market",
+            p8_mkt1_text: "1st Choice (1 Coin)",
+            p8_mkt1_desc: "Take 1 Visible Pigment OR draw 2.",
+            p8_mkt2_text: "Wholesaler (2 Coins)",
+            p8_mkt2_desc: "Take 2 Visible OR draw 3.",
+            p8_mkt3_text: "Trade (Free)",
+            p8_mkt3_desc: "Give 2 yours -> Take 1 Visible.",
+            p9_title: "📍 Actions (2/3)",
+            p9_box_title: "🏺 3. The Workshop",
+            p9_tag: "Common Workshop",
+            p9_text: "Unlimited Area. No player limit.",
+            p9_sub_title: "Work Actions:",
+            p9_list: "<li><strong>Load (Free):</strong> Move cubes to Lathe.</li><li><strong>Rotate (Free):</strong> Turn discs (max 2 clicks).</li><li><strong>Clean (1 Coin):</strong> Discard cubes from lathe.</li>",
+            p9_special: "<strong>✋ Special Rule:</strong> Pay 1 Coin at any time to move a cube already on the Lathe."
+        });
+
+        Object.assign(TRANSLATIONS.fr, {
+            p7_title: "🔄 Déroulement",
+            p7_flavor: "7 Jours pour gagner.",
+            p7_box1_title: "Phase A : Au Travail",
+            p7_box1_text1: "En commençant par le Premier Joueur, placez <strong>1 Assistant</strong> sur un espace libre et faites l'action.",
+            p7_box1_text2: "Continuez jusqu'à ce que tous aient placé leurs <strong>3 Assistants</strong>.",
+            p7_box2_title: "Phase B : Coucher du Soleil",
+            p7_box2_list: "<li>Récupérer les Assistants.</li><li>Avancer le Soleil ☀️.</li><li>Passer le Coq 🐓 à gauche.</li><li><strong>Réapprovisionnement :</strong> Remplir l'Étal (4) et la Place (jusqu'à 5 cartes).</li>",
+            p8_title: "📍 Actions (1/3)",
+            p8_box1_title: "🌊 1. La Rivière",
+            p8_riv1_text: "Location (1 Pièce)",
+            p8_riv1_desc: "Prenez <strong>3 Argile</strong>.",
+            p8_riv2_text: "Rive (Gratuit)",
+            p8_riv2_desc: "Prenez <strong>2 Argile</strong>.",
+            p8_box2_title: "🎨 2. Le Marché",
+            p8_mkt1_text: "1er Choix (1 Pièce)",
+            p8_mkt1_desc: "Prenez 1 Pigment Visible OU piochez 2.",
+            p8_mkt2_text: "Grossiste (2 Pièces)",
+            p8_mkt2_desc: "Prenez 2 Visibles OU piochez 3.",
+            p8_mkt3_text: "Troc (Gratuit)",
+            p8_mkt3_desc: "Donnez 2 à vous -> Prenez 1 Visible.",
+            p9_title: "📍 Actions (2/3)",
+            p9_box_title: "🏺 3. L'Atelier",
+            p9_tag: "Atelier Commun",
+            p9_text: "Zone Illimitée. Pas de limite de joueurs.",
+            p9_sub_title: "Actions de Travail :",
+            p9_list: "<li><strong>Charger (Gratuit) :</strong> Déplacez des cubes sur le Tour.</li><li><strong>Tourner (Gratuit) :</strong> Tournez les disques (max 2 crans).</li><li><strong>Nettoyer (1 Pièce) :</strong> Défaussez des cubes du tour.</li>",
+            p9_special: "<strong>✋ Règle Spéciale :</strong> Payez 1 Pièce à tout moment pour déplacer un cube déjà sur le Tour."
+        });
+
+        Object.assign(TRANSLATIONS.es, {
+            p7_title: "🔄 Flujo del Juego",
+            p7_flavor: "7 Días para ganar.",
+            p7_box1_title: "Fase A: A Trabajar",
+            p7_box1_text1: "Empezando por el Primer Jugador, coloca <strong>1 Asistente</strong> en un espacio libre y realiza la acción.",
+            p7_box1_text2: "Continúa en orden hasta que todos hayan colocado sus <strong>3 Asistentes</strong>.",
+            p7_box2_title: "Fase B: Atardecer",
+            p7_box2_list: "<li>Recuperar Asistentes.</li><li>Avanzar el Sol ☀️.</li><li>Pasar el Gallo 🐓 a la izquierda.</li><li><strong>Reposición:</strong> Rellenar el Puesto (4) y la Plaza (hasta 5 cartas).</li>",
+            p8_title: "📍 Acciones (1/3)",
+            p8_box1_title: "🌊 1. El Río",
+            p8_riv1_text: "Alquiler (1 Moneda)",
+            p8_riv1_desc: "Toma <strong>3 Arcilla</strong>.",
+            p8_riv2_text: "Orilla (Gratis)",
+            p8_riv2_desc: "Toma <strong>2 Arcilla</strong>.",
+            p8_box2_title: "🎨 2. El Mercado",
+            p8_mkt1_text: "1ª Opción (1 Moneda)",
+            p8_mkt1_desc: "Toma 1 Pigmento Visible O roba 2.",
+            p8_mkt2_text: "Mayorista (2 Monedas)",
+            p8_mkt2_desc: "Toma 2 Visibles O roba 3.",
+            p8_mkt3_text: "Trueque (Gratis)",
+            p8_mkt3_desc: "Das 2 tuyos -> Tomas 1 Visible.",
+            p9_title: "📍 Acciones (2/3)",
+            p9_box_title: "🏺 3. El Taller",
+            p9_tag: "Taller Común",
+            p9_text: "Área Ilimitada. Sin límite de jugadores.",
+            p9_sub_title: "Acciones de Trabajo:",
+            p9_list: "<li><strong>Cargar (Gratis):</strong> Mueve cubos al Torno.</li><li><strong>Girar (Gratis):</strong> Gira los discos (máx 2 clics).</li><li><strong>Limpiar (1 Moneda):</strong> Descarta cubos del torno.</li>",
+            p9_special: "<strong>✋ Regla Especial:</strong> Paga 1 Moneda en cualquier momento para mover un cubo ya en el Torno."
+        });
+
+        Object.assign(TRANSLATIONS.de, {
+            p7_title: "🔄 Spielablauf",
+            p7_flavor: "7 Tage zum Sieg.",
+            p7_box1_title: "Phase A: Bei der Arbeit",
+            p7_box1_text1: "Beginnend mit dem Startspieler, setze <strong>1 Assistenten</strong> auf ein freies Feld und führe die Aktion aus.",
+            p7_box1_text2: "Weiter im Uhrzeigersinn, bis alle ihre <strong>3 Assistenten</strong> platziert haben.",
+            p7_box2_title: "Phase B: Sonnenuntergang",
+            p7_box2_list: "<li>Assistenten zurücknehmen.</li><li>Sonne ☀️ vorrücken.</li><li>Hahn 🐓 nach links geben.</li><li><strong>Auffüllen:</strong> Marktstand (4) und Platz (bis 5 Karten) auffüllen.</li>",
+            p8_title: "📍 Aktionen (1/3)",
+            p8_box1_title: "🌊 1. Der Fluss",
+            p8_riv1_text: "Miete (1 Münze)",
+            p8_riv1_desc: "Nimm <strong>3 Ton</strong>.",
+            p8_riv2_text: "Ufer (Gratis)",
+            p8_riv2_desc: "Nimm <strong>2 Ton</strong>.",
+            p8_box2_title: "🎨 2. Der Markt",
+            p8_mkt1_text: "1. Wahl (1 Münze)",
+            p8_mkt1_desc: "Nimm 1 sichtbares Pigment ODER ziehe 2.",
+            p8_mkt2_text: "Großhändler (2 Münzen)",
+            p8_mkt2_desc: "Nimm 2 sichtbare ODER ziehe 3.",
+            p8_mkt3_text: "Tausch (Gratis)",
+            p8_mkt3_desc: "Gib 2 eigene -> Nimm 1 sichtbares.",
+            p9_title: "📍 Aktionen (2/3)",
+            p9_box_title: "🏺 3. Die Werkstatt",
+            p9_tag: "Gemeinsame Werkstatt",
+            p9_text: "Unbegrenzter Bereich. Kein Spielerlimit.",
+            p9_sub_title: "Arbeitsaktionen:",
+            p9_list: "<li><strong>Laden (Gratis):</strong> Schiebe Würfel auf die Scheibe.</li><li><strong>Drehen (Gratis):</strong> Drehe Scheiben (max 2 Klicks).</li><li><strong>Aufräumen (1 Münze):</strong> Wirf Würfel von der Scheibe ab.</li>",
+            p9_special: "<strong>✋ Sonderregel:</strong> Zahle jederzeit 1 Münze, um einen Würfel auf der Scheibe zu verschieben."
+        });
+        Object.assign(TRANSLATIONS.it, {
+            p10_title: "📍 Azioni (3/3)",
+            p10_piazza_title: "📜 4. La Piazza",
+            p10_vetrina: "Vetrina (Area Illimitata)",
+            p10_vetrina_desc: "Prendi 1 Carta Opera. Le carte <strong>non</strong> vengono rimpiazzate subito!<br><span style='font-size: 0.9rem; color: #666;'><em>(Opz: Paga 1$ per scartare le rimanenti e rivelarne 5 nuove).</em></span>",
+            p10_forno_title: "🔥 5. Il Forno",
+            p10_bocca: "Bocca del Forno",
+            p10_bocca_desc: "<strong>Gratis:</strong> Cuoci 1 Opera.<br><strong>Paga 2$:</strong> Cuoci TUTTE.",
+            p10_coda: "Coda (Legna Extra)",
+            p10_coda_desc: "Costa <strong>+1 Moneta</strong> rispetto sopra.",
+            p11_title: "🏆 Fine Partita",
+            p11_cond_title: "Condizioni di Fine Partita",
+            p11_cond_list: "<li>7ª Opera completata.</li><li>Fine del 7° Giorno.</li>",
+            p11_score_title: "Punteggio",
+            p11_score_list: "<li>Punti Via della Gloria.</li><li>Carte Obiettivo.</li><li>1 PV ogni 2 Monete.</li><li>+3 PV 'Maestro Fretta'.</li>",
+            p11_winner: "Vince il Gran Maestro!",
+            p12_credits: "CREDITS",
+            p12_staff: "<strong>Game Design:</strong><br>Massimiliano Sabato<br><br><strong>Artist:</strong><br>Antonio Solimente<br><br><strong>Graphics:</strong><br>Massimiliano Sabato",
+            p12_copy: "Vietri Board Game &copy; 2024 - v5.2"
+        });
+
+        Object.assign(TRANSLATIONS.en, {
+            p10_title: "📍 Actions (3/3)",
+            p10_piazza_title: "📜 4. The Plaza",
+            p10_vetrina: "Display (Unlimited Area)",
+            p10_vetrina_desc: "Take 1 Work Card. Cards are <strong>not</strong> replaced immediately!<br><span style='font-size: 0.9rem; color: #666;'><em>(Opt: Pay 1 Coin to discard remaining and reveal 5 new ones).</em></span>",
+            p10_forno_title: "🔥 5. The Oven",
+            p10_bocca: "Oven Mouth",
+            p10_bocca_desc: "<strong>Free:</strong> Bake 1 Work.<br><strong>Pay 2 Coins:</strong> Bake ALL.",
+            p10_coda: "Queue (Extra Wood)",
+            p10_coda_desc: "Costs <strong>+1 Coin</strong> extra.",
+            p11_title: "🏆 Game End",
+            p11_cond_title: "End Conditions",
+            p11_cond_list: "<li>7th Work completed.</li><li>End of 7th Day.</li>",
+            p11_score_title: "Scoring",
+            p11_score_list: "<li>Glory Track Points.</li><li>Objective Cards.</li><li>1 VP every 2 Coins.</li><li>+3 VP 'Hasty Master'.</li>",
+            p11_winner: "The Grand Master Wins!",
+            p12_credits: "CREDITS",
+            p12_staff: "<strong>Game Design:</strong><br>Massimiliano Sabato<br><br><strong>Artist:</strong><br>Antonio Solimente<br><br><strong>Graphics:</strong><br>Massimiliano Sabato",
+            p12_copy: "Vietri Board Game &copy; 2024 - v5.2"
+        });
+
+        Object.assign(TRANSLATIONS.fr, {
+            p10_title: "📍 Actions (3/3)",
+            p10_piazza_title: "📜 4. La Place",
+            p10_vetrina: "Vitrine (Zone Illimitée)",
+            p10_vetrina_desc: "Prenez 1 Carte Œuvre. Les cartes <strong>ne sont pas</strong> remplacées tout de suite !<br><span style='font-size: 0.9rem; color: #666;'><em>(Opt : Payez 1 Pièce pour défausser le reste et en révéler 5 nouvelles).</em></span>",
+            p10_forno_title: "🔥 5. Le Four",
+            p10_bocca: "Bouche du Four",
+            p10_bocca_desc: "<strong>Gratuit :</strong> Cuisez 1 Œuvre.<br><strong>Payez 2 Pièces :</strong> Cuisez TOUT.",
+            p10_coda: "Queue (Bois Extra)",
+            p10_coda_desc: "Coûte <strong>+1 Pièce</strong> de plus.",
+            p11_title: "🏆 Fin de Partie",
+            p11_cond_title: "Conditions de Fin",
+            p11_cond_list: "<li>7ème Œuvre terminée.</li><li>Fin du 7ème Jour.</li>",
+            p11_score_title: "Score",
+            p11_score_list: "<li>Points Piste de Gloire.</li><li>Cartes Objectif.</li><li>1 PV toutes les 2 Pièces.</li><li>+3 PV 'Maître Pressé'.</li>",
+            p11_winner: "Le Grand Maître Gagne !",
+            p12_credits: "CRÉDITS",
+            p12_staff: "<strong>Game Design:</strong><br>Massimiliano Sabato<br><br><strong>Artiste:</strong><br>Antonio Solimente<br><br><strong>Graphisme:</strong><br>Massimiliano Sabato",
+            p12_copy: "Jeu de Plateau Vietri &copy; 2024 - v5.2"
+        });
+
+        Object.assign(TRANSLATIONS.es, {
+            p10_title: "📍 Acciones (3/3)",
+            p10_piazza_title: "📜 4. La Plaza",
+            p10_vetrina: "Escaparate (Área Ilimitada)",
+            p10_vetrina_desc: "Toma 1 Carta de Obra. ¡Las cartas <strong>no</strong> se reponen inmediatamente!<br><span style='font-size: 0.9rem; color: #666;'><em>(Opc: Paga 1 Moneda para descartar las restantes y revelar 5 nuevas).</em></span>",
+            p10_forno_title: "🔥 5. El Horno",
+            p10_bocca: "Boca del Horno",
+            p10_bocca_desc: "<strong>Gratis:</strong> Cuece 1 Obra.<br><strong>Paga 2 Monedas:</strong> Cuece TODAS.",
+            p10_coda: "Cola (Leña Extra)",
+            p10_coda_desc: "Cuesta <strong>+1 Moneda</strong> extra.",
+            p11_title: "🏆 Fin de Partida",
+            p11_cond_title: "Condiciones de Fin",
+            p11_cond_list: "<li>7ª Obra completada.</li><li>Final del 7º Día.</li>",
+            p11_score_title: "Puntuación",
+            p11_score_list: "<li>Puntos Vía de la Gloria.</li><li>Cartas de Objetivo.</li><li>1 PV por cada 2 Monedas.</li><li>+3 PV 'Maestro Prisa'.</li>",
+            p11_winner: "¡Gana el Gran Maestro!",
+            p12_credits: "CRÉDITOS",
+            p12_staff: "<strong>Diseño de Juego:</strong><br>Massimiliano Sabato<br><br><strong>Artista:</strong><br>Antonio Solimente<br><br><strong>Gráficos:</strong><br>Massimiliano Sabato",
+            p12_copy: "Juego de Mesa Vietri &copy; 2024 - v5.2"
+        });
+
+        Object.assign(TRANSLATIONS.de, {
+            p10_title: "📍 Aktionen (3/3)",
+            p10_piazza_title: "📜 4. Der Platz",
+            p10_vetrina: "Auslage (Unbegrenzter Bereich)",
+            p10_vetrina_desc: "Nimm 1 Werkkarte. Karten werden <strong>nicht</strong> sofort ersetzt!<br><span style='font-size: 0.9rem; color: #666;'><em>(Opt: Zahle 1 Münze, um den Rest abzuwerfen und 5 neue aufzudecken).</em></span>",
+            p10_forno_title: "🔥 5. Der Ofen",
+            p10_bocca: "Ofenöffnung",
+            p10_bocca_desc: "<strong>Gratis:</strong> Brenne 1 Werk.<br><strong>Zahle 2 Münzen:</strong> Brenne ALLE.",
+            p10_coda: "Warteschlange (Extra Holz)",
+            p10_coda_desc: "Kostet <strong>+1 Münze</strong> extra.",
+            p11_title: "🏆 Spielende",
+            p11_cond_title: "Endbedingungen",
+            p11_cond_list: "<li>7. Werk vollendet.</li><li>Ende des 7. Tages.</li>",
+            p11_score_title: "Wertung",
+            p11_score_list: "<li>Punkte Ruhmespfad.</li><li>Zielkarten.</li><li>1 SP alle 2 Münzen.</li><li>+3 SP 'Eiliger Meister'.</li>",
+            p11_winner: "Der Großmeister gewinnt!",
+            p12_credits: "CREDITS",
+            p12_staff: "<strong>Spieldesign:</strong><br>Massimiliano Sabato<br><br><strong>Künstler:</strong><br>Antonio Solimente<br><br><strong>Grafik:</strong><br>Massimiliano Sabato",
+            p12_copy: "Vietri Board Game &copy; 2024 - v5.2"
+        });
+    </script>
+</body>
+
+</html>
