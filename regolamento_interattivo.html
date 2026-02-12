@@ -667,7 +667,7 @@
                         <li><strong>Cubetti:</strong> Argilla e Pigmenti.</li>
                     </ul>
                     <img src="img/rules/components_meeples.png" class="rule-img" alt="Meeple & Risorse"
-                        style="max-height: 15vh;"
+                        style="max-height: 15vh; max-width: 100%;"
                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                     <div class="img-placeholder" style="display:none;"
                         data-label="Meeple: img/rules/components_meeples.png"></div>
@@ -681,7 +681,7 @@
                         <li><strong>Monete (Gialle).</strong></li>
                     </ul>
                     <img src="img/rules/components_cards.png" class="rule-img" alt="Carte & Segnalini"
-                        style="max-height: 15vh;"
+                        style="max-height: 15vh; max-width: 100%;"
                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                     <div class="img-placeholder" style="display:none;"
                         data-label="Carte: img/rules/components_cards.png">
@@ -801,143 +801,142 @@
             <div class="page-number">6</div>
         </div>
 
-        <!-- P7: FLUSSO -->
+        <!-- P7: FLUSSO DI GIOCO -->
         <div class="page" id="p6">
             <h2 data-i18n="p7_title">🔄 Flusso di Gioco</h2>
-            <div class="flavor-text" style="padding: 1.5vh;" data-i18n="p7_flavor">7 Giorni per vincere.</div>
-
-            <div class="action-box">
-                <h3 style="margin-top:0;" data-i18n="p7_box1_title">Fase A: Al Lavoro</h3>
-                <p data-i18n="p7_box1_text1">A partire dal Primo Giocatore, piazza <strong>1 Assistente</strong> su uno
-                    spazio libero ed esegui
-                    l'azione.</p>
-                <p data-i18n="p7_box1_text2">Continua a giro finché tutti hanno piazzato i loro <strong>3
-                        Assistenti</strong>.</p>
-            </div>
-
-            <div class="action-box" style="border-left-color: #95a5a6;">
-                <h3 style="margin-top:0; color: #7f8c8d;" data-i18n="p7_box2_title">Fase B: Tramonto</h3>
-                <ol style="margin:0;" data-i18n="p7_box2_list">
-                    <li>Riprendere gli Assistenti.</li>
-                    <li>Avanzare il Sole ☀️.</li>
-                    <li>Passare il Gallo 🐓 a sinistra.</li>
-                    <li><strong>Rifornimento:</strong> Riempire la Bancarella (4) e la Piazza (fino a 5 carte).</li>
-                </ol>
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center;">
+                <p data-i18n="p7_text1">La partita dura <strong>7 Giorni</strong> (o Raund). Ogni Giorno ha 3 Fasi:</p>
+                <div class="action-box" style="border-left-color: var(--vietri-orange);">
+                    <h3 style="margin-top:0;" data-i18n="p7_phase1_title">1. Mattina (Piazzamento)</h3>
+                    <p data-i18n="p7_phase1_desc">A turno, ogni giocatore piazza <strong>1 Assistente</strong> sulla
+                        mappa ed <strong>esegue
+                            SUBITO</strong> l'azione.</p>
+                    <small data-i18n="p7_phase1_note">Si continua così finché tutti hanno piazzato i loro 3
+                        Assistenti.</small>
+                </div>
+                <div class="action-box" style="border-left-color: var(--vietri-blue);">
+                    <h3 style="margin-top:0;" data-i18n="p7_phase2_title">2. Sera (Ritorno a Casa)</h3>
+                    <p data-i18n="p7_phase2_desc">Tutti riprendono i propri Assistenti (eccetto quelli nel Tornio, che
+                        restano lì).</p>
+                </div>
+                <div class="action-box" style="border-left-color: var(--vietri-yellow);">
+                    <h3 style="margin-top:0;" data-i18n="p7_phase3_title">3. Notte (Manutenzione)</h3>
+                    <ul style="margin-bottom: 0;" data-i18n="p7_phase3_list">
+                        <li>Muovi il Sole ☀️ avanti di 1 Giorno.</li>
+                        <li>Riempi il Mercato e la Piazza (carte).</li>
+                        <li>Passa il Primo Giocatore a sinistra.</li>
+                    </ul>
+                </div>
             </div>
             <div class="page-number">7</div>
         </div>
 
-        <!-- P8: AZIONI FIUME E MERCATO -->
+        <!-- P8: LE AZIONI (1/3) -->
         <div class="page" id="p7">
-            <h2 data-i18n="p8_title">📍 Azioni (1/3)</h2>
+            <h2 data-i18n="p8_title">⚡ Le Azioni (1/3)</h2>
+            <div style="flex-grow: 1; overflow-y: auto;">
+                <div class="action-box">
+                    <div class="tag-row"><span style="font-size: 1.5rem; margin-right: 5px;">🌊</span> <span
+                            data-i18n="p8_act1_title">Fiume (Argilla)</span></div>
+                    <p><strong>Costo:</strong> 0 Monete.<br>
+                        <strong>Effetto:</strong> Prendi <strong>2 Argilla</strong> dalla riserva.
+                    </p>
+                    <small data-i18n="p8_act1_note">Essenziale per iniziare qualsiasi opera.</small>
+                </div>
 
-            <div class="action-box">
-                <h3 data-i18n="p8_box1_title">🌊 1. Il Fiume</h3>
-                <div class="tag-row"><svg class="mini-icon">
-                        <use href="#meeple-paid"></use>
-                    </svg> <span data-i18n="p8_riv1_text">Noleggio (1 Moneta)</span></div>
-                <p style="margin-left: 25px;" data-i18n="p8_riv1_desc">Prendi <strong>3 Argilla</strong>.</p>
-                <div class="tag-row"><svg class="mini-icon">
-                        <use href="#meeple-group"></use>
-                    </svg> <span data-i18n="p8_riv2_text">Riva (Gratis)</span></div>
-                <p style="margin-left: 25px;" data-i18n="p8_riv2_desc">Prendi <strong>2 Argilla</strong>.</p>
-            </div>
+                <div class="action-box">
+                    <div class="tag-row"><span style="font-size: 1.5rem; margin-right: 5px;">🏪</span> <span
+                            data-i18n="p8_act2_title">Mercato (Pigmenti)</span></div>
+                    <p><strong>Costo:</strong> Variabile (0-2 Monete).<br>
+                        <strong>Effetto:</strong> Compra 1 Pigmento dalla bancarella.
+                    </p>
+                    <img src="img/rules/market_cost.png" class="rule-img"
+                        style="height: 6vh; margin: 5px 0; max-width: 100%;" alt="Costi Mercato"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <div class="img-placeholder" style="height: 6vh; display:none;"
+                        data-label="Market: img/rules/market_cost.png"></div>
+                </div>
 
-            <div class="action-box">
-                <h3 data-i18n="p8_box2_title">🎨 2. Il Mercato</h3>
-                <div class="tag-row"><svg class="mini-icon">
-                        <use href="#meeple-paid"></use>
-                    </svg> <span data-i18n="p8_mkt1_text">1a Scelta (1 Moneta)</span></div>
-                <p style="margin-left: 25px;" data-i18n="p8_mkt1_desc">Prendi 1 Pigmento Visibile O pesca 2.</p>
-                <div class="tag-row"><svg class="mini-icon">
-                        <use href="#meeple-group"></use>
-                    </svg> <span data-i18n="p8_mkt2_text">Grossista (2 Monete)</span></div>
-                <p style="margin-left: 25px;" data-i18n="p8_mkt2_desc">Prendi 2 Visibili O pesca 3.</p>
-                <div class="tag-row"><svg class="mini-icon">
-                        <use href="#meeple-group"></use>
-                    </svg> <span data-i18n="p8_mkt3_text">Baratto (Gratis)</span></div>
-                <p style="margin-left: 25px;" data-i18n="p8_mkt3_desc">Dai 2 tuoi -> Prendi 1 Visibile.</p>
+                <div class="action-box">
+                    <div class="tag-row"><span style="font-size: 1.5rem; margin-right: 5px;">🤝</span> <span
+                            data-i18n="p8_act3_title">Scambio (Mercato)</span></div>
+                    <p><strong>Costo:</strong> 0 Monete.<br>
+                        <strong>Effetto:</strong> Scambia 1 tua risorsa (Argilla/Pigmento) con 1 Pigmento a scelta dal
+                        sacchetto (o bancarella).
+                    </p>
+                </div>
             </div>
             <div class="page-number">8</div>
         </div>
 
-        <!-- P9: AZIONE BOTTEGA -->
+        <!-- P9: LE AZIONI (2/3) -->
         <div class="page" id="p8">
-            <h2 data-i18n="p9_title">📍 Azioni (2/3)</h2>
-
-            <div class="action-box"
-                style="border-left-color: var(--vietri-orange); height: 100%; display: flex; flex-direction: column;">
-                <h3 style="color: var(--vietri-orange);" data-i18n="p9_box_title">🏺 3. La Bottega</h3>
-
-                <div class="tag-row"><svg class="mini-icon">
-                        <use href="#meeple-group"></use>
-                    </svg> <span data-i18n="p9_tag">Bottega Comune</span></div>
-                <p style="margin-left: 25px;" data-i18n="p9_text">Area Illimitata. Nessun limite di giocatori.</p>
-
-                <hr style="border: 0; border-top: 1px dashed #ccc; margin: 2vh 0;">
-
-                <h4 data-i18n="p9_sub_title">Azioni di Lavoro:</h4>
-                <ul data-i18n="p9_list">
-                    <li><strong>Caricare (Gratis):</strong> Sposta cubetti sul Tornio.</li>
-                    <li><strong>Ruotare (Gratis):</strong> Gira i dischi (max 2 scatti).</li>
-                    <li><strong>Ripulire (1 Moneta):</strong> Scarta cubetti dal tornio.</li>
-                </ul>
-
-                <div style="background: #fff3cd; padding: 1vh; border-radius: 6px; margin-top: auto; color: #856404; font-size: 0.9rem;"
-                    data-i18n="p9_special">
-                    <strong>✋ Regola Speciale:</strong> Paga 1 Moneta in qualsiasi momento per spostare un cubetto già
-                    sul Tornio.
+            <h2 data-i18n="p9_title">⚡ Le Azioni (2/3)</h2>
+            <div style="flex-grow: 1; overflow-y: auto;">
+                <div class="action-box">
+                    <div class="tag-row"><span style="font-size: 1.5rem; margin-right: 5px;">📜</span> <span
+                            data-i18n="p9_act1_title">Piazza (Contratti)</span></div>
+                    <p><strong>Costo:</strong> 0 Monete.<br>
+                        <strong>Effetto:</strong> Prendi <strong>1 Carta Opera</strong> dalla Piazza.
+                    </p>
+                    < small style="color:red;" data-i18n="p9_act1_note">Limite mano: 3 Carte Opera in attesa non
+                        svolte.</small>
                 </div>
+
+                <div class="action-box">
+                    <div class="tag-row"><span style="font-size: 1.5rem; margin-right: 5px;">🛠️</span> <span
+                            data-i18n="p9_act2_title">Bottega (Tornio)</span></div>
+                    <p><strong>Costo:</strong> 0 Monete.<br>
+                        <strong>Effetto:</strong> Piazza l'Assistente sul TUO Tornio (o di un altro se hai il permesso)
+                        per iniziare a lavorare un'opera.
+                    </p>
+                    <ul style="margin-top: 5px;" data-i18n="p9_act2_list">
+                        <li>Metti l'Argilla richiesta sulla carta.</li>
+                        <li>L'Assistente resta bloccato finché l'opera non è finita!</li>
+                    </ul>
+                </div>
+                <img src="img/rules/lathe_work.png" class="rule-img" style="height: 8vh; max-width: 100%;"
+                    alt="Lavoro al Tornio"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="img-placeholder" style="height: 8vh; display:none;"
+                    data-label="Lathe: img/rules/lathe_work.png"></div>
             </div>
             <div class="page-number">9</div>
         </div>
 
-        <!-- P10: PIAZZA E FORNO -->
+        <!-- P10: LE AZIONI (3/3) -->
         <div class="page" id="p9">
-            <h2 data-i18n="p10_title">📍 Azioni (3/3)</h2>
+            <h2 data-i18n="p10_title">⚡ Le Azioni (3/3)</h2>
+            <div style="flex-grow: 1; display: flex; flex-direction: column;">
+                <div class="action-box" style="margin-bottom: 2vh;">
+                    <div class="tag-row"><span style="font-size: 1.5rem; margin-right: 5px;">🔥</span> <span
+                            data-i18n="p10_act1_title">Forno (Cottura)</span></div>
+                    <p data-i18n="p10_act1_desc">Completa un'opera che hai sul Tornio.</p>
+                    <div class="action-box"
+                        style="background: #fff3e0; margin: 1vh 0; border: 1px dashed var(--vietri-orange);">
+                        <strong data-i18n="p10_cost_title">Costo Cottura:</strong>
+                        <ul style="margin: 0; padding-left: 15px;" data-i18n="p10_cost_list">
+                            <li><strong>1° Slot:</strong> 1 Legna (paghi 1 Moneta).</li>
+                            <li><strong>2° Slot:</strong> 2 Legna (paghi 2 Monete).</li>
+                        </ul>
+                    </div>
+                    <div style="display:flex; align-items:center; margin-top: 5px;">
+                        <svg class="meeple-icon" style="height: 3vh; margin-right: 5px;">
+                            <use href="#meeple-group"></use>
+                        </svg> <span data-i18n="p10_coda">Coda (Legna Extra)</span>
+                    </div>
+                    <p style="margin-left: 25px;" data-i18n="p10_coda_desc">Costa <strong>+1 Moneta</strong> rispetto
+                        sopra.
+                    </p>
 
-            <div class="action-box">
-                <h3 data-i18n="p10_piazza_title">📜 4. La Piazza</h3>
-                <div class="tag-row"><svg class="mini-icon">
-                        <use href="#meeple-group"></use>
-                    </svg> <span data-i18n="p10_vetrina">Vetrina (Area Illimitata)</span></div>
-                <p style="margin-left: 25px;" data-i18n="p10_vetrina_desc">Prendi 1 Carta Opera. Le carte
-                    <strong>non</strong> vengono rimpiazzate
-                    subito!<br>
-                    <span style="font-size: 0.9rem; color: #666;"><em>(Opz: Paga 1$ per scartare le rimanenti e
-                            rivelarne 5 nuove).</em></span>
-                </p>
+                    <img src="img/rules/oven_complete.png" class="rule-img"
+                        style="height: 6vh; margin-top: 1vh; max-width: 100%;" alt="Opera Completata"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <div class="img-placeholder" style="height: 6vh; margin-top: 1vh; display:none;"
+                        data-label="Oven: img/rules/oven_complete.png"></div>
+                </div>
+                <div class="page-number">10</div>
             </div>
-
-            <div class="action-box" style="border-left-color: #c0392b; flex-grow: 1;">
-                <h3 style="color: #c0392b;" data-i18n="p10_forno_title">🔥 5. Il Forno</h3>
-
-                <div class="tag-row"><svg class="mini-icon">
-                        <use href="#meeple-free"></use>
-                    </svg> <span data-i18n="p10_bocca">Bocca del Forno</span></div>
-                <p style="margin-left: 25px;" data-i18n="p10_bocca_desc"><strong>Gratis:</strong> Cuoci 1
-                    Opera.<br><strong>Paga 2$:</strong> Cuoci
-                    TUTTE.</p>
-
-                <div class="tag-row"><svg class="mini-icon">
-                        <use href="#meeple-group"></use>
-                    </svg> <span data-i18n="p10_coda">Coda (Legna Extra)</span></div>
-                <p style="margin-left: 25px;" data-i18n="p10_coda_desc">Costa <strong>+1 Moneta</strong> rispetto sopra.
-                </p>
-
-                <div class="tag-row"><svg class="mini-icon">
-                        <use href="#meeple-group"></use>
-                    </svg> <span data-i18n="p10_coda">Coda (Legna Extra)</span></div>
-                <p style="margin-left: 25px;" data-i18n="p10_coda_desc">Costa <strong>+1 Moneta</strong> rispetto sopra.
-                </p>
-
-                <img src="img/rules/oven_complete.png" class="rule-img" style="height: 8vh; margin-top: 2vh;"
-                    alt="Opera Completata"
-                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                <div class="img-placeholder" style="height: 8vh; margin-top: 2vh; display:none;"
-                    data-label="Oven: img/rules/oven_complete.png"></div>
-            </div>
-            <div class="page-number">10</div>
         </div>
 
         <!-- P11: FINE -->
