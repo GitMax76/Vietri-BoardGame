@@ -10,6 +10,7 @@ export default defineConfig({
         editor: resolve(__dirname, 'editor_vietri.html'),
         mobile: resolve(__dirname, 'index_smart.html'),
         rules: resolve(__dirname, 'rules.html'), // Ensure rules page is included
+        interactive_rules: resolve(__dirname, 'regolamento_interattivo.html'), // Fix 404
       },
     },
   },
