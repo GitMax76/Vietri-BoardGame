@@ -754,11 +754,10 @@
                 <li><strong>4°:</strong> 5 Monete - 2 Argilla - 2 Pigmenti.</li>
             </ul>
         </div>
-    </div>
-    <img src="img/rules/setup_player.png" class="rule-img" alt="Plancia Giocatore"
-        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-    <div class="img-placeholder" style="display:none;" data-label="Player: img/rules/setup_player.png"></div>
-    <div class="page-number">5</div>
+        <img src="img/rules/setup_player.png" class="rule-img" alt="Plancia Giocatore"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="img-placeholder" style="display:none;" data-label="Player: img/rules/setup_player.png"></div>
+        <div class="page-number">5</div>
     </div>
 
     <!-- P6: LEGENDA SIMBOLI -->
@@ -1023,7 +1022,7 @@
         let currentPage = 0;
         const totalPages = 12;
         const pages = document.querySelectorAll('.page');
-        const navButtons = document.querySelectorAll('nav button:not(.print-btn)'); // Escludi PDF dal loop dei bottoni di navigazione
+        const navButtons = document.querySelectorAll('nav button:not(.print-btn):not(.lang-btn)'); // Escludi PDF e Lingue
         const btnPrev = document.getElementById('btnPrev');
         const btnNext = document.getElementById('btnNext');
 
