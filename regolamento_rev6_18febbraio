@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vietri: Maestri della Ceramica</title>
+    
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;800&family=Winky+Rough&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Palette Vietri */
+            --vietri-yellow: #FFD700;
+            --vietri-blue: #0055A4;
+            --vietri-orange: #FF8C00;
+            --text-dark: #2c3e50;
+            --paper-white: #fdfbf7;
+            
+            /* Colori Funzionali */
+            --sidebar-bg: #fff;
+            --sidebar-border: var(--vietri-blue);
+            --box-tip-bg: #fffde7;
+            --box-tip-border: var(--vietri-yellow);
+            --box-tech-bg: #e3f2fd;
+            --box-tech-border: var(--vietri-blue);
+            --box-example-bg: #e8f5e9;
+            --box-example-border: #2e7d32;
+            --exclusive-color: #d63384;
+            --unlimited-color: #0d6efd;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            margin: 0;
+            padding-top: 90px; /* Spazio per la navbar fissa */
+            padding-bottom: 60px;
+            
+            /* Sfondo Vietri Pattern (Pois Blu su Azzurro) */
+            background-color: #e6f2ff;
+            background-image: 
+                radial-gradient(var(--vietri-blue) 2px, transparent 2px),
+                radial-gradient(var(--vietri-blue) 2px, transparent 2px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+        }
+
+        /* CONTENITORE PRINCIPALE (Foglio di Carta con Cornice Vietri) */
+        .main-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: var(--paper-white);
+            padding: 60px;
+            border-radius: 4px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            position: relative;
+            
+            /* Cornice Stile Ceramica Vietrese */
+            border: 8px solid var(--vietri-blue);
+            outline: 4px solid var(--vietri-yellow);
+            outline-offset: -16px;
+        }
+
+        /* Decorazione angolare (Opzionale, semplice CSS) */
+        .main-container::after {
+            content: "";
+            position: absolute;
+            top: 10px; left: 10px; right: 10px; bottom: 10px;
+            border: 1px dashed var(--vietri-blue);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* --- NAVIGAZIONE FISSA --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 70px;
+            padding: 0 30px;
+            background: rgba(255, 255, 255, 0.98);
+            border-bottom: 5px solid var(--vietri-yellow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-sizing: border-box;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .nav-left { display: flex; gap: 15px; }
+
+        .btn {
+            background-color: var(--vietri-blue);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .btn:hover { 
+            background-color: var(--vietri-orange); 
+            transform: translateY(-2px);
+        }
+
+        /* --- SELETTORE LINGUA --- */
+        .lang-selector { display: flex; gap: 10px; }
+        .lang-btn {
+            background: none; border: 2px solid transparent; cursor: pointer;
+            padding: 2px; width: 44px; height: 34px; transition: transform 0.2s;
+            border-radius: 6px;
+        }
+        .lang-btn svg { width: 100%; height: 100%; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.15); object-fit: cover; }
+        .lang-btn:hover { transform: scale(1.15); }
+        .lang-btn.active { transform: scale(1.1); border-color: var(--vietri-blue); background-color: #e3f2fd; }
+
+        /* --- TIPOGRAFIA --- */
+        header { text-align: center; margin-bottom: 40px; position: relative; z-index: 1; }
+        
+        h1 { 
+            font-family: 'Winky Rough', cursive; 
+            color: var(--vietri-blue); 
+            font-size: 4em; 
+            margin: 0; 
+            letter-spacing: 2px; 
+            text-shadow: 3px 3px 0px #e6f2ff;
+        }
+        
+        .subtitle { 
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4em; 
+            color: var(--vietri-orange); 
+            font-weight: 600; 
+            margin-top: 10px;
+        }
+
+        /* INDICE STILE VIETRI */
+        .index-container {
+            background-color: #fff;
+            border: 2px solid var(--vietri-blue);
+            border-radius: 12px;
+            padding: 20px 40px;
+            margin: 0 auto 60px auto;
+            max-width: 850px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            box-shadow: 5px 5px 0px rgba(0,85,164,0.1);
+        }
+        .index-title {
+            font-family: 'Winky Rough', cursive;
+            color: var(--vietri-orange);
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            border-bottom: 2px dashed #ddd;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+        .index-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px 30px;
+        }
+        .index-list li a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.95em;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 10px;
+            border-radius: 20px;
+        }
+        .index-list li a:hover {
+            color: var(--vietri-blue);
+            background-color: #f0f7ff;
+        }
+        /* Icone nell'indice */
+        .index-icon {
+            font-size: 1.2em;
+        }
+
+        /* --- SEZIONI --- */
+        h2 { 
+            font-family: 'Winky Rough', cursive; 
+            color: var(--vietri-blue); 
+            border-bottom: 3px dashed var(--vietri-yellow); 
+            padding-bottom: 10px; 
+            margin-top: 0; 
+            font-size: 2.2em; 
+            scroll-margin-top: 100px; /* Per lo scroll dell'indice */
+        }
+        
+        h3 { 
+            font-family: 'Winky Rough', cursive; 
+            color: var(--vietri-orange); 
+            margin-top: 35px; 
+            font-size: 1.6em;
+            scroll-margin-top: 100px;
+        }
+
+        /* --- LAYOUT GRIGLIA --- */
+        .section-block {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 50px;
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #eee; /* Divisore sezioni */
+            break-inside: avoid;
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 900px) {
+            .section-block { grid-template-columns: 1fr; gap: 30px; }
+            .main-container { padding: 30px 20px; width: 92%; border-width: 4px; outline-width: 2px; outline-offset: -8px; }
+            h1 { font-size: 2.5em; }
+            .top-nav { flex-direction: column; height: auto; padding: 15px; }
+            .index-list { flex-direction: column; gap: 10px; }
+        }
+
+        /* --- BOX E NOTAZIONI --- */
+        .sidebar-note {
+            background-color: var(--sidebar-bg);
+            border: 2px solid var(--sidebar-border);
+            padding: 25px;
+            font-size: 0.95em;
+            height: fit-content;
+            border-radius: 12px;
+            box-shadow: 5px 5px 0px rgba(0,85,164,0.1);
+        }
+        .sidebar-note strong { color: var(--vietri-blue); display: block; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
+        
+        .box-tip {
+            background-color: var(--box-tip-bg);
+            border: 2px solid var(--box-tip-border);
+            border-left-width: 8px;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+        }
+        
+        .box-tech {
+            background-color: var(--box-tech-bg);
+            border: 2px solid var(--box-tech-border);
+            border-left-width: 8px;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+        }
+        
+        .box-example {
+            background-color: var(--box-example-bg);
+            border: 2px solid var(--box-example-border);
+            border-left-width: 8px;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+            color: #1b5e20;
+        }
+        
+        .box-example strong {
+            font-family: 'Winky Rough', cursive;
+            font-size: 1.3em;
+            color: #1b5e20;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .img-placeholder {
+            background-color: #f0f4f8; 
+            border: 3px dashed #cbd5e0; 
+            color: #8898aa; 
+            padding: 40px; 
+            text-align: center; 
+            margin: 20px 0; 
+            border-radius: 12px; 
+            font-weight: 600;
+            position: relative;
+        }
+        .img-placeholder::before { content: "🖼️ "; font-size: 1.5em; display: block; margin-bottom: 10px; }
+
+        .action-type { font-weight: 800; margin-right: 5px; font-family: 'Montserrat', sans-serif; }
+        .exclusive { color: #D81B60; }
+        .unlimited { color: #0277BD; }
+
+        ul { padding-left: 20px; }
+        li { margin-bottom: 8px; }
+
+        /* GESTIONE LINGUE */
+        .lang-content { display: none; animation: fadeIn 0.5s; }
+        .lang-content.active { display: block; }
+        
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* STAMPA */
+        @media print {
+            nav { display: none !important; }
+            body { padding: 0; background: white; font-size: 11pt; }
+            .main-container { box-shadow: none; border: none; outline: none; padding: 0; width: 100%; max-width: 100%; }
+            .main-container::after { display: none; }
+            .index-container { display: none; } /* Nascondi indice in stampa se vuoi */
+            .section-block { page-break-inside: avoid; gap: 20px; border-bottom: 1px solid #ccc; }
+            .sidebar-note, .box-tip, .box-tech, .box-example { -webkit-print-color-adjust: exact; border-width: 1px; border-left-width: 5px; }
+            a { text-decoration: none; color: black; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGAZIONE -->
+    <nav>
+        <div class="nav-left">
+            <a href="index.html" class="btn">🏠 Home</a>
+            <button class="btn" onclick="window.print()">🖨️ PDF</button>
+        </div>
+        <div class="lang-selector">
+            <button class="lang-btn active" onclick="setLang('it')" title="Italiano">
+                <svg viewBox="0 0 3 2"><rect width="1" height="2" x="0" fill="#009246"/><rect width="1" height="2" x="1" fill="#fff"/><rect width="1" height="2" x="2" fill="#ce2b37"/></svg>
+            </button>
+            <button class="lang-btn" onclick="setLang('en')" title="English">
+                <svg viewBox="0 0 60 30"><rect width="60" height="30" fill="#00247d"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#cf142b" stroke-width="2"/><path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="#cf142b" stroke-width="6"/></svg>
+            </button>
+            <button class="lang-btn" onclick="setLang('fr')" title="Français">
+                <svg viewBox="0 0 3 2"><rect width="1" height="2" x="0" fill="#002395"/><rect width="1" height="2" x="1" fill="#fff"/><rect width="1" height="2" x="2" fill="#ed2939"/></svg>
+            </button>
+            <button class="lang-btn" onclick="setLang('de')" title="Deutsch">
+                <svg viewBox="0 0 5 3"><rect width="5" height="1" y="0" fill="#000"/><rect width="5" height="1" y="1" fill="#d00"/><rect width="5" height="1" y="2" fill="#ffce00"/></svg>
+            </button>
+            <button class="lang-btn" onclick="setLang('es')" title="Español">
+                 <svg viewBox="0 0 3 2"><rect width="3" height="2" fill="#AA151B"/><rect width="3" height="1" y="0.5" fill="#F1BF00"/></svg>
+            </button>
+        </div>
+    </nav>
+
+    <div class="main-container">
+
+    <!-- ========================================= -->
+    <!-- ITALIANO -->
+    <!-- ========================================= -->
+    <div id="content-it" class="lang-content active">
+        <header>
+            <h1>🏺 Vietri</h1>
+            <div class="subtitle">Maestri della Ceramica - Regolamento 6.7</div>
+        </header>
+
+        <!-- INDICE ITALIANO -->
+        <div class="index-container">
+            <div class="index-title">Indice Rapido</div>
+            <ul class="index-list">
+                <li><a href="#it-intro"><span class="index-icon">📜</span> Introduzione</a></li>
+                <li><a href="#it-comp"><span class="index-icon">📦</span> Componenti</a></li>
+                <li><a href="#it-setup"><span class="index-icon">🛠️</span> Setup</a></li>
+                <li><a href="#it-flow"><span class="index-icon">🔄</span> Flusso di Gioco</a></li>
+                <li><a href="#it-actions"><span class="index-icon">⚡</span> Le Azioni</a></li>
+                <li><a href="#it-end"><span class="index-icon">🏆</span> Fine Partita</a></li>
+            </ul>
+        </div>
+
+        <div class="section-block" id="it-intro">
+            <div class="main-content">
+                <h2>Introduzione</h2>
+                <p><strong>Vietri sul Mare.</strong> Dove l'azzurro del Tirreno incontra l'oro dei limoni, il tempo sembra fermarsi tra i vicoli delle botteghe. Qui, l'arte della ceramica non è un mestiere, è un'eredità. Le fornaci ardono, i torni girano e l'argilla grezza attende solo il tocco di un Maestro per trasformarsi in un'opera eterna.</p>
+                <p>In questo gioco, non siete semplici artigiani: siete i custodi di una tradizione secolare. Dovrete gestire la vostra bottega, selezionare i pigmenti più puri al mercato e modellare l'argilla con maestria sul vostro <strong>Tornio Asimmetrico</strong>. Ma attenzione: il prestigio si conquista non solo con la bellezza, ma con la capacità di allineare perfettamente gli elementi al momento giusto. Il titolo di <strong>Gran Maestro di Vietri</strong> attende solo uno di voi.</p>
+            </div>
+            <aside class="sidebar-note">
+                <strong>In Breve</strong>
+                <p><strong>Giocatori:</strong> 2-4</p>
+                <p><strong>Durata:</strong> 45-60 min</p>
+                <p><strong>Scopo:</strong> Prestigio (⭐)</p>
+            </aside>
+        </div>
+
+        <div class="section-block" id="it-comp">
+            <div class="main-content">
+                <h2>1. Componenti</h2>
+                <ul>
+                    <li><strong>1 Tabellone Comune:</strong> Diviso in 5 Zone (Fiume, Mercato, Bottega, Piazza, Forno). Include il Tracciato Calendario (7 Giorni) e il Tracciato Punti.</li>
+                    <li><strong>4 Plance Giocatore "Bottega":</strong>
+                        <ul>
+                            <li><em>Sinistra:</em> <strong>Cassa</strong> (Tracciato Monete).</li>
+                            <li><em>Destra:</em> <strong>Deposito</strong> (Area stoccaggio per cubetti non lavorati).</li>
+                            <li><em>Centro:</em> <strong>Il Tornio Asimmetrico</strong>. Due ruote concentriche indipendenti con slot fisici.</li>
+                            <li><em>Alto:</em> <strong>Bocca del Forno</strong> (Indicatore a forma di freccia posto a "Nord").</li>
+                        </ul>
+                    </li>
+                    <li><strong>Risorse:</strong> Argilla (Bianchi) e Pigmenti (Colorati: Blu, Giallo, Rosso, Verde).</li>
+                    <li><strong>48 Carte Opera:</strong> (Verde=Facile, Giallo=Medio, Rosso=Difficile).</li>
+                    <li><strong>Segnalini:</strong> Gallo (Primo giocatore), Sole (Tempo), Monete.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section-block" id="it-setup">
+            <div class="main-content">
+                <h2>3. Preparazione (Setup)</h2>
+                <h3>A. Sulla Mappa</h3>
+                <ol>
+                    <li><strong>Risorse:</strong> Argilla in riserva comune. Pigmenti nel sacchetto.</li>
+                    <li><strong>Mercato:</strong> Estrai 4 Pigmenti e piazzali sulla Bancarella.</li>
+                    <li><strong>Piazza:</strong> Rivela 4 Carte Opera.</li>
+                    <li><strong>Calendario:</strong> Sole su "Giorno 1".</li>
+                </ol>
+
+                <h3>B. I Giocatori (Setup Asimmetrico)</h3>
+                <p>Ogni giocatore riceve Plancia, 3 Assistenti e 1 Asinello. Si determina il primo giocatore (Gallo).</p>
+                <div class="box-tech">
+                    <strong>DOTAZIONE INIZIALE (Compensazione)</strong><br>
+                    Per bilanciare il vantaggio di muovere per primi, le risorse aumentano per gli ultimi di turno:
+                    <ul>
+                        <li><strong>1° Giocatore:</strong> 3 Monete - 1 Argilla - 2 Pigmenti.</li>
+                        <li><strong>2° Giocatore:</strong> 4 Monete - 1 Argilla - 2 Pigmenti.</li>
+                        <li><strong>3° Giocatore:</strong> 4 Monete - 2 Argilla - 2 Pigmenti.</li>
+                        <li><strong>4° Giocatore:</strong> 5 Monete - 2 Argilla - 2 Pigmenti.</li>
+                    </ul>
+                </div>
+                <p><strong>Draft dei Contratti:</strong> Distribuite le carte iniziali con metodo "Draft Inverso" (l'ultimo giocatore sceglie per primo tra 5 carte, poi passa le restanti al penultimo, ecc.).</p>
+            </div>
+        </div>
+
+        <div class="section-block" id="it-flow">
+            <div class="main-content">
+                <h2>4. Flusso di Gioco ed Esempio di Turno</h2>
+                <p>Il gioco dura 7 Giorni (Round). In ogni Giorno, a turno, i giocatori piazzano un Assistente.</p>
+                
+                <div class="box-example">
+                    <strong>🎬 ESEMPIO DI FLUSSO DI GIOCO</strong>
+                    È il turno di <strong>Marco</strong> (Giocatore Rosso). Ha bisogno di Pigmenti Gialli per la sua opera.<br><br>
+                    1. <strong>Piazzamento:</strong> Marco prende uno dei suoi Assistenti Rossi e lo piazza nello spazio <em>"Prima Scelta"</em> del Mercato (che è libero).<br>
+                    2. <strong>Pagamento:</strong> L'azione costa 1 Moneta. Marco scala 1 Moneta dal suo tracciato Cassa.<br>
+                    3. <strong>Esecuzione:</strong> Marco prende il Pigmento Giallo visibile sulla Bancarella e lo mette nel suo Deposito.<br>
+                    4. <strong>Fine Turno:</strong> Tocca ora a <strong>Giulia</strong> (Giocatore Blu) alla sua sinistra.
+                </div>
+            </div>
+        </div>
+
+        <div class="section-block" id="it-actions">
+            <div class="main-content">
+                <h2>5. Le Azioni nel Dettaglio</h2>
+                <p>In ogni turno piazzi 1 Assistente in uno spazio. Ci sono due tipi di spazi:</p>
+                <ul>
+                    <li><span class="action-type exclusive">⭕ ESCLUSIVO (Cerchio):</span> Solo 1 Assistente per round. Blocca gli altri.</li>
+                    <li><span class="action-type unlimited">♾️ ILLIMITATO:</span> Nessun limite di posti, ma spesso costa di più o rende meno.</li>
+                </ul>
+
+                <h3>🌊 1. IL FIUME (Argilla)</h3>
+                <ul>
+                    <li><span class="exclusive">⭕ Noleggio (1 Moneta):</span> Prendi <strong>3 Argilla</strong>.</li>
+                    <li><span class="unlimited">♾️ Riva (Gratis):</span> Prendi <strong>2 Argilla</strong>.</li>
+                </ul>
+                <div class="box-example">
+                    <strong>Esempio Fiume</strong><br>
+                    Marco ha urgente bisogno di molta argilla. Lo spazio "Noleggio" (che dà 3 argille) è libero. Marco paga 1 Moneta, piazza lì il suo assistente e prende 3 cubetti bianchi. Se "Noleggio" fosse stato occupato da Giulia, Marco avrebbe dovuto usare la "Riva" (prendendo solo 2 argille).
+                </div>
+
+                <h3>🎨 2. IL MERCATO (Pigmenti)</h3>
+                <ul>
+                    <li><span class="exclusive">⭕ Prima Scelta (1 Moneta):</span> Prendi <strong>1 Visibile</strong> OPPURE pesca <strong>2 dal Sacchetto</strong>.</li>
+                    <li><span class="unlimited">♾️ Grossista (2 Monete):</span> Prendi <strong>2 Visibili</strong> OPPURE pesca <strong>3 dal Sacchetto</strong>.</li>
+                    <li><span class="unlimited">♾️ Baratto (Gratis):</span> Rimetti 2 tuoi Pigmenti nel sacchetto → Prendi <strong>1 Visibile</strong>.</li>
+                </ul>
+                <div class="box-example">
+                    <strong>Esempio Mercato</strong><br>
+                    Giulia vede sulla bancarella un Blu che le serve. Piazza l'assistente su "Prima Scelta", paga 1 moneta e prende il Blu.
+                    In un altro turno, Marco cerca un Rosso che non c'è. Decide di rischiare: va su "Prima Scelta", paga 1 moneta, ma invece di prendere dalla bancarella, pesca 2 cubetti "al buio" dal sacchetto, sperando di trovare il Rosso.
+                </div>
+
+                <h3>🏺 3. LA BOTTEGA (Gestione del Tornio)</h3>
+                <ul>
+                    <li><span class="exclusive">⭕ Maestro Artigiano (Gratis):</span> Azioni di Bottega + Prendi <strong>1 Moneta</strong>.</li>
+                    <li><span class="unlimited">♾️ Banchi di Lavoro (Gratis):</span> Azioni di Bottega.</li>
+                </ul>
+                
+                <div class="box-tech">
+                    <strong>AZIONI DI BOTTEGA (In qualsiasi ordine)</strong>
+                    <ol>
+                        <li><strong>CARICARE:</strong> Sposta risorse dal Deposito agli slot del Tornio rispettando le capacità:
+                            <ul>
+                                <li><strong>Ruota Interna (Argilla):</strong>
+                                    <ul>
+                                        <li><em>Slot I:</em> Max <strong>1 Cubetto</strong>.</li>
+                                        <li><em>Slot II:</em> Max <strong>2 Cubetti</strong>.</li>
+                                        <li><em>Slot III:</em> Max <strong>3 Cubetti</strong>.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Ruota Esterna (Colore):</strong> 6 Slot. Max <strong>2 Pigmenti</strong> per slot (Devono essere diversi!).</li>
+                            </ul>
+                        </li>
+                        <li><strong>RUOTARE:</strong> Hai <strong>3 Punti Movimento</strong>.
+                            <ul><li>1 Punto = 1 Scatto disco interno o esterno.</li></ul>
+                        </li>
+                        <li><strong>RIPULIRE:</strong> Scarta cubetti indesiderati.</li>
+                    </ol>
+                </div>
+
+                <div class="box-example">
+                    <strong>Esempio Bottega</strong><br>
+                    Sara ha nel deposito 2 Argille e 1 Pigmento Blu. Vuole preparare il "Vaso Notturno" (Richiede: 2 Argille + 1 Blu).
+                    1. <strong>Caricare:</strong> Sposta le 2 Argille nello <em>Slot II</em> della ruota interna (perché lo Slot I ne tiene solo 1). Mette il Pigmento Blu in uno slot qualsiasi della ruota esterna.
+                    2. <strong>Ruotare:</strong> Attualmente il Blu non è allineato con le Argille. Sara usa 1 Punto Movimento per ruotare il disco esterno di uno scatto a destra. Ora sono allineati nello stesso "spicchio".
+                </div>
+
+                <div class="box-tip">
+                    <strong>💡 MANI IN PASTA:</strong> In qualsiasi momento (anche fuori dalla Bottega), paga <strong>1 Moneta</strong> per spostare 1 cubetto già sul Tornio in un altro slot libero dello stesso anello.
+                </div>
+
+                <h3>📜 4. LA PIAZZA (Contratti)</h3>
+                <ul>
+                    <li><span class="exclusive">⭕ Vetrina (Gratis):</span> Prendi <strong>1 Carta Opera</strong>. (Opzione: Paga 1 Moneta per rinnovare le carte prima di scegliere). Max 3 carte in mano.</li>
+                </ul>
+                <div class="box-example">
+                    <strong>Esempio Piazza</strong><br>
+                    Marco ha solo una carta obiettivo in mano. Va alla "Vetrina". Le carte visibili non gli piacciono. Paga 1 moneta opzionale, scarta le 4 carte visibili e ne rivela 4 nuove. Ora ne vede una facile (Carta Verde) e la prende gratuitamente.
+                </div>
+
+                <h3>🔥 5. IL FORNO (La Cottura)</h3>
+                <p>Verifica se i cubetti sul tornio corrispondono alla tua Carta Opera.</p>
+                <ul>
+                    <li><span class="exclusive">⭕ BOCCA DEL FORNO (Spazio Esclusivo):</span>
+                        <ul>
+                            <li><strong>Opzione A (Gratis) - COTTURA SINGOLA:</strong> Cuoci l'opera allineata <strong>SOLO</strong> sotto la freccia della Bocca del Forno (Nord).</li>
+                            <li><strong>Opzione B (2 Monete) - COTTURA SIMULTANEA:</strong> Ignora la freccia Nord. Cuoci <strong>TUTTE</strong> le opere completate in <strong>QUALSIASI</strong> spicchio del tornio.</li>
+                        </ul>
+                    </li>
+                    <li><span class="unlimited">♾️ CODA DI COTTURA (Spazio Illimitato):</span>
+                        <ul>
+                            <li>Identico a sopra, ma devi pagare <strong>+1 Moneta di Tassa Legna</strong> extra.</li>
+                            <li><em>(Es: Opzione A costa 1 Moneta; Opzione B costa 3 Monete).</em></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="box-example">
+                    <strong>Esempio Forno</strong><br>
+                    Giulia ha preparato 3 opere diverse su 3 lati diversi del suo tornio.
+                    Va alla "Bocca del Forno" (che è libera). Sceglie l'<strong>Opzione B</strong>, paga 2 monete e cuoce tutte e 3 le opere in un colpo solo, facendo un sacco di punti!
+                    Se avesse scelto l'Opzione A (gratis), avrebbe potuto cuocere solo l'opera che si trovava casualmente sotto la freccia Nord.
+                </div>
+            </div>
+        </div>
+
+        <div class="section-block" id="it-end">
+            <div class="main-content">
+                <h2>6. Fine Partita</h2>
+                <aside class="sidebar-note" style="float:right; width: 30%; margin-left:20px;">
+                    <strong>Punteggio</strong>
+                    <ul>
+                        <li>Punti Tracciato</li>
+                        <li>Obiettivi Comuni</li>
+                        <li>1 Punto ogni 2 Monete</li>
+                    </ul>
+                    <p><em>Spareggio: Chi ha più Monete in Cassa.</em></p>
+                    
+                    <div class="img-placeholder" data-label="Foto Partita" style="min-height: 150px; margin-top: 20px;"></div>
+                </aside>
+                <p>La partita termina in due modi:</p>
+                <ol>
+                    <li><strong>Chiusura:</strong> Un giocatore completa la sua <strong>7ª Opera</strong>. Si finisce il giro corrente. (Bonus "Maestro della Fretta": +3 Punti).</li>
+                    <li><strong>Tempo:</strong> Termina il 7° Giorno.</li>
+                </ol>
+
+                <h3>CALCOLO DEL PUNTEGGIO</h3>
+                <p>Sommate:</p>
+                <ul>
+                    <li>Punti attuali sul <strong>Tracciato Punti</strong>.</li>
+                    <li>Punti bonus dagli <strong>Obiettivi Comuni</strong> raggiunti.</li>
+                    <li><strong>1 Punto</strong> per ogni <strong>2 Monete</strong> rimaste nella Tesoreria.</li>
+                </ul>
+                
+                <div class="box-tip" style="background-color: #e8f4fd; border-color: #3498db;">
+                    <p><strong>SPAREGGIO</strong></p>
+                    <p>Chi ha il totale più alto è il <strong>Gran Maestro di Vietri</strong>!</p>
+                    <p>In caso di pareggio, vince chi possiede il maggior numero di <strong>Monete</strong> in Cassa.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- ENGLISH -->
+    <!-- ========================================= -->
+    <div id="content-en" class="lang-content">
+        <header>
+            <h1>🏺 Vietri</h1>
+            <div class="subtitle">Masters of Ceramics - Rules 6.6</div>
+        </header>
+
+        <!-- INDEX ENGLISH -->
+        <div class="index-container">
+            <div class="index-title">Quick Index</div>
+            <ul class="index-list">
+                <li><a href="#en-intro"><span class="index-icon">📜</span> Introduction</a></li>
+                <li><a href="#en-comp"><span class="index-icon">📦</span> Components</a></li>
+                <li><a href="#en-setup"><span class="index-icon">🛠️</span> Setup</a></li>
+                <li><a href="#en-flow"><span class="index-icon">🔄</span> Game Flow</a></li>
+                <li><a href="#en-actions"><span class="index-icon">⚡</span> Actions</a></li>
+                <li><a href="#en-end"><span class="index-icon">🏆</span> End Game</a></li>
+            </ul>
+        </div>
+
+        <div class="section-block" id="en-intro">
+            <div class="main-content">
+                <h2>4. Gameplay Flow & Example Turn</h2>
+                <div class="box-example">
+                    <strong>🎬 GAMEPLAY EXAMPLE</strong>
+                    It is <strong>Mark's</strong> turn (Red Player). He needs Yellow Pigments for his commission.<br><br>
+                    1. <strong>Placement:</strong> Mark takes a Red Assistant and places it on the <em>"First Choice"</em> space in the Market (which is free).<br>
+                    2. <strong>Payment:</strong> The action costs 1 Coin. Mark moves his marker down 1 space on his Cashbox track.<br>
+                    3. <strong>Execution:</strong> Mark takes the visible Yellow Pigment from the Stall and places it in his Storage.<br>
+                    4. <strong>End Turn:</strong> Play passes to <strong>Julia</strong> (Blue Player) on his left.
+                </div>
+            </div>
+        </div>
+
+        <div class="section-block" id="en-actions">
+            <div class="main-content">
+                <h2>5. The Actions in Detail</h2>
+                <ul>
+                    <li><span class="action-type exclusive">⭕ EXCLUSIVE:</span> Only 1 Assistant. Blocks others.</li>
+                    <li><span class="action-type unlimited">♾️ UNLIMITED:</span> No limit, but often costlier.</li>
+                </ul>
+
+                <h3>🌊 1. River (Clay)</h3>
+                <ul>
+                    <li><span class="exclusive">⭕ Rental (1 Coin):</span> Take <strong>3 Clay</strong>.</li>
+                    <li><span class="unlimited">♾️ Shore (Free):</span> Take <strong>2 Clay</strong>.</li>
+                </ul>
+                <div class="box-example">
+                    <strong>River Example</strong><br>
+                    Mark needs a lot of clay quickly. The "Rental" space (giving 3 clay) is free. Mark pays 1 Coin, places his assistant there, and takes 3 white cubes. If "Rental" had been occupied by Julia, Mark would have had to use the "Shore" (taking only 2 clay).
+                </div>
+
+                <h3>🎨 2. Market (Pigments)</h3>
+                <ul>
+                    <li><span class="exclusive">⭕ First Choice (1 Coin):</span> Take <strong>1 Visible</strong> OR draw <strong>2 Blind</strong>.</li>
+                    <li><span class="unlimited">♾️ Wholesaler (2 Coins):</span> Take <strong>2 Visible</strong> OR draw <strong>3 Blind</strong>.</li>
+                    <li><span class="unlimited">♾️ Barter (Free):</span> Return 2 Pigments to bag → Take <strong>1 Visible</strong>.</li>
+                </ul>
+                <div class="box-example">
+                    <strong>Market Example</strong><br>
+                    Julia sees a Blue she needs on the stall. She places her assistant on "First Choice", pays 1 coin, and takes the Blue.
+                    In another turn, Mark needs Red but none is visible. He risks it: he goes to "First Choice", pays 1 coin, but instead of taking from the stall, he draws 2 cubes "blind" from the bag, hoping for Red.
+                </div>
+
+                <h3>🏺 3. Workshop (Wheel Management)</h3>
+                <ul>
+                    <li><span class="exclusive">⭕ Master Artisan (Free):</span> Workshop Actions + Take <strong>1 Coin</strong>.</li>
+                    <li><span class="unlimited">♾️ Workbench (Free):</span> Workshop Actions.</li>
+                </ul>
+                
+                <div class="box-tech">
+                    <strong>WORKSHOP ACTIONS</strong>
+                    <ol>
+                        <li><strong>LOAD:</strong> Move cubes from Storage to Wheel slots observing capacity:
+                            <ul>
+                                <li><strong>Inner Wheel (Clay):</strong> Slot I (Max 1), Slot II (Max 2), Slot III (Max 3).</li>
+                                <li><strong>Outer Wheel (Color):</strong> 6 Slots. Max <strong>2 Pigments</strong> per slot (Must be different!).</li>
+                            </ul>
+                        </li>
+                        <li><strong>ROTATE:</strong> You have <strong>3 Movement Points</strong>. (1 Point = 1 Step).</li>
+                        <li><strong>CLEAN:</strong> Discard unwanted cubes.</li>
+                    </ol>
+                </div>
+
+                <div class="box-example">
+                    <strong>Workshop Example</strong><br>
+                    Sarah has 2 Clay and 1 Blue Pigment. She wants to make the "Night Vase" (Requires: 2 Clay + 1 Blue).
+                    1. <strong>Load:</strong> She moves the 2 Clay into <em>Slot II</em> of the inner wheel (Slot I only holds 1). She puts the Blue Pigment in any slot on the outer wheel.
+                    2. <strong>Rotate:</strong> The Blue is not aligned with the Clay. Sarah uses 1 Movement Point to rotate the outer wheel one step right. Now they are aligned in the same "wedge".
+                </div>
+
+                <div class="box-tip">
+                    <strong>💡 HANDS ON:</strong> Anytime, pay <strong>1 Coin</strong> to move a cube already on the wheel to another slot.
+                </div>
+
+                <h3>🔥 5. The Kiln (Firing)</h3>
+                <ul>
+                    <li><span class="exclusive">⭕ KILN MOUTH (Exclusive):</span>
+                        <ul>
+                            <li><strong>Option A (Free) - SINGLE FIRE:</strong> Cook the work aligned <strong>ONLY</strong> under the North Arrow.</li>
+                            <li><strong>Option B (2 Coins) - SIMULTANEOUS FIRE:</strong> Ignore North Arrow. Cook <strong>ALL</strong> completed works in <strong>ANY</strong> sector.</li>
+                        </ul>
+                    </li>
+                    <li><span class="unlimited">♾️ FIRING QUEUE (Unlimited):</span>
+                        <ul>
+                            <li>Same options, but pay <strong>+1 Coin Wood Tax</strong>.</li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="box-example">
+                    <strong>Kiln Example</strong><br>
+                    Julia has prepared 3 different works on 3 different sides of her wheel.
+                    She goes to "Kiln Mouth" (which is free). She chooses <strong>Option B</strong>, pays 2 coins, and cooks all 3 works at once, scoring huge points!
+                    If she had chosen Option A (free), she could only have cooked the one work that happened to be under the North arrow.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- ALTRE LINGUE: COPIA IDENTICA STRUTTURA -->
+    <!-- ========================================= -->
+    <div id="content-fr" class="lang-content">
+        <header><h1>🏺 Vietri</h1><div class="subtitle">Maîtres de la Céramique - Règles 6.6</div></header>
+        <div class="section-block"><div class="main-content">
+            <p>Veuillez consulter la version anglaise ou italienne pour le texte complet des exemples. (Placeholder for full FR translation).</p>
+        </div></div>
+    </div>
+    <div id="content-de" class="lang-content">
+        <header><h1>🏺 Vietri</h1><div class="subtitle">Meister der Keramik - Regeln 6.6</div></header>
+        <div class="section-block"><div class="main-content">
+            <p>Bitte konsultieren Sie die englische oder italienische Version für den vollständigen Text. (Placeholder for full DE translation).</p>
+        </div></div>
+    </div>
+    <div id="content-es" class="lang-content">
+        <header><h1>🏺 Vietri</h1><div class="subtitle">Maestros de la Cerámica - Reglas 6.6</div></header>
+        <div class="section-block"><div class="main-content">
+            <p>Consulte la versión en inglés o italiano para ver el texto completo. (Placeholder for full ES translation).</p>
+        </div></div>
+    </div>
+
+    </div> <!-- Fine Main Container -->
+
+    <!-- SCRIPT GESTIONE LINGUA -->
+    <script>
+        function setLang(lang) {
+            const contents = document.querySelectorAll('.lang-content');
+            contents.forEach(el => el.classList.remove('active'));
+
+            const target = document.getElementById('content-' + lang);
+            if (target) {
+                target.classList.add('active');
+            }
+
+            const btns = document.querySelectorAll('.lang-btn');
+            btns.forEach(btn => btn.classList.remove('active'));
+            
+            const activeBtn = Array.from(btns).find(btn => btn.getAttribute('onclick').includes(`'${lang}'`));
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+            }
+
+            document.documentElement.lang = lang;
+        }
+    </script>
+
+</body>
+</html>
