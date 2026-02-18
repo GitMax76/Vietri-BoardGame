@@ -122,6 +122,7 @@
         .req-row {
             display: flex;
             align-items: center;
+            justify-content: center;
             margin-bottom: 1px;
             font-weight: bold;
             font-size: 1.0rem;
@@ -1477,7 +1478,7 @@
                                 <div class="text-xs font-bold text-gray-400 uppercase tracking-tight mb-2 text-center w-full"
                                     data-i18n="req_label">
                                     Richiesto</div>
-                                <div class="flex flex-col gap-1 w-full pl-2">
+                                <div class="flex flex-col gap-1 w-full">
 
                                     <div class="req-row">
                                         <div class="cube cube-gray"></div>
@@ -1753,7 +1754,7 @@
                          <!-- LEFT -->
                          <div class="section-left">
                              <div class="text-[10px] font-bold text-gray-400 uppercase tracking-tight mb-0.5 text-center w-full">${t.req_label}</div>
-                             <div class="flex flex-col gap-0 w-full pl-2">
+                             <div class="flex flex-col gap-0 w-full">
                                  ${getReqRowsHTML(data.gray, data.colors)}
                              </div>
                              <div class="mt-auto pt-1 border-t-2 border-dotted border-gray-300 w-full text-center">
