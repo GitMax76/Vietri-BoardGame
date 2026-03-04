@@ -7,6 +7,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
+        old_index: resolve(__dirname, 'indexOLD.html'),
         editor: resolve(__dirname, 'editor_vietri.html'),
         mobile: resolve(__dirname, 'index_smart.html'),
         rules: resolve(__dirname, 'rules.html'), // Ensure rules page is included
