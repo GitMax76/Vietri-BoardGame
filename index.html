@@ -1,17 +1,19 @@
 <!DOCTYPE html>
+<!-- saved from url=(0106)file:///C:/Users/Smartworking/.gemini/antigravity/scratch/vietri-repo%20cloned/Vietri-BoardGame/index.html -->
 <html lang="it">
 
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vietri: Maestri della Ceramica</title>
     <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏺</text></svg>">
+        href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text y=%22.9em%22 font-size=%2290%22&gt;%F0%9F%8F%BA&lt;/text&gt;&lt;/svg&gt;">
 
-    <meta property="og:title" content="Vietri: Maestri della Ceramica" />
-    <meta property="og:description" content="Diventa un Maestro Artigiano nella Costiera Amalfitana. Gioca ora!" />
-    <meta property="og:image" content="https://gitmax76.github.io/Vietri-BoardGame/img/rules/cover.png" />
-    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Vietri: Maestri della Ceramica">
+    <meta property="og:description" content="Diventa un Maestro Artigiano nella Costiera Amalfitana. Gioca ora!">
+    <meta property="og:image" content="preview.jpg">
+    <meta property="og:type" content="website">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -31,89 +33,159 @@
         }
     </script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;800&display=swap');
+
         :root {
             --vietri-blue: #0047AB;
+            /* Cobalt */
             --vietri-yellow: #FFD700;
+            /* Lemon */
+            --vietri-white: #F8F9FA;
+            /* Ceramic White */
+            --vietri-aqua: #48CAE4;
+            /* Sea Light Blue */
+            --vietri-terra: #E07A5F;
+            /* Terracotta */
+            --vietri-dark: #1A365D;
+            /* Deep Navy */
         }
 
         body {
-            background-color: #f0f8ff;
-            /* Amalfi Coast Background */
+            background-color: var(--vietri-white);
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .font-serif {
+            font-family: 'Cinzel', serif;
+        }
+
+        .font-reading {
+            font-family: 'Lora', serif;
+        }
+
+        /* --- BACKGROUNDS & TEXTURES --- */
+
+        .bg-ceramic {
+            background-color: var(--vietri-white);
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+        }
+
+        .bg-amalfi {
             background-image:
-                linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)),
-                url('https://images.unsplash.com/photo-1533907650686-705761a08356?q=80&w=2000&auto=format&fit=crop');
+                linear-gradient(to bottom, rgba(0, 34, 68, 0.7), rgba(0, 71, 171, 0.5)),
+                url('/Vietri-BoardGame/assets/cover-BgNjn5J4.png');
             background-size: cover;
-            background-position: center;
+            background-position: center 30%;
             background-attachment: fixed;
         }
 
-        /* --- MAIOLICA HOME STYLES --- */
+        /* --- COMPONENTS STYLING --- */
+
         .maiolica-border {
-            border: 8px solid var(--vietri-blue);
+            border: 6px solid var(--vietri-blue);
             background-image:
                 linear-gradient(45deg, var(--vietri-blue) 25%, transparent 25%, transparent 75%, var(--vietri-blue) 75%, var(--vietri-blue)),
                 linear-gradient(45deg, var(--vietri-blue) 25%, transparent 25%, transparent 75%, var(--vietri-blue) 75%, var(--vietri-blue));
             background-position: 0 0, 10px 10px;
             background-size: 20px 20px;
-            padding: 10px;
-            box-shadow: 0 10px 25px rgba(0, 71, 171, 0.3);
-            position: relative;
+            box-shadow: 0 10px 25px rgba(0, 71, 171, 0.15);
             background-color: white;
-            /* Ensure base is white for pattern */
         }
 
         .maiolica-content {
-            background: white;
-            padding: 2rem;
+            background: rgba(255, 255, 255, 0.95);
             border: 2px solid var(--vietri-yellow);
             height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
         }
 
         /* --- GLOSSY CERAMIC BUTTON --- */
+
         .btn-start {
-            background: linear-gradient(135deg, var(--vietri-blue) 0%, #002244 100%);
-            color: white;
-            border: 4px solid var(--vietri-yellow);
-            padding: 15px 50px;
-            font-size: 1.5rem;
-            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, var(--vietri-yellow) 0%, #D4AF37 100%);
+            color: var(--vietri-dark);
+            border: 3px solid white;
+            padding: 18px 45px;
+            font-size: 1.25rem;
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4), inset 0 0 15px rgba(255, 255, 255, 0.6);
             border-radius: 50px;
             position: relative;
             overflow: hidden;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
         .btn-start:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.4);
-            border-color: #fff;
-            filter: brightness(1.1);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(255, 215, 0, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.8);
         }
 
         /* Shine Effect */
+
         .btn-start::after {
             content: '';
             position: absolute;
             top: -50%;
             left: -60%;
-            width: 200%;
+            width: 20%;
             height: 200%;
-            background: rgba(255, 255, 255, 0.3);
-            transform: rotate(45deg) translateY(-100%);
+            background: rgba(255, 255, 255, 0.8);
+            transform: rotate(35deg) translateY(-100%);
             transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+            filter: blur(4px);
         }
 
         .btn-start:hover::after {
-            transform: rotate(45deg) translateY(20%);
+            transform: rotate(35deg) translateY(300%);
+        }
+
+        /* PHYSICAL COMPONENTS CSS */
+
+        .physical-card {
+            border-radius: 12px;
+            box-shadow:
+                -2px 4px 10px rgba(0, 0, 0, 0.15),
+                -1px 2px 3px rgba(0, 0, 0, 0.1),
+                inset 1px 1px 0px rgba(255, 255, 255, 0.8),
+                inset -1px -1px 0px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: white;
+            border: 1px solid #e0e0e0;
+        }
+
+        .physical-card:hover {
+            transform: translateY(-10px) rotate(2deg);
+            box-shadow:
+                -5px 15px 25px rgba(0, 0, 0, 0.2),
+                -2px 5px 8px rgba(0, 0, 0, 0.1),
+                inset 1px 1px 0px rgba(255, 255, 255, 0.9);
+            z-index: 10;
+        }
+
+        .fustella-piece {
+            filter: drop-shadow(3px 4px 4px rgba(0, 0, 0, 0.25));
+            transition: transform 0.3s ease;
+        }
+
+        .fustella-piece:hover {
+            transform: scale(1.08) translateY(-5px);
+            filter: drop-shadow(5px 8px 8px rgba(0, 0, 0, 0.3));
         }
 
         .vietri-card {
@@ -125,6 +197,7 @@
         }
 
         /* --- MAP & ZONES --- */
+
         .map-container {
             position: relative;
             width: 300px;
@@ -179,6 +252,7 @@
         }
 
         /* --- WHEELS --- */
+
         .wheel-outer-bg {
             background: repeating-conic-gradient(from 30deg,
                     #ffffff 0deg 60deg,
@@ -247,11 +321,1901 @@
                 opacity: 1;
             }
         }
+
+        /* Custom scrollbar */
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--vietri-white);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--vietri-blue);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--vietri-dark);
+        }
+
+        /* --- KEN BURNS ANIMATIONS --- */
+
+        @keyframes kenBurns {
+            0% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(1.15);
+            }
+        }
+
+        @keyframes logoMove {
+            0% {
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) scale(1);
+                filter: drop-shadow(0 20px 25px rgba(0, 0, 0, 0.3));
+            }
+
+            100% {
+                top: 25%;
+                left: 50%;
+                transform: translate(-50%, -50%) scale(0.85);
+                filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.9)) drop-shadow(0 0 5px rgba(255, 255, 255, 1));
+            }
+        }
+
+        @keyframes textFadeIn {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, 40px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
+        }
+
+        .animate-ken-burns {
+            animation: kenBurns 20s ease-out both !important;
+        }
+
+        .animate-logo-move {
+            animation: logoMove 3s ease-in-out both !important;
+        }
+
+        .animate-text-fade {
+            animation: textFadeIn 1.5s ease-out 2.5s both !important;
+        }
+    </style>
+    <style>
+        *,
+        ::before,
+        ::after {
+            --tw-border-spacing-x: 0;
+            --tw-border-spacing-y: 0;
+            --tw-translate-x: 0;
+            --tw-translate-y: 0;
+            --tw-rotate: 0;
+            --tw-skew-x: 0;
+            --tw-skew-y: 0;
+            --tw-scale-x: 1;
+            --tw-scale-y: 1;
+            --tw-pan-x: ;
+            --tw-pan-y: ;
+            --tw-pinch-zoom: ;
+            --tw-scroll-snap-strictness: proximity;
+            --tw-gradient-from-position: ;
+            --tw-gradient-via-position: ;
+            --tw-gradient-to-position: ;
+            --tw-ordinal: ;
+            --tw-slashed-zero: ;
+            --tw-numeric-figure: ;
+            --tw-numeric-spacing: ;
+            --tw-numeric-fraction: ;
+            --tw-ring-inset: ;
+            --tw-ring-offset-width: 0px;
+            --tw-ring-offset-color: #fff;
+            --tw-ring-color: rgb(59 130 246 / 0.5);
+            --tw-ring-offset-shadow: 0 0 #0000;
+            --tw-ring-shadow: 0 0 #0000;
+            --tw-shadow: 0 0 #0000;
+            --tw-shadow-colored: 0 0 #0000;
+            --tw-blur: ;
+            --tw-brightness: ;
+            --tw-contrast: ;
+            --tw-grayscale: ;
+            --tw-hue-rotate: ;
+            --tw-invert: ;
+            --tw-saturate: ;
+            --tw-sepia: ;
+            --tw-drop-shadow: ;
+            --tw-backdrop-blur: ;
+            --tw-backdrop-brightness: ;
+            --tw-backdrop-contrast: ;
+            --tw-backdrop-grayscale: ;
+            --tw-backdrop-hue-rotate: ;
+            --tw-backdrop-invert: ;
+            --tw-backdrop-opacity: ;
+            --tw-backdrop-saturate: ;
+            --tw-backdrop-sepia: ;
+            --tw-contain-size: ;
+            --tw-contain-layout: ;
+            --tw-contain-paint: ;
+            --tw-contain-style:
+        }
+
+        ::backdrop {
+            --tw-border-spacing-x: 0;
+            --tw-border-spacing-y: 0;
+            --tw-translate-x: 0;
+            --tw-translate-y: 0;
+            --tw-rotate: 0;
+            --tw-skew-x: 0;
+            --tw-skew-y: 0;
+            --tw-scale-x: 1;
+            --tw-scale-y: 1;
+            --tw-pan-x: ;
+            --tw-pan-y: ;
+            --tw-pinch-zoom: ;
+            --tw-scroll-snap-strictness: proximity;
+            --tw-gradient-from-position: ;
+            --tw-gradient-via-position: ;
+            --tw-gradient-to-position: ;
+            --tw-ordinal: ;
+            --tw-slashed-zero: ;
+            --tw-numeric-figure: ;
+            --tw-numeric-spacing: ;
+            --tw-numeric-fraction: ;
+            --tw-ring-inset: ;
+            --tw-ring-offset-width: 0px;
+            --tw-ring-offset-color: #fff;
+            --tw-ring-color: rgb(59 130 246 / 0.5);
+            --tw-ring-offset-shadow: 0 0 #0000;
+            --tw-ring-shadow: 0 0 #0000;
+            --tw-shadow: 0 0 #0000;
+            --tw-shadow-colored: 0 0 #0000;
+            --tw-blur: ;
+            --tw-brightness: ;
+            --tw-contrast: ;
+            --tw-grayscale: ;
+            --tw-hue-rotate: ;
+            --tw-invert: ;
+            --tw-saturate: ;
+            --tw-sepia: ;
+            --tw-drop-shadow: ;
+            --tw-backdrop-blur: ;
+            --tw-backdrop-brightness: ;
+            --tw-backdrop-contrast: ;
+            --tw-backdrop-grayscale: ;
+            --tw-backdrop-hue-rotate: ;
+            --tw-backdrop-invert: ;
+            --tw-backdrop-opacity: ;
+            --tw-backdrop-saturate: ;
+            --tw-backdrop-sepia: ;
+            --tw-contain-size: ;
+            --tw-contain-layout: ;
+            --tw-contain-paint: ;
+            --tw-contain-style:
+        }
+
+        /* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */
+        *,
+        ::after,
+        ::before {
+            box-sizing: border-box;
+            border-width: 0;
+            border-style: solid;
+            border-color: #e5e7eb
+        }
+
+        ::after,
+        ::before {
+            --tw-content: ''
+        }
+
+        :host,
+        html {
+            line-height: 1.5;
+            -webkit-text-size-adjust: 100%;
+            -moz-tab-size: 4;
+            -o-tab-size: 4;
+               tab-size: 4;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            font-feature-settings: normal;
+            font-variation-settings: normal;
+            -webkit-tap-highlight-color: transparent
+        }
+
+        body {
+            margin: 0;
+            line-height: inherit
+        }
+
+        hr {
+            height: 0;
+            color: inherit;
+            border-top-width: 1px
+        }
+
+        abbr:where([title]) {
+            -webkit-text-decoration: underline dotted;
+            text-decoration: underline dotted
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-size: inherit;
+            font-weight: inherit
+        }
+
+        a {
+            color: inherit;
+            text-decoration: inherit
+        }
+
+        b,
+        strong {
+            font-weight: bolder
+        }
+
+        code,
+        kbd,
+        pre,
+        samp {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            font-feature-settings: normal;
+            font-variation-settings: normal;
+            font-size: 1em
+        }
+
+        small {
+            font-size: 80%
+        }
+
+        sub,
+        sup {
+            font-size: 75%;
+            line-height: 0;
+            position: relative;
+            vertical-align: baseline
+        }
+
+        sub {
+            bottom: -.25em
+        }
+
+        sup {
+            top: -.5em
+        }
+
+        table {
+            text-indent: 0;
+            border-color: inherit;
+            border-collapse: collapse
+        }
+
+        button,
+        input,
+        optgroup,
+        select,
+        textarea {
+            font-family: inherit;
+            font-feature-settings: inherit;
+            font-variation-settings: inherit;
+            font-size: 100%;
+            font-weight: inherit;
+            line-height: inherit;
+            letter-spacing: inherit;
+            color: inherit;
+            margin: 0;
+            padding: 0
+        }
+
+        button,
+        select {
+            text-transform: none
+        }
+
+        button,
+        input:where([type=button]),
+        input:where([type=reset]),
+        input:where([type=submit]) {
+            -webkit-appearance: button;
+            background-color: transparent;
+            background-image: none
+        }
+
+        :-moz-focusring {
+            outline: auto
+        }
+
+        :-moz-ui-invalid {
+            box-shadow: none
+        }
+
+        progress {
+            vertical-align: baseline
+        }
+
+        ::-webkit-inner-spin-button,
+        ::-webkit-outer-spin-button {
+            height: auto
+        }
+
+        [type=search] {
+            -webkit-appearance: textfield;
+            outline-offset: -2px
+        }
+
+        ::-webkit-search-decoration {
+            -webkit-appearance: none
+        }
+
+        ::-webkit-file-upload-button {
+            -webkit-appearance: button;
+            font: inherit
+        }
+
+        summary {
+            display: list-item
+        }
+
+        blockquote,
+        dd,
+        dl,
+        figure,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        hr,
+        p,
+        pre {
+            margin: 0
+        }
+
+        fieldset {
+            margin: 0;
+            padding: 0
+        }
+
+        legend {
+            padding: 0
+        }
+
+        menu,
+        ol,
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0
+        }
+
+        dialog {
+            padding: 0
+        }
+
+        textarea {
+            resize: vertical
+        }
+
+        input::-moz-placeholder, textarea::-moz-placeholder {
+            opacity: 1;
+            color: #9ca3af
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            opacity: 1;
+            color: #9ca3af
+        }
+
+        [role=button],
+        button {
+            cursor: pointer
+        }
+
+        :disabled {
+            cursor: default
+        }
+
+        audio,
+        canvas,
+        embed,
+        iframe,
+        img,
+        object,
+        svg,
+        video {
+            display: block;
+            vertical-align: middle
+        }
+
+        img,
+        video {
+            max-width: 100%;
+            height: auto
+        }
+
+        [hidden]:where(:not([hidden=until-found])) {
+            display: none
+        }
+
+        .pointer-events-none {
+            pointer-events: none
+        }
+
+        .fixed {
+            position: fixed
+        }
+
+        .absolute {
+            position: absolute
+        }
+
+        .relative {
+            position: relative
+        }
+
+        .sticky {
+            position: sticky
+        }
+
+        .inset-0 {
+            inset: 0px
+        }
+
+        .bottom-10 {
+            bottom: 2.5rem
+        }
+
+        .left-1\/2 {
+            left: 50%
+        }
+
+        .right-2 {
+            right: 0.5rem
+        }
+
+        .top-2 {
+            top: 0.5rem
+        }
+
+        .-bottom-2 {
+            bottom: -0.5rem
+        }
+
+        .-top-3 {
+            top: -0.75rem
+        }
+
+        .-top-4 {
+            top: -1rem
+        }
+
+        .left-0 {
+            left: 0px
+        }
+
+        .left-\[20\%\] {
+            left: 20%
+        }
+
+        .right-0 {
+            right: 0px
+        }
+
+        .top-0 {
+            top: 0px
+        }
+
+        .top-1\/2 {
+            top: 50%
+        }
+
+        .top-\[20\%\] {
+            top: 20%
+        }
+
+        .z-10 {
+            z-index: 10
+        }
+
+        .z-50 {
+            z-index: 50
+        }
+
+        .z-20 {
+            z-index: 20
+        }
+
+        .z-30 {
+            z-index: 30
+        }
+
+        .z-40 {
+            z-index: 40
+        }
+
+        .mx-auto {
+            margin-left: auto;
+            margin-right: auto
+        }
+
+        .mx-2 {
+            margin-left: 0.5rem;
+            margin-right: 0.5rem
+        }
+
+        .my-4 {
+            margin-top: 1rem;
+            margin-bottom: 1rem
+        }
+
+        .mb-16 {
+            margin-bottom: 4rem
+        }
+
+        .mb-2 {
+            margin-bottom: 0.5rem
+        }
+
+        .mb-4 {
+            margin-bottom: 1rem
+        }
+
+        .mb-6 {
+            margin-bottom: 1.5rem
+        }
+
+        .mt-12 {
+            margin-top: 3rem
+        }
+
+        .mb-1 {
+            margin-bottom: 0.25rem
+        }
+
+        .mt-1 {
+            margin-top: 0.25rem
+        }
+
+        .mt-2 {
+            margin-top: 0.5rem
+        }
+
+        .mt-4 {
+            margin-top: 1rem
+        }
+
+        .mt-6 {
+            margin-top: 1.5rem
+        }
+
+        .mt-8 {
+            margin-top: 2rem
+        }
+
+        .mt-auto {
+            margin-top: auto
+        }
+
+        .flex {
+            display: flex
+        }
+
+        .grid {
+            display: grid
+        }
+
+        .hidden {
+            display: none
+        }
+
+        .h-1 {
+            height: 0.25rem
+        }
+
+        .h-10 {
+            height: 2.5rem
+        }
+
+        .h-16 {
+            height: 4rem
+        }
+
+        .h-8 {
+            height: 2rem
+        }
+
+        .h-auto {
+            height: auto
+        }
+
+        .h-full {
+            height: 100%
+        }
+
+        .h-20 {
+            height: 5rem
+        }
+
+        .h-3 {
+            height: 0.75rem
+        }
+
+        .h-\[20\%\] {
+            height: 20%
+        }
+
+        .h-\[240px\] {
+            height: 240px
+        }
+
+        .h-\[60\%\] {
+            height: 60%
+        }
+
+        .min-h-screen {
+            min-height: 100vh
+        }
+
+        .min-h-\[90vh\] {
+            min-height: 90vh
+        }
+
+        .min-h-\[400px\] {
+            min-height: 400px
+        }
+
+        .w-full {
+            width: 100%
+        }
+
+        .w-10 {
+            width: 2.5rem
+        }
+
+        .w-16 {
+            width: 4rem
+        }
+
+        .w-24 {
+            width: 6rem
+        }
+
+        .w-64 {
+            width: 16rem
+        }
+
+        .w-8 {
+            width: 2rem
+        }
+
+        .w-20 {
+            width: 5rem
+        }
+
+        .w-3 {
+            width: 0.75rem
+        }
+
+        .w-\[20\%\] {
+            width: 20%
+        }
+
+        .w-\[240px\] {
+            width: 240px
+        }
+
+        .w-\[60\%\] {
+            width: 60%
+        }
+
+        .max-w-2xl {
+            max-width: 42rem
+        }
+
+        .max-w-3xl {
+            max-width: 48rem
+        }
+
+        .max-w-4xl {
+            max-width: 56rem
+        }
+
+        .max-w-5xl {
+            max-width: 64rem
+        }
+
+        .max-w-6xl {
+            max-width: 72rem
+        }
+
+        .max-w-7xl {
+            max-width: 80rem
+        }
+
+        .max-w-sm {
+            max-width: 24rem
+        }
+
+        .flex-shrink-0 {
+            flex-shrink: 0
+        }
+
+        .shrink-0 {
+            flex-shrink: 0
+        }
+
+        .flex-grow {
+            flex-grow: 1
+        }
+
+        .-translate-x-1\/2 {
+            --tw-translate-x: -50%;
+            transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+        }
+
+        .-translate-y-1\/2 {
+            --tw-translate-y: -50%;
+            transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+        }
+
+        .rotate-2 {
+            --tw-rotate: 2deg;
+            transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+        }
+
+        .transform {
+            transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(-25%);
+                animation-timing-function: cubic-bezier(0.8, 0, 1, 1)
+            }
+
+            50% {
+                transform: none;
+                animation-timing-function: cubic-bezier(0, 0, 0.2, 1)
+            }
+        }
+
+        .animate-bounce {
+            animation: bounce 1s infinite
+        }
+
+        .cursor-pointer {
+            cursor: pointer
+        }
+
+        .grid-cols-1 {
+            grid-template-columns: repeat(1, minmax(0, 1fr))
+        }
+
+        .grid-cols-2 {
+            grid-template-columns: repeat(2, minmax(0, 1fr))
+        }
+
+        .grid-cols-3 {
+            grid-template-columns: repeat(3, minmax(0, 1fr))
+        }
+
+        .flex-col {
+            flex-direction: column
+        }
+
+        .flex-wrap {
+            flex-wrap: wrap
+        }
+
+        .items-start {
+            align-items: flex-start
+        }
+
+        .items-center {
+            align-items: center
+        }
+
+        .justify-end {
+            justify-content: flex-end
+        }
+
+        .justify-center {
+            justify-content: center
+        }
+
+        .justify-between {
+            justify-content: space-between
+        }
+
+        .gap-12 {
+            gap: 3rem
+        }
+
+        .gap-2 {
+            gap: 0.5rem
+        }
+
+        .gap-6 {
+            gap: 1.5rem
+        }
+
+        .gap-8 {
+            gap: 2rem
+        }
+
+        .gap-1 {
+            gap: 0.25rem
+        }
+
+        .gap-4 {
+            gap: 1rem
+        }
+
+        .space-y-10> :not([hidden])~ :not([hidden]) {
+            --tw-space-y-reverse: 0;
+            margin-top: calc(2.5rem * calc(1 - var(--tw-space-y-reverse)));
+            margin-bottom: calc(2.5rem * var(--tw-space-y-reverse))
+        }
+
+        .space-y-12> :not([hidden])~ :not([hidden]) {
+            --tw-space-y-reverse: 0;
+            margin-top: calc(3rem * calc(1 - var(--tw-space-y-reverse)));
+            margin-bottom: calc(3rem * var(--tw-space-y-reverse))
+        }
+
+        .space-y-4> :not([hidden])~ :not([hidden]) {
+            --tw-space-y-reverse: 0;
+            margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+            margin-bottom: calc(1rem * var(--tw-space-y-reverse))
+        }
+
+        .space-y-6> :not([hidden])~ :not([hidden]) {
+            --tw-space-y-reverse: 0;
+            margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
+            margin-bottom: calc(1.5rem * var(--tw-space-y-reverse))
+        }
+
+        .space-y-8> :not([hidden])~ :not([hidden]) {
+            --tw-space-y-reverse: 0;
+            margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
+            margin-bottom: calc(2rem * var(--tw-space-y-reverse))
+        }
+
+        .space-y-2> :not([hidden])~ :not([hidden]) {
+            --tw-space-y-reverse: 0;
+            margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
+            margin-bottom: calc(0.5rem * var(--tw-space-y-reverse))
+        }
+
+        .space-y-3> :not([hidden])~ :not([hidden]) {
+            --tw-space-y-reverse: 0;
+            margin-top: calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));
+            margin-bottom: calc(0.75rem * var(--tw-space-y-reverse))
+        }
+
+        .overflow-hidden {
+            overflow: hidden
+        }
+
+        .overflow-visible {
+            overflow: visible
+        }
+
+        .rounded {
+            border-radius: 0.25rem
+        }
+
+        .rounded-2xl {
+            border-radius: 1rem
+        }
+
+        .rounded-full {
+            border-radius: 9999px
+        }
+
+        .rounded-lg {
+            border-radius: 0.5rem
+        }
+
+        .rounded-xl {
+            border-radius: 0.75rem
+        }
+
+        .border-0 {
+            border-width: 0px
+        }
+
+        .border-2 {
+            border-width: 2px
+        }
+
+        .border-4 {
+            border-width: 4px
+        }
+
+        .border {
+            border-width: 1px
+        }
+
+        .border-y-8 {
+            border-top-width: 8px;
+            border-bottom-width: 8px
+        }
+
+        .border-t {
+            border-top-width: 1px
+        }
+
+        .border-b {
+            border-bottom-width: 1px
+        }
+
+        .border-l-4 {
+            border-left-width: 4px
+        }
+
+        .border-gray-300 {
+            --tw-border-opacity: 1;
+            border-color: rgb(209 213 219 / var(--tw-border-opacity, 1))
+        }
+
+        .border-purple-600 {
+            --tw-border-opacity: 1;
+            border-color: rgb(147 51 234 / var(--tw-border-opacity, 1))
+        }
+
+        .border-vietri-blue {
+            --tw-border-opacity: 1;
+            border-color: rgb(0 71 171 / var(--tw-border-opacity, 1))
+        }
+
+        .border-vietri-yellow {
+            --tw-border-opacity: 1;
+            border-color: rgb(255 215 0 / var(--tw-border-opacity, 1))
+        }
+
+        .border-white {
+            --tw-border-opacity: 1;
+            border-color: rgb(255 255 255 / var(--tw-border-opacity, 1))
+        }
+
+        .border-yellow-600 {
+            --tw-border-opacity: 1;
+            border-color: rgb(202 138 4 / var(--tw-border-opacity, 1))
+        }
+
+        .border-blue-200 {
+            --tw-border-opacity: 1;
+            border-color: rgb(191 219 254 / var(--tw-border-opacity, 1))
+        }
+
+        .border-blue-800 {
+            --tw-border-opacity: 1;
+            border-color: rgb(30 64 175 / var(--tw-border-opacity, 1))
+        }
+
+        .border-gray-200 {
+            --tw-border-opacity: 1;
+            border-color: rgb(229 231 235 / var(--tw-border-opacity, 1))
+        }
+
+        .border-yellow-200 {
+            --tw-border-opacity: 1;
+            border-color: rgb(254 240 138 / var(--tw-border-opacity, 1))
+        }
+
+        .border-yellow-400 {
+            --tw-border-opacity: 1;
+            border-color: rgb(250 204 21 / var(--tw-border-opacity, 1))
+        }
+
+        .border-yellow-500 {
+            --tw-border-opacity: 1;
+            border-color: rgb(234 179 8 / var(--tw-border-opacity, 1))
+        }
+
+        .bg-vietri-blue {
+            --tw-bg-opacity: 1;
+            background-color: rgb(0 71 171 / var(--tw-bg-opacity, 1))
+        }
+
+        .bg-vietri-yellow {
+            --tw-bg-opacity: 1;
+            background-color: rgb(255 215 0 / var(--tw-bg-opacity, 1))
+        }
+
+        .bg-white {
+            --tw-bg-opacity: 1;
+            background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1))
+        }
+
+        .bg-white\/95 {
+            background-color: rgb(255 255 255 / 0.95)
+        }
+
+        .bg-black\/50 {
+            background-color: rgb(0 0 0 / 0.5)
+        }
+
+        .bg-blue-50 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(239 246 255 / var(--tw-bg-opacity, 1))
+        }
+
+        .bg-blue-50\/30 {
+            background-color: rgb(239 246 255 / 0.3)
+        }
+
+        .bg-blue-600 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(37 99 235 / var(--tw-bg-opacity, 1))
+        }
+
+        .bg-blue-900 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(30 58 138 / var(--tw-bg-opacity, 1))
+        }
+
+        .bg-gray-100\/50 {
+            background-color: rgb(243 244 246 / 0.5)
+        }
+
+        .bg-gray-50 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(249 250 251 / var(--tw-bg-opacity, 1))
+        }
+
+        .bg-gray-800 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(31 41 55 / var(--tw-bg-opacity, 1))
+        }
+
+        .bg-white\/90 {
+            background-color: rgb(255 255 255 / 0.9)
+        }
+
+        .bg-yellow-400 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(250 204 21 / var(--tw-bg-opacity, 1))
+        }
+
+        .bg-yellow-50 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(254 252 232 / var(--tw-bg-opacity, 1))
+        }
+
+        .bg-yellow-600 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(202 138 4 / var(--tw-bg-opacity, 1))
+        }
+
+        .bg-gradient-to-b {
+            background-image: linear-gradient(to bottom, var(--tw-gradient-stops))
+        }
+
+        .from-white {
+            --tw-gradient-from: #fff var(--tw-gradient-from-position);
+            --tw-gradient-to: rgb(255 255 255 / 0) var(--tw-gradient-to-position);
+            --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to)
+        }
+
+        .to-gray-100 {
+            --tw-gradient-to: #f3f4f6 var(--tw-gradient-to-position)
+        }
+
+        .object-cover {
+            -o-object-fit: cover;
+               object-fit: cover
+        }
+
+        .p-2 {
+            padding: 0.5rem
+        }
+
+        .p-4 {
+            padding: 1rem
+        }
+
+        .p-8 {
+            padding: 2rem
+        }
+
+        .p-3 {
+            padding: 0.75rem
+        }
+
+        .p-6 {
+            padding: 1.5rem
+        }
+
+        .px-10 {
+            padding-left: 2.5rem;
+            padding-right: 2.5rem
+        }
+
+        .px-4 {
+            padding-left: 1rem;
+            padding-right: 1rem
+        }
+
+        .px-6 {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem
+        }
+
+        .py-16 {
+            padding-top: 4rem;
+            padding-bottom: 4rem
+        }
+
+        .py-20 {
+            padding-top: 5rem;
+            padding-bottom: 5rem
+        }
+
+        .py-3 {
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem
+        }
+
+        .py-4 {
+            padding-top: 1rem;
+            padding-bottom: 1rem
+        }
+
+        .px-2 {
+            padding-left: 0.5rem;
+            padding-right: 0.5rem
+        }
+
+        .py-1 {
+            padding-top: 0.25rem;
+            padding-bottom: 0.25rem
+        }
+
+        .py-2 {
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem
+        }
+
+        .pb-2 {
+            padding-bottom: 0.5rem
+        }
+
+        .pt-6 {
+            padding-top: 1.5rem
+        }
+
+        .pt-8 {
+            padding-top: 2rem
+        }
+
+        .pb-1 {
+            padding-bottom: 0.25rem
+        }
+
+        .pb-10 {
+            padding-bottom: 2.5rem
+        }
+
+        .pt-1 {
+            padding-top: 0.25rem
+        }
+
+        .pt-2 {
+            padding-top: 0.5rem
+        }
+
+        .text-left {
+            text-align: left
+        }
+
+        .text-center {
+            text-align: center
+        }
+
+        .font-serif {
+            font-family: Georgia, serif
+        }
+
+        .text-2xl {
+            font-size: 1.5rem;
+            line-height: 2rem
+        }
+
+        .text-3xl {
+            font-size: 1.875rem;
+            line-height: 2.25rem
+        }
+
+        .text-\[0\.7rem\] {
+            font-size: 0.7rem
+        }
+
+        .text-lg {
+            font-size: 1.125rem;
+            line-height: 1.75rem
+        }
+
+        .text-sm {
+            font-size: 0.875rem;
+            line-height: 1.25rem
+        }
+
+        .text-xl {
+            font-size: 1.25rem;
+            line-height: 1.75rem
+        }
+
+        .text-\[0\.5rem\] {
+            font-size: 0.5rem
+        }
+
+        .text-\[0\.65rem\] {
+            font-size: 0.65rem
+        }
+
+        .text-\[0\.6rem\] {
+            font-size: 0.6rem
+        }
+
+        .text-xs {
+            font-size: 0.75rem;
+            line-height: 1rem
+        }
+
+        .font-bold {
+            font-weight: 700
+        }
+
+        .font-medium {
+            font-weight: 500
+        }
+
+        .uppercase {
+            text-transform: uppercase
+        }
+
+        .italic {
+            font-style: italic
+        }
+
+        .leading-relaxed {
+            line-height: 1.625
+        }
+
+        .leading-tight {
+            line-height: 1.25
+        }
+
+        .tracking-wide {
+            letter-spacing: 0.025em
+        }
+
+        .tracking-wider {
+            letter-spacing: 0.05em
+        }
+
+        .tracking-widest {
+            letter-spacing: 0.1em
+        }
+
+        .text-gray-200 {
+            --tw-text-opacity: 1;
+            color: rgb(229 231 235 / var(--tw-text-opacity, 1))
+        }
+
+        .text-gray-500 {
+            --tw-text-opacity: 1;
+            color: rgb(107 114 128 / var(--tw-text-opacity, 1))
+        }
+
+        .text-gray-600 {
+            --tw-text-opacity: 1;
+            color: rgb(75 85 99 / var(--tw-text-opacity, 1))
+        }
+
+        .text-gray-700 {
+            --tw-text-opacity: 1;
+            color: rgb(55 65 81 / var(--tw-text-opacity, 1))
+        }
+
+        .text-purple-600 {
+            --tw-text-opacity: 1;
+            color: rgb(147 51 234 / var(--tw-text-opacity, 1))
+        }
+
+        .text-vietri-blue {
+            --tw-text-opacity: 1;
+            color: rgb(0 71 171 / var(--tw-text-opacity, 1))
+        }
+
+        .text-vietri-yellow {
+            --tw-text-opacity: 1;
+            color: rgb(255 215 0 / var(--tw-text-opacity, 1))
+        }
+
+        .text-white {
+            --tw-text-opacity: 1;
+            color: rgb(255 255 255 / var(--tw-text-opacity, 1))
+        }
+
+        .text-yellow-600 {
+            --tw-text-opacity: 1;
+            color: rgb(202 138 4 / var(--tw-text-opacity, 1))
+        }
+
+        .text-yellow-700 {
+            --tw-text-opacity: 1;
+            color: rgb(161 98 7 / var(--tw-text-opacity, 1))
+        }
+
+        .text-blue-600 {
+            --tw-text-opacity: 1;
+            color: rgb(37 99 235 / var(--tw-text-opacity, 1))
+        }
+
+        .text-blue-800 {
+            --tw-text-opacity: 1;
+            color: rgb(30 64 175 / var(--tw-text-opacity, 1))
+        }
+
+        .text-blue-900 {
+            --tw-text-opacity: 1;
+            color: rgb(30 58 138 / var(--tw-text-opacity, 1))
+        }
+
+        .text-gray-400 {
+            --tw-text-opacity: 1;
+            color: rgb(156 163 175 / var(--tw-text-opacity, 1))
+        }
+
+        .text-gray-800 {
+            --tw-text-opacity: 1;
+            color: rgb(31 41 55 / var(--tw-text-opacity, 1))
+        }
+
+        .text-green-700 {
+            --tw-text-opacity: 1;
+            color: rgb(21 128 61 / var(--tw-text-opacity, 1))
+        }
+
+        .text-red-500 {
+            --tw-text-opacity: 1;
+            color: rgb(239 68 68 / var(--tw-text-opacity, 1))
+        }
+
+        .text-red-600 {
+            --tw-text-opacity: 1;
+            color: rgb(220 38 38 / var(--tw-text-opacity, 1))
+        }
+
+        .text-yellow-800 {
+            --tw-text-opacity: 1;
+            color: rgb(133 77 14 / var(--tw-text-opacity, 1))
+        }
+
+        .underline {
+            text-decoration-line: underline
+        }
+
+        .opacity-70 {
+            opacity: 0.7
+        }
+
+        .opacity-50 {
+            opacity: 0.5
+        }
+
+        .opacity-80 {
+            opacity: 0.8
+        }
+
+        .shadow {
+            --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+        }
+
+        .shadow-2xl {
+            --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+            --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+        }
+
+        .shadow-\[0_10px_20px_rgba\(0\2c 0\2c 0\2c 0\.3\)\] {
+            --tw-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            --tw-shadow-colored: 0 10px 20px var(--tw-shadow-color);
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+        }
+
+        .shadow-lg {
+            --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+        }
+
+        .shadow-md {
+            --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+        }
+
+        .shadow-sm {
+            --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+        }
+
+        .shadow-xl {
+            --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+        }
+
+        .ring-2 {
+            --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+            --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+            box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)
+        }
+
+        .ring-yellow-400 {
+            --tw-ring-opacity: 1;
+            --tw-ring-color: rgb(250 204 21 / var(--tw-ring-opacity, 1))
+        }
+
+        .drop-shadow-lg {
+            --tw-drop-shadow: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
+            filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)
+        }
+
+        .drop-shadow-sm {
+            --tw-drop-shadow: drop-shadow(0 1px 1px rgb(0 0 0 / 0.05));
+            filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)
+        }
+
+        .drop-shadow-md {
+            --tw-drop-shadow: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06));
+            filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)
+        }
+
+        .filter {
+            filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)
+        }
+
+        .backdrop-blur-sm {
+            --tw-backdrop-blur: blur(4px);
+            backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)
+        }
+
+        .backdrop-blur {
+            --tw-backdrop-blur: blur(8px);
+            backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)
+        }
+
+        .transition {
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms
+        }
+
+        .transition-colors {
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms
+        }
+
+        .transition-transform {
+            transition-property: transform;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms
+        }
+
+        .transition-opacity {
+            transition-property: opacity;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms
+        }
+
+        .duration-500 {
+            transition-duration: 500ms
+        }
+
+        .duration-300 {
+            transition-duration: 300ms
+        }
+
+        .ease-out {
+            transition-timing-function: cubic-bezier(0, 0, 0.2, 1)
+        }
+
+        .hover\:rotate-0:hover {
+            --tw-rotate: 0deg;
+            transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+        }
+
+        .hover\:scale-105:hover {
+            --tw-scale-x: 1.05;
+            --tw-scale-y: 1.05;
+            transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+        }
+
+        .hover\:scale-110:hover {
+            --tw-scale-x: 1.1;
+            --tw-scale-y: 1.1;
+            transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+        }
+
+        .hover\:bg-purple-600:hover {
+            --tw-bg-opacity: 1;
+            background-color: rgb(147 51 234 / var(--tw-bg-opacity, 1))
+        }
+
+        .hover\:bg-vietri-blue:hover {
+            --tw-bg-opacity: 1;
+            background-color: rgb(0 71 171 / var(--tw-bg-opacity, 1))
+        }
+
+        .hover\:bg-yellow-600:hover {
+            --tw-bg-opacity: 1;
+            background-color: rgb(202 138 4 / var(--tw-bg-opacity, 1))
+        }
+
+        .hover\:bg-black:hover {
+            --tw-bg-opacity: 1;
+            background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))
+        }
+
+        .hover\:bg-blue-700:hover {
+            --tw-bg-opacity: 1;
+            background-color: rgb(29 78 216 / var(--tw-bg-opacity, 1))
+        }
+
+        .hover\:bg-gray-100:hover {
+            --tw-bg-opacity: 1;
+            background-color: rgb(243 244 246 / var(--tw-bg-opacity, 1))
+        }
+
+        .hover\:bg-white\/10:hover {
+            background-color: rgb(255 255 255 / 0.1)
+        }
+
+        .hover\:bg-yellow-700:hover {
+            --tw-bg-opacity: 1;
+            background-color: rgb(161 98 7 / var(--tw-bg-opacity, 1))
+        }
+
+        .hover\:text-white:hover {
+            --tw-text-opacity: 1;
+            color: rgb(255 255 255 / var(--tw-text-opacity, 1))
+        }
+
+        @media (min-width: 768px) {
+            .md\:w-96 {
+                width: 24rem
+            }
+
+            .md\:-translate-y-8 {
+                --tw-translate-y: -2rem;
+                transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+            }
+
+            .md\:grid-cols-2 {
+                grid-template-columns: repeat(2, minmax(0, 1fr))
+            }
+
+            .md\:grid-cols-3 {
+                grid-template-columns: repeat(3, minmax(0, 1fr))
+            }
+
+            .md\:p-12 {
+                padding: 3rem
+            }
+
+            .md\:p-6 {
+                padding: 1.5rem
+            }
+
+            .md\:text-2xl {
+                font-size: 1.5rem;
+                line-height: 2rem
+            }
+
+            .md\:text-4xl {
+                font-size: 2.25rem;
+                line-height: 2.5rem
+            }
+
+            .md\:text-5xl {
+                font-size: 3rem;
+                line-height: 1
+            }
+
+            .md\:text-xl {
+                font-size: 1.25rem;
+                line-height: 1.75rem
+            }
+
+            .md\:text-base {
+                font-size: 1rem;
+                line-height: 1.5rem
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .lg\:static {
+                position: static
+            }
+
+            .lg\:col-span-3 {
+                grid-column: span 3 / span 3
+            }
+
+            .lg\:col-span-6 {
+                grid-column: span 6 / span 6
+            }
+
+            .lg\:h-screen {
+                height: 100vh
+            }
+
+            .lg\:min-h-0 {
+                min-height: 0px
+            }
+
+            .lg\:grid-cols-12 {
+                grid-template-columns: repeat(12, minmax(0, 1fr))
+            }
+
+            .lg\:overflow-hidden {
+                overflow: hidden
+            }
+
+            .lg\:overflow-y-auto {
+                overflow-y: auto
+            }
+
+            .lg\:pb-0 {
+                padding-bottom: 0px
+            }
+        }
     </style>
 </head>
 
-<body class="min-h-screen flex flex-col items-center justify-center font-sans">
-    <div id="app" class="w-full h-full flex flex-col items-center justify-center"></div>
+<body class="min-h-screen bg-ceramic flex flex-col items-center">
+    <div id="app" class="w-full flex-grow flex flex-col items-center">
+        <div id="view-home" class="w-full fade-in flex flex-col font-reading">
+
+            <!-- HERO SECTION (KEN BURNS ANIMATION) -->
+            <section id="hero-scroll-wrapper" class="relative w-full h-screen overflow-hidden text-white bg-[#001f3f]">
+                <!-- Cover Art Background -->
+                <div id="hero-bg" class="absolute inset-0 w-full h-full z-0 animate-ken-burns"
+                    style="background-image: linear-gradient(to bottom, rgba(0, 34, 68, 0.4), rgba(0, 71, 171, 0.2)), url('img/rules/Cover-Art.png'); background-size: cover; background-position: center; transform-origin: center center;">
+                </div>
+
+                <!-- Lang Switcher -->
+                <div class="absolute top-4 right-4 flex gap-2 z-50">
+                    <button onclick="setLanguage('it')"
+                        class="w-8 h-8 flex items-center justify-center rounded-full border-2 border-white shadow hover:scale-110 transition bg-white overflow-hidden ring-2 ring-yellow-400"><span
+                            style='font-size:1.2rem;'>🇮🇹</span></button>
+                    <button onclick="setLanguage('en')"
+                        class="w-8 h-8 flex items-center justify-center rounded-full border-2 border-white shadow hover:scale-110 transition bg-white overflow-hidden opacity-70"><span
+                            style='font-size:1.2rem;'>🇬🇧</span></button>
+                    <button onclick="setLanguage('fr')"
+                        class="w-8 h-8 flex items-center justify-center rounded-full border-2 border-white shadow hover:scale-110 transition bg-white overflow-hidden opacity-70"><span
+                            style='font-size:1.2rem;'>🇫🇷</span></button>
+                    <button onclick="setLanguage('es')"
+                        class="w-8 h-8 flex items-center justify-center rounded-full border-2 border-white shadow hover:scale-110 transition bg-white overflow-hidden opacity-70"><span
+                            style='font-size:1.2rem;'>🇪🇸</span></button>
+                    <button onclick="setLanguage('de')"
+                        class="w-8 h-8 flex items-center justify-center rounded-full border-2 border-white shadow hover:scale-110 transition bg-white overflow-hidden opacity-70"><span
+                            style='font-size:1.2rem;'>🇩🇪</span></button>
+                </div>
+
+                <!-- Logo -->
+                <img id="hero-logo" src="/Vietri-BoardGame/assets/logo-BqpMF1GE.png" alt="Vietri Logo"
+                    class="absolute z-20 w-[80%] max-w-[500px] drop-shadow-2xl animate-logo-move"
+                    style="transform-origin: center center;">
+
+                <!-- Text Content -->
+                <div id="hero-text-content"
+                    class="absolute z-30 flex flex-col items-center text-center max-w-4xl mx-auto maiolica-content p-6 md:p-12 rounded-2xl shadow-2xl space-y-4 md:space-y-6 bg-white/95 border-4 border-vietri-blue animate-text-fade"
+                    style="top: 55%; left: 50%; width: 90%; backdrop-filter: blur(4px);">
+                    <div class="space-y-2 md:space-y-4">
+                        <h1
+                            class="text-3xl md:text-5xl font-bold uppercase tracking-widest text-vietri-blue drop-shadow-sm font-serif">
+                            Maestri della Ceramica</h1>
+                        <h2 class="text-xl md:text-2xl text-yellow-600 font-serif italic">L'Arte di Vietri sul Mare</h2>
+                    </div>
+                    <p
+                        class="text-lg md:text-xl text-gray-700 leading-relaxed font-reading max-w-2xl mx-auto hidden sm:block">
+                        Diventa un Maestro Artigiano nella splendida Costiera Amalfitana. Raccogli l'argilla, mescola i
+                        pigmenti e crea i tuoi capolavori al tornio.
+                    </p>
+                    <div class="pt-2 md:pt-4 pb-2">
+                        <button id="btn-start-game-scroll"
+                            class="btn-start text-xl px-10 py-4 shadow-[0_10px_20px_rgba(0,0,0,0.3)] pointer-events-auto"
+                            onclick="document.getElementById('btn-start-game') ? document.getElementById('btn-start-game').click() : window.scrollTo({top: window.innerHeight, behavior: 'smooth'})">
+                            <span class="text-2xl">🎲</span> Prova a giocare
+                        </button>
+                        <button id="btn-start-game" class="hidden"></button>
+                    </div>
+                </div>
+
+                <!-- Indicator -->
+                <div id="hero-scroll-indicator"
+                    class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce flex flex-col items-center z-20 cursor-pointer animate-text-fade"
+                    onclick="window.scrollTo({top: window.innerHeight, behavior: 'smooth'})">
+                    <span class="text-sm uppercase tracking-widest text-white/50 mb-2 font-bold drop-shadow-md">Scopri
+                        di Più</span>
+                    <svg class="w-8 h-8 text-white/50 drop-shadow-md" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                    </svg>
+                </div>
+            </section>
+
+            <!-- THEME SECTION -->
+            <section class="py-20 px-4 bg-ceramic relative">
+                <div class="max-w-5xl mx-auto text-center space-y-6">
+                    <h2 class="text-3xl md:text-4xl font-bold text-vietri-blue font-serif">Il Fascino della Maiolica
+                    </h2>
+                    <div class="w-24 h-1 bg-vietri-yellow mx-auto rounded-full"></div>
+                    <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto italic font-reading">
+                        Immergiti in un mondo di colori vibranti: il blu cobalto del mare, il giallo dei limoni, il
+                        verde ramina delle colline. Ogni partita è un'opera d'arte.
+                    </p>
+                </div>
+            </section>
+
+            <!-- COMPONENTS GALLERY -->
+            <section class="py-20 px-4 bg-gradient-to-b from-white to-gray-100">
+                <div class="max-w-6xl mx-auto space-y-12">
+                    <div class="text-center space-y-4">
+                        <h2 class="text-3xl md:text-4xl font-bold text-vietri-blue font-serif">Materiali di Pregio</h2>
+                        <div class="w-24 h-1 bg-vietri-yellow mx-auto rounded-full"></div>
+                        <p class="text-gray-600 max-w-2xl mx-auto">Componenti curati per restituire la sensazione
+                            tattile della ceramica e del legno.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+                        <div class="physical-card p-4 bg-white">
+                            <img src="/Vietri-BoardGame/assets/components_cards-D5YTbY-0.png" alt="Cards"
+                                class="w-full h-auto rounded object-cover fustella-piece">
+                        </div>
+                        <div
+                            class="physical-card p-4 bg-white transform md:-translate-y-8 z-10 border-4 border-vietri-yellow">
+                            <img src="/Vietri-BoardGame/assets/esempi_carte-Big80HdZ.jpg" alt="Artwork"
+                                class="w-full h-auto rounded object-cover fustella-piece">
+                        </div>
+                        <div class="physical-card p-4 bg-white">
+                            <img src="/Vietri-BoardGame/assets/components_meeples-CuDfH1F3.png" alt="Meeples"
+                                class="w-full h-auto rounded object-cover fustella-piece">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- HOW TO PLAY SECTION -->
+            <section
+                class="py-20 px-4 bg-vietri-blue text-white maiolica-border border-0 border-y-8 border-vietri-yellow">
+                <div class="max-w-6xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 font-serif">Come si Gioca</h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                        <div class="space-y-10">
+                            <!-- Step 1 -->
+                            <div class="flex gap-6">
+                                <div
+                                    class="flex-shrink-0 w-16 h-16 rounded-full bg-vietri-yellow text-vietri-dark flex items-center justify-center text-3xl font-bold shadow-lg">
+                                    1</div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-vietri-yellow mb-2">1. Raccogli e Scambia</h3>
+                                    <p class="text-gray-200">Usa i tuoi asinelli per recuperare preziosa argilla al
+                                        fiume o commerciare per ottenere i pigmenti giusti al mercato.</p>
+                                </div>
+                            </div>
+                            <!-- Step 2 -->
+                            <div class="flex gap-6">
+                                <div
+                                    class="flex-shrink-0 w-16 h-16 rounded-full bg-vietri-yellow text-vietri-dark flex items-center justify-center text-3xl font-bold shadow-lg">
+                                    2</div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-vietri-yellow mb-2">2. Gira il Tornio</h3>
+                                    <p class="text-gray-200">La meccanica centrale: alloca i materiali negli spicchi del
+                                        tornio e ruotalo con saggezza per completare il tuo progetto.</p>
+                                </div>
+                            </div>
+                            <!-- Step 3 -->
+                            <div class="flex gap-6">
+                                <div
+                                    class="flex-shrink-0 w-16 h-16 rounded-full bg-vietri-yellow text-vietri-dark flex items-center justify-center text-3xl font-bold shadow-lg">
+                                    3</div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-vietri-yellow mb-2">3. Consegna l'Opera</h3>
+                                    <p class="text-gray-200">Soddisfa le commissioni richieste dalla piazza per ottenere
+                                        monete d'oro e punti prestigio.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="relative physical-card p-2 bg-white rotate-2 hover:rotate-0 transition-transform duration-500">
+                            <img src="/Vietri-BoardGame/assets/setup_player-Lnr1GD54.png" alt="Gameplay Setup" class="w-full h-auto rounded">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FOOTER LINKS SECTIONS -->
+            <section class="py-16 px-4 bg-ceramic">
+                <div class="max-w-4xl mx-auto text-center space-y-8">
+                    <div class="flex flex-wrap justify-center gap-6">
+                        <a href="file:///C:/Users/Smartworking/.gemini/antigravity/scratch/vietri-repo%20cloned/Vietri-BoardGame/regolamento_rev6_18febbraio.html"
+                            target="_blank"
+                            class="px-6 py-3 bg-white border-2 border-vietri-blue text-vietri-blue font-bold rounded-lg shadow hover:bg-vietri-blue hover:text-white transition-colors flex items-center gap-2">
+                            📖 Leggi il Regolamento Ufficiale
+                        </a>
+                        <a href="file:///C:/Users/Smartworking/.gemini/antigravity/scratch/vietri-repo%20cloned/Vietri-BoardGame/regolamento_interattivo.html"
+                            target="_blank"
+                            class="px-6 py-3 bg-white border-2 border-purple-600 text-purple-600 font-bold rounded-lg shadow hover:bg-purple-600 hover:text-white transition-colors flex items-center gap-2">
+                            ✨ Regolamento Interattivo
+                        </a>
+                        <a href="file:///C:/Users/Smartworking/.gemini/antigravity/scratch/vietri-repo%20cloned/Vietri-BoardGame/editor_vietri.html"
+                            class="px-6 py-3 bg-white border-2 border-yellow-600 text-yellow-700 font-bold rounded-lg shadow hover:bg-yellow-600 hover:text-white transition-colors flex items-center gap-2 text-sm uppercase tracking-wide">
+                            <span>🎨</span> Crea Carte Opera
+                        </a>
+                    </div>
+
+                    <div class="pt-8 border-t border-gray-300">
+                        <p class="text-sm text-gray-500 mb-6">Un gioco di M. Sabato &amp; A. Solimene</p>
+
+                        <p class="font-bold text-vietri-blue text-sm mb-4">👋 Info? Suggerimenti? Collaborazioni? Demo?
+                            Parliamo!</p>
+                        <div class="flex justify-center items-center gap-8">
+                            <a href="https://linktr.ee/JustMax76" target="_blank"
+                                class="hover:scale-110 transition-transform flex flex-col items-center gap-2 group">
+                                <span class="text-3xl filter drop-shadow-sm">🌳</span>
+                                <span
+                                    class="text-[0.7rem] text-gray-500 uppercase tracking-wider font-bold">Links</span>
+                            </a>
+                            <a href="https://wa.me/393295644852" target="_blank"
+                                class="hover:scale-110 transition-transform flex flex-col items-center gap-2 group">
+                                <span class="text-3xl filter drop-shadow-sm">💬</span>
+                                <span
+                                    class="text-[0.7rem] text-gray-500 uppercase tracking-wider font-bold">WhatsApp</span>
+                            </a>
+                            <a href="mailto:massi.sabato@gmail.com"
+                                class="hover:scale-110 transition-transform flex flex-col items-center gap-2 group">
+                                <span class="text-3xl filter drop-shadow-sm">📧</span>
+                                <span
+                                    class="text-[0.7rem] text-gray-500 uppercase tracking-wider font-bold">Email</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
     <script>
         // --- CONSTANTS & CONFIG ---
         const LANGUAGES = ['it', 'en', 'fr', 'es', 'de'];
@@ -320,7 +2284,22 @@
                     alert_buy_success: "Acquisto completato! Colori aggiunti al sacco.",
                     alert_trade_success: "Scambio completato! Colori aggiornati.",
                     alert_not_enough_colors: "Non hai abbastanza colori per questo scambio!",
-                    alert_no_rotations: "Hai finito le mosse del tornio per oggi!"
+                    alert_no_rotations: "Hai finito le mosse del tornio per oggi!",
+                    // Nuove landing page
+                    hero_title: "Maestri della Ceramica",
+                    hero_subtitle: "L'Arte di Vietri sul Mare",
+                    hero_desc: "Diventa un Maestro Artigiano nella splendida Costiera Amalfitana. Raccogli l'argilla, mescola i pigmenti e crea i tuoi capolavori al tornio.",
+                    section_theme_title: "Il Fascino della Maiolica",
+                    section_theme_desc: "Immergiti in un mondo di colori vibranti: il blu cobalto del mare, il giallo dei limoni, il verde ramina delle colline. Ogni partita è un'opera d'arte.",
+                    section_components_title: "Materiali di Pregio",
+                    section_components_desc: "Componenti curati per restituire la sensazione tattile della ceramica e del legno.",
+                    section_howtoplay_title: "Come si Gioca",
+                    step1_title: "1. Raccogli e Scambia",
+                    step1_desc: "Usa i tuoi asinelli per recuperare preziosa argilla al fiume o commerciare per ottenere i pigmenti giusti al mercato.",
+                    step2_title: "2. Gira il Tornio",
+                    step2_desc: "La meccanica centrale: alloca i materiali negli spicchi del tornio e ruotalo con saggezza per completare il tuo progetto.",
+                    step3_title: "3. Consegna l'Opera",
+                    step3_desc: "Soddisfa le commissioni richieste dalla piazza per ottenere monete d'oro e punti prestigio.",
                 },
                 commissions: {
                     vaso_blu: "Vaso Marino",
@@ -399,7 +2378,22 @@
                     alert_buy_success: "Purchase complete! Colors added to bag.",
                     alert_trade_success: "Trade complete! Colors updated.",
                     alert_not_enough_colors: "Not enough colors for this trade!",
-                    alert_no_rotations: "No lathe moves left for today!"
+                    alert_no_rotations: "No lathe moves left for today!",
+                    // New landing page
+                    hero_title: "Masters of Ceramics",
+                    hero_subtitle: "The Art of Vietri sul Mare",
+                    hero_desc: "Become a Master Craftsman in the beautiful Amalfi Coast. Gather clay, mix pigments, and create your masterpieces on the lathe.",
+                    section_theme_title: "The Charm of Majolica",
+                    section_theme_desc: "Immerse yourself in a world of vibrant colors: the cobalt blue of the sea, the yellow of lemons, the copper green of the hills. Every game is a work of art.",
+                    section_components_title: "Premium Materials",
+                    section_components_desc: "Carefully designed components to provide the tactile sensation of ceramics and wood.",
+                    section_howtoplay_title: "How to Play",
+                    step1_title: "1. Gather & Trade",
+                    step1_desc: "Use your donkeys to collect precious clay at the river or trade for the right pigments at the market.",
+                    step2_title: "2. Spin the Lathe",
+                    step2_desc: "The core mechanic: allocate materials in the lathe's slots and rotate it wisely to complete your design.",
+                    step3_title: "3. Deliver the Masterpiece",
+                    step3_desc: "Fulfill the commissions requested by the plaza to earn gold coins and prestige points.",
                 },
                 commissions: {
                     vaso_blu: "Sea Vase",
@@ -478,7 +2472,22 @@
                     alert_buy_success: "Achat terminé ! Couleurs ajoutées au sac.",
                     alert_trade_success: "Échange terminé ! Couleurs mises à jour.",
                     alert_not_enough_colors: "Pas assez de couleurs pour cet échange !",
-                    alert_no_rotations: "Plus de mouvements de tour pour aujourd'hui !"
+                    alert_no_rotations: "Plus de mouvements de tour pour aujourd'hui !",
+                    // New landing page
+                    hero_title: "Maîtres de la Céramique",
+                    hero_subtitle: "L'Art de Vietri sul Mare",
+                    hero_desc: "Devenez un Maître Artisan sur la magnifique Côte Amalfitaine. Récoltez l'argile, mélangez les pigments et créez vos chefs-d'œuvre au tour.",
+                    section_theme_title: "Le Charme de la Majolique",
+                    section_theme_desc: "Plongez dans un monde de couleurs vibrantes : le bleu cobalt de la mer, le jaune des citrons, le vert cuivré des collines. Chaque partie est une œuvre d'art.",
+                    section_components_title: "Matériaux de Qualité",
+                    section_components_desc: "Des composants soigneusement conçus pour offrir la sensation tactile de la céramique et du bois.",
+                    section_howtoplay_title: "Comment Jouer",
+                    step1_title: "1. Récolter & Échanger",
+                    step1_desc: "Utilisez vos ânes pour récolter de la précieuse argile à la rivière ou pour échanger afin d'obtenir les bons pigments au marché.",
+                    step2_title: "2. Faire Tourner le Tour",
+                    step2_desc: "La mécanique centrale : placez les matériaux dans les emplacements du tour et faites-le tourner intelligemment pour terminer votre projet.",
+                    step3_title: "3. Livrer l'Œuvre",
+                    step3_desc: "Répondez aux demandes des clients sur la place pour gagner des pièces d'or et des points de prestige.",
                 },
                 commissions: {
                     vaso_blu: "Vase Marin",
@@ -557,7 +2566,22 @@
                     alert_buy_success: "¡Compra completada! Colores añadidos a la bolsa.",
                     alert_trade_success: "¡Intercambio completado! Colores actualizados.",
                     alert_not_enough_colors: "¡No tienes suficientes colores para este intercambio!",
-                    alert_no_rotations: "¡No quedan movimientos de torno por hoy!"
+                    alert_no_rotations: "¡No quedan movimientos de torno por hoy!",
+                    // New landing page
+                    hero_title: "Maestros de la Cerámica",
+                    hero_subtitle: "El Arte de Vietri sul Mare",
+                    hero_desc: "Conviértete en un Maestro Artesano en la hermosa Costa Amalfitana. Recoge arcilla, mezcla pigmentos y crea tus obras maestras en el torno.",
+                    section_theme_title: "El Encanto de la Mayólica",
+                    section_theme_desc: "Sumérgete en un mundo de colores vibrantes: el azul cobalto del mar, el amarillo de los limones, el verde cobre de las colinas. Cada partida es una obra de arte.",
+                    section_components_title: "Materiales de Primera Calidad",
+                    section_components_desc: "Componentes cuidadosamente diseñados para ofrecer la sensación táctil de la cerámica y la madera.",
+                    section_howtoplay_title: "Cómo Jugar",
+                    step1_title: "1. Recolectar & Intercambiar",
+                    step1_desc: "Usa tus burros para recolectar arcilla en el río o intercambia para obtener los pigmentos adecuados en el mercado.",
+                    step2_title: "2. Girar el Torno",
+                    step2_desc: "La mecánica central: asigna los materiales en los espacios del torno y gíralo sabiamente para completar tu proyecto.",
+                    step3_title: "3. Entregar la Obra Maestra",
+                    step3_desc: "Cumple con los encargos solicitados en la plaza para ganar monedas de oro y puntos de prestigio.",
                 },
                 commissions: {
                     vaso_blu: "Jarrón Marino",
@@ -636,7 +2660,22 @@
                     alert_buy_success: "Kauf abgeschlossen! Farben zum Beutel hinzugefügt.",
                     alert_trade_success: "Tausch abgeschlossen! Farben aktualisiert.",
                     alert_not_enough_colors: "Nicht genug Farben für diesen Tausch!",
-                    alert_no_rotations: "Keine Züge für die Töpferscheibe heute übrig!"
+                    alert_no_rotations: "Keine Züge für die Töpferscheibe heute übrig!",
+                    // New landing page
+                    hero_title: "Meister der Keramik",
+                    hero_subtitle: "Die Kunst von Vietri sul Mare",
+                    hero_desc: "Werde ein Meisterhandwerker an der wunderschönen Amalfiküste. Sammle Ton, mische Pigmente und kreiere deine Meisterwerke auf der Töpferscheibe.",
+                    section_theme_title: "Der Charme der Majolika",
+                    section_theme_desc: "Tauche ein in eine Welt aus leuchtenden Farben: das Kobaltblau des Meeres, das Gelb der Zitronen, das Kupfergrün der Hügel. Jedes Spiel ist ein Kunstwerk.",
+                    section_components_title: "Hochwertige Materialien",
+                    section_components_desc: "Sorgfältig entworfene Komponenten, die die Haptik von Keramik und Holz vermitteln.",
+                    section_howtoplay_title: "Wie man Spielt",
+                    step1_title: "1. Sammeln & Handeln",
+                    step1_desc: "Nutze deine Esel, um am Fluss wertvollen Ton zu sammeln, oder handle auf dem Markt, um die passenden Pigmente zu erhalten.",
+                    step2_title: "2. Drehe die Scheibe",
+                    step2_desc: "Die zentrale Mechanik: Verteile die Materialien auf die Felder der Töpferscheibe und drehe sie geschickt, um dein Projekt zu vollenden.",
+                    step3_title: "3. Liefere das Meisterwerk",
+                    step3_desc: "Erfülle die Aufträge vom Platz, um Goldmünzen und Prestigepunkte zu verdienen.",
                 },
                 commissions: {
                     vaso_blu: "Meeresvase",
@@ -753,53 +2792,175 @@
 
         function renderHome() {
             return `
-       <div id="view-home" class="w-full max-w-4xl p-4 fade-in relative">
-           <div class="maiolica-border rounded-xl">
-               <div class="maiolica-content text-center space-y-6 p-4 relative">
-                   ${renderLangSwitcher()}
-                   <div class="mb-4 mt-8">
-                       <h1 class="text-5xl md:text-7xl font-bold uppercase tracking-widest text-blue-800 drop-shadow-sm">Vietri</h1>
-                       <h2 class="text-2xl md:text-3xl text-yellow-600 font-serif italic mt-2">${t('title_sub')}</h2>
-                   </div>
-                   <div class="max-w-2xl text-gray-700 leading-relaxed text-lg mx-auto">
-                       <p class="italic mb-4">${t('quote')}</p>
-                       <p class="mb-2">${t('intro')}</p>
-                   </div>
-                   <div class="mt-8 flex flex-col items-center gap-3">
-                       <button id="btn-start-game" class="btn-start rounded-full px-8 py-3">${t('btn_start')}</button>
-                       <a href="regolamento_rev6_18febbraio.html" target="_blank" class="text-blue-700 underline font-bold hover:text-blue-900 flex items-center gap-1">
-                            ${t('rules_link')}
-                       </a>
-                       <a href="regolamento_interattivo.html" target="_blank" class="text-purple-600 underline font-bold hover:text-purple-800 flex items-center gap-1">
-                            ${t('rules_interactive_link')}
-                       </a>
-                       <a href="editor_vietri.html" class="text-yellow-600 underline font-bold hover:text-yellow-800 flex items-center gap-1 text-sm uppercase tracking-wide">
-                           <span>🎨</span> Crea Carte Opera
-                       </a>
-                       <p class="text-xs text-gray-400 mt-2">${t('credits')}</p>
-                   </div>
+        <div id="view-home" class="w-full fade-in flex flex-col font-reading">
+            
+            <!-- HERO SECTION (KEN BURNS ANIMATION) -->
+            <section id="hero-scroll-wrapper" class="relative w-full h-screen overflow-hidden text-white bg-[#001f3f]">
+                <!-- Cover Art Background -->
+                <div id="hero-bg" class="absolute inset-0 w-full h-full z-0 animate-ken-burns" style="background-image: linear-gradient(to bottom, rgba(0, 34, 68, 0.4), rgba(0, 71, 171, 0.2)), url('img/rules/Cover-Art.png'); background-size: cover; background-position: center; transform-origin: center center;"></div>
+                
+                <!-- Lang Switcher -->
+                <div class="absolute top-4 right-4 flex gap-2 z-50">
+                    ${renderLangSwitcher().replace('absolute top-2 right-2', '')}
+                </div>
 
-                   <!-- CONTACT FOOTER -->
-                       <div class="mt-8 border-t-2 border-gray-100 pt-4">
-                           <p class="font-bold text-vietri-blue text-sm mb-3">${t('footer_info')}</p>
-                           <div class="flex justify-center items-center gap-6">
-                               <a href="https://linktr.ee/JustMax76" target="_blank" class="hover:scale-125 transition-transform flex flex-col items-center gap-1 group">
-                                   <span class="text-3xl filter drop-shadow-sm group-hover:drop-shadow-md">🌳</span>
-                                   <span class="text-[0.6rem] text-gray-500 uppercase tracking-wider font-bold">Links</span>
-                               </a>
-                               <a href="https://wa.me/393295644852" target="_blank" class="hover:scale-125 transition-transform flex flex-col items-center gap-1 group">
-                                   <span class="text-3xl filter drop-shadow-sm group-hover:drop-shadow-md">💬</span>
-                                   <span class="text-[0.6rem] text-gray-500 uppercase tracking-wider font-bold">WhatsApp</span>
-                               </a>
-                               <a href="mailto:massi.sabato@gmail.com" class="hover:scale-125 transition-transform flex flex-col items-center gap-1 group">
-                                   <span class="text-3xl filter drop-shadow-sm group-hover:drop-shadow-md">📧</span>
-                                   <span class="text-[0.6rem] text-gray-500 uppercase tracking-wider font-bold">Email</span>
-                               </a>
-                           </div>
-                       </div>
-               </div>
-           </div>
-       </div>`;
+                <!-- Floating Contacts -->
+                <div class="fixed right-3 md:right-6 top-1/2 transform -translate-y-1/2 z-50 flex flex-col gap-4 animate-text-fade items-center">
+                    <a href="https://linktr.ee/JustMax76" target="_blank" title="Scopri tutti i nostri Link" class="w-10 h-10 md:w-12 md:h-12 bg-white/90 backdrop-blur rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform border-2 border-vietri-blue group hover:bg-vietri-blue">
+                        <span class="text-xl md:text-2xl filter drop-shadow-sm group-hover:grayscale">🌳</span>
+                    </a>
+                    <a href="https://wa.me/393295644852" target="_blank" title="Scrivici su WhatsApp per Info" class="w-10 h-10 md:w-12 md:h-12 bg-white/90 backdrop-blur rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform border-2 border-vietri-blue group hover:bg-vietri-blue">
+                        <span class="text-xl md:text-2xl filter drop-shadow-sm">💬</span>
+                    </a>
+                    <a href="mailto:massi.sabato@gmail.com" title="Mandaci una Email" class="w-10 h-10 md:w-12 md:h-12 bg-white/90 backdrop-blur rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform border-2 border-vietri-blue group hover:bg-vietri-blue">
+                        <span class="text-xl md:text-2xl filter drop-shadow-sm group-hover:grayscale">📧</span>
+                    </a>
+                </div>
+
+                <!-- Logo -->
+                <img id="hero-logo" src="img/rules/logo.png" alt="Vietri Logo" class="absolute z-20 w-[80%] max-w-[500px] drop-shadow-2xl animate-logo-move" style="transform-origin: center center;">
+
+                <!-- Text Content -->
+                <div id="hero-text-content" class="absolute z-30 flex flex-col items-center text-center max-w-4xl mx-auto maiolica-content p-6 md:p-12 rounded-2xl shadow-2xl space-y-4 md:space-y-6 bg-white/95 border-4 border-vietri-blue animate-text-fade" style="top: 55%; left: 50%; width: 90%; backdrop-filter: blur(4px);">
+                    <div class="space-y-2 md:space-y-4">
+                        <h1 class="text-3xl md:text-5xl font-bold uppercase tracking-widest text-vietri-blue drop-shadow-sm font-serif">
+                            ${t('hero_title')}
+                        </h1>
+                        <h2 class="text-xl md:text-2xl text-yellow-600 font-serif italic">
+                            ${t('hero_subtitle')}
+                        </h2>
+                    </div>
+
+                    <p class="text-lg md:text-xl text-gray-700 leading-relaxed font-reading max-w-2xl mx-auto hidden sm:block">
+                        ${t('hero_desc')}
+                    </p>
+
+                    <div class="pt-2 md:pt-4 pb-2">
+                        <button id="btn-start-game-scroll" class="btn-start text-xl px-10 py-4 shadow-[0_10px_20px_rgba(0,0,0,0.3)] pointer-events-auto" onclick="document.getElementById('btn-start-game') ? document.getElementById('btn-start-game').click() : window.scrollTo({top: window.innerHeight, behavior: 'smooth'})">
+                            <span class="text-2xl">🎲</span> ${t('btn_start')}
+                        </button>
+                        <button id="btn-start-game" class="hidden"></button>
+                    </div>
+                </div>
+
+                <!-- Indicator -->
+                <div id="hero-scroll-indicator" class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce flex flex-col items-center z-20 cursor-pointer animate-text-fade" onclick="window.scrollTo({top: window.innerHeight, behavior: 'smooth'})">
+                    <span class="text-sm uppercase tracking-widest text-white/50 mb-2 font-bold drop-shadow-md">Scopri di Più</span>
+                    <svg class="w-8 h-8 text-white/50 drop-shadow-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                </div>
+            </section>
+
+            <!-- THEME SECTION -->
+            <section class="py-20 px-4 bg-ceramic relative">
+                <div class="max-w-5xl mx-auto text-center space-y-6">
+                    <h2 class="text-3xl md:text-4xl font-bold text-vietri-blue font-serif">${t('section_theme_title')}</h2>
+                    <div class="w-24 h-1 bg-vietri-yellow mx-auto rounded-full"></div>
+                    <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto italic font-reading">
+                        ${t('section_theme_desc')}
+                    </p>
+                </div>
+            </section>
+
+            <!-- COMPONENTS GALLERY -->
+            <section class="py-20 px-4 bg-gradient-to-b from-white to-gray-100">
+                <div class="max-w-6xl mx-auto space-y-12">
+                    <div class="text-center space-y-4">
+                        <h2 class="text-3xl md:text-4xl font-bold text-vietri-blue font-serif">${t('section_components_title')}</h2>
+                        <div class="w-24 h-1 bg-vietri-yellow mx-auto rounded-full"></div>
+                        <p class="text-gray-600 max-w-2xl mx-auto">${t('section_components_desc')}</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+                        <div class="physical-card p-4 bg-white">
+                            <img src="img/rules/components_cards.png" alt="Cards" class="w-full h-auto rounded object-cover fustella-piece">
+                        </div>
+                        <div class="physical-card p-4 bg-white transform md:-translate-y-8 z-10 border-4 border-vietri-yellow">
+                            <img src="img/regolamento/esempi_carte.jpg" alt="Artwork" class="w-full h-auto rounded object-cover fustella-piece">
+                        </div>
+                        <div class="physical-card p-4 bg-white">
+                            <img src="img/rules/components_meeples.png" alt="Meeples" class="w-full h-auto rounded object-cover fustella-piece">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- HOW TO PLAY SECTION -->
+            <section class="py-20 px-4 bg-vietri-blue text-white maiolica-border border-0 border-y-8 border-vietri-yellow">
+                <div class="max-w-6xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 font-serif">${t('section_howtoplay_title')}</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                        <div class="space-y-10">
+                            <!-- Step 1 -->
+                            <div class="flex gap-6">
+                                <div class="flex-shrink-0 w-16 h-16 rounded-full bg-vietri-yellow text-vietri-dark flex items-center justify-center text-3xl font-bold shadow-lg">1</div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-vietri-yellow mb-2">${t('step1_title')}</h3>
+                                    <p class="text-gray-200">${t('step1_desc')}</p>
+                                </div>
+                            </div>
+                            <!-- Step 2 -->
+                            <div class="flex gap-6">
+                                <div class="flex-shrink-0 w-16 h-16 rounded-full bg-vietri-yellow text-vietri-dark flex items-center justify-center text-3xl font-bold shadow-lg">2</div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-vietri-yellow mb-2">${t('step2_title')}</h3>
+                                    <p class="text-gray-200">${t('step2_desc')}</p>
+                                </div>
+                            </div>
+                            <!-- Step 3 -->
+                            <div class="flex gap-6">
+                                <div class="flex-shrink-0 w-16 h-16 rounded-full bg-vietri-yellow text-vietri-dark flex items-center justify-center text-3xl font-bold shadow-lg">3</div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-vietri-yellow mb-2">${t('step3_title')}</h3>
+                                    <p class="text-gray-200">${t('step3_desc')}</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="relative physical-card p-2 bg-white rotate-2 hover:rotate-0 transition-transform duration-500">
+                            <img src="img/rules/setup_player.png" alt="Gameplay Setup" class="w-full h-auto rounded">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FOOTER LINKS SECTIONS -->
+            <section class="py-16 px-4 bg-ceramic">
+                <div class="max-w-4xl mx-auto text-center space-y-8">
+                    <div class="flex flex-wrap justify-center gap-6">
+                        <a href="regolamento_rev6_18febbraio.html" target="_blank" class="px-6 py-3 bg-white border-2 border-vietri-blue text-vietri-blue font-bold rounded-lg shadow hover:bg-vietri-blue hover:text-white transition-colors flex items-center gap-2">
+                             ${t('rules_link')}
+                        </a>
+                        <a href="regolamento_interattivo.html" target="_blank" class="px-6 py-3 bg-white border-2 border-purple-600 text-purple-600 font-bold rounded-lg shadow hover:bg-purple-600 hover:text-white transition-colors flex items-center gap-2">
+                             ${t('rules_interactive_link')}
+                        </a>
+                        <a href="editor_vietri.html" class="px-6 py-3 bg-white border-2 border-yellow-600 text-yellow-700 font-bold rounded-lg shadow hover:bg-yellow-600 hover:text-white transition-colors flex items-center gap-2 text-sm uppercase tracking-wide">
+                            <span>🎨</span> Crea Carte Opera
+                        </a>
+                    </div>
+                    
+                    <div class="pt-8 border-t border-gray-300">
+                        <p class="text-base text-gray-500 mb-6">${t('credits')}</p>
+                        
+                        <p class="font-bold text-vietri-blue text-base md:text-lg mb-6">${t('footer_info')}</p>
+                        <div class="flex justify-center items-center gap-10">
+                            <a href="https://linktr.ee/JustMax76" target="_blank" class="hover:scale-110 transition-transform flex flex-col items-center gap-3 group">
+                                <span class="text-4xl md:text-5xl filter drop-shadow-sm">🌳</span>
+                                <span class="text-xs md:text-sm text-gray-500 uppercase tracking-wider font-bold group-hover:text-vietri-blue transition-colors">Links</span>
+                            </a>
+                            <a href="https://wa.me/393295644852" target="_blank" class="hover:scale-110 transition-transform flex flex-col items-center gap-3 group">
+                                <span class="text-4xl md:text-5xl filter drop-shadow-sm">💬</span>
+                                <span class="text-xs md:text-sm text-gray-500 uppercase tracking-wider font-bold group-hover:text-vietri-blue transition-colors">WhatsApp</span>
+                            </a>
+                            <a href="mailto:massi.sabato@gmail.com" class="hover:scale-110 transition-transform flex flex-col items-center gap-3 group">
+                                <span class="text-4xl md:text-5xl filter drop-shadow-sm">📧</span>
+                                <span class="text-xs md:text-sm text-gray-500 uppercase tracking-wider font-bold group-hover:text-vietri-blue transition-colors">Email</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>`;
         }
 
         function renderGame() {
@@ -1704,3 +3865,5 @@
     </script>
 
 </body>
+
+</html>
