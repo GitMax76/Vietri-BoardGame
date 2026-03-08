@@ -2161,15 +2161,9 @@
             <section class="py-16 px-4 bg-ceramic">
                 <div class="max-w-4xl mx-auto text-center space-y-8">
                     <div class="flex flex-wrap justify-center gap-6">
-                        <a href="file:///C:/Users/Smartworking/.gemini/antigravity/scratch/vietri-repo%20cloned/Vietri-BoardGame/regolamento_rev6_18febbraio.html"
-                            target="_blank"
+                        <a id="btn-rulebook-pdf" href="pdf/Regolamento_IT.pdf" target="_blank"
                             class="px-6 py-3 bg-white border-2 border-vietri-blue text-vietri-blue font-bold rounded-lg shadow hover:bg-vietri-blue hover:text-white transition-colors flex items-center gap-2">
-                            📖 Leggi il Regolamento Ufficiale
-                        </a>
-                        <a href="file:///C:/Users/Smartworking/.gemini/antigravity/scratch/vietri-repo%20cloned/Vietri-BoardGame/regolamento_interattivo.html"
-                            target="_blank"
-                            class="px-6 py-3 bg-white border-2 border-purple-600 text-purple-600 font-bold rounded-lg shadow hover:bg-purple-600 hover:text-white transition-colors flex items-center gap-2">
-                            ✨ Regolamento Interattivo
+                            📖 <span id="text-rulebook-btn">Leggi il Regolamento</span>
                         </a>
                         <a href="file:///C:/Users/Smartworking/.gemini/antigravity/scratch/vietri-repo%20cloned/Vietri-BoardGame/editor_vietri.html"
                             class="px-6 py-3 bg-white border-2 border-yellow-600 text-yellow-700 font-bold rounded-lg shadow hover:bg-yellow-600 hover:text-white transition-colors flex items-center gap-2 text-sm uppercase tracking-wide">
@@ -2221,8 +2215,7 @@
                     intro: "Diventa un <strong>Maestro Artigiano</strong>: raccogli argilla, compra pigmenti e crea capolavori al tornio.",
                     btn_start: "Prova a giocare",
                     credits: "Un gioco di M. Sabato & A. Solimene",
-                    rules_link: "📖 Leggi il Regolamento Ufficiale",
-                    rules_interactive_link: "✨ Regolamento Interattivo",
+                    rules_link: "Leggi il Regolamento",
                     shop_title: "Bottega del Maestro",
                     exit: "Esci",
                     tutorial_loading: "Caricamento...",
@@ -2315,8 +2308,7 @@
                     intro: "Become a <strong>Master Craftsman</strong>: gather clay, buy pigments, and create masterpieces on the lathe.",
                     btn_start: "Play Now",
                     credits: "A game by M. Sabato & A. Solimene",
-                    rules_link: "📖 Read Official Rules",
-                    rules_interactive_link: "✨ Interactive Rules",
+                    rules_link: "Read the Rulebook",
                     shop_title: "Master's Workshop",
                     exit: "Exit",
                     tutorial_loading: "Loading...",
@@ -2409,8 +2401,7 @@
                     intro: "Devenez un <strong>Maître Artisan</strong> : récoltez l'argile, achetez des pigments et créez des chefs-d'œuvre au tour.",
                     btn_start: "Jouer Maintenant",
                     credits: "Un jeu de M. Sabato & A. Solimene",
-                    rules_link: "📖 Lire le Règlement Officiel",
-                    rules_interactive_link: "✨ Règles Interactives",
+                    rules_link: "Lire le Règlement",
                     shop_title: "Atelier du Maître",
                     exit: "Quitter",
                     tutorial_loading: "Chargement...",
@@ -2503,8 +2494,7 @@
                     intro: "Conviértete en un <strong>Maestro Artesano</strong>: recoge arcilla, compra pigmentos y crea obras maestras en el torno.",
                     btn_start: "Jugar Ahora",
                     credits: "Un juego de M. Sabato & A. Solimene",
-                    rules_link: "📖 Leer Reglamento Oficial",
-                    rules_interactive_link: "✨ Reglas Interactivas",
+                    rules_link: "Leer Reglamento",
                     shop_title: "Taller del Maestro",
                     exit: "Salir",
                     tutorial_loading: "Cargando...",
@@ -2597,8 +2587,7 @@
                     intro: "Werde ein <strong>Meisterhandwerker</strong>: Sammle Ton, kaufe Pigmente und schaffe Meisterwerke an der Töpferscheibe.",
                     btn_start: "Jetzt Spielen",
                     credits: "Ein Spiel von M. Sabato & A. Solimene",
-                    rules_link: "📖 Offizielle Regeln lesen",
-                    rules_interactive_link: "✨ Interaktive Regeln",
+                    rules_link: "Regeln lesen",
                     shop_title: "Meisterwerkstatt",
                     exit: "Beenden",
                     tutorial_loading: "Lädt...",
@@ -2919,11 +2908,8 @@
             <section class="py-16 px-4 bg-ceramic">
                 <div class="max-w-4xl mx-auto text-center space-y-8">
                     <div class="flex flex-wrap justify-center gap-6">
-                        <a href="regolamento_rev6_18febbraio.html" target="_blank" class="px-6 py-3 bg-white border-2 border-vietri-blue text-vietri-blue font-bold rounded-lg shadow hover:bg-vietri-blue hover:text-white transition-colors flex items-center gap-2">
-                             ${t('rules_link')}
-                        </a>
-                        <a href="regolamento_interattivo.html" target="_blank" class="px-6 py-3 bg-white border-2 border-purple-600 text-purple-600 font-bold rounded-lg shadow hover:bg-purple-600 hover:text-white transition-colors flex items-center gap-2">
-                             ${t('rules_interactive_link')}
+                        <a id="btn-rulebook-pdf" href="pdf/Regolamento_${(gameState.language === 'es' || gameState.language === 'de') ? 'EN' : gameState.language.toUpperCase()}.pdf" target="_blank" class="px-6 py-3 bg-white border-2 border-vietri-blue text-vietri-blue font-bold rounded-lg shadow hover:bg-vietri-blue hover:text-white transition-colors flex items-center gap-2">
+                             📖 <span id="text-rulebook-btn">${t('rules_link')}</span>
                         </a>
                         <a href="editor_vietri.html" class="px-6 py-3 bg-white border-2 border-yellow-600 text-yellow-700 font-bold rounded-lg shadow hover:bg-yellow-600 hover:text-white transition-colors flex items-center gap-2 text-sm uppercase tracking-wide">
                             <span>🎨</span> Crea Carte Opera
@@ -2931,9 +2917,9 @@
                     </div>
                     
                     <div class="pt-8 border-t border-gray-300">
-                        <p class="text-base text-gray-500 mb-6">${t('credits')}</p>
+                        <p id="text-credits" class="text-base text-gray-500 mb-6">${t('credits')}</p>
                         
-                        <p class="font-bold text-vietri-blue text-base md:text-lg mb-6">${t('footer_info')}</p>
+                        <p id="text-footer-info" class="font-bold text-vietri-blue text-base md:text-lg mb-6">${t('footer_info')}</p>
                         <div class="flex justify-center items-center gap-10">
                             <a href="https://linktr.ee/JustMax76" target="_blank" class="hover:scale-110 transition-transform flex flex-col items-center gap-3 group">
                                 <span class="text-4xl md:text-5xl filter drop-shadow-sm">🌳</span>
@@ -3847,8 +3833,135 @@
             ['river', 'market', 'plaza', 'workshop', 'oven'].forEach(z => {
                 document.getElementById(`meeple-${z}`).innerHTML = '';
             });
-            alert("Un nuovo giorno sorge su Vietri! (Mosse tornio ripristinate)");
+            alert(t('alert_day_reset'));
             updateUI();
+        }
+
+        // INIT
+        window.onload = () => {
+            initTranslations();
+            // Fallback for lang button visual state
+            document.querySelectorAll('button[onclick^="setLanguage"]').forEach(btn => {
+                const lang = btn.getAttribute('onclick').match(/'(.*?)'/)[1];
+                if (lang === currentLang) {
+                    btn.classList.remove('opacity-70');
+                    btn.classList.add('ring-2', 'ring-yellow-400');
+                } else {
+                    btn.classList.add('opacity-70');
+                    btn.classList.remove('ring-2', 'ring-yellow-400');
+                }
+            });
+        };
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            gameState.language = lang;
+
+            // Visual update for flags
+            document.querySelectorAll('button[onclick^="setLanguage"]').forEach(btn => {
+                const btnLang = btn.getAttribute('onclick').match(/'(.*?)'/)[1];
+                if (btnLang === lang) {
+                    btn.classList.remove('opacity-70');
+                    btn.classList.add('ring-2', 'ring-yellow-400');
+                } else {
+                    btn.classList.add('opacity-70');
+                    btn.classList.remove('ring-2', 'ring-yellow-400');
+                }
+            });
+
+            // Re-render UI
+            initTranslations();
+
+            // Force visual re-render of Vue-like components
+            updateUI();
+        }
+
+        // --- TRANSLATION SUPPORT ---
+        function t(keyPath) {
+            const keys = keyPath.split('.');
+            let obj = TRANSLATIONS[gameState.language].ui;
+            for (const k of keys) {
+                if (obj && obj[k] !== undefined) obj = obj[k];
+                else return keyPath;
+            }
+            return obj;
+        }
+
+        function initTranslations() {
+            // Very simple text replacement based on IDs
+            const map = {
+                'hero-scroll-wrapper h1': t('hero_title'),
+                'hero-scroll-wrapper h2': t('hero_subtitle'),
+                'hero-scroll-wrapper p': t('hero_desc'),
+                'btn-start-game-scroll': `🎲 ${t('btn_start')}`,
+                'hero-scroll-indicator span': t('btn_start'), // Or whatever "Scopri di più" equivalent you want
+
+                // Theme
+                'section.bg-ceramic h2': t('section_theme_title'),
+                'section.bg-ceramic p': t('section_theme_desc'),
+
+                // Components
+                'section.bg-gradient-to-b h2': t('section_components_title'),
+                'section.bg-gradient-to-b p': t('section_components_desc'),
+
+                // How to
+                'section.bg-vietri-blue h2': t('section_howtoplay_title'),
+
+                // Footer
+                'text-rulebook-btn': t('rules_link'),
+                'text-credits': t('credits'),
+                'text-footer-info': t('footer_info')
+            };
+
+            for (const [selector, text] of Object.entries(map)) {
+                // If ID is direct
+                if (selector.indexOf(' ') === -1 && document.getElementById(selector)) {
+                    // For elements with inner HTML content like the icon
+                    if (selector === 'btn-start-game-scroll') {
+                        document.getElementById(selector).innerHTML = `<span class="text-2xl">🎲</span> ${t('btn_start')}`;
+                    } else {
+                        document.getElementById(selector).innerHTML = text;
+                    }
+                }
+                // Fallback for complex selectors - a bit hacky for a pure JS app without a vdom but it works
+                else if (document.querySelector(selector)) {
+                    // Try to be careful not to destroy inner elements if not needed, but here simple is fine
+                    if (selector.includes('btn-start')) continue; // handled above usually
+                    // Specific overrides
+                    if (selector === 'section.bg-vietri-blue h2') {
+                        document.querySelector(selector).textContent = text;
+
+                        // Update the steps specifically
+                        const stepsContainers = document.querySelectorAll('section.bg-vietri-blue .flex.gap-6');
+                        if (stepsContainers.length === 3) {
+                            stepsContainers[0].querySelector('h3').textContent = t('step1_title');
+                            stepsContainers[0].querySelector('p').textContent = t('step1_desc');
+                            stepsContainers[1].querySelector('h3').textContent = t('step2_title');
+                            stepsContainers[1].querySelector('p').textContent = t('step2_desc');
+                            stepsContainers[2].querySelector('h3').textContent = t('step3_title');
+                            stepsContainers[2].querySelector('p').textContent = t('step3_desc');
+                        }
+                    }
+                    else {
+                        document.querySelector(selector).textContent = text;
+                    }
+                }
+            }
+
+            // Update Dynamic PDF Rulebook Link
+            const getPdfLang = () => {
+                const lang = gameState.language.toUpperCase();
+                return (lang === 'ES' || lang === 'DE') ? 'EN' : lang;
+            };
+
+            const pdfLinkJS = document.getElementById('btn-rulebook-pdf-js');
+            if (pdfLinkJS) {
+                pdfLinkJS.href = `pdf/Regolamento_${getPdfLang()}.pdf`;
+            }
+            const pdfLink = document.getElementById('btn-rulebook-pdf');
+            if (pdfLink) {
+                pdfLink.href = `pdf/Regolamento_${getPdfLang()}.pdf`;
+            }
         }
 
         init();
