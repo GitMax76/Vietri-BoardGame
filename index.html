@@ -2293,6 +2293,7 @@
                     step2_desc: "La meccanica centrale: alloca i materiali negli spicchi del tornio e ruotalo con saggezza per completare il tuo progetto.",
                     step3_title: "3. Consegna l'Opera",
                     step3_desc: "Soddisfa le commissioni richieste dalla piazza per ottenere monete d'oro e punti prestigio.",
+                    btn_editor: "Prova a creare una carta opera",
                 },
                 commissions: {
                     vaso_blu: "Vaso Marino",
@@ -2386,6 +2387,7 @@
                     step2_desc: "The core mechanic: allocate materials in the lathe's slots and rotate it wisely to complete your design.",
                     step3_title: "3. Deliver the Masterpiece",
                     step3_desc: "Fulfill the commissions requested by the plaza to earn gold coins and prestige points.",
+                    btn_editor: "Try creating an artwork card",
                 },
                 commissions: {
                     vaso_blu: "Sea Vase",
@@ -2479,6 +2481,7 @@
                     step2_desc: "La mécanique centrale : placez les matériaux dans les emplacements du tour et faites-le tourner intelligemment pour terminer votre projet.",
                     step3_title: "3. Livrer l'Œuvre",
                     step3_desc: "Répondez aux demandes des clients sur la place pour gagner des pièces d'or et des points de prestige.",
+                    btn_editor: "Essayez de créer une carte d'œuvre",
                 },
                 commissions: {
                     vaso_blu: "Vase Marin",
@@ -2570,8 +2573,9 @@
                     step1_desc: "Usa tus burros para recolectar arcilla en el río o intercambia para obtener los pigmentos adecuados en el mercado.",
                     step2_title: "2. Girar el Torno",
                     step2_desc: "La mecánica central: asigna los materiales en los espacios del torno y gíralo sabiamente para completar tu proyecto.",
-                    step3_title: "3. Entregar la Obra Maestra",
-                    step3_desc: "Cumple con los encargos solicitados en la plaza para ganar monedas de oro y puntos de prestigio.",
+                    step3_title: "3. Entregar la Obra",
+                    step3_desc: "Cumple con las comisiones de la plaza para ganar monedas de oro y puntos de prestigio.",
+                    btn_editor: "Prueba a crear una carta de obra",
                 },
                 commissions: {
                     vaso_blu: "Jarrón Marino",
@@ -2663,8 +2667,9 @@
                     step1_desc: "Nutze deine Esel, um am Fluss wertvollen Ton zu sammeln, oder handle auf dem Markt, um die passenden Pigmente zu erhalten.",
                     step2_title: "2. Drehe die Scheibe",
                     step2_desc: "Die zentrale Mechanik: Verteile die Materialien auf die Felder der Töpferscheibe und drehe sie geschickt, um dein Projekt zu vollenden.",
-                    step3_title: "3. Liefere das Meisterwerk",
-                    step3_desc: "Erfülle die Aufträge vom Platz, um Goldmünzen und Prestigepunkte zu verdienen.",
+                    step3_title: "3. Kunstwerk Liefern",
+                    step3_desc: "Erfülle die von der Piazza geforderten Aufträge, um Goldmünzen und Prestigepunkte zu verdienen.",
+                    btn_editor: "Versuche, eine Kunstwerk-Karte zu erstellen",
                 },
                 commissions: {
                     vaso_blu: "Meeresvase",
@@ -2921,7 +2926,7 @@
                              📖 <span id="text-rulebook-btn">${t('rules_link')}</span>
                         </a>
                         <a href="editor_vietri.html" class="px-6 py-3 bg-white border-2 border-yellow-600 text-yellow-700 font-bold rounded-lg shadow hover:bg-yellow-600 hover:text-white transition-colors flex items-center gap-2 text-sm uppercase tracking-wide">
-                            <span>🎨</span> Crea Carte Opera
+                            <span>🎨</span> <span id="text-editor-btn">${t('btn_editor')}</span>
                         </a>
                     </div>
                     
@@ -3919,7 +3924,8 @@
                 // Footer
                 'text-rulebook-btn': t('rules_link'),
                 'text-credits': t('credits'),
-                'text-footer-info': t('footer_info')
+                'text-footer-info': t('footer_info'),
+                'text-editor-btn': t('btn_editor')
             };
 
             for (const [selector, text] of Object.entries(map)) {
