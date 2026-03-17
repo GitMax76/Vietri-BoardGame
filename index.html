@@ -10,10 +10,18 @@
     <link rel="icon"
         href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text y=%22.9em%22 font-size=%2290%22&gt;%F0%9F%8F%BA&lt;/text&gt;&lt;/svg&gt;">
 
-    <meta property="og:title" content="Vietri: Maestri della Ceramica">
-    <meta property="og:description" content="Diventa un Maestro Artigiano nella Costiera Amalfitana. Gioca ora!">
-    <meta property="og:image" content="/Vietri-BoardGame/assets/preview-_fCIekrJ.jpg">
-    <meta property="og:type" content="website">
+    <meta property="og:title" content="Vietri: Maestri della Ceramica" />
+    <meta property="og:description" content="Diventa un Maestro Artigiano nella Costiera Amalfitana. Gioca ora!" />
+    <!-- Usa il link assoluto per compatibilità con WhatsApp/Facebook -->
+    <meta property="og:image" content="https://gitmax76.github.io/Vietri-BoardGame/preview.JPG" />
+    <meta property="og:url" content="https://gitmax76.github.io/Vietri-BoardGame/" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card per l'anteprima su X/Discord/Telegram -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Vietri: Maestri della Ceramica" />
+    <meta name="twitter:description" content="Diventa un Maestro Artigiano nella Costiera Amalfitana. Gioca ora!" />
+    <meta name="twitter:image" content="https://gitmax76.github.io/Vietri-BoardGame/preview.JPG" />
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -3257,14 +3265,11 @@
                     for (let k = 0; k < slotData.clay; k++) dots += `<div class="w-4 h-3 bg-stone-400 border border-stone-600 rounded-sm shadow-sm inline-block mx-0.5"></div>`;
                     el.innerHTML = `<div class="flex flex-col justify-center items-center gap-0.5 mt-2">${dots}</div>`;
                 } else {
-                    el.innerHTML = '<span class="text-gray-400 text-lg opacity-50 mt-2">+</span>';
-                }
-
-                // Divider
-                const line = document.createElement('div');
-                line.className = 'absolute top-0 left-1/2 w-0.5 h-1/2 bg-yellow-600/30 origin-bottom transform -translate-x-1/2 pointer-events-none';
-                innerDisk.appendChild(el);
-            });
+                    el.innerHTML = '<span class="text-gray-400 text-lg opacity-50 mt-2            
+                                   // Divider
+                                  ent.createElement('div');
+                                    solute top-0 left-1/2 w-0.5 h-1/2 bg-yellow-600/30 origin-bott                          1/2 pointer-events-none';
+                innerDisk.a                            });
 
             // OUTER
             const outerDisk = document.getElementById('disk-outer');
@@ -3449,7 +3454,7 @@
             const visibleColors = COLORS.filter(c => slot[c] > 0 || gameState.pigments[c] > 0);
 
             if (visibleColors.length === 0) {
-                container.innerHTML = `<p class="text-center text-gray-500 italic py-4">Nessun colore disponibile.<br>Visita il Mercato!</p>`;
+                container.innerHTML = `<p class="text-center text-gray-500 italic py-4">Nescosponibile.<br>Visita il Mercato!</p>`;
                 return;
             }
 
