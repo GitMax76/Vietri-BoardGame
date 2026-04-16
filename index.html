@@ -2192,7 +2192,52 @@
                         <p class="text-sm text-gray-500 mb-6">Un gioco di M. Sabato &amp; A. Solimene</p>
 
                         <p class="font-bold text-vietri-blue text-sm mb-4">👋 Info? Suggerimenti? Collaborazioni? Demo?
-                            Parliamo!</p>
+                            Restiamo in contatto!</p>
+
+                        <form id="contact-form" action="https://script.google.com/macros/s/AKfycbzYbiYiNPPWPpubt2KiWEnTjjgO0U6iz6Nh90vV6spAOmRgGpkZLmdveQMssjPKNUy1hQ/exec" method="POST" class="flex flex-col sm:flex-row justify-center items-center gap-2 mb-6 max-w-lg mx-auto w-full px-4">
+                            <input type="text" name="nome" placeholder="Il tuo nome..." class="px-4 py-2 text-sm rounded border-2 border-vietri-blue focus:outline-none w-full sm:w-1/3 shadow-sm" required>
+                            <input type="email" name="email" placeholder="La tua email..." class="px-4 py-2 text-sm rounded border-2 border-vietri-blue focus:outline-none w-full sm:w-1/2 shadow-sm" required>
+                            <button type="submit" class="px-6 py-2 bg-vietri-blue text-white font-bold rounded border-2 border-vietri-blue hover:bg-blue-800 transition-colors shadow-sm w-full sm:w-auto">Invia</button>
+                        </form>
+                        <script>
+                            document.addEventListener("submit", function(e){
+                                if(e.target && e.target.id === 'contact-form'){
+                                    e.preventDefault();
+                                    const form = e.target;
+                                    const btn = form.querySelector('button[type="submit"]');
+                                    const originalText = btn.innerHTML;
+                                    btn.innerHTML = '⏳ ...';
+                                    btn.disabled = true;
+                                    
+                                    const formData = new FormData(form);
+                                    if(typeof gameState !== 'undefined') formData.append("language", gameState.language);
+                                    else if(typeof currentLang !== 'undefined') formData.append("language", currentLang);
+                                    
+                                    fetch(form.action, {
+                                        method: "POST",
+                                        body: formData,
+                                        mode: "no-cors"
+                                    }).then(() => {
+                                        let lang = 'it';
+                                        if(typeof gameState !== 'undefined') lang = gameState.language;
+                                        else if(typeof currentLang !== 'undefined') lang = currentLang;
+                                        
+                                        let successMsg = "Grazie! A presto.";
+                                        if(lang === 'en') successMsg = "Thank you! Contact saved.";
+                                        if(lang === 'fr') successMsg = "Merci ! À bientôt.";
+                                        if(lang === 'es') successMsg = "¡Gracias! Hablamos pronto.";
+                                        if(lang === 'de') successMsg = "Danke! Wir melden uns.";
+
+                                        form.innerHTML = '<p class="text-green-700 font-bold bg-green-50 px-4 py-3 rounded border border-green-500 w-full text-center shadow-sm">✅ ' + successMsg + '</p>';
+                                    }).catch(() => {
+                                        btn.innerHTML = originalText;
+                                        btn.disabled = false;
+                                        alert("Si è verificato un errore. Riprova più tardi.");
+                                    });
+                                }
+                            });
+                        </script>
+
                         <div class="flex justify-center items-center gap-8">
                             <a href="https://linktr.ee/JustMax76" target="_blank"
                                 class="hover:scale-110 transition-transform flex flex-col items-center gap-2 group">
@@ -2281,7 +2326,7 @@
                     alert_fail: "MAMMA MIA! L'opera non è pronta.",
                     alert_fail_desc: "vuole:\n- Argilla\n- Colori specifici\n\nControlla lo spicchio sotto la freccia ▼!",
                     alert_day_reset: "Un nuovo giorno sorge su Vietri! (Mosse tornio ripristinate)",
-                    footer_info: "👋 Info? Suggerimenti? Collaborazioni? Demo? Parliamo!",
+                    footer_info: "👋 Info? Suggerimenti? Collaborazioni? Demo? Restiamo in contatto!",
                     alert_buy_success: "Acquisto completato! Colori aggiunti al sacco.",
                     alert_trade_success: "Scambio completato! Colori aggiornati.",
                     alert_not_enough_colors: "Non hai abbastanza colori per questo scambio!",
@@ -2375,7 +2420,7 @@
                     alert_fail: "MAMMA MIA! The work is not ready.",
                     alert_fail_desc: "needs:\n- Clay\n- Specific colors\n\nCheck the slice under the arrow ▼!",
                     alert_day_reset: "A new day dawns over Vietri! (Lathe moves restored)",
-                    footer_info: "👋 Info? Suggestions? Collabs? Demo? Let's talk!",
+                    footer_info: "👋 Info? Suggestions? Collabs? Demo? Let's stay in touch!",
                     alert_buy_success: "Purchase complete! Colors added to bag.",
                     alert_trade_success: "Trade complete! Colors updated.",
                     alert_not_enough_colors: "Not enough colors for this trade!",
@@ -2469,7 +2514,7 @@
                     alert_fail: "MAMMA MIA ! L'œuvre n'est pas prête.",
                     alert_fail_desc: "nécessite :\n- Argile\n- Couleurs spécifiques\n\nVérifiez la part sous la flèche ▼!",
                     alert_day_reset: "Un nouveau jour se lève sur Vietri ! (Mouvements du tour restaurés)",
-                    footer_info: "👋 Info? Suggestions? Collabs ? Démo ? Parlons-en !",
+                    footer_info: "👋 Info? Suggestions? Collabs ? Démo ? Restons en contact !",
                     alert_buy_success: "Achat terminé ! Couleurs ajoutées au sac.",
                     alert_trade_success: "Échange terminé ! Couleurs mises à jour.",
                     alert_not_enough_colors: "Pas assez de couleurs pour cet échange !",
@@ -2563,7 +2608,7 @@
                     alert_fail: "¡MAMMA MIA! La obra no está lista.",
                     alert_fail_desc: "necesita:\n- Arcilla\n- Colores específicos\n\n¡Comprueba la porción bajo la flecha ▼!",
                     alert_day_reset: "¡Amanece un nuevo día en Vietri! (Movimientos de torno restaurados)",
-                    footer_info: "👋 ¿Info? ¿Sugerencias? ¿Colabs? ¿Demo? ¡Hablemos!",
+                    footer_info: "👋 ¿Info? ¿Sugerencias? ¿Colabs? ¿Demo? ¡Mantengámonos en contacto!",
                     alert_buy_success: "¡Compra completada! Colores añadidos a la bolsa.",
                     alert_trade_success: "¡Intercambio completado! Colores actualizados.",
                     alert_not_enough_colors: "¡No tienes suficientes colores para este intercambio!",
@@ -2657,7 +2702,7 @@
                     alert_fail: "MAMMA MIA! Das Werk ist nicht fertig.",
                     alert_fail_desc: "benötigt:\n- Ton\n- Spezifische Farben\n\nPrüfe das Segment unter dem Pfeil ▼!",
                     alert_day_reset: "Ein neuer Tag bricht über Vietri an! (Töpferscheiben-Züge wiederhergestellt)",
-                    footer_info: "👋 Info? Vorschläge? Kollaborationen? Demo? Lass uns reden!",
+                    footer_info: "👋 Info? Vorschläge? Collabs? Demo? Lass uns in Kontakt bleiben!",
                     alert_buy_success: "Kauf abgeschlossen! Farben zum Beutel hinzugefügt.",
                     alert_trade_success: "Tausch abgeschlossen! Farben aktualisiert.",
                     alert_not_enough_colors: "Nicht genug Farben für diesen Tausch!",
