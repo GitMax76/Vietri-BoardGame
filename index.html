@@ -14,6 +14,13 @@
     <meta property="og:url" content="https://gitmax76.github.io/Vietri-BoardGame/" />
     <meta property="og:type" content="website" />
 
+    <!-- Performance Preconnect & Preloads -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="image" href="img/rules/Cover-Art.webp" type="image/webp" fetchpriority="high">
+    <link rel="preload" as="image" href="img/rules/logo.webp" type="image/webp" fetchpriority="high">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;600;700;800&display=swap">
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -38,8 +45,6 @@
     </script>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;600;700;800&display=swap');
-
         :root {
             --vietri-blue: #0047AB;
             --vietri-yellow: #FFD700;
@@ -809,7 +814,7 @@
             <div id="view-home" class="w-full flex flex-col font-reading">
                 <section id="hero-scroll-wrapper" class="relative w-full h-screen overflow-hidden text-white bg-[#001f3f] flex items-center justify-center">
                     <div id="hero-bg" class="absolute inset-0 w-full h-full z-0 animate-ken-burns"
-                        style="background-image: linear-gradient(to bottom, rgba(0, 34, 68, 0.45), rgba(0, 71, 171, 0.25)), url('img/rules/Cover-Art.png'); background-size: cover; background-position: center; transform-origin: center center;">
+                        style="background-image: linear-gradient(to bottom, rgba(0, 34, 68, 0.45), rgba(0, 71, 171, 0.25)), url('img/rules/Cover-Art.webp'); background-size: cover; background-position: center; transform-origin: center center;">
                     </div>
 
                     <div class="absolute top-4 right-4 flex gap-2.5 z-50">
@@ -833,7 +838,7 @@
                     </div>
 
                     <div class="relative z-30 flex flex-col items-center text-center max-w-4xl mx-auto maiolica-content p-6 md:p-12 rounded-2xl shadow-2xl space-y-4 md:space-y-6 border-4 border-vietri-blue bg-white/90" style="width: 90%; backdrop-filter: blur(6px);">
-                        <img src="img/rules/logo.png" alt="Vietri Logo" class="w-[75%] max-w-[420px] drop-shadow-xl mx-auto">
+                        <img src="img/rules/logo.webp" alt="Vietri Logo" class="w-[75%] max-w-[420px] drop-shadow-xl mx-auto" width="420" height="auto" fetchpriority="high">
                         
                         <div class="space-y-1">
                             <h1 class="text-3xl md:text-5xl font-bold uppercase tracking-widest text-vietri-blue drop-shadow-sm font-serif">
@@ -878,13 +883,13 @@
 
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
                             <div class="physical-card p-4 bg-white">
-                                <img src="img/rules/components_cards.png" alt="Cards" class="w-full h-auto rounded object-cover">
+                                <img src="img/rules/components_cards.webp" alt="Cards" class="w-full h-auto rounded object-cover" loading="lazy" decoding="async">
                             </div>
                             <div class="physical-card p-4 bg-white transform md:-translate-y-6 z-10 border-4 border-vietri-yellow">
-                                <img src="img/regolamento/esempi_carte.jpg" alt="Artwork" class="w-full h-auto rounded object-cover">
+                                <img src="img/regolamento/esempi_carte.webp" alt="Artwork" class="w-full h-auto rounded object-cover" loading="lazy" decoding="async">
                             </div>
                             <div class="physical-card p-4 bg-white">
-                                <img src="img/rules/components_meeples.png" alt="Meeples" class="w-full h-auto rounded object-cover">
+                                <img src="img/rules/components_meeples.webp" alt="Meeples" class="w-full h-auto rounded object-cover" loading="lazy" decoding="async">
                             </div>
                         </div>
                     </div>
