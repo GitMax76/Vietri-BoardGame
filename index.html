@@ -14,6 +14,13 @@
     <meta property="og:url" content="https://gitmax76.github.io/Vietri-BoardGame/" />
     <meta property="og:type" content="website" />
 
+    <!-- Performance Preconnect & Preloads -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="image" href="/Vietri-BoardGame/assets/Cover-Art-C576kzQR.webp" type="image/webp" fetchpriority="high">
+    <link rel="preload" as="image" href="/Vietri-BoardGame/assets/logo-BSIiKU6U.webp" type="image/webp" fetchpriority="high">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;600;700;800&display=swap">
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -38,8 +45,6 @@
     </script>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;600;700;800&display=swap');
-
         :root {
             --vietri-blue: #0047AB;
             --vietri-yellow: #FFD700;
@@ -56,11 +61,9 @@
         }
 
         .font-serif { font-family: 'Cinzel', serif; }
-
         .font-reading { font-family: 'Lora', serif; }
 
         /* Sfondi Ceramica e Maiolica */
-
         .bg-ceramic {
             background-color: var(--vietri-white);
             background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
@@ -129,7 +132,6 @@
         }
 
         /* --- ANIMAZIONI GUIDA INTERATTIVA --- */
-
         @keyframes pulseGlowWorker {
             0%, 100% {
                 box-shadow: 0 0 0 0 rgba(234, 179, 8, 0.8), 0 2px 5px rgba(0,0,0,0.1);
@@ -140,7 +142,6 @@
                 transform: scale(1.06);
             }
         }
-
         .highlight-worker {
             animation: pulseGlowWorker 1.8s infinite ease-in-out;
             border-color: #f59e0b !important;
@@ -159,7 +160,6 @@
                 transform: scale(1.07);
             }
         }
-
         .highlight-zone {
             animation: pulseGlowZone 1.5s infinite ease-in-out;
             cursor: pointer;
@@ -175,7 +175,6 @@
                 transform: scale(1.02);
             }
         }
-
         .highlight-endday {
             animation: pulseEndDay 1.6s infinite ease-in-out;
             border: 2px solid #f59e0b !important;
@@ -186,20 +185,17 @@
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-2px); }
         }
-
         .guide-banner-anim {
             animation: guideBannerBounce 2s ease-in-out infinite;
         }
 
         /* --- ANIMAZIONE ASINELLO CHE CAMMINA E TRACCIATO PUNTI IN CELEBRAZIONE --- */
-
         @keyframes donkeyTrot {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
             25% { transform: translateY(-4px) rotate(3deg); }
             50% { transform: translateY(0px) rotate(0deg); }
             75% { transform: translateY(-3px) rotate(-3deg); }
         }
-
         .donkey-walking {
             animation: donkeyTrot 0.45s infinite ease-in-out;
             filter: drop-shadow(0 4px 10px rgba(245, 158, 11, 0.8));
@@ -220,14 +216,12 @@
                 transform: scale(1);
             }
         }
-
         .score-celebrating {
             animation: scoreTrackBurst 1.6s infinite ease-in-out;
             border-color: #f59e0b !important;
         }
 
         /* PULSAZIONE BAGLIORE ALLINEAMENTO SUL TORNIO */
-
         @keyframes latheAlignmentPulse {
             0%, 100% {
                 filter: drop-shadow(0 0 4px rgba(34, 197, 94, 0.7));
@@ -238,37 +232,31 @@
                 stroke: #4ade80;
             }
         }
-
         .lathe-aligned-highlight {
             animation: latheAlignmentPulse 1.4s infinite ease-in-out;
         }
 
         /* ANIMAZIONE ROTAZIONE TORNIO */
-
         @keyframes latheSpinImpulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.035); filter: brightness(1.15) drop-shadow(0 0 16px rgba(245, 158, 11, 0.5)); }
             100% { transform: scale(1); filter: brightness(1); }
         }
-
         .lathe-spin-active {
             animation: latheSpinImpulse 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         /* Hero Animation */
-
         @keyframes kenBurns {
             0% { transform: scale(1) translate(0, 0); }
             50% { transform: scale(1.08) translate(-1%, -1%); }
             100% { transform: scale(1) translate(0, 0); }
         }
-
         .animate-ken-burns {
             animation: kenBurns 25s ease-in-out infinite alternate;
         }
 
         /* --- TORNIO ANTICO IN LEGNO E TERRACOTTA --- */
-
         .antique-workshop-panel {
             background: radial-gradient(circle at center, #fdf6ec 0%, #f4e8da 60%, #e8d5be 100%);
             border: 2px solid #b48a5c;
@@ -284,11 +272,9 @@
         }
 
         /* Tracciato Punti Compatto */
-
         .score-tile {
             transition: all 0.25s ease;
         }
-
         .score-tile.active-score {
             border-color: #f59e0b;
             background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
@@ -298,23 +284,19 @@
         }
 
         /* Pedina Meeple Artigiana in Legno */
-
         .meeple-artisan {
             filter: drop-shadow(2px 3px 2px rgba(0,0,0,0.3));
             transition: all 0.25s ease;
         }
-
         .meeple-button {
             transition: all 0.25s ease;
         }
-
         .meeple-button.selected {
             outline: 3px solid #f59e0b;
             transform: scale(1.06) translateY(-2px);
             background-color: #fef9c3 !important;
             box-shadow: 0 6px 16px rgba(245, 158, 11, 0.35);
         }
-
         .meeple-button.used {
             opacity: 0.4;
             filter: grayscale(85%);
@@ -322,7 +304,6 @@
         }
 
         /* Mappa Grafica con Illustrazione Autentica del Tabellone */
-
         .board-map-artwork {
             background-image: url('/Vietri-BoardGame/assets/tabellone-B5zyBruV.jpg');
             background-size: cover;
@@ -335,7 +316,6 @@
             transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             backdrop-filter: blur(4px);
         }
-
         .map-station:hover {
             transform: scale(1.06);
             box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
@@ -834,7 +814,7 @@
             <div id="view-home" class="w-full flex flex-col font-reading">
                 <section id="hero-scroll-wrapper" class="relative w-full h-screen overflow-hidden text-white bg-[#001f3f] flex items-center justify-center">
                     <div id="hero-bg" class="absolute inset-0 w-full h-full z-0 animate-ken-burns"
-                        style="background-image: linear-gradient(to bottom, rgba(0, 34, 68, 0.45), rgba(0, 71, 171, 0.25)), url('img/rules/Cover-Art.png'); background-size: cover; background-position: center; transform-origin: center center;">
+                        style="background-image: linear-gradient(to bottom, rgba(0, 34, 68, 0.45), rgba(0, 71, 171, 0.25)), url('img/rules/Cover-Art.webp'); background-size: cover; background-position: center; transform-origin: center center;">
                     </div>
 
                     <div class="absolute top-4 right-4 flex gap-2.5 z-50">
@@ -858,7 +838,7 @@
                     </div>
 
                     <div class="relative z-30 flex flex-col items-center text-center max-w-4xl mx-auto maiolica-content p-6 md:p-12 rounded-2xl shadow-2xl space-y-4 md:space-y-6 border-4 border-vietri-blue bg-white/90" style="width: 90%; backdrop-filter: blur(6px);">
-                        <img src="img/rules/logo.png" alt="Vietri Logo" class="w-[75%] max-w-[420px] drop-shadow-xl mx-auto">
+                        <img src="img/rules/logo.webp" alt="Vietri Logo" class="w-[75%] max-w-[420px] drop-shadow-xl mx-auto" width="420" height="auto" fetchpriority="high">
                         
                         <div class="space-y-1">
                             <h1 class="text-3xl md:text-5xl font-bold uppercase tracking-widest text-vietri-blue drop-shadow-sm font-serif">
@@ -903,13 +883,13 @@
 
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
                             <div class="physical-card p-4 bg-white">
-                                <img src="img/rules/components_cards.png" alt="Cards" class="w-full h-auto rounded object-cover">
+                                <img src="img/rules/components_cards.webp" alt="Cards" class="w-full h-auto rounded object-cover" loading="lazy" decoding="async">
                             </div>
                             <div class="physical-card p-4 bg-white transform md:-translate-y-6 z-10 border-4 border-vietri-yellow">
-                                <img src="img/regolamento/esempi_carte.jpg" alt="Artwork" class="w-full h-auto rounded object-cover">
+                                <img src="img/regolamento/esempi_carte.webp" alt="Artwork" class="w-full h-auto rounded object-cover" loading="lazy" decoding="async">
                             </div>
                             <div class="physical-card p-4 bg-white">
-                                <img src="img/rules/components_meeples.png" alt="Meeples" class="w-full h-auto rounded object-cover">
+                                <img src="img/rules/components_meeples.webp" alt="Meeples" class="w-full h-auto rounded object-cover" loading="lazy" decoding="async">
                             </div>
                         </div>
                     </div>
