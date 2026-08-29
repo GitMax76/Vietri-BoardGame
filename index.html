@@ -674,6 +674,15 @@
         }
         window.getColorName = getColorName;
 
+        const FLAGS_SVG = {
+            it: '<svg viewBox="0 0 60 60" class="w-full h-full"><clipPath id="flagClipIT"><circle cx="30" cy="30" r="30"/></clipPath><g clip-path="url(#flagClipIT)"><rect x="0" y="0" width="20" height="60" fill="#009246"/><rect x="20" y="0" width="20" height="60" fill="#FFFFFF"/><rect x="40" y="0" width="20" height="60" fill="#CE2B37"/></g></svg>',
+            en: '<svg viewBox="0 0 60 60" class="w-full h-full"><clipPath id="flagClipEN"><circle cx="30" cy="30" r="30"/></clipPath><g clip-path="url(#flagClipEN)"><rect width="60" height="60" fill="#012169"/><path d="M0,0 L60,60 M60,0 L0,60" stroke="#FFFFFF" stroke-width="10"/><path d="M0,0 L60,60 M60,0 L0,60" stroke="#C8102E" stroke-width="5"/><path d="M30,0 L30,60 M0,30 L60,30" stroke="#FFFFFF" stroke-width="16"/><path d="M30,0 L30,60 M0,30 L60,30" stroke="#C8102E" stroke-width="9"/></g></svg>',
+            fr: '<svg viewBox="0 0 60 60" class="w-full h-full"><clipPath id="flagClipFR"><circle cx="30" cy="30" r="30"/></clipPath><g clip-path="url(#flagClipFR)"><rect x="0" y="0" width="20" height="60" fill="#002395"/><rect x="20" y="0" width="20" height="60" fill="#FFFFFF"/><rect x="40" y="0" width="20" height="60" fill="#ED2939"/></g></svg>',
+            es: '<svg viewBox="0 0 60 60" class="w-full h-full"><clipPath id="flagClipES"><circle cx="30" cy="30" r="30"/></clipPath><g clip-path="url(#flagClipES)"><rect x="0" y="0" width="60" height="15" fill="#AA151B"/><rect x="0" y="15" width="60" height="30" fill="#F1BF00"/><rect x="0" y="45" width="60" height="15" fill="#AA151B"/><rect x="15" y="24" width="7" height="12" rx="3.5" fill="#AA151B"/><circle cx="18.5" cy="22" r="2.5" fill="#C8102E"/></g></svg>',
+            de: '<svg viewBox="0 0 60 60" class="w-full h-full"><clipPath id="flagClipDE"><circle cx="30" cy="30" r="30"/></clipPath><g clip-path="url(#flagClipDE)"><rect x="0" y="0" width="60" height="20" fill="#000000"/><rect x="0" y="20" width="60" height="20" fill="#DD0000"/><rect x="0" y="40" width="60" height="20" fill="#FFCE00"/></g></svg>'
+        };
+        window.FLAGS_SVG = FLAGS_SVG;
+
         function setLanguage(lang) {
             gameState.language = lang;
             renderApp();
@@ -803,10 +812,10 @@
                         style="background-image: linear-gradient(to bottom, rgba(0, 34, 68, 0.45), rgba(0, 71, 171, 0.25)), url('img/rules/Cover-Art.png'); background-size: cover; background-position: center; transform-origin: center center;">
                     </div>
 
-                    <div class="absolute top-4 right-4 flex gap-2 z-50">
+                    <div class="absolute top-4 right-4 flex gap-2.5 z-50">
                         ${['it', 'en', 'fr', 'es', 'de'].map(l => `
-                            <button onclick="setLanguage('${l}')" class="w-9 h-9 rounded-full border-2 border-white shadow hover:scale-110 transition overflow-hidden bg-white flex items-center justify-center font-bold text-xs ${curLang === l ? 'ring-2 ring-yellow-400 scale-105' : 'opacity-75'}">
-                                ${l.toUpperCase()}
+                            <button onclick="setLanguage('${l}')" title="${l.toUpperCase()}" class="w-9 h-9 md:w-10 md:h-10 rounded-full border-2 border-white shadow-xl hover:scale-115 transition overflow-hidden bg-white flex items-center justify-center p-0 cursor-pointer ${curLang === l ? 'ring-4 ring-yellow-400 scale-110 shadow-yellow-400/50' : 'opacity-80 hover:opacity-100'}">
+                                ${FLAGS_SVG[l]}
                             </button>
                         `).join('')}
                     </div>
@@ -970,10 +979,10 @@
                             Round ${gameState.currentDay}/7
                         </span>
                         
-                        <div class="flex gap-1">
+                        <div class="flex gap-1.5 items-center">
                             ${['it', 'en', 'fr', 'es', 'de'].map(l => `
-                                <button onclick="setLanguage('${l}')" class="w-6 h-6 rounded-full border text-[0.6rem] font-bold flex items-center justify-center ${curLang === l ? 'bg-vietri-blue text-white ring-2 ring-yellow-400' : 'bg-gray-100 text-gray-700'}">
-                                    ${l.toUpperCase()}
+                                <button onclick="setLanguage('${l}')" title="${l.toUpperCase()}" class="w-6 h-6 md:w-7 md:h-7 rounded-full border border-white shadow hover:scale-115 transition overflow-hidden bg-white flex items-center justify-center p-0 cursor-pointer ${curLang === l ? 'ring-2 ring-yellow-400 scale-105 shadow-yellow-400/40' : 'opacity-80 hover:opacity-100'}">
+                                    ${FLAGS_SVG[l]}
                                 </button>
                             `).join('')}
                         </div>
